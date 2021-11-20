@@ -13,6 +13,7 @@ import com.example.elacosmetologyandroid.component.ProgressButton
 import com.example.elacosmetologyandroid.extensions.getError
 import com.example.elacosmetologyandroid.extensions.showCrossDialog
 import com.example.elacosmetologyandroid.repository.UnAuthorizedException
+import com.example.elacosmetologyandroid.ui.login.LoginActivity
 
 abstract class BaseActivity : AppCompatActivity() {
     abstract fun getMainView()
@@ -56,7 +57,7 @@ abstract class BaseActivity : AppCompatActivity() {
             dialog.mView.findViewById<ProgressButton>(R.id.dialog_btn_accept)
                 .setOnClickButtonListener {
                     if (error is UnAuthorizedException) {
-                        goLogin(true)
+                        goLogin()
                       dialog.dismiss()
                     } else {
                         dialog.dismiss()
@@ -73,7 +74,7 @@ abstract class BaseActivity : AppCompatActivity() {
      */
     open fun onErrorDialogAccept() {}
 
-    fun goLogin(isUnAuthorized: Boolean) {
+    private fun goLogin() {
         startActivity(Intent(this, LoginActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         })
