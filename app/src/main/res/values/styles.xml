@@ -1,0 +1,9 @@
+<resources>
+
+    <style name="BtnComponentStyle" parent="Widget.AppCompat.Button">
+        <item name="textAllCaps">false</item>
+        <item name="android:fontFamily">bold</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+</resources>

@@ -1,44 +1,22 @@
 package com.example.elacosmetologyandroid
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.lifecycleScope
-import com.rimac.components.button.ProgressButton
-import com.rimac.repository.network.exceptions.ApiException
-import com.rimac.repository.network.exceptions.NetworkException
-import com.rimac.rimac_surrogas.R
-import com.rimac.rimac_surrogas.components.ProgressDialog
-import com.rimac.rimac_surrogas.manager.SessionManager
-import com.rimac.rimac_surrogas.ui.config.ConfigViewModel
-import com.rimac.rimac_surrogas.ui.login.LoginActivity
-import com.rimac.rimac_surrogas.util.*
-import com.rimac.rimac_surrogas.util.adobe.*
-import com.rimac.usecases.util.UnAuthorizedException
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.example.elacosmetologyandroid.component.ProgressButton
 
 abstract class BaseActivity : AppCompatActivity() {
     abstract fun getMainView()
     abstract fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>>?
-    abstract fun getErrorAnalytics(): ArrayList<MutableLiveData<Throwable>>?
     abstract fun setUpView()
     abstract fun observeLiveData()
     private val errorList = ArrayList<LiveData<Throwable>>()
-    private val errorAnalytics = ArrayList<LiveData<Throwable>>()
-    private val progressDialog = ProgressDialog()
-    private var errorAnalyticsCode: String? = null
+
 
 
 
@@ -47,11 +25,9 @@ abstract class BaseActivity : AppCompatActivity() {
         getMainView()
         setUpView()
         errorList.addAll(getErrorObservers() ?: ArrayList())
-        errorAnalytics.addAll(getErrorAnalytics() ?: ArrayList())
         observeErrors(errorList)
         observeErrorsAnalytics(errorAnalytics)
         observeLiveData()
-        validateSession()
     }
 
     fun observeErrors(errors: List<LiveData<Throwable>>) {
@@ -81,6 +57,9 @@ abstract class BaseActivity : AppCompatActivity() {
                       dialog.dismiss()
                     } else {
                         dialog.dismiss()
+                        if (!isDestroyed) {
+                            onErrorDialogAccept()
+                        }
                     }
                 }
         }
@@ -98,27 +77,6 @@ abstract class BaseActivity : AppCompatActivity() {
         finishAffinity()
     }
 
-    fun showProgress(isShow: Boolean) {
-        if (isShow) progressDialog.show(
-            this.supportFragmentManager,
-            ProgressDialog::class.java.name
-        )
-        else progressDialog.dismiss()
-    }
 
-
-
-
-    fun showProgressSafely() {
-        if (!progressDialog.isVisible) {
-            showProgress(true)
-        }
-    }
-
-    fun hideProgressSafely() {
-        if (progressDialog.isVisible) {
-            showProgress(false)
-        }
-    }
 
 }
