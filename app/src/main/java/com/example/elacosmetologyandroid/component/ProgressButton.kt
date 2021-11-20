@@ -15,7 +15,7 @@ import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
 import androidx.databinding.DataBindingUtil
 import com.example.elacosmetologyandroid.R
-import com.example.elacosmetologyandroid.component.extensions.validateVisibility
+import com.example.elacosmetologyandroid.extensions.validateVisibility
 
 
 @BindingMethods(

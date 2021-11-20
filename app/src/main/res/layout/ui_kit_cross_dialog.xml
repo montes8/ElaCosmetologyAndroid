@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="12dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/dialog_icon"
+                android:layout_width="@dimen/size_60"
+                android:layout_height="@dimen/size_60"
+                android:layout_marginTop="48dp"
+                android:contentDescription="@null"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_info_error" />
+
+            <ImageButton
+                android:id="@+id/dialog_close"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ui_kit_ic_close"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:tint="@color/pink_600" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dialog_text_title"
+                android:textSize="@dimen/txt_size_20"
+                android:textStyle="bold"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_24"
+                android:layout_marginTop="@dimen/size_24"
+                android:layout_marginEnd="@dimen/size_24"
+                android:gravity="center"
+                android:textColor="@color/pink_600"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dialog_icon"
+                tools:text="Title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dialog_text_description"
+                android:textSize="@dimen/txt_size_16"
+                android:textStyle="normal"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="@dimen/size_8"
+                android:textColor="@color/pink_200"
+                android:layout_marginEnd="24dp"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dialog_text_title"
+                tools:text="This is a description" />
+
+            <com.example.elacosmetologyandroid.component.ProgressButton
+                android:id="@+id/dialog_btn_accept"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_24"
+                android:layout_marginTop="@dimen/size_32"
+                android:layout_marginEnd="@dimen/size_24"
+                android:layout_marginBottom="@dimen/size_32"
+                app:buttonText="Entendido"
+                app:buttonUISize="medium"
+                app:buttonUIStyle="primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dialog_text_description" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

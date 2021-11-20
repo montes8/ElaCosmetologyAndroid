@@ -2,5 +2,14 @@
     <string name="app_name">ElaCosmetologyAndroid</string>
 
 
+    <string name="error_session">Oh oh, hubo un problema</string>
+
+    <string name="error_general">No pudimos continuar con el proceso que realizabas. Inténtalo nuevamente.</string>
+    <string name="error_internet_description">Revisa tu conexión y vuelve a intentarlo.</string>
+    <string name="user_unauthorized_title">Tu sesión ha expirado</string>
+    <string name="user_unauthorized_description">Estuviste inactivo por unos minutos. Por favor, vuelve a iniciar sesión.</string>
+    <string name="error_general_title">Lo sentimos, ocurrió un error</string>
+    <string name="error_internet">No hay conexión a internet</string>
+
     <string name="progress_button_loading">Loading…</string>
 </resources>

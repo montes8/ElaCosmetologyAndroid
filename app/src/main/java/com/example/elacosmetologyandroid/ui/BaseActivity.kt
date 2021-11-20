@@ -1,4 +1,4 @@
-package com.example.elacosmetologyandroid
+package com.example.elacosmetologyandroid.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,13 +8,17 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.ProgressButton
+import com.example.elacosmetologyandroid.extensions.getError
+import com.example.elacosmetologyandroid.extensions.showCrossDialog
+import com.example.elacosmetologyandroid.repository.UnAuthorizedException
 
 abstract class BaseActivity : AppCompatActivity() {
     abstract fun getMainView()
-    abstract fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>>?
     abstract fun setUpView()
     abstract fun observeLiveData()
+    abstract fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>>?
     private val errorList = ArrayList<LiveData<Throwable>>()
 
 
@@ -26,7 +30,6 @@ abstract class BaseActivity : AppCompatActivity() {
         setUpView()
         errorList.addAll(getErrorObservers() ?: ArrayList())
         observeErrors(errorList)
-        observeErrorsAnalytics(errorAnalytics)
         observeLiveData()
     }
 
