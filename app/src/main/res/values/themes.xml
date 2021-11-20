@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Custom.Theme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary_pink</item>
+        <item name="colorPrimaryDark">@color/primary_secondary</item>
+        <item name="colorAccent">@color/primary_Accent</item>
+    </style>
+
+    <style name="Custom.NoActionBar.Light" parent="Custom.Theme">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/gray_100</item>
+        <item name="android:windowBackground">@color/gray_100</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <style name="Custom.NoActionBar.Translucent" parent="Custom.Theme">
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowBackground">@color/gray_100</item>
+    </style>
+
+</resources>

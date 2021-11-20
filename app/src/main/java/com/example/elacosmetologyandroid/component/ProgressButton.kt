@@ -182,7 +182,7 @@ class ProgressButton constructor(
             ProgressButtonStyle.PRIMARY -> {
                 backgroundButtonLoading(
                     background = R.drawable.ui_kit_shape_primary_loading_button,
-                    backgroundTextColor = context.getColor(R.color.R700)
+                    backgroundTextColor = context.getColor(R.color.primary_pink)
                 )
             }
             ProgressButtonStyle.SECONDARY -> {
@@ -209,23 +209,23 @@ class ProgressButton constructor(
             ProgressButtonStyle.PRIMARY -> {
                 backgroundButtonDisabled(
                     background = R.drawable.ui_kit_shape_primary_disabled_button,
-                    textColor = context.getColor(R.color.N500)
+                    textColor = context.getColor(R.color.gray_500)
                 )
             }
             ProgressButtonStyle.SECONDARY -> {
                 backgroundButtonDisabled(
                     background = R.drawable.ui_kit_shape_secondary_disabled_button,
-                    textColor = context.getColor(R.color.B200)
+                    textColor = context.getColor(R.color.pink_50)
                 )
             }
             ProgressButtonStyle.SUBTLE -> {
                 backgroundButtonDisabled(
                     background = R.drawable.ui_kit_shape_subtle_disabled_button,
-                    textColor = context.getColor(R.color.N500)
+                    textColor = context.getColor(R.color.gray_500)
                 )
             }
             ProgressButtonStyle.TEXT -> {
-                binding.button.setTextColor(context.getColor(R.color.B400))
+                binding.button.setTextColor(context.getColor(R.color.pink_400))
             }
         }
     }
@@ -302,16 +302,16 @@ class ProgressButton constructor(
 
     private fun setUpStylePrimaryButton() {
         setColorTextAndProgress(
-            textColor = context.getColor(R.color.N0),
-            progressColor = context.getColor(R.color.N0)
+            textColor = context.getColor(R.color.white),
+            progressColor = context.getColor(R.color.white)
         )
         backgroundButtonDefault(R.drawable.ui_kit_selector_primary_button)
     }
 
     private fun setUpButtonSecondary() {
         setColorTextAndProgress(
-            textColor = context.getColor(R.color.B600),
-            progressColor = context.getColor(R.color.B600)
+            textColor = context.getColor(R.color.pink_600),
+            progressColor = context.getColor(R.color.pink_600)
         )
         backgroundButtonDefault(background = R.drawable.ui_kit_selector_secondary_button)
     }
@@ -319,13 +319,13 @@ class ProgressButton constructor(
     private fun setUpButtonSubtle() {
         setColorTextAndProgress(
             textColor = context.getColor(R.color.N700),
-            progressColor = context.getColor(R.color.N700)
+            progressColor = context.getColor(R.color.pink_700)
         )
         backgroundButtonDefault(background = R.drawable.ui_kit_selector_subtle_button)
     }
 
     private fun setUpButtonText() {
-        binding.button.setTextColor(context.getColor(R.color.B600))
+        binding.button.setTextColor(context.getColor(R.color.pink_600))
         backgroundButtonDefault(background = R.drawable.ui_kit_shape_text_default_button)
         removeButtonPadding()
     }
