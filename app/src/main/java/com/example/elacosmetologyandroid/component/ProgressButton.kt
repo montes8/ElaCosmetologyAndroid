@@ -15,6 +15,7 @@ import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
 import androidx.databinding.DataBindingUtil
 import com.example.elacosmetologyandroid.R
+import com.example.elacosmetologyandroid.component.extensions.validateVisibility
 
 
 @BindingMethods(
@@ -89,7 +90,7 @@ class ProgressButton constructor(
     var isButtonVisible: Boolean = true
         set(value) {
             field = value
-            binding.button.isVisible = value
+            binding.button.validateVisibility(value)
         }
 
     var buttonText: String = ""
@@ -193,7 +194,7 @@ class ProgressButton constructor(
             }
             ProgressButtonStyle.SUBTLE -> {
                 backgroundButtonLoading(
-                    background = R.drawable.ui_kit_shape_subtle_default_button,
+                    background = R.drawable.ui_kit_shape_secondary_default_button,
                     backgroundTextColor = context.getColor(android.R.color.transparent)
                 )
             }
@@ -209,7 +210,7 @@ class ProgressButton constructor(
             ProgressButtonStyle.PRIMARY -> {
                 backgroundButtonDisabled(
                     background = R.drawable.ui_kit_shape_primary_disabled_button,
-                    textColor = context.getColor(R.color.gray_500)
+                    textColor = context.getColor(R.color.pink_100)
                 )
             }
             ProgressButtonStyle.SECONDARY -> {
@@ -220,8 +221,8 @@ class ProgressButton constructor(
             }
             ProgressButtonStyle.SUBTLE -> {
                 backgroundButtonDisabled(
-                    background = R.drawable.ui_kit_shape_subtle_disabled_button,
-                    textColor = context.getColor(R.color.gray_500)
+                    background = R.drawable.ui_kit_shape_secondary_disabled_button,
+                    textColor = context.getColor(R.color.pink_100)
                 )
             }
             ProgressButtonStyle.TEXT -> {
@@ -318,7 +319,7 @@ class ProgressButton constructor(
 
     private fun setUpButtonSubtle() {
         setColorTextAndProgress(
-            textColor = context.getColor(R.color.N700),
+            textColor = context.getColor(R.color.pink_100),
             progressColor = context.getColor(R.color.pink_700)
         )
         backgroundButtonDefault(background = R.drawable.ui_kit_selector_subtle_button)

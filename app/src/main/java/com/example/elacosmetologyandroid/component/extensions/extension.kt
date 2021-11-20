@@ -9,3 +9,7 @@ fun View.visible() = apply {
 fun View.gone() = apply {
     visibility = View.GONE
 }
+
+fun View.validateVisibility(value: Boolean) {
+    if (value) visible() else gone()
+}
