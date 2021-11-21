@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ElaCosmetologyAndroid</string>
+    <string name="app_name">Gabbi \nCosmetology</string>
 
 
     <string name="error_session">Oh oh, hubo un problema</string>
@@ -12,4 +12,6 @@
     <string name="error_internet">No hay conexión a internet</string>
 
     <string name="progress_button_loading">Loading…</string>
+    <string name="txt_title_splash">BIENVENIDA</string>
+    <string name="txt_subtitle_splash">MIRA TU CATALOGO AHORA</string>
 </resources>
