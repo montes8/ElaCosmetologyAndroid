@@ -27,7 +27,7 @@
     </style>
 
     <style name="TextInputLayoutEdit" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="colorPrimary">@color/pink_600</item>
+        <item name="colorPrimary">@color/pink_200</item>
         <item name="boxStrokeColor">@color/selector_edit_box</item>
         <item name="hintTextAppearance">@style/HintTextCustom</item>
         <item name="errorTextAppearance">@style/ErrorText</item>
@@ -38,7 +38,7 @@
         <item name="boxCornerRadiusTopEnd">@dimen/size_8</item>
         <item name="boxCornerRadiusBottomStart">@dimen/size_8</item>
         <item name="boxCornerRadiusTopStart">@dimen/size_8</item>
-        <item name="android:textColorHint">@color/pink_600</item>
-        <item name="colorControlNormal">@color/pink_600</item>
+        <item name="android:textColorHint">@color/pink_100</item>
+        <item name="colorControlNormal">@color/pink_200</item>
     </style>
 </resources>

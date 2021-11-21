@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/pink_700" android:state_focused="true" />
-    <item android:alpha="0.87" android:color="@color/pink_700" android:state_hovered="true" />
-    <item android:color="@color/pink_600" android:state_enabled="false" />
-    <item android:color="@color/pink_600" android:state_focused="false" />
-    <item android:color="@color/pink_600" />
+    <item android:color="@color/pink_400" android:state_focused="true" />
+    <item android:alpha="0.87" android:color="@color/pink_400" android:state_hovered="true" />
+    <item android:color="@color/pink_200" android:state_enabled="false" />
+    <item android:color="@color/pink_200" android:state_focused="false" />
+    <item android:color="@color/pink_200" />
 </selector>

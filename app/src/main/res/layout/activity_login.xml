@@ -6,6 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/gray_100"
         tools:context=".iu.LoginActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +21,7 @@
                 android:id="@+id/lottieLogin"
                 android:layout_width="@dimen/size_222"
                 android:layout_height="@dimen/size_222"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginBottom="@dimen/size_20"
@@ -32,60 +33,58 @@
                 android:id="@+id/linearLayout3"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="44dp"
-                android:layout_marginEnd="8dp"
-                android:background="#E0E0E0"
+                android:padding="@dimen/size_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lottieLogin">
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/edit_nombre_login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="33dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="15dp"
-                    android:background="#FFFFFF"
-                    android:drawableStart="@drawable/ic_login"
-                    android:drawablePadding="15dp"
-                    android:ems="13"
-                    android:hint=" Usuario"
+                <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+                    android:id="@+id/editEmail"
+                    style="@style/TextInputLayoutEdit"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="@dimen/size_0"
+                    android:imeOptions="actionNext"
+                    app:uiHint="Correo electronico"
+                    android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
-                    android:paddingLeft="5dp"
-                    android:textSize="14sp" />
+                    />
 
-                <EditText
-                    android:id="@+id/edit_password_login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="33dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="15dp"
-                    android:background="#FFFFFF"
-                    android:drawableLeft="@drawable/ic_pass"
-                    android:drawablePadding="15dp"
-                    android:ems="13"
-                    android:hint=" Contraseña"
-                    android:inputType="textPassword"
-                    android:paddingLeft="5dp"
-                    android:textSize="14sp" />
+                <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+                    android:id="@+id/editPassword"
+                    android:layout_width="@dimen/size_0"
+                    style="@style/TextInputLayoutEdit"
+                    app:layout_constraintTop_toBottomOf="@+id/editEmail"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:uiHint="Contraseña"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:layout_height="wrap_content" />
 
                 <com.example.elacosmetologyandroid.component.ProgressButton
-                    android:id="@+id/button_login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
+                    android:id="@+id/btnLogin"
+                    android:layout_width="@dimen/size_0"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/editPassword"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="@dimen/size_24"
+                    app:uiPasswordEnabled="true"
                     app:buttonText="Ingresar"
-                    android:textColor="#FFFFFF" />
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Olvidaste Contraseña" />
+                    android:layout_marginTop="@dimen/size_20"
+                    app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="@color/pink_100"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@string/txt_forget_password" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -112,8 +111,7 @@
                 android:text="@string/register"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:textColor="@color/pink_600"
-                android:textColorLink="@color/pink_600"
-                tools:layout_editor_absoluteY="524dp" />
+                android:textColorLink="@color/pink_600" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
