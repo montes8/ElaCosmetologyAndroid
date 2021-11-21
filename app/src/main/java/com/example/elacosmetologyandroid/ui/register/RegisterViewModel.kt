@@ -35,6 +35,7 @@ class RegisterViewModel : BaseViewModel(), KoinComponent {
             executeSuspend {
                 val response = authUseCase.register(userData)
                 _successAccountLiveData.postValue(response)
+                loadingButton.postValue(false)
             }
         }
     }
