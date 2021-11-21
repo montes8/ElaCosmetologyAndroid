@@ -6,4 +6,39 @@
         <item name="android:stateListAnimator">@null</item>
     </style>
 
+
+    <style name="EditStylePink" parent="Theme.AppCompat.Light">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="colorControlNormal">@color/pink_100</item>
+        <item name="colorControlActivated">@color/pink_100</item>
+    </style>
+
+
+    <style name="ErrorText" parent="TextAppearance.Design.Error">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="HintTextCustom" parent="TextAppearance.Design.Hint">
+        <item name="android:textColorHint">@color/selector_hint_text</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TextInputLayoutEdit" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="colorPrimary">@color/pink_600</item>
+        <item name="boxStrokeColor">@color/selector_edit_box</item>
+        <item name="hintTextAppearance">@style/HintTextCustom</item>
+        <item name="errorTextAppearance">@style/ErrorText</item>
+        <item name="errorIconTint">@color/red</item>
+        <item name="boxStrokeErrorColor">@color/red</item>
+        <item name="errorTextColor">@color/red</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/size_8</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/size_8</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/size_8</item>
+        <item name="boxCornerRadiusTopStart">@dimen/size_8</item>
+        <item name="android:textColorHint">@color/pink_600</item>
+        <item name="colorControlNormal">@color/pink_600</item>
+    </style>
 </resources>

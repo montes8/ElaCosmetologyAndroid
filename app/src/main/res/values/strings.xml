@@ -14,4 +14,9 @@
     <string name="progress_button_loading">Loading…</string>
     <string name="txt_title_splash">BIENVENIDA</string>
     <string name="txt_subtitle_splash">MIRA TU CATALOGO AHORA</string>
+
+
+
+
+    <string name="register">¿Eres nuevo? Registrate</string>
 </resources>

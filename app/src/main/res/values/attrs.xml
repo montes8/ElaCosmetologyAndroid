@@ -22,4 +22,22 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="EditCustomLayout">
+        <attr name="uiDrawableEndEnabled" format="boolean" />
+        <attr name="uiPasswordEnabled" format="boolean" />
+        <attr name="uiContentDescription" format="string" />
+        <attr name="uiIconPassword" format="reference" />
+        <attr name="uiIconDrawableEnd" format="reference" />
+        <attr name="uiEditMaxLength" format="integer" />
+        <attr name="uiErrorEnabled" format="boolean" />
+        <attr name="uiFocusable" format="boolean" />
+        <attr name="uiTypeHint" format="boolean" />
+        <attr name="uiEnabled" format="boolean" />
+        <attr name="uiText" format="string" />
+        <attr name="uiHint" format="string" />
+        <attr name="uiIconTint" format="color" />
+        <attr name="android:inputType" />
+        <attr name="android:imeOptions" />
+        <attr name="isClearable" format="boolean" />
+    </declare-styleable>
 </resources>
