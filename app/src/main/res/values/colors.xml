@@ -26,7 +26,7 @@
 
 
     <!-- Others -->
-    <color name="dark_transparent_01">#B2FF80AB</color>
-    <color name="N600_transparent_32">#50FF4081</color>
+    <color name="dark_transparent_01">#B2FCE4EC</color>
+    <color name="N600_transparent_32">#50FF80AB</color>
     <color name="N300_transparent">#E8FAFBFF</color>
 </resources>

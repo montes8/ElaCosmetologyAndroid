@@ -39,7 +39,7 @@ class ProgressButton constructor(
 
     private val binding: com.example.elacosmetologyandroid.databinding.ProgressButtonBinding = DataBindingUtil.inflate(
         getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater,
-        R.layout.ui_kit_progress_button,
+        R.layout.progress_button,
         this,
         true
     )

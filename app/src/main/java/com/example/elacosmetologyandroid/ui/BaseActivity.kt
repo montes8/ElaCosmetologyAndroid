@@ -46,7 +46,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private fun showDialogError(error: Throwable) {
         val valueError = error.getError(this)
-        showCrossDialog(R.layout.ui_kit_cross_dialog, true) { dialog ->
+        showCrossDialog(R.layout.cross_dialog, true) { dialog ->
             dialog.mView.findViewById<View>(R.id.dialog_close)
                 .setOnClickListener { dialog.dismiss() }
             dialog.mView.findViewById<ImageView>(R.id.dialog_icon)
