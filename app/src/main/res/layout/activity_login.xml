@@ -2,6 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="loginViewModel"
+            type="com.example.elacosmetologyandroid.ui.login.LoginViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,17 +23,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.airbnb.lottie.LottieAnimationView
+            <ImageView
                 android:id="@+id/lottieLogin"
-                android:layout_width="@dimen/size_222"
-                android:layout_height="@dimen/size_222"
+                android:layout_width="@dimen/size_152"
+                android:layout_height="@dimen/size_152"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="@null"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginBottom="@dimen/size_20"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="false"
-                app:lottie_rawRes="@raw/splash" />
+                android:src="@drawable/ic_logo_login" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/linearLayout3"
@@ -46,7 +51,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_width="@dimen/size_0"
                     android:imeOptions="actionNext"
-                    app:uiHint="Correo electronico"
+                    app:uiHint="@string/text_email"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     />
@@ -56,10 +61,12 @@
                     android:layout_width="@dimen/size_0"
                     style="@style/TextInputLayoutEdit"
                     app:layout_constraintTop_toBottomOf="@+id/editEmail"
+                    android:inputType="textPassword"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:uiHint="Contraseña"
+                    app:uiHint="@string/text_password"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginTop="@dimen/size_20"
+                    app:uiPasswordEnabled="true"
                     android:layout_height="wrap_content" />
 
                 <com.example.elacosmetologyandroid.component.ProgressButton
@@ -70,8 +77,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/size_24"
-                    app:uiPasswordEnabled="true"
+                    android:layout_marginTop="@dimen/size_32"
+                    app:isButtonLoading="@{loginViewModel.loadingButton}"
+                    app:isButtonEnabled="@{loginViewModel.enableButton}"
                     app:buttonText="Ingresar"
                     />
 
@@ -79,6 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_20"
+                    android:padding="@dimen/size_5"
                     app:layout_constraintTop_toBottomOf="@+id/btnLogin"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textColor="@color/pink_100"
@@ -106,6 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 app:layout_constraintTop_toTopOf="parent"
+                android:padding="@dimen/size_5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:text="@string/register"

@@ -36,6 +36,7 @@ class SplashActivity : BaseActivity() {
     private fun initSplash(){
         Handler(Looper.getMainLooper()).postDelayed({
             LoginActivity.start(this)
+            finish()
         }, 4500)
     }
 

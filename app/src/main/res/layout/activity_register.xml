@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="registerViewModel"
+            type="com.example.elacosmetologyandroid.ui.register.RegisterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.register.RegisterActivity">
+
+        <include
+            android:id="@+id/registerToolbar"
+            layout="@layout/mold_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/imgProfile"
+            android:layout_width="@dimen/size_100"
+            android:layout_height="@dimen/size_100"
+            android:layout_marginTop="@dimen/size_32"
+            android:src="@drawable/ic_logo_login"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registerToolbar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="@dimen/size_16"
+            app:layout_constraintTop_toBottomOf="@+id/imgProfile"
+            android:layout_height="wrap_content">
+
+
+
+        <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+            android:id="@+id/editNameRegister"
+            style="@style/TextInputLayoutEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:uiHint="@string/text_name"
+            android:layout_marginTop="@dimen/size_32"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+            android:id="@+id/editLastNameRegister"
+            android:layout_width="match_parent"
+            style="@style/TextInputLayoutEdit"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/size_20"
+            app:uiHint="@string/text_last_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editNameRegister" />
+
+        <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+            android:id="@+id/editEmailRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextInputLayoutEdit"
+            android:layout_marginTop="@dimen/size_20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:uiHint="@string/text_email"
+            app:layout_constraintTop_toBottomOf="@+id/editLastNameRegister" />
+
+        <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+            android:id="@+id/editPasswordRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextInputLayoutEdit"
+            app:uiHint="@string/text_password"
+            android:inputType="textPassword"
+            app:uiPasswordEnabled="true"
+            android:layout_marginTop="@dimen/size_20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editEmailRegister" />
+
+        <com.example.elacosmetologyandroid.component.ProgressButton
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:buttonText="@string/text_register"
+            app:isButtonEnabled="@{registerViewModel.enableButton}"
+            app:isButtonLoading="@{registerViewModel.loadingButton}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="@dimen/size_24"
+            app:layout_constraintTop_toBottomOf="@+id/editPasswordRegister" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

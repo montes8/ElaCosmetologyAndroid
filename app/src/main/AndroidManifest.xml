@@ -3,21 +3,25 @@
     package="com.example.elacosmetologyandroid">
 
     <application
+        android:name=".application.ApplicationEla"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Custom.Theme">
-        <activity android:name=".ui.login.LoginActivity"
-            android:theme="@style/Custom.NoActionBar.Light"
+        <activity android:name=".ui.register.RegisterActivity"></activity>
+        <activity
+            android:name=".ui.login.LoginActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            />
-        <activity android:name=".ui.splash.SplashActivity"
             android:theme="@style/Custom.NoActionBar.Light"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.splash.SplashActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Custom.NoActionBar.Light">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -16,8 +16,13 @@
     <string name="txt_subtitle_splash">MIRA TU CATALOGO AHORA</string>
 
 
-
-
     <string name="register">¿Eres nuevo? Registrate</string>
+    <string name="text_register">Registrate</string>
+    <string name="text_email">Correo electronico</string>
+    <string name="text_password">Contraseña</string>
+    <string name="text_name">Nombres</string>
+    <string name="text_last_name">Apellidos</string>
+
+
     <string name="txt_forget_password">Olvidaste Contraseña</string>
 </resources>

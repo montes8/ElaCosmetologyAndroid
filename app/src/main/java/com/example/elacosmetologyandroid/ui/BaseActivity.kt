@@ -34,7 +34,7 @@ abstract class BaseActivity : AppCompatActivity() {
         observeLiveData()
     }
 
-    fun observeErrors(errors: List<LiveData<Throwable>>) {
+    private fun observeErrors(errors: List<LiveData<Throwable>>) {
         for (error in errors) {
             error.observe(this, {
                 showDialogError(error = it)
@@ -69,9 +69,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Metodo para realizar una accion cuando se acepte el dialogo de error.
-     */
+
     open fun onErrorDialogAccept() {}
 
     private fun goLogin() {

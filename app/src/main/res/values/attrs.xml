@@ -26,6 +26,7 @@
         <attr name="uiDrawableEndEnabled" format="boolean" />
         <attr name="uiPasswordEnabled" format="boolean" />
         <attr name="uiContentDescription" format="string" />
+        <attr name="uiErrorMessage" format="string" />
         <attr name="uiIconPassword" format="reference" />
         <attr name="uiIconDrawableEnd" format="reference" />
         <attr name="uiEditMaxLength" format="integer" />

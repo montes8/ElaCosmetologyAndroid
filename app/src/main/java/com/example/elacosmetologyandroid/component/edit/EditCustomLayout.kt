@@ -71,7 +71,7 @@ class EditCustomLayout @JvmOverloads constructor(
     var uiEditIconClickListener: UIEditIconClickListener = {}
     var uIEditOnFocusListener: UIEditOnFocusListener = {}
     var uiEditBeforeTextChangedListener: UIEditBeforeTextChangedListener =
-        { text, initPositionCursor -> }
+        { _, _ -> }
 
     private var clearErrorsOnChangeEnabled = true
     private var isTwoWayDataBindingEnabled = false
@@ -303,6 +303,8 @@ class EditCustomLayout @JvmOverloads constructor(
             uiText = it.getString(R.styleable.EditCustomLayout_uiText) ?: ""
             uiHint = it.getString(R.styleable.EditCustomLayout_uiHint) ?: ""
             uiEnable = it.getBoolean(R.styleable.EditCustomLayout_uiEnabled, true)
+            uiErrorMessage = it.getString(R.styleable.EditCustomLayout_uiErrorMessage) ?: ""
+
 
         }
         attributeSet.recycle()
@@ -336,7 +338,7 @@ class EditCustomLayout @JvmOverloads constructor(
             if (clearErrorsOnChangeEnabled) uiErrorMessage = ""
             validateIcon(it.toString(), editText.isFocused)
         })
-        editText.doBeforeTextChanged { text, start, count, after ->
+        editText.doBeforeTextChanged { text, _, _, _ ->
             uiEditBeforeTextChangedListener(text.toString(), editText.selectionStart)
         }
         editText.setOnFocusChangeListener { _, isFocused ->
@@ -396,7 +398,7 @@ class EditCustomLayout @JvmOverloads constructor(
         with(editText) {
             setPadding(padding16, 0, padding16, 0)
             gravity = Gravity.CENTER_VERTICAL
-            setTextColor(ContextCompat.getColor(context, R.color.pink_700))
+            setTextColor(ContextCompat.getColor(context, R.color.pink_200))
             textSize = pixelsToSp(
                 context.resources.getDimensionPixelSize(R.dimen.txt_size_16).toFloat()
             )
