@@ -9,7 +9,7 @@ class AuthUseCase : KoinComponent {
     private val iAuthRepositoryNetwork: IAuthRepositoryNetwork by inject()
 
 
-    suspend fun login(email : String,pass: String) = iAuthRepositoryNetwork.login(email,pass)
-    suspend fun register(register : User) = iAuthRepositoryNetwork.register(register)
+     suspend fun login(email : String,pass: String) = iAuthRepositoryNetwork.login(email,pass)
+     suspend fun register(register : User) = iAuthRepositoryNetwork.register(register)
 
 }

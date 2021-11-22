@@ -11,6 +11,6 @@ data class User(
     var password : String = EMPTY,
     var img      : String = EMPTY,
     var rol      : String = "USER_ROLE",
-    var sate     : Boolean = false
+    var estate     : Boolean = false
 
 ):Parcelable

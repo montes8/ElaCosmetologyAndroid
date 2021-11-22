@@ -19,9 +19,9 @@ import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.CrossDialog
 import com.example.elacosmetologyandroid.component.CrossDialogBlock
 import com.example.elacosmetologyandroid.repository.ApiException
+import com.example.elacosmetologyandroid.repository.network.exception.CompleteErrorModel
 import com.example.elacosmetologyandroid.repository.NetworkException
 import com.example.elacosmetologyandroid.repository.UnAuthorizedException
-import com.example.elacosmetologyandroid.repository.UserNotFoundException
 
 fun View.visible() = apply {
     visibility = View.VISIBLE
@@ -51,14 +51,15 @@ fun Throwable.getError(context: Context): Triple<Int, String, String> {
     return when (this) {
         is ApiException -> Triple(
             R.drawable.ic_info_error,
-            this.title,
+            context.getString(R.string.error_general_title),
             this.mMessage
         )
-        is UserNotFoundException -> Triple(
+        is CompleteErrorModel -> Triple(
             R.drawable.ic_info_error,
-            context.getString(R.string.error_session),
-            context.getString(R.string.error_general)
+            title?:context.getString(R.string.error_internet),
+            description?:context.getString(R.string.error_internet_description)
         )
+
         is NetworkException -> Triple(
             R.drawable.ic_info_error,
             context.getString(R.string.error_internet),
