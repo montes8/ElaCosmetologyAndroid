@@ -53,7 +53,6 @@ class LoginActivity : BaseActivity() {
 
         viewModel.successLoginLiveData.observe(this,{
             it?.apply {
-                Log.d("tagUserLogin",this.toString())
                 HomeActivity.start(this@LoginActivity)
             }
         })

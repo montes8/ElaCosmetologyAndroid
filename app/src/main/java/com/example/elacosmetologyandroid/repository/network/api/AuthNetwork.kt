@@ -15,14 +15,13 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
     private val serviceApi: ServiceApi by inject()
 
     override suspend fun login(email: String, password: String): Pair<User,String> {
-
         return executeWithConnection {
             val response = serviceApi.login(UserResponse(email,password))
-            val data :Pair<User,String>?
+            var data :Pair<User,String>? = null
             if (response.isSuccessful) {
                 data = response.validateBody().toLogin()
-            } else throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
-            data
+            }
+            data?: throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
         }
     }
 
@@ -30,12 +29,11 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
     override  suspend fun register(register: User): User {
         return executeWithConnection {
             val response = serviceApi.register(UserResponse.toUserResponse(register))
-            val user : User?
+            var user : User? = null
             if (response.isSuccessful && response.body() != null) {
                 user = response.validateBody().toUser()
-            } else throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
-            user
+            }
+            user?: throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
         }
     }
-
 }

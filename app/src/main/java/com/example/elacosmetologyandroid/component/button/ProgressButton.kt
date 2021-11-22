@@ -183,7 +183,7 @@ class ProgressButton constructor(
             ProgressButtonStyle.PRIMARY -> {
                 backgroundButtonLoading(
                     background = R.drawable.shape_primary_loading_button,
-                    backgroundTextColor = context.getColor(R.color.primary_pink)
+                    backgroundTextColor = context.getColor(R.color.transparent)
                 )
             }
             ProgressButtonStyle.SECONDARY -> {
