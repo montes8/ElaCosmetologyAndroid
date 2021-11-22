@@ -16,10 +16,4 @@ open class BaseNetwork : KoinComponent {
         return block()
     }
 
-    fun <T> executeWithConnectionWithoutSuspend(block: () -> T): T {
-        if (!context.isConnected() || context.isAirplaneModeActive()) {
-            throw NetworkException()
-        }
-        return block()
-    }
 }
