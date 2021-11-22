@@ -25,7 +25,6 @@ class LoginActivity : BaseActivity() {
 
     override fun getMainView() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        binding.loginViewModel = viewModel
         binding.lifecycleOwner = this
 
     }

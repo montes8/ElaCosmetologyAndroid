@@ -7,7 +7,7 @@ import retrofit2.http.*
 
 interface ServiceApi {
 
-    @POST("api/user")
+    @POST("api/auth/login")
     suspend fun login(): Response<UserResponse>
 
     @POST("api/user")
