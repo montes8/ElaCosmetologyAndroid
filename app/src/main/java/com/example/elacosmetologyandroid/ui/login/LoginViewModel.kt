@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.component.edit.EditCustomLayout
 import com.example.elacosmetologyandroid.extensions.isEmailValid
 import com.example.elacosmetologyandroid.ui.BaseViewModel
-import com.example.elacosmetologyandroid.usecases.AuthUseCase
+import com.example.elacosmetologyandroid.usecases.usecases.AuthUseCase
 import com.example.elacosmetologyandroid.utils.EMPTY
 import org.koin.core.KoinComponent
 import org.koin.core.inject

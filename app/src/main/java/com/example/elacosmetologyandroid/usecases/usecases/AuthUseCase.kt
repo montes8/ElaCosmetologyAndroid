@@ -1,6 +1,7 @@
-package com.example.elacosmetologyandroid.usecases
+package com.example.elacosmetologyandroid.usecases.usecases
 
 import com.example.elacosmetologyandroid.model.User
+import com.example.elacosmetologyandroid.usecases.repository.IAuthRepositoryNetwork
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 

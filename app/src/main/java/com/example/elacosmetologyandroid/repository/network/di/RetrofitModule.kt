@@ -3,8 +3,9 @@ package com.example.elacosmetologyandroid.repository.network.di
 import android.content.Context
 import com.example.elacosmetologyandroid.BuildConfig
 import com.example.elacosmetologyandroid.repository.*
+import com.example.elacosmetologyandroid.repository.network.ServiceApi
 import com.example.elacosmetologyandroid.repository.network.api.AuthNetwork
-import com.example.elacosmetologyandroid.usecases.IAuthRepositoryNetwork
+import com.example.elacosmetologyandroid.usecases.repository.IAuthRepositoryNetwork
 import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

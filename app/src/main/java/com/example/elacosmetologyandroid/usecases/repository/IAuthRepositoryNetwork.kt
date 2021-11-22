@@ -1,4 +1,4 @@
-package com.example.elacosmetologyandroid.usecases
+package com.example.elacosmetologyandroid.usecases.repository
 
 import com.example.elacosmetologyandroid.model.User
 

@@ -130,6 +130,10 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha06'
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //preference encrip
+    implementation 'androidx.security:security-crypto:1.1.0-alpha03'
+
     //Glide - Shimmer
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     androidTestImplementation 'androidx.test:rules:1.4.1-alpha01'

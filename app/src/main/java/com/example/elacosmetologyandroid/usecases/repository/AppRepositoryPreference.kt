@@ -1,0 +1,16 @@
+package com.example.elacosmetologyandroid.usecases.repository
+
+interface AppRepositoryPreference {
+
+    @Throws(Exception::class)
+    fun getLogin(): Boolean
+
+    @Throws(Exception::class)
+    fun saveLogin(value: Boolean)
+
+    @Throws(Exception::class)
+    fun getToken(): Boolean
+
+    @Throws(Exception::class)
+    fun saveToken(value: Boolean)
+}
