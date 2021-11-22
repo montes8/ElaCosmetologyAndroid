@@ -37,7 +37,7 @@ class LoginActivity : BaseActivity() {
     private fun configEditChangeAndAction(){
         binding.editEmail.uiEditCustomListener = {loginViewModel.validateLogin(binding.editEmail,binding.editPassword)}
         binding.editPassword.uiEditCustomListener = {loginViewModel.validateLogin(binding.editEmail,binding.editPassword)}
-        binding.btnLogin.setOnClickButtonDelayListener{loginViewModel.login(binding.editPassword)}
+        binding.btnLogin.setOnClickButtonDelayListener{loginViewModel.login(binding.editEmail)}
     }
 
     private fun configRegister(){

@@ -52,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:uiHint="@string/text_name"
+            android:imeOptions="actionNext"
             android:layout_marginTop="@dimen/size_32"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,6 +63,7 @@
             android:layout_width="match_parent"
             style="@style/TextInputLayoutEdit"
             android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/size_20"
             app:uiHint="@string/text_last_name"
@@ -74,6 +76,7 @@
             android:layout_height="wrap_content"
             style="@style/TextInputLayoutEdit"
             android:layout_marginTop="@dimen/size_20"
+            android:imeOptions="actionNext"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:uiHint="@string/text_email"
@@ -92,14 +95,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editEmailRegister" />
 
-        <com.example.elacosmetologyandroid.component.ProgressButton
+        <com.example.elacosmetologyandroid.component.button.ProgressButton
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/size_32"
             app:buttonText="@string/text_register"
-            app:isButtonEnabled="@{registerViewModel.enableButton}"
-            app:isButtonLoading="@{registerViewModel.loadingButton}"
+            app:isButtonEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

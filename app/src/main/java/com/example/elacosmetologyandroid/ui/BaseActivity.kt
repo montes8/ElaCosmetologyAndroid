@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.R
-import com.example.elacosmetologyandroid.component.ProgressButton
+import com.example.elacosmetologyandroid.component.button.ProgressButton
 import com.example.elacosmetologyandroid.extensions.getError
 import com.example.elacosmetologyandroid.extensions.showCrossDialog
 import com.example.elacosmetologyandroid.repository.UnAuthorizedException

@@ -37,9 +37,9 @@ class LoginViewModel : BaseViewModel(), KoinComponent {
             enableButton.postValue(!TextUtils.isEmpty(email.uiText) && !TextUtils.isEmpty(pass.uiText))
     }
 
-    private fun validateEmail(pass : EditCustomLayout):Boolean{
-        if (!isEmailValid(pass.uiText)){
-            pass.uiErrorMessage = "El correo ingresado no es valido"
+    private fun validateEmail(email : EditCustomLayout):Boolean{
+        if (!isEmailValid(email.uiText)){
+            email.uiErrorMessage = "El correo ingresado no es valido"
             return false
         }
         return true

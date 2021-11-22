@@ -1,4 +1,4 @@
-package com.example.elacosmetologyandroid.component
+package com.example.elacosmetologyandroid.component.button
 
 import android.content.Context
 import android.content.res.ColorStateList

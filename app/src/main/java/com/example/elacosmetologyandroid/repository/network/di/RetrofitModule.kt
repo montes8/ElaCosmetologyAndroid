@@ -27,7 +27,6 @@ val moduleNetwork = module {
 
     single<IAuthRepositoryNetwork> { AuthNetwork() }
 
-
 }
 
 fun providerApi(retrofit: Retrofit): ServiceApi {

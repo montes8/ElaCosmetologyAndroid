@@ -14,7 +14,7 @@ class UserResponse (
     @SerializedName("img")
     var img      : String?,
     @SerializedName("rol")
-    var rol      : String?,
+    var rol      : String? ,
     @SerializedName("estado")
     var estate     : Boolean?
 ){
@@ -23,5 +23,10 @@ class UserResponse (
          password= password?: EMPTY,
         img = img?: EMPTY,
         rol = name?: EMPTY,
-        estate = estate?: false,)
+        estate = estate?: false)
+
+    companion object{
+        fun toUserResponse(user: User)= UserResponse(user.name,user.email,user.password,user.img,"USER_ROLE",true)
+    }
+
 }

@@ -1,8 +1,8 @@
 package com.example.elacosmetologyandroid.ui.register
 
-import android.text.TextUtils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.elacosmetologyandroid.component.button.ProgressButton
 import com.example.elacosmetologyandroid.component.edit.EditCustomLayout
 import com.example.elacosmetologyandroid.extensions.isEmailValid
 import com.example.elacosmetologyandroid.model.User
@@ -17,10 +17,6 @@ class RegisterViewModel : BaseViewModel(), KoinComponent {
 
     private val authUseCase: AuthUseCase by inject()
 
-    var enableButton = MutableLiveData(false)
-
-    var loadingButton = MutableLiveData(false)
-
     val successAccountLiveData        : LiveData<User> get()   = _successAccountLiveData
     private val _successAccountLiveData    = MutableLiveData<User>()
 
@@ -29,31 +25,30 @@ class RegisterViewModel : BaseViewModel(), KoinComponent {
 
 
 
-    fun register(pass : EditCustomLayout){
+    fun register(pass : EditCustomLayout,btnProgress : ProgressButton){
         if (validateEmail(pass)){
-            loadingButton.postValue(true)
+            btnProgress.isButtonLoading = true
             executeSuspend {
                 val response = authUseCase.register(userData)
                 _successAccountLiveData.postValue(response)
-                loadingButton.postValue(false)
             }
         }
     }
 
     fun validateRegister(name : EditCustomLayout, lastName : EditCustomLayout,
-                         email : EditCustomLayout, pass : EditCustomLayout){
+                         email : EditCustomLayout, pass : EditCustomLayout,btnProgress : ProgressButton){
         name.uiErrorMessage = EMPTY
         lastName.uiErrorMessage = EMPTY
         email.uiErrorMessage = EMPTY
         pass.uiErrorMessage = EMPTY
-        enableButton.postValue(!TextUtils.isEmpty(email.uiText) && !TextUtils.isEmpty(pass.uiText )
-                && !TextUtils.isEmpty(name.uiText )&& !TextUtils.isEmpty(lastName.uiText ) )
-        userData = User(name = "${name.uiText} ${lastName.uiText}",email = email.uiText,password = email.uiText)
+        btnProgress.isButtonEnabled = name.uiText.isNotEmpty() && lastName.uiText.isNotEmpty()
+                && email.uiText.isNotEmpty() && pass.uiText.isNotEmpty()
+                userData = User(name = "${name.uiText} ${lastName.uiText}",email = email.uiText,password = email.uiText)
     }
 
-    private fun validateEmail(pass : EditCustomLayout):Boolean{
-        if (!isEmailValid(pass.uiText)){
-            pass.uiErrorMessage = "El correo ingresado no es valido"
+    private fun validateEmail(email : EditCustomLayout):Boolean{
+        if (!isEmailValid(email.uiText)){
+            email.uiErrorMessage = "El correo ingresado no es valido"
             return false
         }
         return true

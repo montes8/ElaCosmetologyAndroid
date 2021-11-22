@@ -114,9 +114,9 @@ dependencies {
 
 
     //Koin
-    implementation 'org.koin:koin-core:2.1.6'
-    implementation 'org.koin:koin-androidx-viewmodel:2.1.6'
-    implementation 'org.koin:koin-androidx-scope:2.1.6'
+    implementation 'org.koin:koin-core:2.2.0-alpha-1'
+    implementation 'org.koin:koin-androidx-viewmodel:2.2.0-alpha-1'
+    implementation 'org.koin:koin-androidx-scope:2.2.0-alpha-1'
     // ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     // LiveData

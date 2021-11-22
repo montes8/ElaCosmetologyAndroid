@@ -8,17 +8,17 @@ import retrofit2.http.*
 interface ServiceApi {
 
     @POST("api/user")
-    fun login(): Response<UserResponse>
+    suspend fun login(): Response<UserResponse>
 
     @POST("api/user")
-    fun register(@Body userResponse: UserResponse): Response<UserResponse>
+    suspend fun register(@Body userResponse: UserResponse): Response<UserResponse>
 
     @PUT("api/user")
-    fun updateUser(): Response<UserResponse>
+    suspend fun updateUser(): Response<UserResponse>
 
     @DELETE("api/user")
-    fun deleteUser(): Response<UserResponse>
+    suspend fun deleteUser(): Response<UserResponse>
 
     @GET("api/user")
-    fun listUser(): Response<List<User>>
+    suspend fun listUser(): Response<List<User>>
 }

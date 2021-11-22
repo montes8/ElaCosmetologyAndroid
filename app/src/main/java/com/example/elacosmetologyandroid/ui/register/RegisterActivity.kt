@@ -41,17 +41,17 @@ class RegisterActivity : BaseActivity() {
         binding.editLastNameRegister.uiEditCustomListener={validateData()}
         binding.editEmailRegister.uiEditCustomListener={validateData()}
         binding.editPasswordRegister.uiEditCustomListener={validateData()}
-        binding.btnRegister.setOnClickButtonDelayListener{viewModel.register(binding.editPasswordRegister)}
+        binding.btnRegister.setOnClickButtonDelayListener{viewModel.register(binding.editEmailRegister,binding.btnRegister)}
     }
 
     private fun validateData(){
         viewModel.validateRegister(binding.editNameRegister,binding.editLastNameRegister,
-            binding.editEmailRegister,binding.editPasswordRegister)
+            binding.editEmailRegister,binding.editPasswordRegister,binding.btnRegister)
     }
 
     override fun observeLiveData() {
         viewModel.errorLiveData.observe(this,{
-            viewModel.loadingButton.postValue(false)
+            binding.btnRegister.isButtonLoading = false
         })
 
         viewModel.successAccountLiveData.observe(this,{
