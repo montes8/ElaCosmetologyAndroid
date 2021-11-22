@@ -5,6 +5,9 @@ plugins {
     id 'kotlin-kapt'
 }
 
+def CONFIG = { k -> "\"${project.properties.get(k)}\"" }
+def BASE_URL = "BASE_URL"
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -21,8 +24,19 @@ android {
 
     buildTypes {
         release {
+
+            buildConfigField "String", BASE_URL, CONFIG("production.server.url")
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            resValue "string", "encryption_key", CONFIG("preferences.encryption")
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            debuggable false
+        }
+        debug {
+            buildConfigField "String", BASE_URL, CONFIG("qa.server.url")
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            resValue "string", "encryption_key", CONFIG("preferences.encryption")
+            debuggable true
         }
     }
 

@@ -3,7 +3,7 @@ package com.example.elacosmetologyandroid.repository.network.api
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.repository.network.exception.BaseNetwork
 import com.example.elacosmetologyandroid.repository.ServiceApi
-import com.example.elacosmetologyandroid.repository.toCompleteErrorModel
+import com.example.elacosmetologyandroid.repository.network.exception.toCompleteErrorModel
 import com.example.elacosmetologyandroid.repository.validateBody
 import com.example.elacosmetologyandroid.usecases.IAuthRepositoryNetwork
 import org.koin.core.inject
@@ -19,7 +19,7 @@ class AuthNetwork : IAuthRepositoryNetwork , BaseNetwork(){
             val user = User()
             if (response.isSuccessful && response.body() != null) {
                 response.validateBody().toUser()
-            } else response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
+            } else throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
             user
         }
     }
@@ -31,7 +31,7 @@ class AuthNetwork : IAuthRepositoryNetwork , BaseNetwork(){
             val user = User()
             if (response.isSuccessful && response.body() != null) {
                 response.validateBody().toUser()
-            } else response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
+            } else throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
             user
         }
     }

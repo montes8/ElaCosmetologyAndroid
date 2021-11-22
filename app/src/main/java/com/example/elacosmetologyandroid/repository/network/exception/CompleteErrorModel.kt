@@ -6,14 +6,14 @@ import com.google.gson.annotations.SerializedName
 import java.lang.Exception
 
 data class CompleteErrorModel(
-    @SerializedName("titulo")
-    val title: String? = "Error",
-    @SerializedName("codigo")
+    @SerializedName("errorCode")
     var code: Int? = defaultCode,
+    @SerializedName("title")
+    val title: String? = "Error General",
     @SerializedName("descripcion")
     val description: String?= generalErrorMessage
 ) : Exception(description){
     fun getException(): Exception {
-        return CompleteErrorModel(this.title, this.code, this.description)
+        return CompleteErrorModel( this.code, this.title,this.description)
     }
 }

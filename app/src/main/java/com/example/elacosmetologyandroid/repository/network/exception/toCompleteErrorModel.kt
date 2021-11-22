@@ -1,6 +1,5 @@
-package com.example.elacosmetologyandroid.repository
+package com.example.elacosmetologyandroid.repository.network.exception
 
-import com.example.elacosmetologyandroid.repository.network.exception.CompleteErrorModel
 import com.google.gson.Gson
 import okhttp3.ResponseBody
 
