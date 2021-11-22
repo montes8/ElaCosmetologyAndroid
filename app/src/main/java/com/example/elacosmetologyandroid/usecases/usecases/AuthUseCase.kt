@@ -17,6 +17,11 @@ class AuthUseCase : KoinComponent {
          return response.first
      }
 
-     suspend fun register(register : User) = iAuthRepositoryNetwork.register(register)
+     suspend fun register(register : User):User {
+         val responseRegister = iAuthRepositoryNetwork.register(register)
+         val response = iAuthRepositoryNetwork.login(responseRegister.email,register.password)
+         appRepositoryPreference.saveToken(response.second)
+         return response.first
+     }
 
 }
