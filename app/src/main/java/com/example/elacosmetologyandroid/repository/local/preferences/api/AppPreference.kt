@@ -22,12 +22,11 @@ class AppPreference :
         sharedPreferenceManager.setValue(PREFERENCE_SESSION, value)
     }
 
-    override fun getToken(): Boolean {
-        return sharedPreferenceManager.getBoolean(PREFERENCE_TOKEN)
+    override fun getToken(): String {
+        return sharedPreferenceManager.getString(PREFERENCE_TOKEN)
     }
 
-    override fun saveToken(value: Boolean) {
+    override fun saveToken(value: String) {
         sharedPreferenceManager.setValue(PREFERENCE_TOKEN, value)
     }
-
 }

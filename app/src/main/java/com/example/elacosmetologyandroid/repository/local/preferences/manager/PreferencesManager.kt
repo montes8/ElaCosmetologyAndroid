@@ -3,6 +3,7 @@ package com.example.elacosmetologyandroid.repository.local.preferences.manager
 import android.content.Context
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
+import com.example.elacosmetologyandroid.utils.EMPTY
 
 class PreferencesManager(context: Context, key: String) {
 
@@ -56,5 +57,9 @@ class PreferencesManager(context: Context, key: String) {
 
     fun getBoolean(key: String): Boolean {
         return encryptPreferences.getBoolean(key, false)
+    }
+
+    fun getString(key: String): String {
+        return encryptPreferences.getString(key,EMPTY)?: EMPTY
     }
 }

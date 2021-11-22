@@ -2,6 +2,7 @@ package com.example.elacosmetologyandroid.ui.login
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
@@ -52,6 +53,7 @@ class LoginActivity : BaseActivity() {
 
         viewModel.successLoginLiveData.observe(this,{
             it?.apply {
+                Log.d("tagUserLogin",this.toString())
                 HomeActivity.start(this@LoginActivity)
             }
         })
@@ -67,7 +69,7 @@ class LoginActivity : BaseActivity() {
 
 
 
-    override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf()
+    override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf(viewModel.errorLiveData)
 
 
 }

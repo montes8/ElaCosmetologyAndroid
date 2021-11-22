@@ -3,8 +3,14 @@ package com.example.elacosmetologyandroid.repository.network.di
 import android.content.Context
 import com.example.elacosmetologyandroid.BuildConfig
 import com.example.elacosmetologyandroid.repository.*
+import com.example.elacosmetologyandroid.repository.local.preferences.manager.PreferencesManager
+import com.example.elacosmetologyandroid.repository.local.preferences.utils.PREFERENCE_TOKEN
 import com.example.elacosmetologyandroid.repository.network.ServiceApi
 import com.example.elacosmetologyandroid.repository.network.api.AuthNetwork
+import com.example.elacosmetologyandroid.repository.network.utils.AUTHORIZATION
+import com.example.elacosmetologyandroid.repository.network.utils.CONTENT_TYPE
+import com.example.elacosmetologyandroid.repository.network.utils.NAME_BASE_URL
+import com.example.elacosmetologyandroid.repository.network.utils.TIMEOUT
 import com.example.elacosmetologyandroid.usecases.repository.IAuthRepositoryNetwork
 import okhttp3.Cache
 import okhttp3.Interceptor
@@ -20,7 +26,7 @@ import java.util.concurrent.TimeUnit
 val moduleNetwork = module {
     single { providerHttpLoggingInterceptor() }
     single { providerCache(get()) }
-    single { ApiInterceptor(get()) }
+    single { ApiInterceptor(get(),get()) }
     single { providerOkHttpClient(get(), get()) }
     single { providerRetrofit(getProperty(NAME_BASE_URL), get()) }
     single { providerApi(get()) }
@@ -66,16 +72,19 @@ fun providerHttpLoggingInterceptor(): HttpLoggingInterceptor {
     return logging
 }
 
-class ApiInterceptor(private val context: Context) : Interceptor {
+class ApiInterceptor(private val context: Context, private val preferencesManager: PreferencesManager,) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
-        request = request.newBuilder()
-            .header("Content-Type", CONTENT_TYPE)
+        val builder = request.newBuilder()
+            .addHeader("Content-Type", CONTENT_TYPE)
             //.header("x-os", PLATFORM)
-            .header("x-density", getDensity(context).toString())
-            .header("x-width", getWidth(context).toString())
-            .header("x-height", getHeight(context).toString())
-            .build()
+            .addHeader("x-density", getDensity(context).toString())
+            .addHeader("x-width", getWidth(context).toString())
+            .addHeader("x-height", getHeight(context).toString())
+            if (preferencesManager.getString(PREFERENCE_TOKEN).isNotEmpty()) {
+               builder.addHeader(AUTHORIZATION, preferencesManager.getString(PREFERENCE_TOKEN))
+             }
+        request = builder.build()
         return chain.proceed(request)
     }
 }

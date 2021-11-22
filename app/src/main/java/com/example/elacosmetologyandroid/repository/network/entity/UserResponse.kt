@@ -6,9 +6,9 @@ import com.google.gson.annotations.SerializedName
 
 class UserResponse (
     @SerializedName("nombre")
-    var name     : String?,
+    var name     : String,
     @SerializedName("correo")
-    var email    : String?,
+    var email    : String,
     @SerializedName("password")
     var password : String?,
     @SerializedName("img")
@@ -18,15 +18,17 @@ class UserResponse (
     @SerializedName("estado")
     var estate     : Boolean?
 ){
-    fun toUser()= User(name = name?: EMPTY,
-        email = email?: EMPTY,
+    fun toUser()= User(name = name,
+        email = email,
          password= password?: EMPTY,
         img = img?: EMPTY,
-        rol = name?: EMPTY,
+        rol = rol?: EMPTY,
         estate = estate?: false)
 
     companion object{
         fun toUserResponse(user: User)= UserResponse(user.name,user.email,user.password,user.img,"USER_ROLE",true)
     }
+
+ constructor(name: String,password: String) : this("",name,password,"","",false)
 
 }

@@ -9,8 +9,8 @@ interface AppRepositoryPreference {
     fun saveLogin(value: Boolean)
 
     @Throws(Exception::class)
-    fun getToken(): Boolean
+    fun getToken(): String
 
     @Throws(Exception::class)
-    fun saveToken(value: Boolean)
+    fun saveToken(value: String)
 }

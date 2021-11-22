@@ -17,20 +17,23 @@ class RegisterViewModel : BaseViewModel(), KoinComponent {
 
     private val authUseCase: AuthUseCase by inject()
 
-    val successAccountLiveData        : LiveData<User> get()   = _successAccountLiveData
-    private val _successAccountLiveData    = MutableLiveData<User>()
+    val successAccountLiveData        : LiveData<User?> get()   = _successAccountLiveData
+    private val _successAccountLiveData    = MutableLiveData<User?>()
 
 
-    var userData = User()
+    var userData : User? = null
 
 
 
     fun register(pass : EditCustomLayout,btnProgress : ProgressButton){
         if (validateEmail(pass)){
-            btnProgress.isButtonLoading = true
+            userData?.let {
+                btnProgress.isButtonLoading = true
             executeSuspend {
-                val response = authUseCase.register(userData)
-                _successAccountLiveData.postValue(response)
+
+                    val response = authUseCase.register(it)
+                    _successAccountLiveData.postValue(response)
+                }
             }
         }
     }
@@ -43,7 +46,7 @@ class RegisterViewModel : BaseViewModel(), KoinComponent {
         pass.uiErrorMessage = EMPTY
         btnProgress.isButtonEnabled = name.uiText.isNotEmpty() && lastName.uiText.isNotEmpty()
                 && email.uiText.isNotEmpty() && pass.uiText.isNotEmpty()
-                userData = User(name = "${name.uiText} ${lastName.uiText}",email = email.uiText,password = email.uiText)
+                userData = User(name = "${name.uiText} ${lastName.uiText}",email = email.uiText,password = pass.uiText)
     }
 
     private fun validateEmail(email : EditCustomLayout):Boolean{

@@ -16,8 +16,8 @@ import org.koin.core.inject
 class LoginViewModel : BaseViewModel(), KoinComponent {
 
 
-    val successLoginLiveData        : LiveData<User> get()   = _successLoginLiveData
-    private val _successLoginLiveData    = MutableLiveData<User>()
+    val successLoginLiveData        : LiveData<User?> get()   = _successLoginLiveData
+    private val _successLoginLiveData    = MutableLiveData<User?>()
 
 
     private val authUseCase: AuthUseCase by inject()
@@ -37,7 +37,7 @@ class LoginViewModel : BaseViewModel(), KoinComponent {
 
     fun validateLogin(email : EditCustomLayout, pass : EditCustomLayout,btnLogin : ProgressButton){
         pass.uiErrorMessage = EMPTY
-        btnLogin.isButtonLoading = email.uiText.isNotEmpty() && pass.uiText.isNotEmpty()
+        btnLogin.isButtonEnabled = email.uiText.isNotEmpty() && pass.uiText.isNotEmpty()
     }
 
     private fun validateEmail(email : EditCustomLayout):Boolean{

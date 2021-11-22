@@ -6,11 +6,11 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class User(
-    var name     : String = EMPTY,
-    var email    : String = EMPTY,
-    var password : String = EMPTY,
+    var name     : String,
+    var email    : String,
+    var password : String,
     var img      : String = EMPTY,
-    var rol      : String = "USER_ROLE",
+    var rol      : String = EMPTY,
     var estate     : Boolean = false
 
 ):Parcelable
