@@ -1,7 +1,6 @@
 package com.example.elacosmetologyandroid.repository.network.api
 
 import com.example.elacosmetologyandroid.model.User
-import com.example.elacosmetologyandroid.repository.GenericException
 import com.example.elacosmetologyandroid.repository.network.exception.BaseNetwork
 import com.example.elacosmetologyandroid.repository.network.ServiceApi
 import com.example.elacosmetologyandroid.repository.network.entity.UserResponse
@@ -19,11 +18,11 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
 
         return executeWithConnection {
             val response = serviceApi.login(UserResponse(email,password))
-            val data :Pair<User,String>?= null
+            val data :Pair<User,String>?
             if (response.isSuccessful) {
-                response.validateBody().toLogin()
+                data = response.validateBody().toLogin()
             } else throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
-            data?: throw GenericException()
+            data
         }
     }
 
@@ -31,11 +30,11 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
     override  suspend fun register(register: User): User {
         return executeWithConnection {
             val response = serviceApi.register(UserResponse.toUserResponse(register))
-            val user : User? = null
+            val user : User?
             if (response.isSuccessful && response.body() != null) {
-                response.validateBody().toUser()
+                user = response.validateBody().toUser()
             } else throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
-            user?:throw GenericException()
+            user
         }
     }
 

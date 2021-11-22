@@ -1,7 +1,7 @@
 package com.example.elacosmetologyandroid.repository.network.entity
 
 import com.example.elacosmetologyandroid.model.User
-import com.example.elacosmetologyandroid.repository.EMPTY
+import com.example.elacosmetologyandroid.utils.EMPTY
 import com.google.gson.annotations.SerializedName
 
 class UserResponse (

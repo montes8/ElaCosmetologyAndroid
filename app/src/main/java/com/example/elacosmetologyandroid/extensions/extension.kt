@@ -18,10 +18,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.CrossDialog
 import com.example.elacosmetologyandroid.component.CrossDialogBlock
-import com.example.elacosmetologyandroid.repository.ApiException
 import com.example.elacosmetologyandroid.repository.network.exception.CompleteErrorModel
-import com.example.elacosmetologyandroid.repository.NetworkException
-import com.example.elacosmetologyandroid.repository.UnAuthorizedException
+import com.example.elacosmetologyandroid.repository.network.exception.ApiException
+import com.example.elacosmetologyandroid.repository.network.exception.NetworkException
+import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
 
 fun View.visible() = apply {
     visibility = View.VISIBLE

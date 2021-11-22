@@ -1,7 +1,7 @@
 package com.example.elacosmetologyandroid.repository.network.exception
 
-import com.example.elacosmetologyandroid.repository.defaultCode
-import com.example.elacosmetologyandroid.repository.generalErrorMessage
+import com.example.elacosmetologyandroid.repository.network.utils.defaultCode
+import com.example.elacosmetologyandroid.repository.network.utils.generalErrorMessage
 import com.google.gson.annotations.SerializedName
 import java.lang.Exception
 

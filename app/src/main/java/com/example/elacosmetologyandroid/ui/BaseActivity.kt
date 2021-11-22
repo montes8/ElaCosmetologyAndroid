@@ -12,7 +12,7 @@ import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.button.ProgressButton
 import com.example.elacosmetologyandroid.extensions.getError
 import com.example.elacosmetologyandroid.extensions.showCrossDialog
-import com.example.elacosmetologyandroid.repository.UnAuthorizedException
+import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
 import com.example.elacosmetologyandroid.ui.login.LoginActivity
 
 abstract class BaseActivity : AppCompatActivity() {
