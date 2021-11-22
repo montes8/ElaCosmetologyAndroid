@@ -9,12 +9,13 @@ import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityLoginBinding
 import com.example.elacosmetologyandroid.extensions.setColouredSpanClick
 import com.example.elacosmetologyandroid.ui.BaseActivity
+import com.example.elacosmetologyandroid.ui.home.HomeActivity
 import com.example.elacosmetologyandroid.ui.register.RegisterActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : BaseActivity() {
 
-    private val loginViewModel: LoginViewModel by viewModel(clazz = LoginViewModel::class)
+    private val viewModel: LoginViewModel by viewModel(clazz = LoginViewModel::class)
     private lateinit var binding: ActivityLoginBinding
 
     companion object {
@@ -24,7 +25,7 @@ class LoginActivity : BaseActivity() {
 
     override fun getMainView() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        binding.loginViewModel = loginViewModel
+        binding.loginViewModel = viewModel
         binding.lifecycleOwner = this
 
     }
@@ -35,9 +36,9 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun configEditChangeAndAction(){
-        binding.editEmail.uiEditCustomListener = {loginViewModel.validateLogin(binding.editEmail,binding.editPassword)}
-        binding.editPassword.uiEditCustomListener = {loginViewModel.validateLogin(binding.editEmail,binding.editPassword)}
-        binding.btnLogin.setOnClickButtonDelayListener{loginViewModel.login(binding.editEmail)}
+        binding.editEmail.uiEditCustomListener = {validateData()}
+        binding.editPassword.uiEditCustomListener = {validateData()}
+        binding.btnLogin.setOnClickButtonDelayListener{login()}
     }
 
     private fun configRegister(){
@@ -46,7 +47,26 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun observeLiveData() {
+        viewModel.errorLiveData.observe(this,{
+            binding.btnLogin.isButtonLoading = false
+        })
+
+        viewModel.successLoginLiveData.observe(this,{
+            it?.apply {
+                HomeActivity.start(this@LoginActivity)
+            }
+        })
     }
+
+    private fun login(){
+        viewModel.login(binding.editEmail,binding.editPassword,binding.btnLogin)
+    }
+
+    private fun validateData(){
+        viewModel.validateLogin(binding.editEmail,binding.editPassword,binding.btnLogin)
+    }
+
+
 
     override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf()
 

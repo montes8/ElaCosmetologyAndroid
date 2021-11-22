@@ -55,7 +55,7 @@ class RegisterActivity : BaseActivity() {
         })
 
         viewModel.successAccountLiveData.observe(this,{
-             it.apply {
+             it?.apply {
                  HomeActivity.start(this@RegisterActivity)
              }
         })

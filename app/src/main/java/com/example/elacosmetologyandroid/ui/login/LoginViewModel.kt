@@ -1,9 +1,11 @@
 package com.example.elacosmetologyandroid.ui.login
 
-import android.text.TextUtils
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.elacosmetologyandroid.component.button.ProgressButton
 import com.example.elacosmetologyandroid.component.edit.EditCustomLayout
 import com.example.elacosmetologyandroid.extensions.isEmailValid
+import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.usecases.usecases.AuthUseCase
 import com.example.elacosmetologyandroid.utils.EMPTY
@@ -14,27 +16,28 @@ import org.koin.core.inject
 class LoginViewModel : BaseViewModel(), KoinComponent {
 
 
-
-    var enableButton = MutableLiveData(false)
-    var loadingButton = MutableLiveData(false)
+    val successLoginLiveData        : LiveData<User> get()   = _successLoginLiveData
+    private val _successLoginLiveData    = MutableLiveData<User>()
 
 
     private val authUseCase: AuthUseCase by inject()
 
 
 
-    fun login(pass : EditCustomLayout){
-        if (validateEmail(pass)){
+    fun login(email : EditCustomLayout,pass : EditCustomLayout,btnLogin : ProgressButton){
+        if (validateEmail(email)){
+            btnLogin.isButtonLoading = true
             executeSuspend {
-
+                val response = authUseCase.login(email.uiText,pass.uiText)
+                _successLoginLiveData.postValue(response)
             }
         }
     }
 
 
-    fun validateLogin(email : EditCustomLayout, pass : EditCustomLayout){
+    fun validateLogin(email : EditCustomLayout, pass : EditCustomLayout,btnLogin : ProgressButton){
         pass.uiErrorMessage = EMPTY
-            enableButton.postValue(!TextUtils.isEmpty(email.uiText) && !TextUtils.isEmpty(pass.uiText))
+        btnLogin.isButtonLoading = email.uiText.isNotEmpty() && pass.uiText.isNotEmpty()
     }
 
     private fun validateEmail(email : EditCustomLayout):Boolean{
