@@ -41,4 +41,13 @@
         <item name="android:textColorHint">@color/pink_100</item>
         <item name="colorControlNormal">@color/pink_200</item>
     </style>
+
+
+    <style name="BottomNavigationView.RowAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/pink_200</item>
+        <item name="android:textSize">@dimen/txt_size_10</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
 </resources>

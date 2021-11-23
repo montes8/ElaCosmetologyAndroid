@@ -8,5 +8,34 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeActivity">
 
+    <FrameLayout
+        android:id="@+id/fragmentContent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        app:layout_constraintBottom_toTopOf="@id/btnNavigation"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UselessLeaf" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/btnNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_70"
+        android:background="@color/white"
+        android:elevation="0dp"
+        app:elevation="0dp"
+        app:itemHorizontalTranslationEnabled="false"
+        app:itemIconSize="@dimen/size_22"
+        app:itemIconTint="@color/selector_item_menu"
+        app:itemTextAppearanceActive="@style/BottomNavigationView.RowAppearance"
+        app:itemTextAppearanceInactive="@style/BottomNavigationView.RowAppearance"
+        app:itemTextColor="@color/selector_item_menu"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentContent"
+        app:menu="@menu/menu_home" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

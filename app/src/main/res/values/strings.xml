@@ -28,4 +28,9 @@
 
 
     <string name="txt_forget_password">Olvidaste Contraseña</string>
+
+    <string name="txt_home">Inicio</string>
+    <string name="txt_category">Categoria</string>
+    <string name="txt_order">Pedido</string>
+    <string name="txt_admin">Admin</string>
 </resources>
