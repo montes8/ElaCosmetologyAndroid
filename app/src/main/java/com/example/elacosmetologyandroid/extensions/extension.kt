@@ -15,6 +15,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.CrossDialog
 import com.example.elacosmetologyandroid.component.CrossDialogBlock
@@ -44,6 +45,17 @@ fun AppCompatActivity.showCrossDialog(
     dialog.dialog?.setCancelable(cancelable)
     dialog.isCancelable = cancelable
     dialog.show(this.supportFragmentManager, CrossDialog::class.java.name)
+}
+
+fun Fragment.showCrossDialog(
+    layout: Int,
+    cancelable: Boolean = true,
+    func: CrossDialogBlock
+) {
+    val dialog = CrossDialog(layout, func)
+    dialog.dialog?.setCancelable(cancelable)
+    dialog.isCancelable = cancelable
+    dialog.show(this.childFragmentManager, CrossDialog::class.java.name)
 }
 
 

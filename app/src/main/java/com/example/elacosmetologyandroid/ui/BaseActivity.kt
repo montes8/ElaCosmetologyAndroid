@@ -34,7 +34,7 @@ abstract class BaseActivity : AppCompatActivity() {
         observeLiveData()
     }
 
-    private fun observeErrors(errors: List<LiveData<Throwable>>) {
+     fun observeErrors(errors: List<LiveData<Throwable>>) {
         for (error in errors) {
             error.observe(this, {
                 showDialogError(error = it)
