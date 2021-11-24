@@ -31,7 +31,7 @@
         android:id="@+id/btnNavigation"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_70"
-        android:background="@color/dark_transparent_01"
+        android:background="@color/transparent_two"
         android:elevation="0dp"
         app:elevation="0dp"
         app:itemHorizontalTranslationEnabled="false"

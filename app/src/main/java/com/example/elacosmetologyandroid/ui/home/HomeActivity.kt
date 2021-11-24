@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityHomeBinding
 import com.example.elacosmetologyandroid.extensions.addFragmentToNavigation
+import com.example.elacosmetologyandroid.extensions.gone
 import com.example.elacosmetologyandroid.extensions.setImageString
 import com.example.elacosmetologyandroid.manager.UserTemporary
 import com.example.elacosmetologyandroid.model.ModelGeneric
@@ -77,6 +78,7 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun configTitleToolbar(id : Int){
+        binding.toolBarHome.imgBackToolbar.gone()
         binding.toolBarHome.txtTitleToolbar.text = when (id) {
             1 -> getString(R.string.txt_home)
             2 -> {getString(R.string.txt_product) }

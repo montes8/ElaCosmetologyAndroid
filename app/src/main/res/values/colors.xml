@@ -29,7 +29,7 @@
 
     <!-- Others -->
     <color name="transparent">#00000000</color>
-    <color name="dark_transparent_01">#B2FCE4EC</color>
+    <color name="dark_transparent_01">#FFFCE4EC</color>
     <color name="transparent_32">#50FF4081</color>
     <color name="transparent_two">#E8FAFBFF</color>
 </resources>
