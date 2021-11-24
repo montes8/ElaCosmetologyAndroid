@@ -2,6 +2,8 @@
     <string name="app_name">Gabbi \nCosmetology</string>
 
 
+
+    <!-- TODO: error label -->
     <string name="error_session">Oh oh, hubo un problema</string>
 
     <string name="error_general">No pudimos continuar con el proceso que realizabas. Inténtalo nuevamente.</string>
@@ -10,6 +12,9 @@
     <string name="user_unauthorized_description">Estuviste inactivo por unos minutos. Por favor, vuelve a iniciar sesión.</string>
     <string name="error_general_title">Lo sentimos, ocurrió un error</string>
     <string name="error_internet">No hay conexión a internet</string>
+    <string name="error_email_format">El formato de correo ingresado no es valido</string>
+
+
 
     <string name="progress_button_loading">Loading…</string>
     <string name="txt_title_splash">BIENVENIDA</string>
@@ -22,14 +27,12 @@
     <string name="text_password">Contraseña</string>
     <string name="text_name">Nombres</string>
     <string name="text_last_name">Apellidos</string>
-
-
     <string name="txt_forget_password">Olvidaste Contraseña</string>
 
     <string name="txt_home">Inicio</string>
     <string name="txt_product">Producto</string>
     <string name="txt_order">Pedido</string>
     <string name="txt_admin">Admin</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

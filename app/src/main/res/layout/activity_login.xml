@@ -72,6 +72,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_gravity="center_horizontal"
+                    app:isButtonEnabled="false"
                     android:layout_marginTop="@dimen/size_32"
                     app:buttonText="Ingresar"
                     />

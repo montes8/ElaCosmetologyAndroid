@@ -9,10 +9,15 @@ import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.databinding.ActivitySplashBinding
+import com.example.elacosmetologyandroid.ui.AppViewModel
+import com.example.elacosmetologyandroid.ui.home.HomeActivity
 import com.example.elacosmetologyandroid.ui.login.LoginActivity
+import com.example.elacosmetologyandroid.ui.login.LoginViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashActivity : BaseActivity() {
 
+    private val viewModel: AppViewModel by viewModel(clazz = AppViewModel::class)
 
     private lateinit var binding: ActivitySplashBinding
 
@@ -35,12 +40,16 @@ class SplashActivity : BaseActivity() {
 
     private fun initSplash(){
         Handler(Looper.getMainLooper()).postDelayed({
-            LoginActivity.start(this)
-            finish()
+            viewModel.session()
         }, 4500)
     }
 
-    override fun observeLiveData() {}
+    override fun observeLiveData() {
+        viewModel.successSessionLiveData.observe(this,{
+            it?.apply { if (this) HomeActivity.start(this@SplashActivity) else LoginActivity.start(this@SplashActivity)
+            }
+        })
+    }
 
     override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf()
 

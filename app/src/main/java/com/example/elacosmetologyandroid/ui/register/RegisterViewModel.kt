@@ -1,7 +1,9 @@
 package com.example.elacosmetologyandroid.ui.register
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.button.ProgressButton
 import com.example.elacosmetologyandroid.component.edit.EditCustomLayout
 import com.example.elacosmetologyandroid.extensions.isEmailValid
@@ -16,6 +18,7 @@ import org.koin.core.inject
 class RegisterViewModel : BaseViewModel(), KoinComponent {
 
     private val authUseCase: AuthUseCase by inject()
+    private val context: Context by inject()
 
     val successAccountLiveData        : LiveData<User?> get()   = _successAccountLiveData
     private val _successAccountLiveData    = MutableLiveData<User?>()
@@ -51,7 +54,7 @@ class RegisterViewModel : BaseViewModel(), KoinComponent {
 
     private fun validateEmail(email : EditCustomLayout):Boolean{
         if (!isEmailValid(email.uiText)){
-            email.uiErrorMessage = "El correo ingresado no es valido"
+            email.uiErrorMessage = context.getString(R.string.error_email_format)
             return false
         }
         return true

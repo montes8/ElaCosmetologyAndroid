@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.CrossDialog
 import com.example.elacosmetologyandroid.component.CrossDialogBlock
@@ -23,6 +24,7 @@ import com.example.elacosmetologyandroid.repository.network.exception.CompleteEr
 import com.example.elacosmetologyandroid.repository.network.exception.ApiException
 import com.example.elacosmetologyandroid.repository.network.exception.NetworkException
 import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
+import com.example.elacosmetologyandroid.ui.BaseFragment
 
 fun View.visible() = apply {
     visibility = View.VISIBLE
@@ -137,3 +139,37 @@ fun View.setOnClickDelay(time: Long = 700, onClick: () -> Unit) {
         onClick()
     }
 }
+
+fun FragmentManager?.addFragmentToNavigation(
+    fragment: Fragment,
+    tag: String,
+    containerId: Int,
+    currentFragment: Fragment? = null
+) {
+    this?.let {
+        if (!it.fragmentIsAdded(fragment)) {
+            it.beginTransaction().let { transaction ->
+                transaction.add(containerId, fragment, tag)
+                currentFragment?.let { cFragment -> transaction.hide(cFragment) }
+                transaction.addToBackStack(tag)
+                transaction.commit()
+            }
+        } else showExistingFragment(fragment, currentFragment)
+    }
+}
+
+fun FragmentManager?.fragmentIsAdded(fragment: Fragment): Boolean {
+    return this?.let { return !it.fragments.isNullOrEmpty() && it.fragments.contains(fragment) }
+        ?: false
+}
+
+fun FragmentManager?.showExistingFragment(fragment: Fragment, currentFragment: Fragment? = null) {
+    this?.let {
+        it.beginTransaction().let { transaction ->
+            transaction.show(fragment)
+            currentFragment?.let { transaction.hide(currentFragment) }
+            transaction.commit()
+        }
+    }
+}
+

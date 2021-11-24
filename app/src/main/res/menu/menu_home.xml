@@ -6,16 +6,16 @@
         android:title="@string/txt_home" />
 
     <item
-        android:id="@+id/bottom_nav_insurance"
+        android:id="@+id/bottom_nav_product"
         android:icon="@drawable/ic_product"
         android:title="@string/txt_product" />
     <item
-        android:id="@+id/bottom_nav_process"
+        android:id="@+id/bottom_nav_order"
         android:icon="@drawable/ic_order"
         android:title="@string/txt_order" />
 
     <item
-        android:id="@+id/bottom_nav_store"
+        android:id="@+id/bottom_nav_admin"
         android:icon="@drawable/ic_admin"
         android:title="@string/txt_admin" />
 

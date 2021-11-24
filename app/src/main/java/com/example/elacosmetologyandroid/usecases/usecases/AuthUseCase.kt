@@ -24,4 +24,6 @@ class AuthUseCase : KoinComponent {
          return response.first
      }
 
+     fun session() = appRepositoryPreference.getToken().isNotEmpty()
+
 }

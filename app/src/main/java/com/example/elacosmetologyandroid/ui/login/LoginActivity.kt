@@ -20,7 +20,13 @@ class LoginActivity : BaseActivity() {
     private lateinit var binding: ActivityLoginBinding
 
     companion object {
-        fun start(context: Context) { context.startActivity(Intent(context, LoginActivity::class.java)) }
+        fun start(context: Context) {
+            val intent = Intent(context, LoginActivity::class.java)
+            intent.flags =
+                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            context.startActivity(intent)
+
+        }
     }
 
 
