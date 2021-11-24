@@ -1,21 +1,20 @@
-package com.example.elacosmetologyandroid.ui.home.admin
+package com.example.elacosmetologyandroid.ui.home.order
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
-import com.example.elacosmetologyandroid.databinding.FragmentAdminBinding
+import com.example.elacosmetologyandroid.databinding.FragmentOrderBinding
 import com.example.elacosmetologyandroid.ui.BaseFragment
 
+class OrderFragment : BaseFragment() {
 
-class AdminFragment : BaseFragment() {
+    private lateinit var binding: FragmentOrderBinding
 
-
-    private lateinit var binding: FragmentAdminBinding
 
     companion object {
-        fun newInstance() = AdminFragment().apply {
+        fun newInstance() = OrderFragment().apply {
             arguments = Bundle().apply {
                 //putInt(MENU_HOME_ID, menuId)
                 // putParcelable(USER, user)
@@ -25,7 +24,7 @@ class AdminFragment : BaseFragment() {
     }
 
     override fun getMainView(inflater: LayoutInflater, container: ViewGroup?): View {
-        binding = FragmentAdminBinding.inflate(inflater)
+        binding = FragmentOrderBinding.inflate(inflater)
         return binding.root
     }
 
@@ -33,7 +32,6 @@ class AdminFragment : BaseFragment() {
     }
 
     override fun observeLiveData() {
-
     }
 
     override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf()
