@@ -3,7 +3,7 @@ package com.example.elacosmetologyandroid.usecases.repository
 interface AppRepositoryPreference {
 
     @Throws(Exception::class)
-    fun getToken(): String
+     fun getToken(): String
 
     @Throws(Exception::class)
     fun saveToken(value: String)
@@ -12,5 +12,5 @@ interface AppRepositoryPreference {
     fun getUser(): String
 
     @Throws(Exception::class)
-    fun saveUser(value: String)
+     fun saveUser(value: String)
 }

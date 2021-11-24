@@ -31,6 +31,7 @@
             android:layout_marginEnd="@dimen/size_16"
             android:textColor="@color/pink_200"
             android:textStyle="bold"
+            android:textSize="@dimen/txt_size_20"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgBackToolbar"

@@ -20,6 +20,7 @@ import com.example.elacosmetologyandroid.ui.home.begin.BeginFragment
 import com.example.elacosmetologyandroid.ui.home.order.OrderFragment
 import com.example.elacosmetologyandroid.ui.home.product.ProductFragment
 import com.example.elacosmetologyandroid.utils.CONFIG_ITEM
+import com.example.elacosmetologyandroid.utils.EMPTY
 import com.example.elacosmetologyandroid.utils.USER_ROLE
 import com.example.elacosmetologyandroid.utils.getData
 
@@ -45,6 +46,7 @@ class HomeActivity : BaseActivity() {
     override fun setUpView() {
         createItemNavigation(UserTemporary.getUser())
         showFragment(BeginFragment.newInstance())
+        configTitleToolbar(1)
         setUpBottomNavigationView()
     }
 
@@ -62,6 +64,7 @@ class HomeActivity : BaseActivity() {
     private fun setUpBottomNavigationView() {
         binding.btnNavigation.setOnItemSelectedListener { item ->
             if(item.itemId != 1)configItemFragmentMovie()
+            configTitleToolbar(item.itemId)
             val isSelected = when (item.itemId) {
                 1 -> {showFragment(BeginFragment.newInstance()) }
                 2 -> showFragment(ProductFragment.newInstance())
@@ -71,6 +74,17 @@ class HomeActivity : BaseActivity() {
             }
             isSelected
         }
+    }
+
+    private fun configTitleToolbar(id : Int){
+        binding.toolBarHome.txtTitleToolbar.text = when (id) {
+            1 -> getString(R.string.txt_home)
+            2 -> {getString(R.string.txt_product) }
+            3 -> {getString(R.string.txt_order) }
+            4 -> {getString(R.string.txt_admin) }
+            else -> EMPTY
+        }
+
     }
 
     override fun observeLiveData() {}

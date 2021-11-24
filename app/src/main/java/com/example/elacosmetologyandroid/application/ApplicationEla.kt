@@ -25,13 +25,15 @@ class ApplicationEla : Application() {
             modules(
                 listOf(
                     viewModelModule,
+                    useCaseModule,
                     moduleNetwork,
-                    preferencesModule,
-                    useCaseModule
+                    preferencesModule
+
                 )
             )
 
-            getKoin().setProperty(NAME_BASE_URL,
+            getKoin().setProperty(
+                NAME_BASE_URL,
                 BuildConfig.BASE_URL
             )
             getKoin().setProperty(ENCRYPTION_KEY, getString(R.string.encryption_key))

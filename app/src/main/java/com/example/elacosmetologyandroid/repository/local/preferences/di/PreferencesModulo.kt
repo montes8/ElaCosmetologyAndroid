@@ -4,9 +4,10 @@ import com.example.elacosmetologyandroid.repository.local.preferences.api.AppPre
 import com.example.elacosmetologyandroid.repository.local.preferences.manager.PreferencesManager
 import com.example.elacosmetologyandroid.repository.local.preferences.utils.ENCRYPTION_KEY
 import com.example.elacosmetologyandroid.usecases.repository.AppRepositoryPreference
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 val preferencesModule = module {
-    single { PreferencesManager(get(), getProperty(ENCRYPTION_KEY)) }
+    single { PreferencesManager(androidContext(),ENCRYPTION_KEY) }
     single<AppRepositoryPreference> { AppPreference() }
 }

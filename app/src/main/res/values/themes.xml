@@ -16,10 +16,13 @@
         <item name="android:windowDisablePreview">true</item>
     </style>
 
-    <style name="Custom.NoActionBar.Translucent" parent="Custom.Theme">
-        <item name="android:windowTranslucentNavigation">true</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowBackground">@color/pink_50</item>
+    <style name="Custom.NoActionBar.white" parent="Custom.Theme">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowDisablePreview">true</item>
     </style>
 
 </resources>

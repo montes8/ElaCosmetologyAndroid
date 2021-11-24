@@ -27,6 +27,6 @@ class AuthUseCase : KoinComponent {
          return response.first
      }
 
-     fun fetchUser() = JsonHelper.jsonToObject(appRepositoryPreference.getUser(),User::class.java)
+    fun fetchUser() = JsonHelper.jsonToObject(appRepositoryPreference.getUser(),User::class.java)
 
 }

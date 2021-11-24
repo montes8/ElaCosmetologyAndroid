@@ -7,23 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.begin.movi.MovieActivity">
 
-    <ImageView
-        android:id="@+id/imgZoomFull"
-        android:contentDescription="@null"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="@dimen/size_1"
-        android:layout_marginTop="@dimen/size_8"
-        android:layout_marginEnd="@dimen/size_8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_zoom" />
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
         android:id="@+id/youtubeBeginFull"
         android:layout_width="match_parent"
+        android:clickable="false"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:showYouTubeButton="false"
         app:layout_constraintTop_toTopOf="parent"
         app:showFullScreenButton="false" />
 
