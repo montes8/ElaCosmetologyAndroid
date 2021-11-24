@@ -10,7 +10,6 @@ import com.example.elacosmetologyandroid.databinding.ActivityMovieBinding
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener
 
 class MovieActivity : BaseActivity() {
 
@@ -18,7 +17,7 @@ class MovieActivity : BaseActivity() {
 
 
     companion object {
-        fun start(context: Context) = Intent(context, MovieActivity::class.java)
+        fun start(context: Context) { context.startActivity(Intent(context, MovieActivity::class.java)) }
     }
 
     override fun getMainView() {
@@ -33,13 +32,6 @@ class MovieActivity : BaseActivity() {
                 youTubePlayer.loadVideo("SRt0KAMCI4Q",0f)
             }
         })
-        binding.youtubeBeginFull.addFullScreenListener(object : YouTubePlayerFullScreenListener {
-            override fun onYouTubePlayerEnterFullScreen() {}
-            override fun onYouTubePlayerExitFullScreen() {
-               finish()
-            }
-        })
-
     }
 
     override fun observeLiveData() {

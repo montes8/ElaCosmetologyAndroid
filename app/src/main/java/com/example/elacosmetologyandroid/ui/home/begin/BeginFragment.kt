@@ -1,18 +1,17 @@
 package com.example.elacosmetologyandroid.ui.home.begin
 
-import android.content.res.Configuration
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.databinding.FragmentBeginBinding
+import com.example.elacosmetologyandroid.extensions.setOnClickDelay
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.home.begin.movi.MovieActivity
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener
-
 
 class BeginFragment : BaseFragment() {
 
@@ -34,7 +33,6 @@ class BeginFragment : BaseFragment() {
     }
 
     override fun setUpView() {
-
         lifecycle.addObserver(binding.youtubeBegin)
         binding.youtubeBegin.addYouTubePlayerListener(object : AbstractYouTubePlayerListener(){
             override fun onReady(youTubePlayer: YouTubePlayer) {
@@ -42,13 +40,10 @@ class BeginFragment : BaseFragment() {
                 youTubePlayer.pause()
             }
         })
-        binding.youtubeBegin.addFullScreenListener(object : YouTubePlayerFullScreenListener{
-            override fun onYouTubePlayerEnterFullScreen() {
-                MovieActivity.start(requireContext())
-            }
 
-            override fun onYouTubePlayerExitFullScreen() {}
-        })
+        binding.imgZoom.setOnClickDelay {
+            MovieActivity.start(requireContext())
+        }
     }
 
     override fun observeLiveData() {

@@ -9,6 +9,18 @@
         android:layout_height="match_parent"
         android:padding="@dimen/size_16">
 
+        <ImageView
+            android:id="@+id/imgZoom"
+            android:contentDescription="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/size_1"
+            android:layout_marginTop="@dimen/size_4"
+            android:layout_marginEnd="@dimen/size_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_zoom" />
+
         <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
             android:id="@+id/youtubeBegin"
             android:layout_width="match_parent"
@@ -16,7 +28,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:showFullScreenButton="true" />
+            app:showFullScreenButton="true" >
+
+        </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
