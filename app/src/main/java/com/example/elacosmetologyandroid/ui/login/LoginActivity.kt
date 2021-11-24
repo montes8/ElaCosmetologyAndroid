@@ -33,7 +33,6 @@ class LoginActivity : BaseActivity() {
     override fun getMainView() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.lifecycleOwner = this
-
     }
 
     override fun setUpView() {
@@ -71,8 +70,6 @@ class LoginActivity : BaseActivity() {
     private fun validateData(){
         viewModel.validateLogin(binding.editEmail,binding.editPassword,binding.btnLogin)
     }
-
-
 
     override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf(viewModel.errorLiveData)
 

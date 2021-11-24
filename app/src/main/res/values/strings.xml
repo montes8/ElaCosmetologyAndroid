@@ -2,7 +2,6 @@
     <string name="app_name">Gabbi \nCosmetology</string>
 
 
-
     <!-- TODO: error general -->
     <string name="error_session">Oh oh, hubo un problema</string>
     <string name="error_general">No pudimos continuar con el proceso que realizabas. Inténtalo nuevamente.</string>

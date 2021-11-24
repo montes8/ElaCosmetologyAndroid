@@ -3,6 +3,7 @@ package com.example.elacosmetologyandroid.repository.local.preferences.api
 
 import com.example.elacosmetologyandroid.repository.local.preferences.manager.PreferencesManager
 import com.example.elacosmetologyandroid.repository.local.preferences.utils.PREFERENCE_TOKEN
+import com.example.elacosmetologyandroid.repository.local.preferences.utils.PREFERENCE_ROL_USER
 import com.example.elacosmetologyandroid.usecases.repository.AppRepositoryPreference
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -19,5 +20,13 @@ class AppPreference :
 
     override fun saveToken(value: String) {
         sharedPreferenceManager.setValue(PREFERENCE_TOKEN, value)
+    }
+
+    override fun getUser(): String {
+        return sharedPreferenceManager.getString(PREFERENCE_ROL_USER)
+    }
+
+    override fun saveUser(value: String) {
+        sharedPreferenceManager.setValue(PREFERENCE_ROL_USER, value)
     }
 }

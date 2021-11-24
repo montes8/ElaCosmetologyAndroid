@@ -15,7 +15,7 @@ object JsonHelper {
         return jsonObject
     }
 
-    fun <T> jsonToObject(json: String?, cls: Class<T>?): T {
+    fun <T> jsonToObject(json: String?, cls: Class<T>?): T? {
         val jsonCustom = GsonBuilder()
         return jsonCustom.create().fromJson(json, cls)
     }

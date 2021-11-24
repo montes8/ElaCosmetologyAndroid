@@ -9,6 +9,6 @@ class AppUseCase : KoinComponent {
 
     private val appRepositoryPreference: AppRepositoryPreference by inject()
 
-     fun session() = appRepositoryPreference.getToken().isNotEmpty()
+    fun session() = appRepositoryPreference.getToken().isNotEmpty()
 
 }

@@ -2,7 +2,6 @@ package com.example.elacosmetologyandroid.ui.home
 
 import android.content.Context
 import android.content.Intent
-import android.os.UserManager
 import android.view.Menu
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -13,17 +12,16 @@ import com.example.elacosmetologyandroid.extensions.addFragmentToNavigation
 import com.example.elacosmetologyandroid.extensions.setImageString
 import com.example.elacosmetologyandroid.manager.UserTemporary
 import com.example.elacosmetologyandroid.model.ModelGeneric
+import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.home.admin.AdminFragment
 import com.example.elacosmetologyandroid.ui.home.begin.BeginFragment
 import com.example.elacosmetologyandroid.ui.home.order.OrderFragment
 import com.example.elacosmetologyandroid.ui.home.product.ProductFragment
-import com.example.elacosmetologyandroid.ui.login.LoginViewModel
 import com.example.elacosmetologyandroid.utils.CONFIG_ITEM
 import com.example.elacosmetologyandroid.utils.USER_ROLE
 import com.example.elacosmetologyandroid.utils.getData
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : BaseActivity() {
 
@@ -49,20 +47,18 @@ class HomeActivity : BaseActivity() {
     }
 
     override fun setUpView() {
-        configTabNavigation()
-    }
-
-    private fun configTabNavigation(){
         initFragment()
-        createItemNavigation()
+        createItemNavigation(UserTemporary.getUser())
         showFragment(beginFragment)
         setUpBottomNavigationView()
     }
 
-    private fun createItemNavigation(){
-        val listItem = getListItem()
-        if (UserTemporary.getUser().rol == USER_ROLE)listItem?.take(3)
-        listItem?.forEach {item->
+    private fun createItemNavigation(user : User?){
+        val listItem : ArrayList<ModelGeneric> = getListItem() as ArrayList<ModelGeneric>
+        user?.let { if (it.rol == USER_ROLE)listItem.removeAt(3)
+        }?:listItem.removeAt(3)
+
+        listItem.forEach {item->
             binding.btnNavigation.menu.add(Menu.NONE, item.id, Menu.NONE, item.title).icon =
                 setImageString(item.icon,this)
         }
@@ -88,9 +84,7 @@ class HomeActivity : BaseActivity() {
         }
     }
 
-    override fun observeLiveData() {
-
-    }
+    override fun observeLiveData() {}
 
 
     private fun showFragment(fragment: BaseFragment): Boolean {

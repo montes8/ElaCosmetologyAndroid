@@ -34,7 +34,6 @@ class LoginViewModel : BaseViewModel(), KoinComponent {
         }
     }
 
-
     fun validateLogin(email : EditCustomLayout, pass : EditCustomLayout,btnLogin : ProgressButton){
         pass.uiErrorMessage = EMPTY
         btnLogin.isButtonEnabled = email.uiText.isNotEmpty() && pass.uiText.isNotEmpty()

@@ -15,7 +15,7 @@ class AuthUseCase : KoinComponent {
      suspend fun login(email : String,pass: String):User{
          val response = iAuthRepositoryNetwork.login(email,pass)
          appRepositoryPreference.saveToken(response.second)
-         appRepositoryPreference.saveToken(JsonHelper.objectToJSON(response.first).toString())
+         appRepositoryPreference.saveUser(JsonHelper.objectToJSON(response.first).toString())
          return response.first
      }
 
@@ -23,7 +23,7 @@ class AuthUseCase : KoinComponent {
          val responseRegister = iAuthRepositoryNetwork.register(register)
          val response = iAuthRepositoryNetwork.login(responseRegister.email,register.password)
          appRepositoryPreference.saveToken(response.second)
-         appRepositoryPreference.saveToken(JsonHelper.objectToJSON(response.first).toString())
+         appRepositoryPreference.saveUser(JsonHelper.objectToJSON(response.first).toString())
          return response.first
      }
 
