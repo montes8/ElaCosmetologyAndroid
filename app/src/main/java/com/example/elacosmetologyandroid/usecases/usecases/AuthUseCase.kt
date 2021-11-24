@@ -3,6 +3,7 @@ package com.example.elacosmetologyandroid.usecases.usecases
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.usecases.repository.AppRepositoryPreference
 import com.example.elacosmetologyandroid.usecases.repository.IAuthRepositoryNetwork
+import com.example.elacosmetologyandroid.utils.JsonHelper
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
@@ -14,6 +15,7 @@ class AuthUseCase : KoinComponent {
      suspend fun login(email : String,pass: String):User{
          val response = iAuthRepositoryNetwork.login(email,pass)
          appRepositoryPreference.saveToken(response.second)
+         appRepositoryPreference.saveToken(JsonHelper.objectToJSON(response.first).toString())
          return response.first
      }
 
@@ -21,9 +23,10 @@ class AuthUseCase : KoinComponent {
          val responseRegister = iAuthRepositoryNetwork.register(register)
          val response = iAuthRepositoryNetwork.login(responseRegister.email,register.password)
          appRepositoryPreference.saveToken(response.second)
+         appRepositoryPreference.saveToken(JsonHelper.objectToJSON(response.first).toString())
          return response.first
      }
 
-     fun session() = appRepositoryPreference.getToken().isNotEmpty()
+     fun fetchUser() = JsonHelper.jsonToObject(appRepositoryPreference.getUser(),User::class.java)
 
 }

@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.databinding.FragmentOrderBinding
+import com.example.elacosmetologyandroid.databinding.FragmentProductBinding
 import com.example.elacosmetologyandroid.ui.BaseFragment
 
 class ProductFragment : BaseFragment() {
 
-    private lateinit var binding : FragmentOrderBinding
+    private lateinit var binding : FragmentProductBinding
 
     companion object {
         fun newInstance() =
@@ -23,7 +24,7 @@ class ProductFragment : BaseFragment() {
     }
 
     override fun getMainView(inflater: LayoutInflater, container: ViewGroup?): View {
-        binding = FragmentOrderBinding.inflate(inflater)
+        binding = FragmentProductBinding.inflate(inflater)
         return binding.root
     }
 

@@ -7,6 +7,7 @@ import com.example.elacosmetologyandroid.component.edit.EditCustomLayout
 import com.example.elacosmetologyandroid.extensions.isEmailValid
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.ui.BaseViewModel
+import com.example.elacosmetologyandroid.usecases.usecases.AppUseCase
 import com.example.elacosmetologyandroid.usecases.usecases.AuthUseCase
 import com.example.elacosmetologyandroid.utils.EMPTY
 import org.koin.core.KoinComponent
@@ -20,7 +21,7 @@ class AppViewModel : BaseViewModel(), KoinComponent {
     private val _successSessionLiveData    = MutableLiveData<Boolean>()
 
 
-    private val authUseCase: AuthUseCase by inject()
+    private val authUseCase: AppUseCase by inject()
 
 
 
@@ -28,5 +29,6 @@ class AppViewModel : BaseViewModel(), KoinComponent {
             executeSuspend {
                 val response = authUseCase.session()
                 _successSessionLiveData.postValue(response)
-            } }
+            }
+    }
 }

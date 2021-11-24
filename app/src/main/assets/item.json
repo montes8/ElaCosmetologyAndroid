@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "Inicio",
+    "icon": "ic_home"
+  },
+  {
+    "id": 2,
+    "title": "Producto",
+    "icon": "ic_product"
+  },
+  {
+    "id": 3,
+    "title": "Pedido",
+    "icon": "ic_order"
+  },
+  {
+    "id": 4,
+    "title": "Admin",
+    "icon": "ic_admin"
+  }
+]

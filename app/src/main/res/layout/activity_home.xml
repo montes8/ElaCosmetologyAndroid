@@ -34,8 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContent"
-        app:menu="@menu/menu_home" />
+        app:layout_constraintTop_toBottomOf="@+id/fragmentContent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

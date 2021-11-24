@@ -3,6 +3,7 @@ package com.example.elacosmetologyandroid.extensions
 import android.app.Activity
 import android.content.Context
 import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.os.Handler
 import android.os.Looper
 import android.text.SpannableString
@@ -15,6 +16,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.elacosmetologyandroid.R
@@ -171,5 +173,12 @@ fun FragmentManager?.showExistingFragment(fragment: Fragment, currentFragment: F
             transaction.commit()
         }
     }
+}
+
+fun setImageString(value : String,context: Context):Drawable?{
+    val uri = "@drawable/$value"
+    val imageResource: Int = context.resources.getIdentifier(uri, null,context.packageName)
+    return ContextCompat.getDrawable(context, imageResource)
+
 }
 

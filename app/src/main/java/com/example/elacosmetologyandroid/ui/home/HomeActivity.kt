@@ -2,18 +2,28 @@ package com.example.elacosmetologyandroid.ui.home
 
 import android.content.Context
 import android.content.Intent
+import android.os.UserManager
+import android.view.Menu
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityHomeBinding
 import com.example.elacosmetologyandroid.extensions.addFragmentToNavigation
+import com.example.elacosmetologyandroid.extensions.setImageString
+import com.example.elacosmetologyandroid.manager.UserTemporary
+import com.example.elacosmetologyandroid.model.ModelGeneric
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.home.admin.AdminFragment
 import com.example.elacosmetologyandroid.ui.home.begin.BeginFragment
 import com.example.elacosmetologyandroid.ui.home.order.OrderFragment
 import com.example.elacosmetologyandroid.ui.home.product.ProductFragment
+import com.example.elacosmetologyandroid.ui.login.LoginViewModel
+import com.example.elacosmetologyandroid.utils.CONFIG_ITEM
+import com.example.elacosmetologyandroid.utils.USER_ROLE
+import com.example.elacosmetologyandroid.utils.getData
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : BaseActivity() {
 
@@ -44,8 +54,18 @@ class HomeActivity : BaseActivity() {
 
     private fun configTabNavigation(){
         initFragment()
+        createItemNavigation()
         showFragment(beginFragment)
         setUpBottomNavigationView()
+    }
+
+    private fun createItemNavigation(){
+        val listItem = getListItem()
+        if (UserTemporary.getUser().rol == USER_ROLE)listItem?.take(3)
+        listItem?.forEach {item->
+            binding.btnNavigation.menu.add(Menu.NONE, item.id, Menu.NONE, item.title).icon =
+                setImageString(item.icon,this)
+        }
     }
 
     private fun initFragment(){
@@ -58,10 +78,10 @@ class HomeActivity : BaseActivity() {
     private fun setUpBottomNavigationView() {
         binding.btnNavigation.setOnItemSelectedListener { item ->
             val isSelected = when (item.itemId) {
-                R.id.bottom_nav_home -> showFragment(this.beginFragment)
-                R.id.bottom_nav_product -> showFragment(this.productFragment)
-                R.id.bottom_nav_order -> showFragment(this.orderFragment)
-                R.id.bottom_nav_admin -> showFragment(this.adminFragment)
+                1 -> showFragment(this.beginFragment)
+                2 -> showFragment(this.productFragment)
+                3 -> showFragment(this.orderFragment)
+                4 -> showFragment(this.adminFragment)
                 else -> false
             }
             isSelected
@@ -93,6 +113,10 @@ class HomeActivity : BaseActivity() {
 
     private fun validateCurrentFragmentInstance(fragment: Fragment) {
         if (fragment is BaseFragment) this.currentFragment = fragment
+    }
+
+    private fun getListItem(): List<ModelGeneric>? {
+        return getData(this, CONFIG_ITEM)
     }
 
     override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf()

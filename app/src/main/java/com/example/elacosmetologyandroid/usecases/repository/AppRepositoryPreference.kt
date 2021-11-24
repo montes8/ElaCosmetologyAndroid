@@ -7,4 +7,10 @@ interface AppRepositoryPreference {
 
     @Throws(Exception::class)
     fun saveToken(value: String)
+
+    @Throws(Exception::class)
+    fun getUser(): String
+
+    @Throws(Exception::class)
+    fun saveUser(value: String)
 }
