@@ -7,5 +7,7 @@ import org.koin.core.inject
 object UserTemporary : KoinComponent {
     private val authUseCase: AuthUseCase by inject()
 
+    var duration = 0
+
     fun getUser() = authUseCase.fetchUser()
 }

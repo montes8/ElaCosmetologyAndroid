@@ -26,11 +26,7 @@ import com.example.elacosmetologyandroid.utils.getData
 class HomeActivity : BaseActivity() {
 
     private lateinit var binding: ActivityHomeBinding
-    private var currentFragment: BaseFragment? = null
-    private lateinit var beginFragment: BeginFragment
-    private lateinit var productFragment: ProductFragment
-    private lateinit var orderFragment: OrderFragment
-    private lateinit var adminFragment: AdminFragment
+     var currentFragment: BaseFragment? = null
 
     companion object {
         fun start(context: Context) {
@@ -47,9 +43,8 @@ class HomeActivity : BaseActivity() {
     }
 
     override fun setUpView() {
-        initFragment()
         createItemNavigation(UserTemporary.getUser())
-        showFragment(beginFragment)
+        showFragment(BeginFragment.newInstance())
         setUpBottomNavigationView()
     }
 
@@ -64,20 +59,14 @@ class HomeActivity : BaseActivity() {
         }
     }
 
-    private fun initFragment(){
-        beginFragment   = BeginFragment.newInstance()
-        productFragment = ProductFragment.newInstance()
-        orderFragment   = OrderFragment.newInstance()
-        adminFragment   = AdminFragment.newInstance()
-    }
-
     private fun setUpBottomNavigationView() {
         binding.btnNavigation.setOnItemSelectedListener { item ->
+            if(item.itemId != 1)configItemFragmentMovie()
             val isSelected = when (item.itemId) {
-                1 -> showFragment(this.beginFragment)
-                2 -> showFragment(this.productFragment)
-                3 -> showFragment(this.orderFragment)
-                4 -> showFragment(this.adminFragment)
+                1 -> {showFragment(BeginFragment.newInstance()) }
+                2 -> showFragment(ProductFragment.newInstance())
+                3 -> showFragment(OrderFragment.newInstance())
+                4 -> showFragment(AdminFragment.newInstance())
                 else -> false
             }
             isSelected
@@ -85,6 +74,14 @@ class HomeActivity : BaseActivity() {
     }
 
     override fun observeLiveData() {}
+
+
+    private fun configItemFragmentMovie(){
+        supportFragmentManager.let {
+            val fragment = it.findFragmentByTag(BeginFragment::class.java.name) as BeginFragment
+            fragment.setStopVideo()
+        }
+    }
 
 
     private fun showFragment(fragment: BaseFragment): Boolean {
