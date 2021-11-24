@@ -46,6 +46,7 @@ class BeginFragment : BaseFragment() {
         }
     }
 
+
     override fun observeLiveData() {
     }
 
