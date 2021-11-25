@@ -16,6 +16,7 @@ import com.example.elacosmetologyandroid.databinding.FragmentBeginBinding
 import com.example.elacosmetologyandroid.extensions.setOnClickDelay
 import com.example.elacosmetologyandroid.manager.UserTemporary
 import com.example.elacosmetologyandroid.ui.BaseFragment
+import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.ui.home.HomeActivity
 import com.example.elacosmetologyandroid.ui.home.begin.movi.MovieActivity
 import com.example.elacosmetologyandroid.utils.EMPTY
@@ -95,6 +96,6 @@ class BeginFragment : BaseFragment(){
 
     override fun observeLiveData() {}
 
-    override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf()
+    override fun getViewModel(): BaseViewModel? = null
 
 }

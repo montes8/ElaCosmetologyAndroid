@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.databinding.FragmentOrderBinding
 import com.example.elacosmetologyandroid.ui.BaseFragment
+import com.example.elacosmetologyandroid.ui.BaseViewModel
 
 class OrderFragment : BaseFragment() {
 
@@ -34,6 +35,6 @@ class OrderFragment : BaseFragment() {
     override fun observeLiveData() {
     }
 
-    override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf()
+    override fun getViewModel(): BaseViewModel? = null
 
 }

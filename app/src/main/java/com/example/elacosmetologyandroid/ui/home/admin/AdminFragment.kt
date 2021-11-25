@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.databinding.FragmentAdminBinding
 import com.example.elacosmetologyandroid.ui.BaseFragment
+import com.example.elacosmetologyandroid.ui.BaseViewModel
 
 
 class AdminFragment : BaseFragment() {
@@ -36,6 +37,6 @@ class AdminFragment : BaseFragment() {
 
     }
 
-    override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf()
+    override fun getViewModel(): BaseViewModel? = null
 
 }

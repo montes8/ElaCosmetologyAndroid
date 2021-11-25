@@ -8,10 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment() : Fragment() {
     private var transactionHistory: ArrayList<Int> = ArrayList()
     private var currentChildFragment: BaseFragment? = null
-    val context = activity as BaseActivity
 
     abstract fun getMainView(
         inflater: LayoutInflater,
@@ -19,7 +18,7 @@ abstract class BaseFragment : Fragment() {
     ): View
 
     abstract fun setUpView()
-    abstract fun observeViewModel()
+    abstract fun observeLiveData()
     abstract fun getViewModel(): BaseViewModel?
 
     override fun onCreateView(
@@ -34,21 +33,24 @@ abstract class BaseFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        observeViewModel()
+        observeLiveData()
         super.onViewCreated(view, savedInstanceState)
     }
 
     private fun observeMainViewModel() {
-        getViewModel()?.let { viewModel ->
-            viewModel.loadingLiveData.observe(context,{ isLoading ->
-                isLoading?.let {
-                    getMainActivity().showLoading(it)
-                }
-            })
+        if (activity is BaseActivity) {
+            val context = activity as BaseActivity
+            getViewModel()?.let { viewModel ->
+                viewModel.loadingLiveData.observe(context, { isLoading ->
+                    isLoading?.let {
+                        (activity as BaseActivity).showLoading(it)
+                    }
+                })
 
-            viewModel.errorLiveData.observe(context, {
-                getMainActivity().showDialogError(it)
-            })
+                viewModel.errorLiveData.observe(context,{
+                    (activity as BaseActivity).showDialogError(it)
+                })
+            }
         }
     }
 
@@ -92,7 +94,5 @@ abstract class BaseFragment : Fragment() {
             } else false
         }
     }
-
-    private fun getMainActivity(): BaseActivity = activity as BaseActivity
 
 }

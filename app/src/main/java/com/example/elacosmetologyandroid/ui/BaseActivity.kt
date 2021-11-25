@@ -27,11 +27,6 @@ abstract class BaseActivity : AppCompatActivity() {
         observeMainViewModel()
     }
 
-     fun observeErrors(errors: List<LiveData<Throwable>>) {
-        for (error in errors) {
-            error.observe(this, { showDialogError(error = it) })
-        }
-    }
 
     private fun observeMainViewModel() {
         this.observeViewModel()
