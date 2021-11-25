@@ -7,10 +7,12 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Handler
 import android.os.Looper
+import android.text.Spannable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
+import android.text.style.BackgroundColorSpan
 import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
 import android.view.View
@@ -21,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.dialog.CrossDialog
 import com.example.elacosmetologyandroid.repository.network.exception.CompleteErrorModel
@@ -29,6 +32,7 @@ import com.example.elacosmetologyandroid.repository.network.exception.NetworkExc
 import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
 import com.example.elacosmetologyandroid.utils.TITLE_DESCRIPTION_DEFAULT
 import com.example.elacosmetologyandroid.utils.TITLE_DIALOG_DEFAULT
+import java.util.*
 
 fun View.visible() = apply {
     visibility = View.VISIBLE
@@ -175,4 +179,46 @@ fun setImageString(value : String,context: Context):Drawable?{
     return ContextCompat.getDrawable(context, imageResource)
 
 }
+
+fun setHighLightedText(textView: TextView, textToHighlight: String) {
+    val tvt = textView.text.toString()
+    var ofe = tvt.indexOf(textToHighlight, 0)
+    val wordToSpan: Spannable = SpannableString(textView.text)
+    var ofs = 0
+    while (ofs < tvt.length && ofe != -1) {
+        ofe = tvt.indexOf(textToHighlight, ofs)
+        if (ofe == -1) break else {
+            // set color here
+            wordToSpan.setSpan(
+                BackgroundColorSpan(ContextCompat.getColor(textView.context,R.color.pink_50)),
+                ofe,
+                ofe + textToHighlight.length,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            textView.setText(wordToSpan, TextView.BufferType.SPANNABLE)
+        }
+        ofs = ofe + 1
+    }
+}
+
+/*inner class ListDocGlossaryViewHolder(private val binding: UiKitRowPoliceListDocBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+    fun bind(question: InsuranceQuestion) {
+        binding.setVariable(BR.question, question)
+        Handler(Looper.getMainLooper()).postDelayed({
+            if (question.textSearch.isNotEmpty()){
+                resetData(question)
+                setHighLightedText(binding.rowTitleListDoc,question.textSearch.substring(0, 1)
+                    .toUpperCase(Locale.ROOT) + question.textSearch.substring(1))
+                setHighLightedText(binding.rowTitleListDocDescription,question.textSearch)
+            }else{
+                resetData(question)
+            } }, 500)
+    }
+
+    private fun resetData(question: InsuranceQuestion){
+        binding.rowTitleListDoc.text = question.title
+        binding.rowTitleListDocDescription.text = question.description
+    }
+}*/
 
