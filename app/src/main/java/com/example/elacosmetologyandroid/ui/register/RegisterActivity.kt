@@ -8,6 +8,7 @@ import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityRegisterBinding
 import com.example.elacosmetologyandroid.extensions.setOnClickDelay
 import com.example.elacosmetologyandroid.ui.BaseActivity
+import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.ui.home.HomeActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -44,7 +45,7 @@ class RegisterActivity : BaseActivity() {
             binding.editEmailRegister,binding.editPasswordRegister,binding.btnRegister)
     }
 
-    override fun observeLiveData() {
+    override fun observeViewModel() {
         viewModel.errorLiveData.observe(this,{
             binding.btnRegister.isButtonLoading = false
         })
@@ -58,6 +59,6 @@ class RegisterActivity : BaseActivity() {
 
     override fun getValidActionToolBar() = true
 
-    override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf(viewModel.errorLiveData)
+    override fun getViewModel(): BaseViewModel = viewModel
 
 }

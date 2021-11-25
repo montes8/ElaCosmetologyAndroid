@@ -16,6 +16,7 @@ import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseFragment
+import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.ui.home.admin.AdminFragment
 import com.example.elacosmetologyandroid.ui.home.begin.BeginFragment
 import com.example.elacosmetologyandroid.ui.home.order.OrderFragment
@@ -98,7 +99,7 @@ class HomeActivity : BaseActivity() {
 
     }
 
-    override fun observeLiveData() {}
+    override fun observeViewModel() {}
 
 
     private fun configItemFragmentMovie(){
@@ -135,7 +136,7 @@ class HomeActivity : BaseActivity() {
         return getData(this, CONFIG_ITEM)
     }
 
-    override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf()
+    override fun getViewModel(): BaseViewModel? = null
 
     override fun getValidActionToolBar() = false
 

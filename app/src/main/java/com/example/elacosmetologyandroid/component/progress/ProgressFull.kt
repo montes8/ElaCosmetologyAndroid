@@ -2,7 +2,7 @@ package com.example.elacosmetologyandroid.component.progress
 
 import android.content.Context
 
-object CrossProgressFull {
+object ProgressFull {
 
     var progressBar : CrossProgressBarFull? = null
 

@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 open class BaseViewModel : ViewModel() {
     val errorLiveData = MutableLiveData<Throwable>()
-    val progressLiveData = MutableLiveData<Boolean>()
+    val loadingLiveData = MutableLiveData<Boolean>()
 
 
 
@@ -26,12 +26,12 @@ open class BaseViewModel : ViewModel() {
     fun executeSuspend(func: suspend () -> Unit) =
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                progressLiveData.postValue(true)
+                loadingLiveData.postValue(true)
                 func()
-                progressLiveData.postValue(false)
+                loadingLiveData.postValue(false)
             } catch (ex: Exception) {
                 ex.printStackTrace()
-                progressLiveData.postValue(false)
+                loadingLiveData.postValue(false)
                 errorLiveData.postValue(ex)
             }
         }

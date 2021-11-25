@@ -10,6 +10,7 @@ import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityMovieBinding
 import com.example.elacosmetologyandroid.manager.UserTemporary
 import com.example.elacosmetologyandroid.ui.BaseActivity
+import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
@@ -68,11 +69,12 @@ class MovieActivity : BaseActivity() {
         }
     }
 
-    override fun observeLiveData() {
+    override fun observeViewModel() {
 
     }
 
+    override fun getViewModel(): BaseViewModel? = null
+
     override fun getValidActionToolBar() = false
 
-    override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf()
 }

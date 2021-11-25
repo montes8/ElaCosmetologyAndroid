@@ -14,7 +14,7 @@ class CrossProgressBarFull(context: Context, themeResId: Int) :
     }
 
     private fun setView(context: Context) {
-        window?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(context, R.color.dark_transparent_01)))
+        window?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(context, R.color.transparency_white)))
     }
 
     override fun show() {

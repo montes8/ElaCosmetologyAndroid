@@ -10,6 +10,7 @@ import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.databinding.ActivitySplashBinding
 import com.example.elacosmetologyandroid.ui.AppViewModel
+import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.ui.home.HomeActivity
 import com.example.elacosmetologyandroid.ui.login.LoginActivity
 import com.example.elacosmetologyandroid.ui.login.LoginViewModel
@@ -44,14 +45,14 @@ class SplashActivity : BaseActivity() {
         }, 4500)
     }
 
-    override fun observeLiveData() {
+    override fun observeViewModel() {
         viewModel.successSessionLiveData.observe(this,{
             it?.apply { if (this) HomeActivity.start(this@SplashActivity) else LoginActivity.start(this@SplashActivity)
             }
         })
     }
 
-    override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf()
+    override fun getViewModel(): BaseViewModel = viewModel
 
     override fun getValidActionToolBar() = false
 

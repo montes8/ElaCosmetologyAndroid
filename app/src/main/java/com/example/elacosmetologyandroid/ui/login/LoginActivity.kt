@@ -10,6 +10,7 @@ import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityLoginBinding
 import com.example.elacosmetologyandroid.extensions.setColouredSpanClick
 import com.example.elacosmetologyandroid.ui.BaseActivity
+import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.ui.home.HomeActivity
 import com.example.elacosmetologyandroid.ui.register.RegisterActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -50,7 +51,7 @@ class LoginActivity : BaseActivity() {
             this, R.color.pink_600),true) { RegisterActivity.start(this) }
     }
 
-    override fun observeLiveData() {
+    override fun observeViewModel() {
         viewModel.errorLiveData.observe(this,{
             binding.btnLogin.isButtonLoading = false
         })
@@ -72,7 +73,7 @@ class LoginActivity : BaseActivity() {
 
     override fun getValidActionToolBar() = false
 
-    override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf(viewModel.errorLiveData)
+    override fun getViewModel(): BaseViewModel = viewModel
 
 
 }

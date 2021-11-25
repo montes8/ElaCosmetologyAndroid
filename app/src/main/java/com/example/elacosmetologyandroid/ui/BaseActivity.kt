@@ -1,11 +1,10 @@
 package com.example.elacosmetologyandroid.ui
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.R
+import com.example.elacosmetologyandroid.component.progress.ProgressFull
 import com.example.elacosmetologyandroid.extensions.getError
 import com.example.elacosmetologyandroid.extensions.gone
 import com.example.elacosmetologyandroid.extensions.showDialogCustom
@@ -16,19 +15,16 @@ import kotlinx.android.synthetic.main.mold_toolbar.*
 abstract class BaseActivity : AppCompatActivity() {
     abstract fun getMainView()
     abstract fun setUpView()
-    abstract fun observeLiveData()
-    abstract fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>>?
+    abstract fun observeViewModel()
+    abstract fun getViewModel(): BaseViewModel?
     abstract fun getValidActionToolBar(): Boolean
-    private val errorList = ArrayList<LiveData<Throwable>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getMainView()
         setUpView()
         getActionToolbar(this.getValidActionToolBar())
-        errorList.addAll(getErrorObservers() ?: ArrayList())
-        observeErrors(errorList)
-        observeLiveData()
+        observeMainViewModel()
     }
 
      fun observeErrors(errors: List<LiveData<Throwable>>) {
@@ -37,7 +33,23 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    private fun showDialogError(error: Throwable) {
+    private fun observeMainViewModel() {
+        this.observeViewModel()
+        getViewModel()?.let { viewModel ->
+            viewModel.errorLiveData.observe(this,{ error ->
+                this.showDialogError(error)
+            })
+
+            viewModel.loadingLiveData.observe(this, { it?.let { showLoading(it)} })
+
+        }
+    }
+
+     fun showLoading(value: Boolean){
+        if (value)ProgressFull.showCrossProgressFull(this) else ProgressFull.hideCrossProgressFull()
+    }
+
+    fun showDialogError(error: Throwable) {
         val valueError = error.getError(this)
         showDialogCustom(R.layout.dialog_generic, true,title = valueError.second,description =
         valueError.third,icon = valueError.first,typeError = true) {

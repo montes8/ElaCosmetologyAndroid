@@ -8,9 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
 
-abstract class BaseFragment() : Fragment() {
+abstract class BaseFragment : Fragment() {
     private var transactionHistory: ArrayList<Int> = ArrayList()
     private var currentChildFragment: BaseFragment? = null
+    val context = activity as BaseActivity
 
     abstract fun getMainView(
         inflater: LayoutInflater,
@@ -18,8 +19,8 @@ abstract class BaseFragment() : Fragment() {
     ): View
 
     abstract fun setUpView()
-    abstract fun observeLiveData()
-    abstract fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>>?
+    abstract fun observeViewModel()
+    abstract fun getViewModel(): BaseViewModel?
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,18 +29,26 @@ abstract class BaseFragment() : Fragment() {
     ): View? {
         val view = getMainView(inflater, container)
         setUpView()
-        observeErrors()
+        observeMainViewModel()
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        observeLiveData()
+        observeViewModel()
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun observeErrors() {
-        if (activity is BaseActivity) {
-            (activity as BaseActivity).observeErrors(getErrorObservers() ?: arrayListOf())
+    private fun observeMainViewModel() {
+        getViewModel()?.let { viewModel ->
+            viewModel.loadingLiveData.observe(context,{ isLoading ->
+                isLoading?.let {
+                    getMainActivity().showLoading(it)
+                }
+            })
+
+            viewModel.errorLiveData.observe(context, {
+                getMainActivity().showDialogError(it)
+            })
         }
     }
 
@@ -83,5 +92,7 @@ abstract class BaseFragment() : Fragment() {
             } else false
         }
     }
+
+    private fun getMainActivity(): BaseActivity = activity as BaseActivity
 
 }

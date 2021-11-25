@@ -27,9 +27,11 @@
 
     <color name="red">#FA0A32</color>
 
+    <color name="black">#000000</color>
+
     <!-- Others -->
+    <color name="transparency_white">#CBFFFFFF</color>
     <color name="transparent">#00000000</color>
-    <color name="dark_transparent_01">#FFFCE4EC</color>
-    <color name="transparent_32">#50FF4081</color>
-    <color name="transparent_two">#05FF80AB</color>
+    <color name="transparentBackground">#8C303030</color>
+    <color name="transparency_white_bottom_sheet">#CBDEDFEE</color>
 </resources>
