@@ -34,6 +34,7 @@
         android:background="@color/transparent_two"
         android:elevation="0dp"
         app:elevation="0dp"
+        android:alpha="0.5"
         app:itemHorizontalTranslationEnabled="false"
         app:itemIconSize="@dimen/size_22"
         app:itemIconTint="@color/selector_item_menu"

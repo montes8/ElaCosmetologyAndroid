@@ -72,5 +72,7 @@ class MovieActivity : BaseActivity() {
 
     }
 
+    override fun getValidActionToolBar() = false
+
     override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf()
 }

@@ -53,4 +53,6 @@ class SplashActivity : BaseActivity() {
 
     override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf()
 
+    override fun getValidActionToolBar() = false
+
 }

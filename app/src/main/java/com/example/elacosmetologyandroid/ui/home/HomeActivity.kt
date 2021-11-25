@@ -78,7 +78,6 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun configTitleToolbar(id : Int){
-        binding.toolBarHome.imgBackToolbar.gone()
         binding.toolBarHome.txtTitleToolbar.text = when (id) {
             1 -> getString(R.string.txt_home)
             2 -> {getString(R.string.txt_product) }
@@ -128,5 +127,6 @@ class HomeActivity : BaseActivity() {
 
     override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf()
 
+    override fun getValidActionToolBar() = false
 
 }

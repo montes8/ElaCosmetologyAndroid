@@ -50,4 +50,9 @@
         <item name="android:letterSpacing">0.04</item>
         <item name="android:includeFontPadding">false</item>
     </style>
+
+    <style name="DialogTheme" parent="@style/Base.Theme.AppCompat.Light.Dialog">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
 </resources>

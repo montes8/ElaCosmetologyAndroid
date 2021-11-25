@@ -14,12 +14,14 @@ import com.example.elacosmetologyandroid.extensions.getError
 import com.example.elacosmetologyandroid.extensions.showCrossDialog
 import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
 import com.example.elacosmetologyandroid.ui.login.LoginActivity
+import kotlinx.android.synthetic.main.mold_toolbar.*
 
 abstract class BaseActivity : AppCompatActivity() {
     abstract fun getMainView()
     abstract fun setUpView()
     abstract fun observeLiveData()
     abstract fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>>?
+    abstract fun getValidActionToolBar(): Boolean
     private val errorList = ArrayList<LiveData<Throwable>>()
 
 
@@ -29,6 +31,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         getMainView()
         setUpView()
+        getActionToolbar(this.getValidActionToolBar())
         errorList.addAll(getErrorObservers() ?: ArrayList())
         observeErrors(errorList)
         observeLiveData()
@@ -77,6 +80,21 @@ abstract class BaseActivity : AppCompatActivity() {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         })
         finishAffinity()
+    }
+
+    private fun getActionToolbar(value : Boolean){
+        if (value){
+            imgBackToolbar.setImageResource(R.drawable.ic_arrow_star)
+            imgBackToolbar.setOnClickListener {
+                onBackPressed()
+            }
+
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.rigth_in, R.anim.right_out)
     }
 
 

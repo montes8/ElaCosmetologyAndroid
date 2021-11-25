@@ -27,13 +27,8 @@ class RegisterActivity : BaseActivity() {
     }
 
     override fun setUpView() {
-        configInitText()
-        configAction()
-    }
-
-    private fun configInitText(){
         binding.registerToolbar.txtTitleToolbar.text =  getString(R.string.text_register)
-        binding.registerToolbar.imgBackToolbar.setOnClickDelay { onBackPressed() }
+        configAction()
     }
 
     private fun configAction(){
@@ -60,6 +55,8 @@ class RegisterActivity : BaseActivity() {
              }
         })
     }
+
+    override fun getValidActionToolBar() = true
 
     override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf(viewModel.errorLiveData)
 

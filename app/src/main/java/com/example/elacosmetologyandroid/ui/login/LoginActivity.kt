@@ -25,7 +25,6 @@ class LoginActivity : BaseActivity() {
             intent.flags =
                 Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             context.startActivity(intent)
-
         }
     }
 
@@ -70,6 +69,8 @@ class LoginActivity : BaseActivity() {
     private fun validateData(){
         viewModel.validateLogin(binding.editEmail,binding.editPassword,binding.btnLogin)
     }
+
+    override fun getValidActionToolBar() = false
 
     override fun getErrorObservers(): ArrayList<MutableLiveData<Throwable>> = arrayListOf(viewModel.errorLiveData)
 
