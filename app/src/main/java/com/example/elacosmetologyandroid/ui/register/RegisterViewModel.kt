@@ -32,7 +32,7 @@ class RegisterViewModel : BaseViewModel(), KoinComponent {
         if (validateEmail(pass)){
             userData?.let {
                 btnProgress.isButtonLoading = true
-            executeSuspend {
+            executeSuspendNotProgress {
 
                     val response = authUseCase.register(it)
                     _successAccountLiveData.postValue(response)

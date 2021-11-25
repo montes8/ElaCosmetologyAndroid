@@ -27,7 +27,7 @@ class LoginViewModel : BaseViewModel(), KoinComponent {
     fun login(email : EditCustomLayout,pass : EditCustomLayout,btnLogin : ProgressButton){
         if (validateEmail(email)){
             btnLogin.isButtonLoading = true
-            executeSuspend {
+            executeSuspendNotProgress {
                 val response = authUseCase.login(email.uiText,pass.uiText)
                 _successLoginLiveData.postValue(response)
             }

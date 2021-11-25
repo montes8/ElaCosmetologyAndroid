@@ -14,7 +14,7 @@ open class BaseViewModel : ViewModel() {
 
 
 
-    fun executeSuspendNoProgress(func: suspend () -> Unit) =
+    fun executeSuspend(func: suspend () -> Unit) =
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 func()
@@ -23,7 +23,7 @@ open class BaseViewModel : ViewModel() {
             }
         }
 
-    fun executeSuspend(func: suspend () -> Unit) =
+    fun executeSuspendNotProgress(func: suspend () -> Unit) =
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 loadingLiveData.postValue(true)
