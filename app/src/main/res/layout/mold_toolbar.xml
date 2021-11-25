@@ -27,14 +27,25 @@
             android:id="@+id/txtTitleToolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/size_16"
             android:textColor="@color/pink_200"
             android:textStyle="bold"
             android:textSize="@dimen/txt_size_20"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imgLogout"
             app:layout_constraintStart_toEndOf="@+id/imgBackToolbar"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgLogout"
+            android:layout_width="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/ic_logout"
+            android:padding="@dimen/size_6"
+            android:layout_marginStart="@dimen/size_10"
+            android:layout_height="wrap_content"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.button.ProgressButton
 import com.example.elacosmetologyandroid.extensions.getError
+import com.example.elacosmetologyandroid.extensions.gone
 import com.example.elacosmetologyandroid.extensions.showCrossDialog
 import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
 import com.example.elacosmetologyandroid.ui.login.LoginActivity
@@ -85,6 +86,7 @@ abstract class BaseActivity : AppCompatActivity() {
     private fun getActionToolbar(value : Boolean){
         if (value){
             imgBackToolbar.setImageResource(R.drawable.ic_arrow_star)
+            imgLogout.gone()
             imgBackToolbar.setOnClickListener {
                 onBackPressed()
             }
