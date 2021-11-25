@@ -3,17 +3,17 @@ package com.example.elacosmetologyandroid.ui.home
 import android.content.Context
 import android.content.Intent
 import android.view.Menu
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityHomeBinding
-import com.example.elacosmetologyandroid.extensions.addFragmentToNavigation
-import com.example.elacosmetologyandroid.extensions.gone
-import com.example.elacosmetologyandroid.extensions.setImageString
+import com.example.elacosmetologyandroid.extensions.*
 import com.example.elacosmetologyandroid.manager.UserTemporary
 import com.example.elacosmetologyandroid.model.ModelGeneric
 import com.example.elacosmetologyandroid.model.User
+import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.home.admin.AdminFragment
@@ -46,9 +46,7 @@ class HomeActivity : BaseActivity() {
 
     override fun setUpView() {
         createItemNavigation(UserTemporary.getUser())
-        showFragment(BeginFragment.newInstance())
-        configTitleToolbar(1)
-        setUpBottomNavigationView()
+        configAction()
     }
 
     private fun createItemNavigation(user : User?){
@@ -60,6 +58,9 @@ class HomeActivity : BaseActivity() {
             binding.btnNavigation.menu.add(Menu.NONE, item.id, Menu.NONE, item.title).icon =
                 setImageString(item.icon,this)
         }
+        configTitleToolbar(1)
+        showFragment(BeginFragment.newInstance())
+        setUpBottomNavigationView()
     }
 
     private fun setUpBottomNavigationView() {
@@ -74,6 +75,15 @@ class HomeActivity : BaseActivity() {
                 else -> false
             }
             isSelected
+        }
+    }
+
+
+    private fun configAction(){
+        binding.toolBarHome.imgLogout.setOnClickDelay {
+            showDialogCustom(R.layout.dialog_generic, true,typeError = false) {
+               Toast.makeText(this@HomeActivity,"click",Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

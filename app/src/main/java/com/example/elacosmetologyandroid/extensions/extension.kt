@@ -20,13 +20,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.elacosmetologyandroid.R
-import com.example.elacosmetologyandroid.component.CrossDialog
-import com.example.elacosmetologyandroid.component.CrossDialogBlock
+import com.example.elacosmetologyandroid.component.dialog.CrossDialog
 import com.example.elacosmetologyandroid.repository.network.exception.CompleteErrorModel
 import com.example.elacosmetologyandroid.repository.network.exception.ApiException
 import com.example.elacosmetologyandroid.repository.network.exception.NetworkException
 import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
-import com.example.elacosmetologyandroid.ui.BaseFragment
+import com.example.elacosmetologyandroid.utils.TITLE_DESCRIPTION_DEFAULT
+import com.example.elacosmetologyandroid.utils.TITLE_DIALOG_DEFAULT
 
 fun View.visible() = apply {
     visibility = View.VISIBLE
@@ -40,28 +40,20 @@ fun View.validateVisibility(value: Boolean) {
     if (value) visible() else gone()
 }
 
-fun AppCompatActivity.showCrossDialog(
+fun AppCompatActivity.showDialogCustom(
     layout: Int,
     cancelable: Boolean = true,
-    func: CrossDialogBlock
+    title : String = TITLE_DIALOG_DEFAULT, description : String = TITLE_DESCRIPTION_DEFAULT,
+     icon : Int = R.drawable.ic_info_error,typeError : Boolean = true,
+    func: CrossDialog.() -> Unit
 ) {
-    val dialog = CrossDialog(layout, func)
+    val dialog = CrossDialog(layout,title = title,description = description,icon = icon
+    ,typeError = typeError) { func() }
     dialog.dialog?.setCancelable(cancelable)
     dialog.isCancelable = cancelable
     dialog.show(this.supportFragmentManager, CrossDialog::class.java.name)
-}
 
-fun Fragment.showCrossDialog(
-    layout: Int,
-    cancelable: Boolean = true,
-    func: CrossDialogBlock
-) {
-    val dialog = CrossDialog(layout, func)
-    dialog.dialog?.setCancelable(cancelable)
-    dialog.isCancelable = cancelable
-    dialog.show(this.childFragmentManager, CrossDialog::class.java.name)
 }
-
 
 fun Throwable.getError(context: Context): Triple<Int, String, String> {
     return when (this) {

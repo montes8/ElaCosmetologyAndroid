@@ -15,12 +15,16 @@
     <!-- TODO: error label -->
     <string name="error_email_format">El formato de correo ingresado no es valido</string>
 
-
+    <!-- TODO: text button-->
+    <string name="dialog_accept">Aceptar</string>
+    <string name="txt_cancel_btn">Cancelar</string>
     <string name="progress_button_loading">Loading…</string>
+
+
+    <!-- TODO: text label-->
+    <string name="txt_logout_des">¿Estás seguro que deseas cerrar sesión?</string>
     <string name="txt_title_splash">BIENVENIDA</string>
     <string name="txt_subtitle_splash">MIRA TU CATALOGO AHORA</string>
-
-
     <string name="register">¿Eres nuevo? Registrate</string>
     <string name="text_register">Registrate</string>
     <string name="text_email">Correo electronico</string>
@@ -29,6 +33,8 @@
     <string name="text_last_name">Apellidos</string>
     <string name="txt_forget_password">Olvidaste Contraseña</string>
 
+
+    <!-- TODO: text menu-->
     <string name="txt_home">Inicio</string>
     <string name="txt_product">Producto</string>
     <string name="txt_order">Pedido</string>
