@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/size_seventeen"
+    android:background="@color/white">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgProfileHome"
+        android:layout_width="@dimen/size_eighty"
+        android:layout_height="@dimen/size_eighty"
+        android:layout_marginTop="@dimen/size_thirty"
+        android:src="@drawable/ic_profile"
+        app:civ_border_color="@color/blue"
+        app:civ_border_width="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtNameUserMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/test_number"
+        android:fontFamily="@font/flexo_bold"
+        android:textSize="@dimen/txt_size_16"
+        android:textColor="@color/pink_200"
+        android:layout_marginStart="@dimen/size_20"
+        app:layout_constraintBottom_toBottomOf="@+id/imgProfileHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgProfileHome"
+        app:layout_constraintTop_toTopOf="@+id/imgProfileHome" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

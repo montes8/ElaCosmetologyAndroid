@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navProfile"
+            android:icon="@drawable/ic_profile"
+            android:title="@string/txt_menu_profile" />
+        <item
+            android:id="@+id/navPromotions"
+            android:icon="@drawable/ic_favorite"
+            android:title="@string/txt_menu_favorite"/>
+        <item
+            android:id="@+id/navMap"
+            android:icon="@drawable/ic_map"
+            android:title="@string/txt_menu_map" />
+
+        <item
+            android:id="@+id/navFacebook"
+            android:icon="@drawable/ic_facebook"
+            android:title="@string/txt_menu_facebook" />
+        <item
+            android:id="@+id/navOther"
+            android:icon="@drawable/ic_term"
+            android:title="@string/txt_menu_other" />
+
+        <item
+            android:id="@+id/otra_section"
+            android:title="">
+            <menu>
+                <item
+                    android:id="@+id/navLogout"
+                    android:checked="true"
+                    android:title="@string/txt_menu_logout" />
+            </menu>
+        </item>
+
+    </group>
+</menu>

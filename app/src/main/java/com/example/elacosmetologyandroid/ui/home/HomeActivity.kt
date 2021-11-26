@@ -3,8 +3,11 @@ package com.example.elacosmetologyandroid.ui.home
 import android.content.Context
 import android.content.Intent
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.R
@@ -25,11 +28,13 @@ import com.example.elacosmetologyandroid.utils.CONFIG_ITEM
 import com.example.elacosmetologyandroid.utils.EMPTY
 import com.example.elacosmetologyandroid.utils.USER_ROLE
 import com.example.elacosmetologyandroid.utils.getData
+import com.google.android.material.navigation.NavigationView
 
-class HomeActivity : BaseActivity() {
+class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityHomeBinding
-     var currentFragment: BaseFragment? = null
+    private var currentFragment: BaseFragment? = null
+    private var drawer                       : DrawerLayout? = null
 
     companion object {
         fun start(context: Context) {
@@ -48,6 +53,7 @@ class HomeActivity : BaseActivity() {
     override fun setUpView() {
         createItemNavigation(UserTemporary.getUser())
         configAction()
+       // binding.navViewMenu.itemIconTintList = null
     }
 
     private fun createItemNavigation(user : User?){
@@ -82,9 +88,7 @@ class HomeActivity : BaseActivity() {
 
     private fun configAction(){
         binding.toolBarHome.imgLogout.setOnClickDelay {
-            showDialogCustom(R.layout.dialog_generic, true,typeError = false) {
-               Toast.makeText(this@HomeActivity,"click",Toast.LENGTH_SHORT).show()
-            }
+           dialogLogout()
         }
     }
 
@@ -101,6 +105,63 @@ class HomeActivity : BaseActivity() {
 
     override fun observeViewModel() {}
 
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.navProfile -> {
+                selectedItemMenu(item,true)
+                //ProfileActivity.newInstance(this)
+            }
+
+            R.id.navPromotions -> {
+                selectedItemMenu(item,false)
+                //FavoriteActivity.newInstance(this)
+            }
+
+            R.id.navMap -> {
+                selectedItemMenu(item,false)
+
+               // MapActivity.newInstance(this,listEstablishment,queryLocation,true)
+            }
+
+            R.id.navFacebook -> {
+                selectedItemMenu(item, false)
+                //validateFacebookUrl(this)
+            }
+
+            R.id.navOther ->{
+                selectedItemMenu(item,false)
+                //TermsActivity.newInstance(this)
+            }
+
+            R.id.navLogout -> {
+                selectedItemMenu(item,false)
+                dialogLogout()
+            }
+
+        }
+        overridePendingTransition(R.anim.left_in, R.anim.left_out)
+        drawerGone()
+        return true
+    }
+
+    private fun drawerVisible() {
+        drawer?.openDrawer(GravityCompat.START)
+    }
+
+    private fun drawerGone() {
+        drawer?.closeDrawer(GravityCompat.START)
+    }
+
+    private fun selectedItemMenu(item : MenuItem, value : Boolean){
+        item.isChecked = value
+    }
+
+    private fun dialogLogout(){
+        showDialogCustom(R.layout.dialog_generic, true,typeError = false) {
+            Toast.makeText(this@HomeActivity,"click",Toast.LENGTH_SHORT).show()
+        }
+    }
 
     private fun configItemFragmentMovie(){
         supportFragmentManager.let {

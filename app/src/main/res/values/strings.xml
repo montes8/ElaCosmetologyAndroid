@@ -40,4 +40,11 @@
     <string name="txt_order">Pedido</string>
     <string name="txt_admin">Admin</string>
 
+    <string name="txt_menu_profile">Perfil</string>
+    <string name="txt_menu_favorite">Favoritos</string>
+    <string name="txt_menu_map">Mapa</string>
+    <string name="txt_menu_other">T &amp; C</string>
+    <string name="txt_menu_logout"><u>Cerrar sesión</u></string>
+    <string name="txt_menu_facebook">Facebook</string>
+
 </resources>
