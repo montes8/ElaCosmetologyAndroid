@@ -140,7 +140,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
 
         }
-        overridePendingTransition(R.anim.left_in, R.anim.left_out)
+       // overridePendingTransition(R.anim.left_in, R.anim.left_out)
         drawerGone()
         return true
     }

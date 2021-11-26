@@ -3,10 +3,10 @@ package com.example.elacosmetologyandroid.application
 import android.app.Application
 import com.example.elacosmetologyandroid.BuildConfig
 import com.example.elacosmetologyandroid.R
-import com.example.elacosmetologyandroid.di.viewModelModule
+import com.example.elacosmetologyandroid.di.viewModelsModule
 import com.example.elacosmetologyandroid.repository.local.preferences.di.preferencesModule
 import com.example.elacosmetologyandroid.repository.local.preferences.utils.ENCRYPTION_KEY
-import com.example.elacosmetologyandroid.repository.network.di.moduleNetwork
+import com.example.elacosmetologyandroid.repository.network.di.networkModule
 import com.example.elacosmetologyandroid.repository.network.utils.NAME_BASE_URL
 import com.example.elacosmetologyandroid.usecases.di.useCaseModule
 import org.koin.android.ext.android.getKoin
@@ -24,19 +24,13 @@ class ApplicationEla : Application() {
             androidContext(this@ApplicationEla)
             modules(
                 listOf(
-                    viewModelModule,
-                    useCaseModule,
-                    moduleNetwork,
-                    preferencesModule
-
+                    viewModelsModule, useCaseModule,
+                    preferencesModule,networkModule
                 )
             )
-
-            getKoin().setProperty(
-                NAME_BASE_URL,
-                BuildConfig.BASE_URL
-            )
+            getKoin().setProperty(NAME_BASE_URL, BuildConfig.BASE_URL)
             getKoin().setProperty(ENCRYPTION_KEY, getString(R.string.encryption_key))
+
         }
 
     }

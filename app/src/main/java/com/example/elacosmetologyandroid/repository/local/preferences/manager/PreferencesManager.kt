@@ -2,20 +2,15 @@ package com.example.elacosmetologyandroid.repository.local.preferences.manager
 
 import android.content.Context
 import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKey
+import androidx.security.crypto.MasterKeys
 import com.example.elacosmetologyandroid.utils.EMPTY
 
-class PreferencesManager(context: Context, key: String) {
-
-    var masterKey = MasterKey.Builder(context, MasterKey.DEFAULT_MASTER_KEY_ALIAS)
-        .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
-        .build()
-
+class PreferencesManager(context: Context,key: String) {
 
     private val encryptPreferences = EncryptedSharedPreferences.create(
-        context,
         key,
-        masterKey,
+        MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC),
+        context,
         EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
         EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
     )

@@ -2,12 +2,11 @@ package com.example.elacosmetologyandroid.repository.network.di
 
 import android.content.Context
 import com.example.elacosmetologyandroid.BuildConfig
-import com.example.elacosmetologyandroid.repository.*
-import com.example.elacosmetologyandroid.repository.local.preferences.manager.PreferencesManager
-import com.example.elacosmetologyandroid.repository.local.preferences.utils.PREFERENCE_TOKEN
+import com.example.elacosmetologyandroid.repository.getDensity
+import com.example.elacosmetologyandroid.repository.getHeight
+import com.example.elacosmetologyandroid.repository.getWidth
 import com.example.elacosmetologyandroid.repository.network.ServiceApi
 import com.example.elacosmetologyandroid.repository.network.api.AuthNetwork
-import com.example.elacosmetologyandroid.repository.network.utils.AUTHORIZATION
 import com.example.elacosmetologyandroid.repository.network.utils.CONTENT_TYPE
 import com.example.elacosmetologyandroid.repository.network.utils.NAME_BASE_URL
 import com.example.elacosmetologyandroid.repository.network.utils.TIMEOUT
@@ -23,14 +22,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 
-val moduleNetwork = module {
+val networkModule = module {
     single { providerHttpLoggingInterceptor() }
     single { providerCache(get()) }
-    single { ApiInterceptor(get(),get()) }
+    single { ApiInterceptor(get()) }
     single { providerOkHttpClient(get(), get()) }
     single { providerRetrofit(getProperty(NAME_BASE_URL), get()) }
     single { providerApi(get()) }
-
     single<IAuthRepositoryNetwork> { AuthNetwork() }
 
 }
@@ -72,7 +70,7 @@ fun providerHttpLoggingInterceptor(): HttpLoggingInterceptor {
     return logging
 }
 
-class ApiInterceptor(private val context: Context, private val preferencesManager: PreferencesManager,) : Interceptor {
+class ApiInterceptor(private val context: Context) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
         val builder = request.newBuilder()
@@ -81,9 +79,9 @@ class ApiInterceptor(private val context: Context, private val preferencesManage
             .addHeader("x-density", getDensity(context).toString())
             .addHeader("x-width", getWidth(context).toString())
             .addHeader("x-height", getHeight(context).toString())
-            if (preferencesManager.getString(PREFERENCE_TOKEN).isNotEmpty()) {
+          /*  if (preferencesManager.getString(PREFERENCE_TOKEN).isNotEmpty()) {
                builder.addHeader(AUTHORIZATION, preferencesManager.getString(PREFERENCE_TOKEN))
-             }
+             }*/
         request = builder.build()
         return chain.proceed(request)
     }

@@ -14,16 +14,7 @@ open class BaseViewModel : ViewModel() {
 
 
 
-    fun executeSuspend(func: suspend () -> Unit) =
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                func()
-            } catch (ex: Exception) {
-                errorLiveData.postValue(ex)
-            }
-        }
-
-    fun executeSuspendNotProgress(func: suspend () -> Unit) =
+    fun executeSuspend(func: suspend () -> Unit)=
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 loadingLiveData.postValue(true)
@@ -32,6 +23,15 @@ open class BaseViewModel : ViewModel() {
             } catch (ex: Exception) {
                 ex.printStackTrace()
                 loadingLiveData.postValue(false)
+                errorLiveData.postValue(ex)
+            }
+        }
+
+    fun executeSuspendNotProgress(func: suspend () -> Unit) =
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                func()
+            } catch (ex: Exception) {
                 errorLiveData.postValue(ex)
             }
         }
