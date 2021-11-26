@@ -32,6 +32,7 @@ class BeginFragment : BaseFragment(){
     private var videoRequest: ActivityResultLauncher<Intent>? = null
 
     private var youTubePlayerObserver: YouTubePlayer? = null
+    private var flagVideo = true
 
     companion object {
         fun newInstance() = BeginFragment().apply {
@@ -66,7 +67,8 @@ class BeginFragment : BaseFragment(){
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 youTubePlayerObserver = youTubePlayer
                 youTubePlayerObserver?.loadVideo("SRt0KAMCI4Q", UserTemporary.duration.toFloat())
-               youTubePlayerObserver?.pause()
+                if (flagVideo)youTubePlayerObserver?.pause()
+                  flagVideo = false
             }
 
             override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
