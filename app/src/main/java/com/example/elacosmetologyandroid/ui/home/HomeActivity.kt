@@ -2,9 +2,10 @@ package com.example.elacosmetologyandroid.ui.home
 
 import android.content.Context
 import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -29,7 +30,6 @@ import com.example.elacosmetologyandroid.utils.USER_ROLE
 import com.example.elacosmetologyandroid.utils.getData
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.nav_header_home.*
-import kotlinx.android.synthetic.main.nav_header_home.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -97,6 +97,8 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         binding.toolBarHome.imgBackToolbar.setOnClickDelay{
             drawerVisible()
         }
+
+        Handler(Looper.getMainLooper()).postDelayed({  configDataUser()}, 200)
     }
 
     private fun configTitleToolbar(id : Int){
@@ -112,6 +114,9 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     override fun observeViewModel() {}
 
+    private fun configDataUser(){
+        UserTemporary.getUser()?.let { txtNameUserMenu.text = it.name }
+    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -152,6 +157,15 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         return true
     }
 
+
+
+    private fun dialogLogout(){
+        showDialogCustom(R.layout.dialog_generic, true,typeError = false) {
+           viewModel.logout()
+            LoginActivity.start(this@HomeActivity)
+        }
+    }
+
     private fun drawerVisible() {
         binding.drawerLayout.openDrawer(GravityCompat.START)
     }
@@ -162,13 +176,6 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun selectedItemMenu(item : MenuItem, value : Boolean){
         item.isChecked = value
-    }
-
-    private fun dialogLogout(){
-        showDialogCustom(R.layout.dialog_generic, true,typeError = false) {
-           viewModel.logout()
-            LoginActivity.start(this@HomeActivity)
-        }
     }
 
     private fun configItemFragmentMovie(){

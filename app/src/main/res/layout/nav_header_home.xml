@@ -22,7 +22,6 @@
         android:id="@+id/txtNameUserMenu"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
-        android:text="@string/text_test"
         android:fontFamily="@font/flexo_bold"
         android:textSize="@dimen/txt_size_16"
         android:textColor="@color/pink_200"
