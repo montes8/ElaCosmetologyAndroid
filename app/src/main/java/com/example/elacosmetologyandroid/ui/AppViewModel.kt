@@ -25,4 +25,8 @@ class AppViewModel : BaseViewModel(), KoinComponent {
             }
     }
 
+    fun logout(){
+        executeSuspendNotProgress { authUseCase.logout() }
+    }
+
 }

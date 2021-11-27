@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/gray_100"
+        android:background="@drawable/ic_bg_general"
         tools:context=".iu.LoginActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,10 +36,10 @@
                 android:layout_marginStart="@dimen/size_16"
                 android:layout_marginTop="@dimen/size_24"
                 android:layout_marginEnd="@dimen/size_16"
-                android:layout_marginBottom="@dimen/size_8"
-                android:outlineSpotShadowColor="@color/pink_50"
-                app:cardCornerRadius="@dimen/size_16"
-                app:cardElevation="@dimen/size_10"
+                android:layout_marginBottom="@dimen/size_16"
+                android:outlineSpotShadowColor="@color/pink_100"
+                app:cardCornerRadius="@dimen/size_24"
+                app:cardElevation="@dimen/size_8"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,6 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/size_32"
+                    android:background="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lottieLogin">
@@ -87,6 +88,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/size_32"
                         app:buttonText="Ingresar"
+                       app:buttonUISize="medium"
                         app:isButtonEnabled="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

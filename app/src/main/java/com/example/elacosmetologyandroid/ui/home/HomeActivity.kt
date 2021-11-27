@@ -14,6 +14,7 @@ import com.example.elacosmetologyandroid.extensions.*
 import com.example.elacosmetologyandroid.manager.UserTemporary
 import com.example.elacosmetologyandroid.model.ModelGeneric
 import com.example.elacosmetologyandroid.model.User
+import com.example.elacosmetologyandroid.ui.AppViewModel
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
@@ -21,6 +22,7 @@ import com.example.elacosmetologyandroid.ui.home.admin.AdminFragment
 import com.example.elacosmetologyandroid.ui.home.begin.BeginFragment
 import com.example.elacosmetologyandroid.ui.home.order.OrderFragment
 import com.example.elacosmetologyandroid.ui.home.product.ProductFragment
+import com.example.elacosmetologyandroid.ui.login.LoginActivity
 import com.example.elacosmetologyandroid.utils.CONFIG_ITEM
 import com.example.elacosmetologyandroid.utils.EMPTY
 import com.example.elacosmetologyandroid.utils.USER_ROLE
@@ -28,8 +30,11 @@ import com.example.elacosmetologyandroid.utils.getData
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.nav_header_home.*
 import kotlinx.android.synthetic.main.nav_header_home.view.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    private val viewModel: AppViewModel by viewModel(clazz = AppViewModel::class)
 
     private lateinit var binding: ActivityHomeBinding
     private var currentFragment: BaseFragment? = null
@@ -161,7 +166,8 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun dialogLogout(){
         showDialogCustom(R.layout.dialog_generic, true,typeError = false) {
-            Toast.makeText(this@HomeActivity,"click",Toast.LENGTH_SHORT).show()
+           viewModel.logout()
+            LoginActivity.start(this@HomeActivity)
         }
     }
 
