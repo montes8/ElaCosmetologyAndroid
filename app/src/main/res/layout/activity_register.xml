@@ -96,6 +96,7 @@
             android:layout_marginTop="@dimen/size_32"
             app:buttonText="@string/text_register"
             app:isButtonEnabled="false"
+            app:buttonUISize="medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -3,7 +3,6 @@ package com.example.elacosmetologyandroid.extensions
 import android.app.Activity
 import android.content.Context
 import android.graphics.Typeface
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Handler
 import android.os.Looper
@@ -16,23 +15,20 @@ import android.text.style.BackgroundColorSpan
 import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.elacosmetologyandroid.R
-import com.example.elacosmetologyandroid.component.dialog.CrossDialog
+import com.example.elacosmetologyandroid.component.dialog.CustomDialog
 import com.example.elacosmetologyandroid.repository.network.exception.CompleteErrorModel
 import com.example.elacosmetologyandroid.repository.network.exception.ApiException
 import com.example.elacosmetologyandroid.repository.network.exception.NetworkException
 import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
 import com.example.elacosmetologyandroid.utils.TITLE_DESCRIPTION_DEFAULT
 import com.example.elacosmetologyandroid.utils.TITLE_DIALOG_DEFAULT
-import java.util.*
 
 fun View.visible() = apply {
     visibility = View.VISIBLE
@@ -51,13 +47,13 @@ fun AppCompatActivity.showDialogCustom(
     cancelable: Boolean = true,
     title : String = TITLE_DIALOG_DEFAULT, description : String = TITLE_DESCRIPTION_DEFAULT,
      icon : Int = R.drawable.ic_info_error,typeError : Boolean = true,
-    func: CrossDialog.() -> Unit
+    func: CustomDialog.() -> Unit
 ) {
-    val dialog = CrossDialog(layout,title = title,description = description,icon = icon
+    val dialog = CustomDialog(layout,title = title,description = description,icon = icon
     ,typeError = typeError) { func() }
     dialog.dialog?.setCancelable(cancelable)
     dialog.isCancelable = cancelable
-    dialog.show(this.supportFragmentManager, CrossDialog::class.java.name)
+    dialog.show(this.supportFragmentManager, CustomDialog::class.java.name)
 
 }
 

@@ -53,6 +53,7 @@ class RegisterActivity : BaseActivity() {
         viewModel.successAccountLiveData.observe(this,{
              it?.apply {
                  HomeActivity.start(this@RegisterActivity)
+
              }
         })
     }

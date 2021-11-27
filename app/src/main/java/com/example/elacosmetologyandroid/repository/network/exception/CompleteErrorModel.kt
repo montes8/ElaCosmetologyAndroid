@@ -10,7 +10,7 @@ data class CompleteErrorModel(
     var code: Int? = defaultCode,
     @SerializedName("title")
     val title: String? = "Error General",
-    @SerializedName("descripcion")
+    @SerializedName("description")
     val description: String?= generalErrorMessage
 ) : Exception(description){
     fun getException(): Exception {

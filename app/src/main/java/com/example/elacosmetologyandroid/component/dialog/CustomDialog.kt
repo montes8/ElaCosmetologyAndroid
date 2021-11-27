@@ -1,6 +1,5 @@
 package com.example.elacosmetologyandroid.component.dialog
 
-import android.app.Dialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
@@ -18,13 +17,13 @@ import com.example.elacosmetologyandroid.extensions.validateVisibility
 import com.example.elacosmetologyandroid.utils.TITLE_DESCRIPTION_DEFAULT
 import com.example.elacosmetologyandroid.utils.TITLE_DIALOG_DEFAULT
 
-class CrossDialog(
+class CustomDialog(
     private val layout: Int,
     private var title: String = TITLE_DIALOG_DEFAULT,
     private var description: String = TITLE_DESCRIPTION_DEFAULT,
     private var icon: Int = R.drawable.ic_close_pink,
     private var typeError: Boolean,
-    private val func: CrossDialog.() -> Unit
+    private val func: CustomDialog.() -> Unit
 ) :
     DialogFragment() {
 
@@ -54,7 +53,7 @@ class CrossDialog(
         return view
     }
 
-    private fun configActionDialog(dialog: CrossDialog){
+    private fun configActionDialog(dialog: CustomDialog){
         dialog.mView.findViewById<ProgressButton>(R.id.btnCancelDialog).validateVisibility(!typeError)
         dialog.mView.findViewById<ImageView>(R.id.dialogIconGeneric).validateVisibility(typeError)
         dialog.mView.findViewById<View>(R.id.imgCloseGeneric)

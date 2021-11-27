@@ -27,13 +27,11 @@ class RegisterViewModel : BaseViewModel(), KoinComponent {
     var userData : User? = null
 
 
-
     fun register(pass : EditCustomLayout,btnProgress : ProgressButton){
         if (validateEmail(pass)){
             userData?.let {
                 btnProgress.isButtonLoading = true
-            executeSuspendNotProgress {
-
+                 executeSuspendNotProgress {
                     val response = authUseCase.register(it)
                     _successAccountLiveData.postValue(response)
                 }
