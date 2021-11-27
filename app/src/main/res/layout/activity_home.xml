@@ -7,8 +7,8 @@
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.home.HomeActivity"
-        tools:openDrawer="start">
+        tools:openDrawer="start"
+        tools:context=".ui.home.HomeActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -36,8 +36,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_70"
                 android:background="@color/gray_100"
-                android:elevation="0dp"
-                app:elevation="8dp"
+                android:elevation="@dimen/size_10"
+                app:elevation="@dimen/size_10"
                 app:itemHorizontalTranslationEnabled="false"
                 app:itemIconSize="@dimen/size_22"
                 app:itemIconTint="@color/selector_item_menu"
@@ -51,5 +51,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/fragmentContent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navViewMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/white"
+            android:fitsSystemWindows="true"
+            app:itemTextColor="@drawable/bottom_navigation_colors"
+            app:headerLayout="@layout/nav_header_home"
+            app:itemIconTint="@color/selector_item_menu"
+            app:itemTextAppearance="@style/NavigationView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/menu_drawable" />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

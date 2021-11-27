@@ -7,16 +7,13 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityHomeBinding
 import com.example.elacosmetologyandroid.extensions.*
 import com.example.elacosmetologyandroid.manager.UserTemporary
 import com.example.elacosmetologyandroid.model.ModelGeneric
 import com.example.elacosmetologyandroid.model.User
-import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
@@ -29,12 +26,13 @@ import com.example.elacosmetologyandroid.utils.EMPTY
 import com.example.elacosmetologyandroid.utils.USER_ROLE
 import com.example.elacosmetologyandroid.utils.getData
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.nav_header_home.*
+import kotlinx.android.synthetic.main.nav_header_home.view.*
 
 class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityHomeBinding
     private var currentFragment: BaseFragment? = null
-    private var drawer                       : DrawerLayout? = null
 
     companion object {
         fun start(context: Context) {
@@ -53,12 +51,13 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun setUpView() {
         createItemNavigation(UserTemporary.getUser())
         configAction()
-       // binding.navViewMenu.itemIconTintList = null
     }
 
     private fun createItemNavigation(user : User?){
+        binding.navViewMenu.setNavigationItemSelectedListener(this)
         val listItem : ArrayList<ModelGeneric> = getListItem() as ArrayList<ModelGeneric>
-        user?.let { if (it.rol == USER_ROLE)listItem.removeAt(3)
+        user?.let {
+            if (it.rol == USER_ROLE)listItem.removeAt(3)
         }?:listItem.removeAt(3)
 
         listItem.forEach {item->
@@ -89,6 +88,9 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private fun configAction(){
         binding.toolBarHome.imgLogout.setOnClickDelay {
            dialogLogout()
+        }
+        binding.toolBarHome.imgBackToolbar.setOnClickDelay{
+            drawerVisible()
         }
     }
 
@@ -140,17 +142,17 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
 
         }
-       // overridePendingTransition(R.anim.left_in, R.anim.left_out)
+        overridePendingTransition(R.anim.left_in, R.anim.left_out)
         drawerGone()
         return true
     }
 
     private fun drawerVisible() {
-        drawer?.openDrawer(GravityCompat.START)
+        binding.drawerLayout.openDrawer(GravityCompat.START)
     }
 
     private fun drawerGone() {
-        drawer?.closeDrawer(GravityCompat.START)
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
     }
 
     private fun selectedItemMenu(item : MenuItem, value : Boolean){

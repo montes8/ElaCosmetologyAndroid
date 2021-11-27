@@ -65,7 +65,7 @@ class CrossDialog(
         dialog.mView.findViewById<TextView>(R.id.txtDialogMessage).text = description
         dialog.mView.findViewById<ProgressButton>(R.id.btnCancelDialog).setOnClickButtonListener{ dialog.dismiss() }
         dialog.mView.findViewById<ProgressButton>(R.id.btnAcceptDialog).setOnClickButtonListener { func()
-            Handler(Looper.getMainLooper()).postDelayed({ dialog.dismiss() }, 500)
+            Handler(Looper.getMainLooper()).postDelayed({ dialog.dismiss() }, 200)
         }
     }
 }
