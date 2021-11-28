@@ -18,6 +18,7 @@ abstract class BaseFragment() : Fragment() {
     ): View
 
     abstract fun setUpView()
+    abstract fun setBundle()
     abstract fun observeLiveData()
     abstract fun getViewModel(): BaseViewModel?
 
@@ -35,6 +36,11 @@ abstract class BaseFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         observeLiveData()
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setBundle()
     }
 
     private fun observeMainViewModel() {

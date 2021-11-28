@@ -32,6 +32,8 @@ class ProductFragment : BaseFragment() {
     override fun setUpView() {
     }
 
+    override fun setBundle() {}
+
     override fun observeLiveData() {
     }
 

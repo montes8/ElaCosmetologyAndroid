@@ -51,10 +51,12 @@ class BeginFragment : BaseFragment(){
 
     override fun setUpView() {
         lifecycle.addObserver(binding.youtubeBegin)
-        smsActivityForResult()
+        movieActivityForResult()
         configVideo()
         configAction()
     }
+
+    override fun setBundle() {}
 
     private fun configAction(){
         binding.imgZoom.setOnClickDelay {
@@ -83,7 +85,7 @@ class BeginFragment : BaseFragment(){
         })
     }
 
-    private fun smsActivityForResult(){
+    private fun movieActivityForResult(){
         videoRequest = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK ) {
                 youTubePlayerObserver?.loadVideo("SRt0KAMCI4Q", UserTemporary.duration.toFloat())
