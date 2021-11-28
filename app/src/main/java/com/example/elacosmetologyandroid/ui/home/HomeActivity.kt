@@ -39,6 +39,11 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private lateinit var binding: ActivityHomeBinding
     private var currentFragment: BaseFragment? = null
 
+    private lateinit var beginFragment   : BeginFragment
+    private lateinit var productFragment : ProductFragment
+    private lateinit var orderFragment   : OrderFragment
+    private lateinit var adminFragment   : AdminFragment
+
     companion object {
         fun start(context: Context) {
             val intent = Intent(context, HomeActivity::class.java)
@@ -54,8 +59,16 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun setUpView() {
+        initFragment()
         createItemNavigation(UserTemporary.getUser())
         configAction()
+    }
+
+    private fun initFragment(){
+        beginFragment = BeginFragment.newInstance()
+        productFragment = ProductFragment.newInstance()
+        orderFragment = OrderFragment.newInstance()
+        adminFragment = AdminFragment.newInstance()
     }
 
     private fun createItemNavigation(user : User?){
@@ -70,7 +83,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 setImageString(item.icon,this)
         }
         configTitleToolbar(1)
-        showFragment(BeginFragment.newInstance())
+        showFragment(beginFragment)
         setUpBottomNavigationView()
     }
 
@@ -79,10 +92,10 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             if(item.itemId != 1)configItemFragmentMovie()
             configTitleToolbar(item.itemId)
             val isSelected = when (item.itemId) {
-                1 -> {showFragment(BeginFragment.newInstance()) }
-                2 -> showFragment(ProductFragment.newInstance())
-                3 -> showFragment(OrderFragment.newInstance())
-                4 -> showFragment(AdminFragment.newInstance())
+                1 -> {showFragment(beginFragment) }
+                2 -> showFragment(productFragment)
+                3 -> showFragment(orderFragment)
+                4 -> showFragment(adminFragment)
                 else -> false
             }
             isSelected
@@ -210,6 +223,23 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun getListItem(): List<ModelGeneric>? {
         return getData(this, CONFIG_ITEM)
+    }
+
+    override fun onBackPressed() {
+        if (this.currentFragment?.backStackFragmentFromNavigation() == false) {
+            this.supportFragmentManager.moveBackToFirstFragment(this.currentFragment)?.let {
+                if (it !is BaseFragment) {
+                    showDialogCloseApp()
+                }
+                this.validateCurrentFragmentInstance(it)
+            } ?: this.showDialogCloseApp()
+        }
+    }
+
+    private fun showDialogCloseApp(){
+        showMaterialDialog(this){
+            finish()
+        }
     }
 
     override fun getViewModel(): BaseViewModel? = null

@@ -17,18 +17,19 @@ import android.text.style.StyleSpan
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.dialog.CustomDialog
-import com.example.elacosmetologyandroid.repository.network.exception.CompleteErrorModel
 import com.example.elacosmetologyandroid.repository.network.exception.ApiException
+import com.example.elacosmetologyandroid.repository.network.exception.CompleteErrorModel
 import com.example.elacosmetologyandroid.repository.network.exception.NetworkException
 import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
-import com.example.elacosmetologyandroid.utils.TITLE_DESCRIPTION_DEFAULT
-import com.example.elacosmetologyandroid.utils.TITLE_DIALOG_DEFAULT
+import com.example.elacosmetologyandroid.utils.*
+
 
 fun View.visible() = apply {
     visibility = View.VISIBLE
@@ -45,12 +46,13 @@ fun View.validateVisibility(value: Boolean) {
 fun AppCompatActivity.showDialogCustom(
     layout: Int,
     cancelable: Boolean = true,
-    title : String = TITLE_DIALOG_DEFAULT, description : String = TITLE_DESCRIPTION_DEFAULT,
-     icon : Int = R.drawable.ic_info_error,typeError : Boolean = true,
+    title: String = TITLE_DIALOG_DEFAULT, description: String = TITLE_DESCRIPTION_DEFAULT,
+    icon: Int = R.drawable.ic_info_error, typeError: Boolean = true,
     func: CustomDialog.() -> Unit
 ) {
-    val dialog = CustomDialog(layout,title = title,description = description,icon = icon
-    ,typeError = typeError) { func() }
+    val dialog = CustomDialog(
+        layout, title = title, description = description, icon = icon, typeError = typeError
+    ) { func() }
     dialog.dialog?.setCancelable(cancelable)
     dialog.isCancelable = cancelable
     dialog.show(this.supportFragmentManager, CustomDialog::class.java.name)
@@ -66,8 +68,8 @@ fun Throwable.getError(context: Context): Triple<Int, String, String> {
         )
         is CompleteErrorModel -> Triple(
             R.drawable.ic_info_error,
-            title?:context.getString(R.string.error_internet),
-            description?:context.getString(R.string.error_internet_description)
+            title ?: context.getString(R.string.error_internet),
+            description ?: context.getString(R.string.error_internet_description)
         )
 
         is NetworkException -> Triple(
@@ -169,9 +171,9 @@ fun FragmentManager?.showExistingFragment(fragment: Fragment, currentFragment: F
     }
 }
 
-fun setImageString(value : String,context: Context):Drawable?{
+fun setImageString(value: String, context: Context):Drawable?{
     val uri = "@drawable/$value"
-    val imageResource: Int = context.resources.getIdentifier(uri, null,context.packageName)
+    val imageResource: Int = context.resources.getIdentifier(uri, null, context.packageName)
     return ContextCompat.getDrawable(context, imageResource)
 
 }
@@ -186,7 +188,7 @@ fun setHighLightedText(textView: TextView, textToHighlight: String) {
         if (ofe == -1) break else {
             // set color here
             wordToSpan.setSpan(
-                BackgroundColorSpan(ContextCompat.getColor(textView.context,R.color.pink_50)),
+                BackgroundColorSpan(ContextCompat.getColor(textView.context, R.color.pink_50)),
                 ofe,
                 ofe + textToHighlight.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -196,6 +198,39 @@ fun setHighLightedText(textView: TextView, textToHighlight: String) {
         ofs = ofe + 1
     }
 }
+
+fun FragmentManager?.moveBackToFirstFragment(currentFragment: Fragment?): Fragment? {
+    this?.let {
+        currentFragment?.let { cFragment ->
+            if (it.fragments.size > 1 && it.fragments.first() != cFragment) {
+                it.beginTransaction().let { transaction ->
+                    transaction.show(it.fragments.first())
+                    transaction.hide(cFragment)
+                    transaction.commit()
+                }
+                return it.fragments.first()
+            }
+        }
+    }
+    return null
+}
+
+fun showMaterialDialog(context: Context,message :String = TEXT_CLOSE_APP_, textBtnAccept :String= TEXT_CONFIRM,
+                       textBtnNegative:String = TEXT_CANCEL, func: () -> Unit) {
+    val dialogCustom = AlertDialog.Builder(context)
+    dialogCustom.setTitle(context.resources.getString(R.string.app_name_use_app))
+    dialogCustom.setMessage(message)
+    dialogCustom.setCancelable(false)
+    dialogCustom.setPositiveButton(textBtnAccept) { dialog, _ ->
+        func()
+        dialog.dismiss()
+    }
+    dialogCustom.setNegativeButton(textBtnNegative) { dialog, _ ->
+        dialog.dismiss()
+    }
+    dialogCustom.show()
+}
+
 
 /*inner class ListDocGlossaryViewHolder(private val binding: UiKitRowPoliceListDocBinding) :
     RecyclerView.ViewHolder(binding.root) {
