@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     android:background="@color/transparency_white">
 
-    <ProgressBar
+    <com.wang.avi.AVLoadingIndicatorView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminateDrawable="@drawable/progress_bar_full"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content"
+        app:indicatorName="BallSpinFadeLoaderIndicator"
+        app:indicatorColor="@color/pink_200"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
