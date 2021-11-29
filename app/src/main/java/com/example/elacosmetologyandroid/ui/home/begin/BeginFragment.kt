@@ -4,32 +4,28 @@ package com.example.elacosmetologyandroid.ui.home.begin
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.databinding.FragmentBeginBinding
 import com.example.elacosmetologyandroid.extensions.setOnClickDelay
 import com.example.elacosmetologyandroid.manager.UserTemporary
+import com.example.elacosmetologyandroid.model.MusicGeneric
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
-import com.example.elacosmetologyandroid.ui.home.HomeActivity
+import com.example.elacosmetologyandroid.ui.home.begin.adapter.NameMusicAdapter
 import com.example.elacosmetologyandroid.ui.home.begin.movi.MovieActivity
-import com.example.elacosmetologyandroid.utils.EMPTY
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 
 class BeginFragment : BaseFragment(){
 
     private lateinit var binding: FragmentBeginBinding
 
     private var videoRequest: ActivityResultLauncher<Intent>? = null
+    private var adapterNameMusic = NameMusicAdapter()
 
     private var youTubePlayerObserver: YouTubePlayer? = null
     private var flagVideo = true
@@ -51,6 +47,7 @@ class BeginFragment : BaseFragment(){
 
     override fun setUpView() {
         lifecycle.addObserver(binding.youtubeBegin)
+        configAdapter()
         movieActivityForResult()
         configVideo()
         configAction()
@@ -68,19 +65,19 @@ class BeginFragment : BaseFragment(){
         binding.youtubeBegin.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 youTubePlayerObserver = youTubePlayer
-                youTubePlayerObserver?.loadVideo("SRt0KAMCI4Q", UserTemporary.duration.toFloat())
+                youTubePlayerObserver?.loadVideo(UserTemporary.musicGeneric.id, UserTemporary.musicGeneric.duration.toFloat())
                 if (flagVideo)youTubePlayerObserver?.pause()
                   flagVideo = false
             }
 
             override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
                 super.onCurrentSecond(youTubePlayer, second)
-                UserTemporary.duration = if (second.toInt() == UserTemporary.durationTotal)0 else second.toInt()
+                UserTemporary.musicGeneric.duration = if (second.toInt() == UserTemporary.musicGeneric.durationTotal)0 else second.toInt()
             }
 
             override fun onVideoDuration(youTubePlayer: YouTubePlayer, duration: Float) {
                 super.onVideoDuration(youTubePlayer, duration)
-                UserTemporary.durationTotal = duration.toInt()
+                UserTemporary.musicGeneric.durationTotal = duration.toInt()
             }
         })
     }
@@ -88,13 +85,29 @@ class BeginFragment : BaseFragment(){
     private fun movieActivityForResult(){
         videoRequest = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK ) {
-                youTubePlayerObserver?.loadVideo("SRt0KAMCI4Q", UserTemporary.duration.toFloat())
+                youTubePlayerObserver?.loadVideo(UserTemporary.musicGeneric.id, UserTemporary.musicGeneric.duration.toFloat())
             }
         }
     }
 
     fun setStopVideo(){
         youTubePlayerObserver?.pause()
+    }
+
+    private fun configAdapter(){
+        binding.adapterNameAdapter = adapterNameMusic
+        UserTemporary.listMusic.let {
+            if (UserTemporary.listMusic.isNotEmpty())adapterNameMusic.setPositionSelected(0)
+            if (UserTemporary.listMusic.isNotEmpty())  UserTemporary.musicGeneric = it[0]
+            adapterNameMusic.parameterList = it }
+        adapterNameMusic.onClickMusic = {onclickMusic(it) }
+    }
+
+    private fun onclickMusic(music : MusicGeneric){
+        UserTemporary.musicGeneric = music
+        UserTemporary.musicGeneric.duration = 0
+        UserTemporary.musicGeneric.durationTotal = 0
+        youTubePlayerObserver?.loadVideo(UserTemporary.musicGeneric.id, UserTemporary.musicGeneric.duration.toFloat())
     }
 
 

@@ -2,6 +2,7 @@ package com.example.elacosmetologyandroid.repository.network
 
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.repository.network.entity.DataUserResponse
+import com.example.elacosmetologyandroid.repository.network.entity.MusicGenericResponse
 import com.example.elacosmetologyandroid.repository.network.entity.UserResponse
 import retrofit2.Response
 import retrofit2.http.*
@@ -22,4 +23,7 @@ interface ServiceApi {
 
     @GET("api/user")
     suspend fun listUser(): Response<List<User>>
+
+    @GET("api/user/parameter")
+    suspend fun listMusic(): Response<List<MusicGenericResponse>>
 }

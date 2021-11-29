@@ -13,10 +13,7 @@ class AppViewModel : BaseViewModel(), KoinComponent {
     val successSessionLiveData        : LiveData<Boolean> get()   = _successSessionLiveData
     private val _successSessionLiveData    = MutableLiveData<Boolean>()
 
-
     private val authUseCase: AppUseCase by inject()
-
-
 
     fun session(){
             executeSuspendNotProgress {

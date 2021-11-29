@@ -33,17 +33,17 @@ class MovieActivity : BaseActivity() {
         lifecycle.addObserver(binding.youtubeBeginFull)
         binding.youtubeBeginFull.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
-                youTubePlayer.loadVideo("SRt0KAMCI4Q", UserTemporary.duration.toFloat())
+                youTubePlayer.loadVideo(UserTemporary.musicGeneric.id, UserTemporary.musicGeneric.duration.toFloat())
             }
 
             override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
                 super.onCurrentSecond(youTubePlayer, second)
-                UserTemporary.duration = if (second.toInt() == UserTemporary.durationTotal)0 else second.toInt()
+                UserTemporary.musicGeneric.duration = if (second.toInt() == UserTemporary.musicGeneric.durationTotal)0 else second.toInt()
             }
 
             override fun onVideoDuration(youTubePlayer: YouTubePlayer, duration: Float) {
                 super.onVideoDuration(youTubePlayer, duration)
-                UserTemporary.durationTotal = duration.toInt()
+                UserTemporary.musicGeneric.durationTotal = duration.toInt()
             }
         })
     }

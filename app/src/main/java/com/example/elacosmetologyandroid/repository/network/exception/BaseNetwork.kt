@@ -1,8 +1,8 @@
 package com.example.elacosmetologyandroid.repository.network.exception
 
 import android.content.Context
-import com.example.elacosmetologyandroid.repository.isAirplaneModeActive
-import com.example.elacosmetologyandroid.repository.isConnected
+import com.example.elacosmetologyandroid.repository.network.utils.isAirplaneModeActive
+import com.example.elacosmetologyandroid.repository.network.utils.isConnected
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 

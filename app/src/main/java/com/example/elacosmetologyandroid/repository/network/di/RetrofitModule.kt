@@ -2,17 +2,11 @@ package com.example.elacosmetologyandroid.repository.network.di
 
 import android.content.Context
 import com.example.elacosmetologyandroid.BuildConfig
-import com.example.elacosmetologyandroid.repository.getDensity
-import com.example.elacosmetologyandroid.repository.getHeight
-import com.example.elacosmetologyandroid.repository.getWidth
 import com.example.elacosmetologyandroid.repository.local.preferences.manager.PreferencesManager
 import com.example.elacosmetologyandroid.repository.local.preferences.utils.PREFERENCE_TOKEN
 import com.example.elacosmetologyandroid.repository.network.ServiceApi
 import com.example.elacosmetologyandroid.repository.network.api.AuthNetwork
-import com.example.elacosmetologyandroid.repository.network.utils.AUTHORIZATION
-import com.example.elacosmetologyandroid.repository.network.utils.CONTENT_TYPE
-import com.example.elacosmetologyandroid.repository.network.utils.NAME_BASE_URL
-import com.example.elacosmetologyandroid.repository.network.utils.TIMEOUT
+import com.example.elacosmetologyandroid.repository.network.utils.*
 import com.example.elacosmetologyandroid.usecases.repository.IAuthRepositoryNetwork
 import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.Cache

@@ -13,4 +13,10 @@ interface AppRepositoryPreference {
 
     @Throws(Exception::class)
      fun saveUser(value: String)
+
+    @Throws(Exception::class)
+    fun getListMusic(): String
+
+    @Throws(Exception::class)
+    fun saveListMusic(value: String)
 }

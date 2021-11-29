@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.home.begin.beginFragment">
 
+    <data>
+        <variable
+            name="adapterNameAdapter"
+            type="com.example.elacosmetologyandroid.ui.home.begin.adapter.NameMusicAdapter" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -41,6 +47,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/youtubeBegin">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/rvNameMusic"
+                tools:listitem="@layout/row_botton_generic"
+                app:adapter="@{adapterNameAdapter}"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/size_16"
+                android:clipToPadding="false"
+                android:paddingEnd="@dimen/size_16"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_height="match_parent"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,16 +69,11 @@
                 android:textColor="@color/pink_200"
                 android:textSize="40sp"
                 android:textStyle="italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:layout_width="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_height="50dp"/>
+                />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

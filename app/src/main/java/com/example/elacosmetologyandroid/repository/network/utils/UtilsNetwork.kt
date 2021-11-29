@@ -1,4 +1,4 @@
-package com.example.elacosmetologyandroid.repository
+package com.example.elacosmetologyandroid.repository.network.utils
 
 import android.content.Context
 import android.net.ConnectivityManager
