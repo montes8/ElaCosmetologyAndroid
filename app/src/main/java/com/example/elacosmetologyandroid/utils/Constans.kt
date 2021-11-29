@@ -12,3 +12,4 @@ const val TITLE_DESCRIPTION_DEFAULT = "¿Estás seguro que deseas cerrar sesión
 const val TEXT_CLOSE_APP_= "¿Estás seguro que quieres salir de la aplicación?"
 const val TEXT_CONFIRM = "Confirmar"
 const val TEXT_CANCEL= "Cancelar"
+const val FADE_DURATION = 1000L

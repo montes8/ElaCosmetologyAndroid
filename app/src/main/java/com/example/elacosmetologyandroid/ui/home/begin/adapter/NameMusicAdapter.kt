@@ -5,10 +5,13 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.ScaleAnimation
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.model.MusicGeneric
+import com.example.elacosmetologyandroid.utils.FADE_DURATION
 import kotlinx.android.synthetic.main.row_botton_generic.view.*
 
 class NameMusicAdapter(var onClickMusic: ((MusicGeneric) -> Unit)? = null) :
@@ -31,6 +34,7 @@ class NameMusicAdapter(var onClickMusic: ((MusicGeneric) -> Unit)? = null) :
     override fun onBindViewHolder(holder: LyricsViewHolder, position: Int) {
         val music = parameterList[position]
         initView(holder,music,position)
+        animationItem(holder.itemView)
         holder.itemView.setOnClickListener {
             if (positionSelected != position){
                 positionSelected = position
@@ -57,6 +61,13 @@ class NameMusicAdapter(var onClickMusic: ((MusicGeneric) -> Unit)? = null) :
     }
 
     override fun getItemCount(): Int = parameterList.size
+
+    private fun animationItem(view: View){
+        val anim = ScaleAnimation(0.0f,1.0f,0.0f,1.0f,Animation.RELATIVE_TO_SELF,0.5f,
+            Animation.RELATIVE_TO_SELF,0.5f)
+        anim.duration = FADE_DURATION
+        view.startAnimation(anim)
+    }
 
     class LyricsViewHolder(itemView : View): RecyclerView.ViewHolder(itemView)
 }
