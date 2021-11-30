@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.model.MusicGeneric
 import com.example.elacosmetologyandroid.utils.FADE_DURATION
-import kotlinx.android.synthetic.main.row_botton_generic.view.*
+import kotlinx.android.synthetic.main.row_bottom_generic.view.*
 
 class NameMusicAdapter(var onClickMusic: ((MusicGeneric) -> Unit)? = null) :
     RecyclerView.Adapter<NameMusicAdapter.LyricsViewHolder>() {
@@ -26,7 +26,7 @@ class NameMusicAdapter(var onClickMusic: ((MusicGeneric) -> Unit)? = null) :
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LyricsViewHolder {
-        return LyricsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.row_botton_generic,parent,false))
+        return LyricsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.row_bottom_generic,parent,false))
     }
 
     fun setPositionSelected(value:Int){ positionSelected = value}

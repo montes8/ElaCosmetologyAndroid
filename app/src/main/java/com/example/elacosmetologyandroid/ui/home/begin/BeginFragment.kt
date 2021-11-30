@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.example.elacosmetologyandroid.databinding.FragmentBeginBinding
 import com.example.elacosmetologyandroid.extensions.setOnClickDelay
 import com.example.elacosmetologyandroid.extensions.uiValidateVisibilityTwoView
+import com.example.elacosmetologyandroid.extensions.validateVisibility
 import com.example.elacosmetologyandroid.manager.UserTemporary
 import com.example.elacosmetologyandroid.model.MusicGeneric
 import com.example.elacosmetologyandroid.ui.AppViewModel
@@ -121,6 +122,7 @@ class BeginFragment : BaseFragment(){
             it?.apply {
                 if (this.isNotEmpty()){adapterBanner.bannerList = this}
                 binding.rvBanner.uiValidateVisibilityTwoView(true,binding.shimmerBanner)
+                binding.txtNameWelcome.validateVisibility(UserTemporary.getUser()?.name?.isNotEmpty()==true)
                 binding.txtNameWelcome.text = UserTemporary.getUser()?.name
             }
         })

@@ -42,7 +42,7 @@ class SplashActivity : BaseActivity() {
     private fun initSplash(){
         Handler(Looper.getMainLooper()).postDelayed({
             viewModel.session()
-        }, 4500)
+        }, 3500)
     }
 
     override fun observeViewModel() {

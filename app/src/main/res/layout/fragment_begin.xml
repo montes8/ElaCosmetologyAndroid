@@ -71,7 +71,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/row_botton_generic" />
+                tools:listitem="@layout/row_bottom_generic" />
 
             <TextView
                 android:id="@+id/txtNameWelcome"
@@ -80,9 +80,9 @@
                 android:gravity="start"
                 android:layout_marginStart="@dimen/size_16"
                 android:layout_marginEnd="@dimen/size_16"
-                android:text="Hola, "
                 android:textColor="@color/pink_200"
                 android:textSize="@dimen/txt_size_30"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/size_8"
                 android:fontFamily="@font/flexo_bold_italic"
                 app:layout_constraintTop_toBottomOf="@+id/rvNameMusic"
@@ -109,9 +109,9 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvBanner"
-                android:layout_width="@dimen/size_0"
+                android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/size_16"
-                android:layout_height="@dimen/size_166"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:overScrollMode="never"
                 android:visibility="gone"

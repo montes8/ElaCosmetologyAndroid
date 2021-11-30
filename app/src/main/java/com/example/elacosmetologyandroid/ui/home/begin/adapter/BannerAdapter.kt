@@ -17,7 +17,7 @@ class BannerAdapter(var onClickBanner: ((ModelGeneric) -> Unit)? = null) :
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BannerViewHolder {
-        return BannerViewHolder(RowBannerBinding.inflate(LayoutInflater.from(parent.context) ))
+        return BannerViewHolder(RowBannerBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
     override fun onBindViewHolder(holder: BannerViewHolder, position: Int) {
