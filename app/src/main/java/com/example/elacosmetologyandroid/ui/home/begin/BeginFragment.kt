@@ -38,10 +38,7 @@ class BeginFragment : BaseFragment(){
 
     companion object {
         fun newInstance() = BeginFragment().apply {
-            arguments = Bundle().apply {
-                //putInt(MENU_HOME_ID, menuId)
-               // putParcelable(USER, user)
-            }
+            arguments = Bundle().apply {}
         }
 
     }

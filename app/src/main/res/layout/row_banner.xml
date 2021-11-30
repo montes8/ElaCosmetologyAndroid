@@ -20,19 +20,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="@dimen/size_8"
-        android:layout_marginStart="@dimen/size_8"
-        android:layout_marginEnd="@dimen/size_8"
+        android:layout_marginStart="@dimen/size_16"
+        android:layout_marginEnd="@dimen/size_4"
         app:layout_constraintTop_toTopOf="parent"
-        app:cardElevation="@dimen/size_8"
+        app:cardElevation="@dimen/size_12"
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="@dimen/size_120"
-            android:layout_height="@dimen/size_120">
+            android:layout_height="@dimen/size_128">
             <ImageView
                 android:contentDescription="@null"
                 android:layout_width="match_parent"
                 app:srcUlrPicasso="@{banner.icon}"
+                android:scaleType="fitXY"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

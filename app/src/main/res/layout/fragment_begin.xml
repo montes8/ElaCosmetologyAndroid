@@ -13,11 +13,16 @@
             name="adapterBanner"
             type="com.example.elacosmetologyandroid.ui.home.begin.adapter.BannerAdapter" />
     </data>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:overScrollMode="never"
+        android:background="@drawable/ic_bg_general"
+        android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/ic_bg_general">
+        android:layout_height="wrap_content"
+      >
 
         <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
             android:id="@+id/youtubeBegin"
@@ -44,8 +49,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_0"
-            android:paddingBottom="@dimen/size_40"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/size_20"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -105,15 +110,17 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvBanner"
                 android:layout_width="@dimen/size_0"
-                android:layout_marginEnd="@dimen/size_16"
-                android:layout_marginStart="@dimen/size_16"
                 android:layout_marginTop="@dimen/size_16"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/size_166"
                 android:orientation="horizontal"
                 android:overScrollMode="never"
                 android:visibility="gone"
+                android:paddingEnd="@dimen/size_16"
+                android:paddingStart="@dimen/size_0"
+                android:clipToPadding="false"
                 tools:listitem="@layout/row_banner"
                 tools:itemCount="3"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:adapter="@{adapterBanner}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@+id/txtDescriptionBegin"
@@ -127,6 +134,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_40"
+                android:layout_marginBottom="@dimen/size_48"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtDescriptionBegin"
@@ -139,5 +147,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </layout>

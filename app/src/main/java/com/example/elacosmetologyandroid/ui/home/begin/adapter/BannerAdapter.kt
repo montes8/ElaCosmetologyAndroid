@@ -3,6 +3,7 @@ package com.example.elacosmetologyandroid.ui.home.begin.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.elacosmetologyandroid.BR
 import com.example.elacosmetologyandroid.databinding.RowBannerBinding
 import com.example.elacosmetologyandroid.model.ModelGeneric
 
@@ -20,7 +21,7 @@ class BannerAdapter(var onClickBanner: ((ModelGeneric) -> Unit)? = null) :
     }
 
     override fun onBindViewHolder(holder: BannerViewHolder, position: Int) {
-        bannerList[position]
+        holder.bind(bannerList[position])
     }
 
     override fun getItemCount(): Int = bannerList.size
