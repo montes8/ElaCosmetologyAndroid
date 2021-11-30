@@ -25,9 +25,9 @@ interface ServiceApi {
     @GET("api/user")
     suspend fun listUser(): Response<List<User>>
 
-    @GET("api/user/parameter")
+    @GET("api/config/parameter")
     suspend fun listMusic(): Response<List<MusicGenericResponse>>
 
-    @GET("api/user/banner")
+    @GET("api/config/banner")
     suspend fun loadBanner(): Response<List<ModelGeneric>>
 }
