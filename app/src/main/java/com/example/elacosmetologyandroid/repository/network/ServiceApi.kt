@@ -1,5 +1,6 @@
 package com.example.elacosmetologyandroid.repository.network
 
+import com.example.elacosmetologyandroid.model.ModelGeneric
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.repository.network.entity.DataUserResponse
 import com.example.elacosmetologyandroid.repository.network.entity.MusicGenericResponse
@@ -26,4 +27,7 @@ interface ServiceApi {
 
     @GET("api/user/parameter")
     suspend fun listMusic(): Response<List<MusicGenericResponse>>
+
+    @GET("api/user/banner")
+    suspend fun loadBanner(): Response<List<ModelGeneric>>
 }

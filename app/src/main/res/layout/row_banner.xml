@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="banner"
+            type="com.example.elacosmetologyandroid.model.ModelGeneric" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:id="@+id/cardBanner"
+        android:outlineSpotShadowColor="@color/pink_100"
+        app:cardCornerRadius="@dimen/size_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/size_8"
+        android:layout_marginStart="@dimen/size_8"
+        android:layout_marginEnd="@dimen/size_8"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardElevation="@dimen/size_8"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="@dimen/size_120"
+            android:layout_height="@dimen/size_120">
+            <ImageView
+                android:contentDescription="@null"
+                android:layout_width="match_parent"
+                app:srcUlrPicasso="@{banner.icon}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="match_parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/size_10"
+        android:fontFamily="@font/flexo_bold"
+        android:textSize="@dimen/txt_size_16"
+        android:text="@{banner.title}"
+        tools:text="laurita"
+        android:textColor="@color/pink_200"
+        app:layout_constraintTop_toBottomOf="@+id/cardBanner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

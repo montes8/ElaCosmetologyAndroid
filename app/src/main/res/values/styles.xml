@@ -59,4 +59,5 @@
     <style name="NavigationView">
         <item name="fontFamily">@font/flexo_bold</item>
     </style>
+
 </resources>

@@ -16,6 +16,7 @@ import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +30,7 @@ import com.example.elacosmetologyandroid.repository.network.exception.CompleteEr
 import com.example.elacosmetologyandroid.repository.network.exception.NetworkException
 import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
 import com.example.elacosmetologyandroid.utils.*
+import com.squareup.picasso.Picasso
 
 
 fun View.visible() = apply {
@@ -130,11 +132,11 @@ fun isEmailValid(email: String): Boolean {
     return email.isNotEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
 }
 
-fun View.setOnClickDelay(time: Long = 700, onClick: () -> Unit) {
+fun View.setOnClickDelay(time: Long = 700, onClick: (View) -> Unit) {
     this.setOnClickListener {
         it.isEnabled = false
         Handler(Looper.getMainLooper()).postDelayed({ it.isEnabled = true }, time)
-        onClick()
+        onClick(it)
     }
 }
 
@@ -231,6 +233,25 @@ fun showMaterialDialog(context: Context,message :String = TEXT_CLOSE_APP_, textB
     dialogCustom.show()
 }
 
+fun ImageView.loadImageUrlPicasso(url: String?) {
+    url?.let {
+        if (it.isNotEmpty()) {
+            Picasso.get()
+                .load(it).placeholder(R.drawable.shape_place_holder)
+                .into(this)
+        }
+    }
+}
+
+fun View.uiValidateVisibilityTwoView(value: Boolean, view: View) {
+    if (value) {
+        this.visible()
+        view.gone()
+    } else {
+        this.gone()
+        view.visible()
+    }
+}
 
 /*inner class ListDocGlossaryViewHolder(private val binding: UiKitRowPoliceListDocBinding) :
     RecyclerView.ViewHolder(binding.root) {

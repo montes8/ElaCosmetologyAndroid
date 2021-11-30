@@ -34,4 +34,7 @@
     <color name="transparent">#00000000</color>
     <color name="transparentBackground">#8C303030</color>
     <color name="transparency_white_bottom_sheet">#CBDEDFEE</color>
+
+    <color name="color_shimmer_start_gray">#D8DDF3</color>
+    <color name="color_shimmer_end_gray">#F0F3FA</color>
 </resources>

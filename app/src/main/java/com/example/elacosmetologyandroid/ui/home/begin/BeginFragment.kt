@@ -11,21 +11,27 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.elacosmetologyandroid.databinding.FragmentBeginBinding
 import com.example.elacosmetologyandroid.extensions.setOnClickDelay
+import com.example.elacosmetologyandroid.extensions.uiValidateVisibilityTwoView
 import com.example.elacosmetologyandroid.manager.UserTemporary
 import com.example.elacosmetologyandroid.model.MusicGeneric
+import com.example.elacosmetologyandroid.ui.AppViewModel
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
+import com.example.elacosmetologyandroid.ui.home.begin.adapter.BannerAdapter
 import com.example.elacosmetologyandroid.ui.home.begin.adapter.NameMusicAdapter
 import com.example.elacosmetologyandroid.ui.home.begin.movi.MovieActivity
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BeginFragment : BaseFragment(){
 
+    private val viewModel: AppViewModel by viewModel(clazz = AppViewModel::class)
     private lateinit var binding: FragmentBeginBinding
 
     private var videoRequest: ActivityResultLauncher<Intent>? = null
     private var adapterNameMusic = NameMusicAdapter()
+    private var adapterBanner = BannerAdapter()
 
     private var youTubePlayerObserver: YouTubePlayer? = null
     private var flagVideo = true
@@ -48,6 +54,7 @@ class BeginFragment : BaseFragment(){
     override fun setUpView() {
         lifecycle.addObserver(binding.youtubeBegin)
         configAdapter()
+        viewModel.loadBanner()
         movieActivityForResult()
         configVideo()
         configAction()
@@ -95,7 +102,8 @@ class BeginFragment : BaseFragment(){
     }
 
     private fun configAdapter(){
-        binding.adapterNameAdapter = adapterNameMusic
+        binding.adapterBanner = adapterBanner
+        binding.adapterName = adapterNameMusic
         UserTemporary.listMusic.let {
             if (UserTemporary.listMusic.isNotEmpty())adapterNameMusic.setPositionSelected(0)
             if (UserTemporary.listMusic.isNotEmpty())  UserTemporary.musicGeneric = it[0]
@@ -111,7 +119,18 @@ class BeginFragment : BaseFragment(){
     }
 
 
-    override fun observeLiveData() {}
+    override fun observeLiveData() {
+        viewModel.successBannerLiveData.observe(this,{
+            it?.apply {
+                if (this.isNotEmpty()){adapterBanner.bannerList = this}
+                binding.rvBanner.uiValidateVisibilityTwoView(true,binding.shimmerBanner)
+            }
+        })
+
+        viewModel.errorLiveData.observe(this,{
+            binding.rvBanner.uiValidateVisibilityTwoView(true,binding.shimmerBanner)
+        })
+    }
 
     override fun getViewModel(): BaseViewModel? = null
 

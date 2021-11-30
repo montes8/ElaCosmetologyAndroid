@@ -21,4 +21,6 @@ class AppUseCase : KoinComponent {
 
     fun logout() = appRepositoryPreference.saveToken(EMPTY)
 
+    suspend fun loadBanner() = iAuthRepositoryNetwork.loadBanner()
+
 }

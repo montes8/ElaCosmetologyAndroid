@@ -47,5 +47,6 @@
     <string name="txt_menu_logout"><u>Cerrar sesión</u></string>
     <string name="txt_menu_facebook">Facebook</string>
     <string name="text_test">Gabriela Soledad</string>
+    <string name="text_description_begin">Bienvenida(o) aqui encontraras videos referenciales de algunos establecimientos</string>
 
 </resources>
