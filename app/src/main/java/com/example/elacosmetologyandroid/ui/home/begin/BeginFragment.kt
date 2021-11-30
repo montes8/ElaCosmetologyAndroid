@@ -121,6 +121,7 @@ class BeginFragment : BaseFragment(){
             it?.apply {
                 if (this.isNotEmpty()){adapterBanner.bannerList = this}
                 binding.rvBanner.uiValidateVisibilityTwoView(true,binding.shimmerBanner)
+                binding.txtNameWelcome.text = UserTemporary.getUser()?.name
             }
         })
 
