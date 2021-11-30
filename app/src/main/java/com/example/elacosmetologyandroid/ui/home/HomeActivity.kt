@@ -24,6 +24,7 @@ import com.example.elacosmetologyandroid.ui.home.begin.BeginFragment
 import com.example.elacosmetologyandroid.ui.home.order.OrderFragment
 import com.example.elacosmetologyandroid.ui.home.product.ProductFragment
 import com.example.elacosmetologyandroid.ui.login.LoginActivity
+import com.example.elacosmetologyandroid.ui.profile.ProfileActivity
 import com.example.elacosmetologyandroid.utils.CONFIG_ITEM
 import com.example.elacosmetologyandroid.utils.EMPTY
 import com.example.elacosmetologyandroid.utils.USER_ROLE
@@ -135,7 +136,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         when (item.itemId) {
             R.id.navProfile -> {
                 selectedItemMenu(item,true)
-                //ProfileActivity.newInstance(this)
+                ProfileActivity.start(this)
             }
 
             R.id.navPromotions -> {

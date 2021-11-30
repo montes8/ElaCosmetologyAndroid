@@ -60,4 +60,21 @@
         <item name="fontFamily">@font/flexo_bold</item>
     </style>
 
+    <style name="Flexo" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/flexo_bold</item>
+        <item name="android:textColor">@color/pink_200</item>
+    </style>
+
+    <style name="Custom.Collapsing" parent="Flexo">
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/flexo_bold</item>
+    </style>
+
+    <style name="Custom.CollapsingExpand" parent="Flexo">
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:fontFamily">@font/flexo_bold</item>
+    </style>
+
 </resources>

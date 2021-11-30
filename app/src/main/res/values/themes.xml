@@ -25,4 +25,13 @@
         <item name="android:windowDisablePreview">true</item>
     </style>
 
+    <style name="Custom.Theme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Custom.Theme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Custom.Theme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

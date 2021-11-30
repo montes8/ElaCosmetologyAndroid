@@ -10,10 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Custom.Theme">
-        <activity android:name=".ui.home.begin.movi.MovieActivity"
+        <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/Custom.NoActionBar.white"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.home.begin.movi.MovieActivity"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
-            android:theme="@style/Custom.NoActionBar.Light"/>
+            android:theme="@style/Custom.NoActionBar.Light" />
         <activity
             android:name=".ui.home.HomeActivity"
             android:launchMode="singleTop"
