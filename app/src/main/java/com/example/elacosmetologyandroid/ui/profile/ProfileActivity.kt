@@ -3,26 +3,24 @@ package com.example.elacosmetologyandroid.ui.profile
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.view.View
 import androidx.core.view.WindowCompat
 import androidx.databinding.DataBindingUtil
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityProfileBinding
+import com.example.elacosmetologyandroid.extensions.setOnClickDelay
 import com.example.elacosmetologyandroid.extensions.validateVisibility
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.google.android.material.appbar.AppBarLayout
 import kotlin.math.abs
 
-class ProfileActivity : BaseActivity(),View.OnClickListener {
+class ProfileActivity : BaseActivity() {
+
+
+    private var flagClick = true
 
     companion object {
-        fun start(context: Context) { context.startActivity(
-            Intent(
-                context,
-                ProfileActivity::class.java
-            )
-        ) }
+        fun start(context: Context) { context.startActivity(Intent(context, ProfileActivity::class.java)) }
     }
 
     private lateinit var binding: ActivityProfileBinding
@@ -44,19 +42,24 @@ class ProfileActivity : BaseActivity(),View.OnClickListener {
     private fun configAppBar(){
         WindowCompat.setDecorFitsSystemWindows(window, false)
         window.statusBarColor = Color.TRANSPARENT
+        setSupportActionBar(binding.toolbar)
         binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-            binding.imgProfile.validateVisibility(abs(verticalOffset) - appBarLayout.totalScrollRange != 0)
-            binding.imgEditProfile.validateVisibility(abs(verticalOffset) - appBarLayout.totalScrollRange != 0)
+           binding.imgProfile.validateVisibility(abs(verticalOffset) - appBarLayout.totalScrollRange != 0)
+           if (flagClick) binding.imgEditProfile.validateVisibility(abs(verticalOffset) - appBarLayout.totalScrollRange != 0)
         })
+        initOnClick()
     }
 
-    override fun onClick(v: View?) {
-        when(v?.id?:return){
-            R.id.imgEditProfile->{enableViewEdit(true)}
-            R.id.imgBannerProfile->{}
-            R.id.imgProfile ->{}
-            R.id.btnSaveProfile->{enableViewEdit(false)}
+    private fun initOnClick(){
+        binding.imgEditProfile.setOnClickDelay {
+            enableViewEdit(true)
+            flagClick = false
         }
+        binding.imgBannerProfile.setOnClickDelay {}
+        binding.imgProfile.setOnClickDelay {}
+        binding.btnSaveProfile.setOnClickButtonDelayListener{enableViewEdit(false)
+            flagClick = true}
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
     }
 
     private fun enableViewEdit(value : Boolean){

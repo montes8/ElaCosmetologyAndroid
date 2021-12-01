@@ -20,6 +20,8 @@
     <string name="txt_cancel_btn">Cancelar</string>
     <string name="progress_button_loading">Loading…</string>
     <string name="txt_save">Guardar</string>
+    <string name="txt_delete_user"><u>Eliminar cuenta</u></string>
+    <string name="txt_deactivate_user"><u>Desactivar cuenta</u></string>
 
 
 
@@ -52,5 +54,7 @@
     <string name="txt_menu_facebook">Facebook</string>
     <string name="text_test">Gabriela Soledad</string>
     <string name="text_description_begin">Bienvenida(o) aqui encontraras videos referenciales de algunos establecimientos</string>
+
+
 
 </resources>
