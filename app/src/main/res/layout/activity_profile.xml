@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:id="@+id/collapsingToolbarLayout"
     tools:context=".ui.profile.ProfileActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -26,21 +27,32 @@
             android:padding="@dimen/size_0"
             android:layout_margin="@dimen/size_0"
             app:title="@string/text_test"
+            android:background="@color/white"
             app:expandedTitleMarginStart="@dimen/size_16"
-            app:collapsedTitleGravity="start"
+            app:collapsedTitleGravity="left"
+            android:layout_gravity="start"
             app:expandedTitleGravity="left|bottom"
             app:expandedTitleMarginTop="@dimen/size_48"
             app:collapsedTitleTextAppearance="@style/Custom.Collapsing"
             app:expandedTitleTextAppearance="@style/Custom.CollapsingExpand"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
             app:maxLines="3">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/imgBannerProfile"
+                    android:layout_width="match_parent"
+                    android:scaleType="fitXY"
+                    android:contentDescription="@null"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@drawable/ic_bg_menu"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_height="match_parent" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:scaleType="fitXY"
-                android:contentDescription="@null"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_bg_general" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -60,15 +72,160 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/cImgProfile"
+        android:id="@+id/imgProfile"
         android:layout_width="@dimen/size_80"
         android:layout_height="@dimen/size_80"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_profile_place_holder"
         app:civ_border_color="@color/pink_100"
         app:civ_border_width="1dp"
+        android:elevation="@dimen/size_1"
         app:layout_anchor="@id/appBarLayout"
-        app:layout_anchorGravity="bottom|end" />
+        app:layout_anchorGravity="bottom|right" />
+
+    <ImageView
+        android:id="@+id/imgEditProfile"
+        android:layout_width="wrap_content"
+        android:contentDescription="@null"
+        app:layout_anchor="@id/appBarLayout"
+        android:elevation="@dimen/size_1"
+        android:layout_marginEnd="@dimen/size_16"
+        android:layout_marginTop="@dimen/size_40"
+        app:layout_anchorGravity="top|right"
+        android:src="@drawable/ic_edit"
+        android:layout_height="wrap_content"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.2"
+        android:background="@drawable/ic_bg_general" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/txtTitleDataUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_40"
+                    android:fontFamily="@font/flexo_bold"
+                    android:text="Datos Personales"
+                    android:textColor="@color/pink_200"
+                    android:textSize="@dimen/txt_size_20"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/viewLineProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_1"
+                    android:layout_marginTop="@dimen/txt_size_20"
+                    android:background="@color/pink_200"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTitleDataUser" />
+
+                <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+                    android:id="@+id/editNameProfile"
+                    style="@style/TextInputLayoutEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_20"
+                    app:uiHint="@string/text_name"
+                    app:uiFocusable="false"
+                    app:uiCursorVisibility="false"
+                    android:imeOptions="actionNext"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/viewLineProfile" />
+
+                <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+                    style="@style/TextInputLayoutEdit"
+                    android:id="@+id/editLastNameProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:uiHint="@string/text_last_name"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:imeOptions="actionNext"
+                    app:uiFocusable="false"
+                    app:uiCursorVisibility="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editNameProfile" />
+
+                <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+                    style="@style/TextInputLayoutEdit"
+                    android:id="@+id/editEmailProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
+                    app:uiHint="@string/text_email"
+                    android:imeOptions="actionNext"
+                    app:uiFocusable="false"
+                    app:uiCursorVisibility="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editLastNameProfile" />
+
+                <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+                    style="@style/TextInputLayoutEdit"
+                    android:id="@+id/editPhoneProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
+                    app:uiHint="@string/text_phone"
+                    app:uiEditMaxLength="8"
+                    android:imeOptions="actionNext"
+                    app:uiFocusable="false"
+                    app:uiCursorVisibility="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editEmailProfile" />
+
+                <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+                    style="@style/TextInputLayoutEdit"
+                    android:id="@+id/editAddressProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
+                    app:uiHint="@string/text_address"
+                    app:uiFocusable="false"
+                    app:uiCursorVisibility="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editPhoneProfile" />
+
+                <com.example.elacosmetologyandroid.component.button.ProgressButton
+                    android:layout_width="match_parent"
+                    android:id="@+id/btnSaveProfile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginTop="@dimen/size_32"
+                    app:buttonUISize="medium"
+                    app:buttonText="@string/txt_save"
+                    android:layout_marginBottom="@dimen/size_40"
+                    app:layout_constraintTop_toBottomOf="@+id/editAddressProfile"
+                    android:layout_height="wrap_content"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

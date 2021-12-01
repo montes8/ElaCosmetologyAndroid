@@ -25,6 +25,7 @@
     <declare-styleable name="EditCustomLayout">
         <attr name="uiDrawableEndEnabled" format="boolean" />
         <attr name="uiPasswordEnabled" format="boolean" />
+        <attr name="uiCursorVisibility" format="boolean" />
         <attr name="uiContentDescription" format="string" />
         <attr name="uiErrorMessage" format="string" />
         <attr name="uiIconPassword" format="reference" />

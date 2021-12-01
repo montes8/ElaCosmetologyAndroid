@@ -225,6 +225,12 @@ class EditCustomLayout @JvmOverloads constructor(
             editText.imeOptions = value
         }
 
+    var uiCursorVisibility : Boolean = true
+    set(value) {
+        field = value
+        editText.isCursorVisible = value
+    }
+
     var isClearable: Boolean = false
 
     private fun setUIIconDrawable(icon: Drawable?) {
@@ -304,6 +310,7 @@ class EditCustomLayout @JvmOverloads constructor(
             uiHint = it.getString(R.styleable.EditCustomLayout_uiHint) ?: ""
             uiEnable = it.getBoolean(R.styleable.EditCustomLayout_uiEnabled, true)
             uiErrorMessage = it.getString(R.styleable.EditCustomLayout_uiErrorMessage) ?: ""
+            uiCursorVisibility = it.getBoolean(R.styleable.EditCustomLayout_uiCursorVisibility, true)
 
 
         }

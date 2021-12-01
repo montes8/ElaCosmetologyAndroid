@@ -19,6 +19,8 @@
     <string name="dialog_accept">Aceptar</string>
     <string name="txt_cancel_btn">Cancelar</string>
     <string name="progress_button_loading">Loading…</string>
+    <string name="txt_save">Guardar</string>
+
 
 
     <!-- TODO: text label-->
@@ -30,6 +32,8 @@
     <string name="text_email">Correo electronico</string>
     <string name="text_password">Contraseña</string>
     <string name="text_name">Nombres</string>
+    <string name="text_phone">Telefono</string>
+    <string name="text_address">Dirección</string>
     <string name="text_last_name">Apellidos</string>
     <string name="txt_forget_password">Olvidaste Contraseña</string>
 
