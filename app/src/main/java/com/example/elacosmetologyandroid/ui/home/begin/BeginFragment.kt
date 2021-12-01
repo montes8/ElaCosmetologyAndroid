@@ -124,7 +124,7 @@ class BeginFragment : BaseFragment(){
     }
 
     private fun configPositionMovie(){
-        positionMovie = positionMovie+1
+        positionMovie += 1
         flagVideoNext = false
         adapterNameMusic.setPositionSelected(positionMovie)
         onUpdateMusic(lisMusic[positionMovie])

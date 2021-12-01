@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/snackbarCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="@dimen/size_12"
+    app:cardElevation="0dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:cardBackgroundColor="@color/pink_200">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/size_19"
+        android:paddingTop="@dimen/size_20"
+        android:paddingEnd="@dimen/size_16"
+        android:paddingBottom="@dimen/size_20">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/snackbarIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            app:srcCompat="@drawable/ic_success" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/snackbarText"
+            android:textSize="@dimen/txt_size_12"
+            android:fontFamily="@font/flexo_bold_italic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/size_14"
+            android:lineSpacingExtra="1sp"
+            android:letterSpacing="0.01"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="No pudimos cambiar tu plan de pago. Inténtalo nuevamente." />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

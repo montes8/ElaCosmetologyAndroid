@@ -15,6 +15,7 @@ import android.text.style.BackgroundColorSpan
 import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
@@ -25,6 +26,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.dialog.CustomDialog
+import com.example.elacosmetologyandroid.component.snackbar.SnackBarStatus
 import com.example.elacosmetologyandroid.repository.network.exception.ApiException
 import com.example.elacosmetologyandroid.repository.network.exception.CompleteErrorModel
 import com.example.elacosmetologyandroid.repository.network.exception.NetworkException
@@ -253,6 +255,39 @@ fun View.uiValidateVisibilityTwoView(value: Boolean, view: View) {
         this.gone()
         view.visible()
     }
+}
+
+fun View.setMargins(
+    left: Int? = null,
+    top: Int? = null,
+    right: Int? = null,
+    bottom: Int? = null
+) {
+    val lp = layoutParams as? ViewGroup.MarginLayoutParams
+        ?: return
+
+    lp.setMargins(
+        left ?: lp.leftMargin,
+        top ?: lp.topMargin,
+        right ?: lp.rightMargin,
+        bottom ?: lp.bottomMargin
+    )
+
+    layoutParams = lp
+}
+
+
+fun showSnackBarCustom(viewIdentifier: View,message: String = ERROR_TEXT,duration : Int = 2000,colorBg : Int = R.color.pink_200){
+        SnackBarStatus.findSuitableParent(viewIdentifier)?.let { view ->
+            SnackBarStatus.make(
+                viewGroup = view,
+                message = message,
+                duration = duration,
+                icon = R.drawable.ic_success,
+                backgroundColor = colorBg,
+                upIcon = false
+            ).show()
+        }
 }
 
 /*inner class ListDocGlossaryViewHolder(private val binding: UiKitRowPoliceListDocBinding) :

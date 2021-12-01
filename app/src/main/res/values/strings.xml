@@ -10,6 +10,7 @@
     <string name="user_unauthorized_description">Estuviste inactivo por unos minutos. Por favor, vuelve a iniciar sesión.</string>
     <string name="error_general_title">Lo sentimos, ocurrió un error</string>
     <string name="error_internet">No hay conexión a internet</string>
+    <string name="error_denied_camera">Necesitas este permiso para poder acceder a los las fotos</string>
 
 
     <!-- TODO: error label -->
@@ -26,6 +27,7 @@
 
 
     <!-- TODO: text label-->
+    <string name="Select_option">Select Option:</string>
     <string name="txt_logout_des">¿Estás seguro que deseas cerrar sesión?</string>
     <string name="txt_title_splash">BIENVENIDA</string>
     <string name="txt_subtitle_splash">MIRA TU CATALOGO AHORA</string>
