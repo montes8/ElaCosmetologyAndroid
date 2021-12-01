@@ -47,7 +47,8 @@ abstract class BaseActivity : AppCompatActivity() {
     fun showDialogError(error: Throwable) {
         val valueError = error.getError(this)
         showDialogCustom(R.layout.dialog_generic, true,title = valueError.second,description =
-        valueError.third,icon = valueError.first,typeError = true) {
+        valueError.third,icon = valueError.first,typeLotti = 1,closeVisibility = error !is UnAuthorizedException
+        ) {
             if (error is UnAuthorizedException) {
                 goLogin()
             } else {

@@ -38,16 +38,39 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/dialogIconGeneric"
-            android:layout_width="@dimen/size_60"
-            android:layout_height="@dimen/size_80"
-            android:contentDescription="@null"
-            android:src="@drawable/ic_info_error"
-            android:paddingBottom="@dimen/size_10"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:id="@+id/contentIconCustom"
             app:layout_constraintEnd_toEndOf="parent"
+            android:paddingBottom="@dimen/size_10"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ctrClose" />
+            app:layout_constraintTop_toBottomOf="@+id/ctrClose"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/dialogIconGeneric"
+                android:layout_width="@dimen/size_80"
+                android:layout_height="@dimen/size_80"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_info_error"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"
+              />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieIconGeneric"
+                android:layout_width="@dimen/size_80"
+                android:layout_height="@dimen/size_80"
+                android:contentDescription="@null"
+                app:lottie_autoPlay="true"
+                android:visibility="gone"
+                app:lottie_loop="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/txtDialogTitle"
@@ -61,7 +84,7 @@
             android:textColor="@color/pink_200"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dialogIconGeneric" />
+            app:layout_constraintTop_toBottomOf="@+id/contentIconCustom" />
 
         <TextView
             android:id="@+id/txtDialogMessage"

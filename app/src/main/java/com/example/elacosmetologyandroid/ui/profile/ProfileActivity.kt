@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityProfileBinding
 import com.example.elacosmetologyandroid.extensions.setOnClickDelay
+import com.example.elacosmetologyandroid.extensions.showDialogCustom
 import com.example.elacosmetologyandroid.extensions.validateVisibility
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseViewModel
@@ -51,15 +52,26 @@ class ProfileActivity : BaseActivity() {
     }
 
     private fun initOnClick(){
-        binding.imgEditProfile.setOnClickDelay {
-            enableViewEdit(true)
-            flagClick = false
-        }
+        binding.imgEditProfile.setOnClickDelay { enableViewEdit(true) }
         binding.imgBannerProfile.setOnClickDelay {}
         binding.imgProfile.setOnClickDelay {}
-        binding.btnSaveProfile.setOnClickButtonDelayListener{enableViewEdit(false)
-            flagClick = true}
+        binding.txtDeleteUser.setOnClickDelay{popUpDeleteAndDeactivateUser(true)}
+        binding.txtDeactivateUser.setOnClickDelay{popUpDeleteAndDeactivateUser(false)}
+        binding.btnSaveProfile.setOnClickButtonDelayListener{enableViewEdit(false)}
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+    }
+
+
+    private fun popUpDeleteAndDeactivateUser(value: Boolean){
+        showDialogCustom(R.layout.dialog_generic, true,imageVisibility = false) {
+
+        }
+    }
+
+    private fun popUpSuccessAction(){
+        showDialogCustom(R.layout.dialog_generic, true,imageVisibility = false) {
+
+        }
     }
 
     private fun enableViewEdit(value : Boolean){
@@ -75,7 +87,7 @@ class ProfileActivity : BaseActivity() {
         binding.editAddressProfile.uiCursorVisibility = value
         binding.btnSaveProfile.isButtonVisible = value
         binding.imgEditProfile.validateVisibility(!value)
-
+        flagClick = !flagClick
     }
 
     override fun getViewModel(): BaseViewModel? = null

@@ -49,11 +49,13 @@ fun AppCompatActivity.showDialogCustom(
     layout: Int,
     cancelable: Boolean = true,
     title: String = TITLE_DIALOG_DEFAULT, description: String = TITLE_DESCRIPTION_DEFAULT,
-    icon: Int = R.drawable.ic_info_error, typeError: Boolean = true,
+    icon: Int = R.drawable.ic_info_error, imageVisibility: Boolean = true,closeVisibility : Boolean = true,
+    typeLotti :Int = 0,
     func: CustomDialog.() -> Unit
 ) {
     val dialog = CustomDialog(
-        layout, title = title, description = description, icon = icon, typeError = typeError
+        layout, title = title, description = description, icon = icon, imageVisibility = imageVisibility,closeVisibility = closeVisibility
+        ,typeLotti = typeLotti
     ) { func() }
     dialog.dialog?.setCancelable(cancelable)
     dialog.isCancelable = cancelable

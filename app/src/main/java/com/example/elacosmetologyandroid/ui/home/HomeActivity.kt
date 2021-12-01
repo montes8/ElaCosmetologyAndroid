@@ -174,7 +174,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
 
     private fun dialogLogout(){
-        showDialogCustom(R.layout.dialog_generic, true,typeError = false) {
+        showDialogCustom(R.layout.dialog_generic, true,imageVisibility = false) {
            viewModel.logout()
             LoginActivity.start(this@HomeActivity)
         }
