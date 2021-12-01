@@ -4,6 +4,9 @@ package com.example.elacosmetologyandroid.ui.home.begin
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,9 +36,12 @@ class BeginFragment : BaseFragment(){
     private var videoRequest: ActivityResultLauncher<Intent>? = null
     private var adapterNameMusic = NameMusicAdapter()
     private var adapterBanner = BannerAdapter()
+    private var lisMusic : List<MusicGeneric> = ArrayList()
 
     private var youTubePlayerObserver: YouTubePlayer? = null
     private var flagVideo = true
+    private var flagVideoNext = true
+    private var positionMovie = 0
 
     companion object {
         fun newInstance() = BeginFragment().apply {
@@ -51,6 +57,7 @@ class BeginFragment : BaseFragment(){
 
     override fun setUpView() {
         lifecycle.addObserver(binding.youtubeBegin)
+        lisMusic =  UserTemporary.listMusic
         configAdapter()
         viewModel.loadBanner()
         movieActivityForResult()
@@ -67,6 +74,7 @@ class BeginFragment : BaseFragment(){
     }
 
     private fun configVideo(){
+        UserTemporary.musicGeneric = lisMusic[positionMovie]
         binding.youtubeBegin.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 youTubePlayerObserver = youTubePlayer
@@ -74,10 +82,13 @@ class BeginFragment : BaseFragment(){
                 if (flagVideo)youTubePlayerObserver?.pause()
                   flagVideo = false
             }
-
             override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
                 super.onCurrentSecond(youTubePlayer, second)
-                UserTemporary.musicGeneric.duration = if (second.toInt() == UserTemporary.musicGeneric.durationTotal)0 else second.toInt()
+                if (second.toInt() == UserTemporary.musicGeneric.durationTotal && positionMovie < lisMusic.size-1){
+                    if (flagVideoNext)configPositionMovie()
+                } else{
+                    UserTemporary.musicGeneric.duration = second.toInt()
+                }
             }
 
             override fun onVideoDuration(youTubePlayer: YouTubePlayer, duration: Float) {
@@ -102,14 +113,25 @@ class BeginFragment : BaseFragment(){
     private fun configAdapter(){
         binding.adapterBanner = adapterBanner
         binding.adapterName = adapterNameMusic
-        UserTemporary.listMusic.let {
-            if (UserTemporary.listMusic.isNotEmpty())adapterNameMusic.setPositionSelected(0)
-            if (UserTemporary.listMusic.isNotEmpty())  UserTemporary.musicGeneric = it[0]
-            adapterNameMusic.parameterList = it }
-        adapterNameMusic.onClickMusic = {onclickMusic(it) }
+        if (lisMusic.isNotEmpty()){
+            adapterNameMusic.setPositionSelected(positionMovie)
+            adapterNameMusic.parameterList = lisMusic
+            adapterNameMusic.onClickMusic = {
+                positionMovie = it
+                onUpdateMusic(lisMusic[it])
+            }
+        }
     }
 
-    private fun onclickMusic(music : MusicGeneric){
+    private fun configPositionMovie(){
+        positionMovie = positionMovie+1
+        flagVideoNext = false
+        adapterNameMusic.setPositionSelected(positionMovie)
+        onUpdateMusic(lisMusic[positionMovie])
+        Handler(Looper.getMainLooper()).postDelayed({flagVideoNext=true }, 2000)
+    }
+
+    private fun onUpdateMusic(music : MusicGeneric){
         UserTemporary.musicGeneric = music
         UserTemporary.musicGeneric.duration = 0
         UserTemporary.musicGeneric.durationTotal = 0
