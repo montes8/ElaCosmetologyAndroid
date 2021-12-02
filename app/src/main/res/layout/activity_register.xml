@@ -71,7 +71,7 @@
                         style="@style/TextInputLayoutEdit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/size_32"
+                        android:layout_marginTop="@dimen/size_20"
                         android:imeOptions="actionNext"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -108,6 +108,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/size_20"
+                        android:imeOptions="actionNext"
                         android:inputType="textPassword"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -122,10 +123,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/size_20"
                         android:imeOptions="actionNext"
+                        android:inputType="number"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/editPasswordRegister"
-                        app:uiEditMaxLength="8"
+                        app:uiEditMaxLength="9"
                         app:uiHint="@string/text_phone" />
 
                     <com.example.elacosmetologyandroid.component.edit.EditCustomLayout

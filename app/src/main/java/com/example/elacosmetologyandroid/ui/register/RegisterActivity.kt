@@ -19,6 +19,7 @@ import com.example.elacosmetologyandroid.ui.home.HomeActivity
 import com.example.elacosmetologyandroid.utils.DATA_ADDRESS_PLACE
 import com.example.elacosmetologyandroid.utils.NAME_PATH_PROFILE
 import com.example.elacosmetologyandroid.utils.controller.CameraController
+import kotlinx.android.synthetic.main.activity_profile.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
 
@@ -31,6 +32,7 @@ class RegisterActivity : BaseActivity() , CameraController.CameraControllerListe
     private lateinit var binding: ActivityRegisterBinding
     private var cameraManager: CameraController? = null
     private var file: File? = null
+    private var imgProfile : Bitmap? = null
 
     companion object {
         fun start(context: Context) { context.startActivity(Intent(context, RegisterActivity::class.java)) }
@@ -57,14 +59,16 @@ class RegisterActivity : BaseActivity() , CameraController.CameraControllerListe
         binding.editLastNameRegister.uiEditCustomListener={validateData()}
         binding.editEmailRegister.uiEditCustomListener={validateData()}
         binding.editPasswordRegister.uiEditCustomListener={validateData()}
+        binding.editPhonedRegister.uiEditCustomListener={validateData()}
+        binding.editAddressRegister.uiEditCustomListener={validateData()}
         binding.imgEditPhone.setOnClickDelay { onClickImageProfile() }
-        binding.btnRegister.setOnClickButtonDelayListener{viewModel.register(binding.editEmailRegister,binding.btnRegister)}
+        binding.btnRegister.setOnClickButtonDelayListener{viewModel.register(binding.editEmailRegister,binding.btnRegister,imgProfile)}
         binding.editAddressRegister.uiEditClickListener = { addressResult.launch(null) }
     }
 
     private fun validateData(){
-        viewModel.validateRegister(binding.editNameRegister,binding.editLastNameRegister,
-            binding.editEmailRegister,binding.editPasswordRegister,binding.btnRegister)
+        viewModel.validateRegister(binding.editNameRegister,binding.editLastNameRegister, binding.editEmailRegister,
+            binding.editPasswordRegister,binding.editPhonedRegister,binding.editAddressRegister,binding.btnRegister)
     }
 
     override fun observeViewModel() {
@@ -93,6 +97,7 @@ class RegisterActivity : BaseActivity() , CameraController.CameraControllerListe
 
     override fun onGetImageCameraCompleted(path: String, img: Bitmap) {
         binding.imgProfile.setImageBitmap(img)
+        imgProfile = img
         file = File(path)
     }
 

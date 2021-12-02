@@ -10,7 +10,7 @@
     <string name="user_unauthorized_description">Estuviste inactivo por unos minutos. Por favor, vuelve a iniciar sesión.</string>
     <string name="error_general_title">Lo sentimos, ocurrió un error</string>
     <string name="error_internet">No hay conexión a internet</string>
-    <string name="error_denied_camera">Necesitas este permiso para poder realizar este rpoceso</string>
+    <string name="error_denied_camera">Necesitas este permiso para poder realizar este proceso</string>
     <string name="do_not_have_permission_to_location">No tiene permisos para acceder a tu ubicación</string>
     <string name="base_location_description">Para obtener resultados más precisos debes ir a la configuración de tu celular y activar el permiso.</string>
 

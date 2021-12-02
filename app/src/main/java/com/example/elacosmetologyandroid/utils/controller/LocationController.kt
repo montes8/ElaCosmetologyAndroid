@@ -75,7 +75,7 @@ class LocationController (
     }
 
     interface LocationControllerListener {
-        fun onGetLocationCompleted(location: Location)
+        fun onGetLocationCompleted(location: Location?)
         fun onGetLocationUpdate(location: Location)
     }
 }

@@ -1,6 +1,7 @@
 package com.example.elacosmetologyandroid.repository.network.api
 
 import android.content.Context
+import android.graphics.Bitmap
 import com.example.elacosmetologyandroid.model.ModelGeneric
 import com.example.elacosmetologyandroid.model.MusicGeneric
 import com.example.elacosmetologyandroid.model.User
@@ -33,9 +34,9 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
     }
 
 
-    override  suspend fun register(register: User): User {
+    override  suspend fun register(register: User,imgProfile : Bitmap?): User {
         return executeWithConnection {
-            val response = serviceApi.register(UserResponse.toUserResponse(register))
+            val response = serviceApi.register(UserResponse.toUserResponse(register,imgProfile))
             var user : User? = null
             if (response.isSuccessful && response.body() != null) {
                 user = response.validateBody().toUser()

@@ -1,5 +1,6 @@
 package com.example.elacosmetologyandroid.usecases.usecases
 
+import android.graphics.Bitmap
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.usecases.repository.AppRepositoryPreference
 import com.example.elacosmetologyandroid.usecases.repository.IAuthRepositoryNetwork
@@ -19,8 +20,8 @@ class AuthUseCase : KoinComponent {
          return response.first
      }
 
-     suspend fun register(register : User):User {
-         val responseRegister = iAuthRepositoryNetwork.register(register)
+     suspend fun register(register : User,imgProfile : Bitmap?):User {
+         val responseRegister = iAuthRepositoryNetwork.register(register,imgProfile)
          val response = iAuthRepositoryNetwork.login(responseRegister.email,register.password)
          appRepositoryPreference.saveToken(response.second)
          appRepositoryPreference.saveUser(JsonHelper.objectToJSON(response.first).toString())

@@ -34,17 +34,17 @@ import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.dialog_generic.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AddressActivity : BaseActivity(),LocationController.LocationControllerListener{
+class AddressActivity : BaseActivity(),LocationController.LocationControllerListener,OnMapReadyCallback{
 
     private val addressMapViewModel: AddressMapViewModel by viewModel(clazz = AddressMapViewModel::class)
 
     private lateinit var binding: ActivityAddressBinding
     private lateinit var mGoogleMap: GoogleMap
     private lateinit var permissionManager: PermissionManager
-    private lateinit var locationManager: LocationManager
+    private var locationManager: LocationManager = LocationManager(this)
     private var locationController : LocationController? = null
     private var selectedPlace: PlaceModel? = null
-    private var currentLocation: LocationModel? = null
+    private var currentLocation: LatLng? = null
     private var mPosition: LocationModel = LocationModel(MAP_LIMA_LATITUDE, MAP_LIMA_LONGITUDE)
 
     companion object {
@@ -86,14 +86,11 @@ class AddressActivity : BaseActivity(),LocationController.LocationControllerList
         binding.addressMapView.let {
             it.onCreate(null)
             it.onResume()
-            it.getMapAsync {
-                Handler(Looper.getMainLooper()).postDelayed({ configOnMapReady(it) }, 1000)
-            }
+            it.getMapAsync (this)
         }
     }
 
     private fun configLocationInit(){
-        locationManager = LocationManager(this)
         locationController = LocationController(this,this)
         permissionManager = PermissionManager(activity = this,
             onDeny = {
@@ -105,15 +102,12 @@ class AddressActivity : BaseActivity(),LocationController.LocationControllerList
         verifyPermissions()
     }
 
-    @SuppressLint("MissingPermission")
-    private fun configOnMapReady(p0: GoogleMap) {
+    override fun onMapReady(p0: GoogleMap) {
         p0.let {
             mGoogleMap = it
             var locationMap : LatLng? = null
             if (currentLocation != null){
                 locationMap = LatLng(currentLocation?.latitude ?: 0.0, currentLocation?.longitude ?: 0.0)
-                mGoogleMap.isMyLocationEnabled = true
-                mGoogleMap.uiSettings.isMyLocationButtonEnabled = false
             } else { locationMap =  LatLng(mPosition.latitude, mPosition.longitude) }
             mGoogleMap.uiSettings.isCompassEnabled = false
             changeCameraPosition(locationMap)
@@ -124,7 +118,7 @@ class AddressActivity : BaseActivity(),LocationController.LocationControllerList
 
 
     private fun changeCameraPosition(place: LatLng) {
-        val animatedPos: CameraUpdate = CameraUpdateFactory.newLatLngZoom(place, 17f)
+        val animatedPos: CameraUpdate = CameraUpdateFactory.newLatLngZoom(place, 20f)
         mGoogleMap.animateCamera(animatedPos)
     }
 
@@ -137,15 +131,19 @@ class AddressActivity : BaseActivity(),LocationController.LocationControllerList
     private fun verifyPermissions() {
         permissionManager.requestPermission(
             permission = Manifest.permission.ACCESS_FINE_LOCATION,
-            onGranted = {
-                locationManager.enableGPS {
-                    when (it) {
-                        LocationStatus.SUCCESS -> { locationController?.connect()}
-                        LocationStatus.ASKING_PERMISSION -> { }
-                        LocationStatus.ERROR -> { }
-                    }
-                }
-            })
+            onGranted = { loadLocationManager() })
+    }
+
+    private fun loadLocationManager(){
+        locationManager.enableGPS {
+            Handler(Looper.getMainLooper()).postDelayed({
+                when (it) {
+                LocationStatus.SUCCESS -> { locationController?.connect()}
+                LocationStatus.ASKING_PERMISSION -> { }
+                LocationStatus.ERROR -> { }
+            } }, 500)
+
+        }
     }
 
     private fun openPermissionSettings(isRational: Boolean,context: Context) {
@@ -170,10 +168,13 @@ class AddressActivity : BaseActivity(),LocationController.LocationControllerList
         }
     }
 
-    override fun onGetLocationCompleted(location: Location) {
-       Log.d("taglocation","$location")
+    @SuppressLint("MissingPermission")
+    override fun onGetLocationCompleted(location: Location?) {
         location?.let {
-            currentLocation = LocationModel(it.latitude,it.longitude)
+            changeCameraPosition(LatLng(it.latitude,it.longitude))
+            addressMapViewModel.searchAddress(LatLng(it.latitude,it.longitude))
+            mGoogleMap.isMyLocationEnabled = true
+            mGoogleMap.uiSettings.isMyLocationButtonEnabled = false
         }
 
     }
