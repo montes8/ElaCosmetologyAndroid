@@ -17,3 +17,7 @@ const val FADE_DURATION = 1000L
 const val ERROR_TEXT= "Ocurrio un error desconocido"
 const val REQUEST_CAMERA_PERMISSION = 2098
 const val NAME_PATH_PROFILE = "fotosPerfil"
+
+const val MAP_LIMA_LATITUDE = -12.089697
+const val MAP_LIMA_LONGITUDE = -77.014046
+const val DATA_ADDRESS_PLACE = "DATA_ADDRESS_PLACE"

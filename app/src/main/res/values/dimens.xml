@@ -42,9 +42,11 @@
     <dimen name="size_28">28dp</dimen>
     <dimen name="size_30">30dp</dimen>
     <dimen name="size_32">32dp</dimen>
+    <dimen name="size_36">36dp</dimen>
     <dimen name="size_40">40dp</dimen>
     <dimen name="size_44">44dp</dimen>
     <dimen name="size_48">48dp</dimen>
+    <dimen name="size_50">50dp</dimen>
     <dimen name="size_52">52dp</dimen>
     <dimen name="size_56">56dp</dimen>
     <dimen name="size_60">60dp</dimen>

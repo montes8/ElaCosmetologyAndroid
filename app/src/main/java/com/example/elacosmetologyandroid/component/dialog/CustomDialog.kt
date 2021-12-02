@@ -27,6 +27,8 @@ class CustomDialog(
     private var imageVisibility: Boolean,
     private var closeVisibility: Boolean,
     private var typeLotti: Int,
+    private var btnTextAccepted: String,
+    private var btnTextNegative: String,
     private val func: CustomDialog.() -> Unit
 ) :
     DialogFragment() {
@@ -64,6 +66,20 @@ class CustomDialog(
     private fun configActionDialog(dialog: CustomDialog){
         dialog.mView.findViewById<View>(R.id.imgCloseGeneric).validateVisibility(closeVisibility)
         dialog.mView.findViewById<ProgressButton>(R.id.btnCancelDialog).validateVisibility(!imageVisibility)
+        configIconAndLotti(dialog)
+        dialog.mView.findViewById<View>(R.id.imgCloseGeneric).setOnClickListener { dialog.dismiss() }
+        dialog.mView.findViewById<ImageView>(R.id.dialogIconGeneric).setImageResource(icon)
+        dialog.mView.findViewById<TextView>(R.id.txtDialogTitle).text = title
+        dialog.mView.findViewById<ProgressButton>(R.id.btnCancelDialog).buttonText = btnTextNegative
+        dialog.mView.findViewById<ProgressButton>(R.id.btnAcceptDialog).buttonText = btnTextAccepted
+        dialog.mView.findViewById<TextView>(R.id.txtDialogMessage).text = description
+        dialog.mView.findViewById<ProgressButton>(R.id.btnCancelDialog).setOnClickButtonListener{ dialog.dismiss() }
+        dialog.mView.findViewById<ProgressButton>(R.id.btnAcceptDialog).setOnClickButtonListener { func()
+            Handler(Looper.getMainLooper()).postDelayed({ dialog.dismiss() }, 200)
+        }
+    }
+
+    private fun configIconAndLotti(dialog: CustomDialog){
         if (typeLotti != 0) {
             dialog.mView.findViewById<LottieAnimationView>(R.id.lottieIconGeneric).validateVisibility(
                 imageVisibility
@@ -77,20 +93,10 @@ class CustomDialog(
                     dialog.mView.findViewById<LottieAnimationView>(R.id.lottieIconGeneric).playAnimation()
                 }
             })
-
         }else{
             dialog.mView.findViewById<ImageView>(R.id.dialogIconGeneric).validateVisibility(
                 imageVisibility
             )
-        }
-        dialog.mView.findViewById<View>(R.id.imgCloseGeneric)
-            .setOnClickListener { dialog.dismiss() }
-        dialog.mView.findViewById<ImageView>(R.id.dialogIconGeneric).setImageResource(icon)
-        dialog.mView.findViewById<TextView>(R.id.txtDialogTitle).text = title
-        dialog.mView.findViewById<TextView>(R.id.txtDialogMessage).text = description
-        dialog.mView.findViewById<ProgressButton>(R.id.btnCancelDialog).setOnClickButtonListener{ dialog.dismiss() }
-        dialog.mView.findViewById<ProgressButton>(R.id.btnAcceptDialog).setOnClickButtonListener { func()
-            Handler(Looper.getMainLooper()).postDelayed({ dialog.dismiss() }, 200)
         }
     }
 }

@@ -1,143 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        tools:context=".ui.register.RegisterActivity"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.register.RegisterActivity">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:alpha="0.2"
             android:background="@drawable/ic_bg_general" />
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <include
-            android:id="@+id/registerToolbar"
-            layout="@layout/mold_toolbar"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent">
 
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgProfile"
-            android:layout_width="@dimen/size_100"
-            android:layout_height="@dimen/size_100"
-            android:layout_marginTop="@dimen/size_32"
-            android:src="@drawable/ic_profile_place_holder"
-            app:civ_border_color="@color/pink_100"
-            app:civ_border_width="1dp"
-            android:contentDescription="@null"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/registerToolbar" />
-
-        <ImageButton
-            android:id="@+id/imgEditPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:contentDescription="@null"
-            android:elevation="@dimen/size_2"
-            android:padding="@dimen/size_5"
-            android:src="@drawable/ic_edit_white"
-            app:layout_constraintEnd_toEndOf="@+id/imgProfile"
-            app:layout_constraintTop_toTopOf="@+id/imgProfile" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:padding="@dimen/size_16"
-            app:layout_constraintTop_toBottomOf="@+id/imgProfile"
-            android:layout_height="wrap_content">
-
-
-
-        <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
-            android:id="@+id/editNameRegister"
-            style="@style/TextInputLayoutEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:uiHint="@string/text_name"
-            android:imeOptions="actionNext"
-            android:layout_marginTop="@dimen/size_32"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
-            android:id="@+id/editLastNameRegister"
-            android:layout_width="match_parent"
-            style="@style/TextInputLayoutEdit"
-            android:layout_height="wrap_content"
-            android:imeOptions="actionNext"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="@dimen/size_20"
-            app:uiHint="@string/text_last_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editNameRegister" />
-
-        <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
-            android:id="@+id/editEmailRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TextInputLayoutEdit"
-            android:layout_marginTop="@dimen/size_20"
-            android:imeOptions="actionNext"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:uiHint="@string/text_email"
-            app:layout_constraintTop_toBottomOf="@+id/editLastNameRegister" />
-
-        <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
-            android:id="@+id/editPasswordRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TextInputLayoutEdit"
-            app:uiHint="@string/text_password"
-            android:inputType="textPassword"
-            app:uiPasswordEnabled="true"
-            android:layout_marginTop="@dimen/size_20"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editEmailRegister" />
-
-        <com.example.elacosmetologyandroid.component.button.ProgressButton
-            android:id="@+id/btnRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_32"
-            app:buttonText="@string/text_register"
-            app:isButtonEnabled="false"
-            app:buttonUISize="medium"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="@dimen/size_24"
-            app:layout_constraintTop_toBottomOf="@+id/editPasswordRegister" />
-
-            <View
-                android:id="@+id/snackBarActivate"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_height="match_parent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+                <include
+                    android:id="@+id/registerToolbar"
+                    layout="@layout/mold_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgProfile"
+                    android:layout_width="@dimen/size_100"
+                    android:layout_height="@dimen/size_100"
+                    android:layout_marginTop="@dimen/size_32"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_profile_place_holder"
+                    app:civ_border_color="@color/pink_100"
+                    app:civ_border_width="1dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/registerToolbar" />
+
+                <ImageButton
+                    android:id="@+id/imgEditPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:contentDescription="@null"
+                    android:elevation="@dimen/size_2"
+                    android:padding="@dimen/size_5"
+                    android:src="@drawable/ic_edit_white"
+                    app:layout_constraintEnd_toEndOf="@+id/imgProfile"
+                    app:layout_constraintTop_toTopOf="@+id/imgProfile" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/size_16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgProfile">
+
+
+                    <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+                        android:id="@+id/editNameRegister"
+                        style="@style/TextInputLayoutEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_32"
+                        android:imeOptions="actionNext"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:uiHint="@string/text_name" />
+
+                    <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+                        android:id="@+id/editLastNameRegister"
+                        style="@style/TextInputLayoutEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_20"
+                        android:imeOptions="actionNext"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editNameRegister"
+                        app:uiHint="@string/text_last_name" />
+
+                    <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+                        android:id="@+id/editEmailRegister"
+                        style="@style/TextInputLayoutEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_20"
+                        android:imeOptions="actionNext"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editLastNameRegister"
+                        app:uiHint="@string/text_email" />
+
+                    <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+                        android:id="@+id/editPasswordRegister"
+                        style="@style/TextInputLayoutEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_20"
+                        android:inputType="textPassword"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editEmailRegister"
+                        app:uiHint="@string/text_password"
+                        app:uiPasswordEnabled="true" />
+
+                    <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+                        android:id="@+id/editPhonedRegister"
+                        style="@style/TextInputLayoutEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_20"
+                        android:imeOptions="actionNext"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editPasswordRegister"
+                        app:uiEditMaxLength="8"
+                        app:uiHint="@string/text_phone" />
+
+                    <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+                        android:id="@+id/editAddressRegister"
+                        style="@style/TextInputLayoutEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_20"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editPhonedRegister"
+                        app:uiCursorVisibility="false"
+                        app:uiDrawableEndEnabled="true"
+                        app:uiFocusable="false"
+                        app:uiHint="@string/text_address" />
+
+                    <com.example.elacosmetologyandroid.component.button.ProgressButton
+                        android:id="@+id/btnRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_32"
+                        android:layout_marginBottom="@dimen/size_24"
+                        app:buttonText="@string/text_register"
+                        app:buttonUISize="medium"
+                        app:isButtonEnabled="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editAddressRegister" />
+
+                    <View
+                        android:id="@+id/snackBarActivate"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

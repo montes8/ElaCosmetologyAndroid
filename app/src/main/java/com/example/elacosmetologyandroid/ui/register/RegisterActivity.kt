@@ -3,14 +3,20 @@ package com.example.elacosmetologyandroid.ui.register
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import androidx.activity.result.ActivityResultLauncher
 import androidx.databinding.DataBindingUtil
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityRegisterBinding
+import com.example.elacosmetologyandroid.extensions.StartActivityContract
+import com.example.elacosmetologyandroid.extensions.StartActivityContract2
 import com.example.elacosmetologyandroid.extensions.setOnClickDelay
 import com.example.elacosmetologyandroid.extensions.showSnackBarCustom
+import com.example.elacosmetologyandroid.model.PlaceModel
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseViewModel
+import com.example.elacosmetologyandroid.ui.address.AddressActivity
 import com.example.elacosmetologyandroid.ui.home.HomeActivity
+import com.example.elacosmetologyandroid.utils.DATA_ADDRESS_PLACE
 import com.example.elacosmetologyandroid.utils.NAME_PATH_PROFILE
 import com.example.elacosmetologyandroid.utils.controller.CameraController
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -18,6 +24,8 @@ import java.io.File
 
 
 class RegisterActivity : BaseActivity() , CameraController.CameraControllerListener {
+
+    private lateinit var addressResult: ActivityResultLauncher<Int>
 
     private val viewModel: RegisterViewModel by viewModel(clazz = RegisterViewModel::class)
     private lateinit var binding: ActivityRegisterBinding
@@ -35,6 +43,7 @@ class RegisterActivity : BaseActivity() , CameraController.CameraControllerListe
 
     override fun setUpView() {
         configInit()
+        configResult()
         configAction()
     }
 
@@ -50,6 +59,7 @@ class RegisterActivity : BaseActivity() , CameraController.CameraControllerListe
         binding.editPasswordRegister.uiEditCustomListener={validateData()}
         binding.imgEditPhone.setOnClickDelay { onClickImageProfile() }
         binding.btnRegister.setOnClickButtonDelayListener{viewModel.register(binding.editEmailRegister,binding.btnRegister)}
+        binding.editAddressRegister.uiEditClickListener = { addressResult.launch(null) }
     }
 
     private fun validateData(){
@@ -84,5 +94,16 @@ class RegisterActivity : BaseActivity() , CameraController.CameraControllerListe
     override fun onGetImageCameraCompleted(path: String, img: Bitmap) {
         binding.imgProfile.setImageBitmap(img)
         file = File(path)
+    }
+
+    private fun configResult() {
+        addressResult = registerForActivityResult(StartActivityContract(AddressActivity.start(this))) {
+            it?.let {
+                val place: PlaceModel? = it.getParcelable(DATA_ADDRESS_PLACE)
+                place?.let { item ->
+                    binding.editAddressRegister.uiText = item.name
+                }
+            }
+        }
     }
 }

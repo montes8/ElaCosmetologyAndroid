@@ -202,6 +202,7 @@
                     android:layout_marginTop="@dimen/size_10"
                     app:uiHint="@string/text_address"
                     app:uiFocusable="false"
+                    app:uiDrawableEndEnabled="true"
                     app:uiCursorVisibility="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -216,6 +217,7 @@
                     android:textColor="@color/pink_200"
                     android:fontFamily="@font/flexo_bold_italic"
                     android:textSize="@dimen/txt_size_16"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/size_16"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editAddressProfile"
@@ -229,6 +231,7 @@
                     android:gravity="center"
                     android:fontFamily="@font/flexo_bold_italic"
                     android:textSize="@dimen/txt_size_16"
+                    android:visibility="gone"
                     android:textColor="@color/pink_200"
                     android:layout_marginTop="@dimen/size_16"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -247,6 +250,13 @@
                     app:buttonText="@string/txt_save"
                     app:layout_constraintTop_toBottomOf="@+id/txtDeleteUser"
                     android:layout_height="wrap_content"/>
+                <View
+                    android:id="@+id/snackBarActivateProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

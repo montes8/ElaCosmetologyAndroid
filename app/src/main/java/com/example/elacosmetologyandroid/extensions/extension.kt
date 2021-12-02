@@ -2,10 +2,15 @@ package com.example.elacosmetologyandroid.extensions
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
+import android.net.Uri
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.os.Parcelable
+import android.provider.Settings
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.Spanned
@@ -19,9 +24,11 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.elacosmetologyandroid.R
@@ -33,6 +40,7 @@ import com.example.elacosmetologyandroid.repository.network.exception.NetworkExc
 import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
 import com.example.elacosmetologyandroid.utils.*
 import com.squareup.picasso.Picasso
+import java.io.Serializable
 
 
 fun View.visible() = apply {
@@ -52,12 +60,12 @@ fun AppCompatActivity.showDialogCustom(
     cancelable: Boolean = true,
     title: String = TITLE_DIALOG_DEFAULT, description: String = TITLE_DESCRIPTION_DEFAULT,
     icon: Int = R.drawable.ic_info_error, imageVisibility: Boolean = true,closeVisibility : Boolean = true,
-    typeLotti :Int = 0,
+    typeLotti :Int = 0,btnTextAccepted : String = getString(R.string.dialog_accept),btnTextNegative : String = getString(R.string.txt_cancel_btn),
     func: CustomDialog.() -> Unit
 ) {
     val dialog = CustomDialog(
         layout, title = title, description = description, icon = icon, imageVisibility = imageVisibility,closeVisibility = closeVisibility
-        ,typeLotti = typeLotti
+        ,typeLotti = typeLotti,btnTextAccepted = btnTextAccepted,btnTextNegative = btnTextNegative
     ) { func() }
     dialog.dialog?.setCancelable(cancelable)
     dialog.isCancelable = cancelable
@@ -288,6 +296,55 @@ fun showSnackBarCustom(viewIdentifier: View,message: String = ERROR_TEXT,duratio
                 upIcon = false
             ).show()
         }
+}
+
+
+
+class StartActivityContract<T>(
+    private val intent: Intent,
+    private val inputNameExtra: String = ""
+) :
+    ActivityResultContract<T, Bundle?>() where  T : Serializable {
+    override fun createIntent(context: Context, input: T?): Intent = intent.apply {
+        input?.let {
+            putExtra(inputNameExtra, it)
+        }
+    }
+
+    override fun parseResult(resultCode: Int, intent: Intent?): Bundle? {
+        return when (resultCode) {
+            Activity.RESULT_OK -> intent?.extras
+            else -> null
+        }
+    }
+}
+
+
+class StartActivityContract2(
+    private val intent: Intent
+) : ActivityResultContract<Map<String, Any?>, Bundle?>() {
+    override fun createIntent(context: Context, inputs: Map<String, Any?>?): Intent =
+        intent.apply {
+            inputs?.forEach {
+                when (it.value) {
+                    is ArrayList<*> -> {
+                        this.putParcelableArrayListExtra(
+                            it.key,
+                            it.value as java.util.ArrayList<out Parcelable>
+                        )
+                    }
+                    is Parcelable -> this.putExtra(it.key, if (it.value != null) it.value as Parcelable else null)
+                    else -> this.putExtra(it.key, if (it.value != null) it.value as Serializable else null)
+                }
+            }
+        }
+
+    override fun parseResult(resultCode: Int, intent: Intent?): Bundle? {
+        return when (resultCode) {
+            Activity.RESULT_OK -> intent?.extras
+            else -> null
+        }
+    }
 }
 
 /*inner class ListDocGlossaryViewHolder(private val binding: UiKitRowPoliceListDocBinding) :

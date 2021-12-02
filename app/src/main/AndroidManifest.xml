@@ -3,11 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.elacosmetologyandroid">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -20,16 +27,27 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:theme="@style/Custom.Theme"
         android:usesCleartextTraffic="true"
-        tools:ignore="GoogleAppIndexingWarning,LockedOrientationActivity"
-        android:theme="@style/Custom.Theme">
+        tools:ignore="GoogleAppIndexingWarning,LockedOrientationActivity">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".ui.address.AddressActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Custom.NoActionBar.Light"
+            android:label="@string/title_activity_adress"/>
         <activity
             android:name=".ui.profile.ProfileActivity"
             android:launchMode="singleTop"
-            android:theme="@style/Custom.NoActionBar.white"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Custom.NoActionBar.white" />
         <activity
-            android:name=".ui.home.begin.movi.MovieActivity"
+            android:name=".ui.movie.MovieActivity"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
             android:theme="@style/Custom.NoActionBar.Light" />
@@ -60,6 +78,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.elacosmetologyandroid"

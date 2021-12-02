@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +22,7 @@ import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.ui.home.begin.adapter.BannerAdapter
 import com.example.elacosmetologyandroid.ui.home.begin.adapter.NameMusicAdapter
-import com.example.elacosmetologyandroid.ui.home.begin.movi.MovieActivity
+import com.example.elacosmetologyandroid.ui.movie.MovieActivity
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import org.koin.androidx.viewmodel.ext.android.viewModel

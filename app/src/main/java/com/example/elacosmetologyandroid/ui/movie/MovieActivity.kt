@@ -1,11 +1,9 @@
-package com.example.elacosmetologyandroid.ui.home.begin.movi
+package com.example.elacosmetologyandroid.ui.movie
 
 import android.app.Activity
 import android.os.Build
-import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityMovieBinding
 import com.example.elacosmetologyandroid.manager.UserTemporary
