@@ -32,6 +32,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.elacosmetologyandroid.R
+import com.example.elacosmetologyandroid.component.calendar.DatePickerDialog
 import com.example.elacosmetologyandroid.component.dialog.CustomDialog
 import com.example.elacosmetologyandroid.component.snackbar.SnackBarStatus
 import com.example.elacosmetologyandroid.repository.network.exception.ApiException
@@ -41,6 +42,8 @@ import com.example.elacosmetologyandroid.repository.network.exception.UnAuthoriz
 import com.example.elacosmetologyandroid.utils.*
 import com.squareup.picasso.Picasso
 import java.io.Serializable
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 fun View.visible() = apply {
@@ -69,6 +72,21 @@ fun AppCompatActivity.showDialogCustom(
     ) { func() }
     dialog.dialog?.setCancelable(cancelable)
     dialog.isCancelable = cancelable
+    dialog.show(this.supportFragmentManager, CustomDialog::class.java.name)
+
+}
+
+
+fun AppCompatActivity.showDialogDatePiker(
+   dateDefault: Long = 0, dateOld: Long = 0, future: Int = 100, typeCalendar: Int = DatePickerDialog.MODE_FULL,
+   func: (Pair<Date,Int>) -> Unit
+) {
+    val dialog = DatePickerDialog(
+        dateDefault = dateDefault, dateOld = dateOld, future = future, typeCalendar = typeCalendar
+    ) {
+        func(Pair(it.first,it.second))
+    }
+
     dialog.show(this.supportFragmentManager, CustomDialog::class.java.name)
 
 }

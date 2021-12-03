@@ -48,7 +48,7 @@
     <string name="text_phone">Telefono</string>
     <string name="text_address">Dirección</string>
     <string name="text_last_name">Apellidos</string>
-    <string name="txt_forget_password">Olvidaste Contraseña</string>
+    <string name="txt_forget_password"><u>Olvidaste Contraseña</u></string>
     <string name="txt_confirm_address">Confirmar dirección</string>
 
 
