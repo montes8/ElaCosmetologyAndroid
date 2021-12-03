@@ -5,8 +5,10 @@ import com.example.elacosmetologyandroid.BuildConfig
 import com.example.elacosmetologyandroid.repository.local.preferences.manager.PreferencesManager
 import com.example.elacosmetologyandroid.repository.local.preferences.utils.PREFERENCE_TOKEN
 import com.example.elacosmetologyandroid.repository.network.ServiceApi
+import com.example.elacosmetologyandroid.repository.network.api.AppNetwork
 import com.example.elacosmetologyandroid.repository.network.api.AuthNetwork
 import com.example.elacosmetologyandroid.repository.network.utils.*
+import com.example.elacosmetologyandroid.usecases.repository.IAppRepositoryNetwork
 import com.example.elacosmetologyandroid.usecases.repository.IAuthRepositoryNetwork
 import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.Cache
@@ -28,6 +30,7 @@ val networkModule = module {
     single { providerRetrofit(getProperty(NAME_BASE_URL), get()) }
     single { providerApi(get()) }
     single<IAuthRepositoryNetwork> { AuthNetwork() }
+    single<IAppRepositoryNetwork> { AppNetwork() }
 
 }
 

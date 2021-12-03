@@ -2,14 +2,14 @@ package com.example.elacosmetologyandroid.usecases.usecases
 
 import com.example.elacosmetologyandroid.manager.UserTemporary
 import com.example.elacosmetologyandroid.usecases.repository.AppRepositoryPreference
-import com.example.elacosmetologyandroid.usecases.repository.IAuthRepositoryNetwork
+import com.example.elacosmetologyandroid.usecases.repository.IAppRepositoryNetwork
 import com.example.elacosmetologyandroid.utils.EMPTY
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
 class AppUseCase : KoinComponent {
 
-    private val iAuthRepositoryNetwork: IAuthRepositoryNetwork by inject()
+    private val iAuthRepositoryNetwork: IAppRepositoryNetwork by inject()
 
     private val appRepositoryPreference: AppRepositoryPreference by inject()
 

@@ -11,8 +11,4 @@ interface IAuthRepositoryNetwork {
      suspend fun login(email : String, password : String): Pair<User, String>
 
      suspend fun register(register : User,imgProfile : Bitmap?):User
-
-     suspend fun loadListMusic():List<MusicGeneric>
-
-     suspend fun loadBanner():List<ModelGeneric>
 }
