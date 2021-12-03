@@ -14,6 +14,7 @@ import com.example.elacosmetologyandroid.usecases.usecases.AuthUseCase
 import com.example.elacosmetologyandroid.utils.EMPTY
 import org.koin.core.KoinComponent
 import org.koin.core.inject
+import java.io.File
 
 
 class RegisterViewModel : BaseViewModel(), KoinComponent {
@@ -21,27 +22,38 @@ class RegisterViewModel : BaseViewModel(), KoinComponent {
     private val authUseCase: AuthUseCase by inject()
     private val context: Context by inject()
 
-    val successAccountLiveData        : LiveData<User?> get()   = _successAccountLiveData
-    private val _successAccountLiveData    = MutableLiveData<User?>()
+    val successAccountLiveData: LiveData<User?> get() = _successAccountLiveData
+    private val _successAccountLiveData = MutableLiveData<User?>()
+
+    val successImageLiveData: LiveData<String> get() = _successImageLiveData
+    private val _successImageLiveData = MutableLiveData<String>()
 
 
-    var userData : User? = null
+    var userData: User? = null
 
 
-    fun register(pass : EditCustomLayout,btnProgress : ProgressButton,imgProfile : Bitmap?){
-        if (validateEmail(pass)){
+    fun register(pass: EditCustomLayout, btnProgress: ProgressButton,file: File?) {
+        if (validateEmail(pass)) {
             userData?.let {
                 btnProgress.isButtonLoading = true
-                 executeSuspendNotProgress {
-                    val response = authUseCase.register(it,imgProfile)
+                executeSuspendNotProgress {
+                    val response = authUseCase.register(it,file)
                     _successAccountLiveData.postValue(response)
                 }
             }
         }
     }
 
-    fun validateRegister(name : EditCustomLayout, lastName : EditCustomLayout, email : EditCustomLayout,
-                         pass : EditCustomLayout,phone : EditCustomLayout,address : EditCustomLayout,btnProgress : ProgressButton){
+
+    fun validateRegister(
+        name: EditCustomLayout,
+        lastName: EditCustomLayout,
+        email: EditCustomLayout,
+        pass: EditCustomLayout,
+        phone: EditCustomLayout,
+        address: EditCustomLayout,
+        btnProgress: ProgressButton
+    ) {
         name.uiErrorMessage = EMPTY
         lastName.uiErrorMessage = EMPTY
         email.uiErrorMessage = EMPTY
@@ -50,20 +62,26 @@ class RegisterViewModel : BaseViewModel(), KoinComponent {
                 && email.uiText.isNotEmpty() && pass.uiText.isNotEmpty() && phone.uiText.isNotEmpty() && address.uiText.isNotEmpty()
 
 
-        updateUser(name,lastName,email,pass,phone,address)
+        updateUser(name, lastName, email, pass, phone, address)
     }
 
-    private fun updateUser(name : EditCustomLayout, lastName : EditCustomLayout, email : EditCustomLayout,
-                           pass : EditCustomLayout,phone : EditCustomLayout,address : EditCustomLayout){
-        userData = User(name = name.uiText, lastName = lastName.uiText, email = email.uiText, password = pass.uiText,
-                        phone = phone.uiText,address = address.uiText
+    private fun updateUser(
+        name: EditCustomLayout, lastName: EditCustomLayout, email: EditCustomLayout,
+        pass: EditCustomLayout, phone: EditCustomLayout, address: EditCustomLayout
+    ) {
+        userData = User(
+            name = name.uiText,
+            lastName = lastName.uiText,
+            email = email.uiText,
+            password = pass.uiText,
+            phone = phone.uiText,
+            address = address.uiText
         )
     }
 
 
-
-    private fun validateEmail(email : EditCustomLayout):Boolean{
-        if (!isEmailValid(email.uiText)){
+    private fun validateEmail(email: EditCustomLayout): Boolean {
+        if (!isEmailValid(email.uiText)) {
             email.uiErrorMessage = context.getString(R.string.error_email_format)
             return false
         }

@@ -1,11 +1,8 @@
 package com.example.elacosmetologyandroid.repository.network.entity
 
-import android.graphics.Bitmap
-import android.opengl.ETC1.encodeImage
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.utils.EMPTY
 import com.example.elacosmetologyandroid.utils.USER_ROLE
-import com.example.elacosmetologyandroid.utils.encodeImageConverter
 import com.google.gson.annotations.SerializedName
 
 class UserResponse (
@@ -25,6 +22,8 @@ class UserResponse (
     var address : String?,
     @SerializedName("img")
     var img      : String?,
+    @SerializedName("banner")
+    var banner      : String?,
     @SerializedName("rol")
     var rol      : String? ,
     @SerializedName("estado")
@@ -39,11 +38,12 @@ class UserResponse (
         phone= phone?: EMPTY,
         address= address?: EMPTY,
         img = img?: EMPTY,
+        banner = banner?: EMPTY,
         rol = rol?: EMPTY,
         estate = estate?: false)
 
     companion object{
-        fun toUserResponse(user: User,imgProfile : Bitmap?)= UserResponse(
+        fun toUserResponse(user: User)= UserResponse(
             user.uid,
             user.name,
             user.lastName,
@@ -51,16 +51,12 @@ class UserResponse (
             user.password,
             user.phone,
             user.address,
-           converterBitmap(imgProfile),
+            user.img,
+            user.banner,
             USER_ROLE,true)
 
-        private fun converterBitmap(imageProfile : Bitmap?):String{
-            return imageProfile?.let {
-                encodeImageConverter(it)
-            }?:EMPTY
-        }
     }
 
-   constructor(email: String,password: String) : this("","","",email,password,"","","","",false)
+   constructor(email: String,password: String) : this("","","",email,password,"","","","","",false)
 
 }

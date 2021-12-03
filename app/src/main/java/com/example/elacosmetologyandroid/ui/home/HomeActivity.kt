@@ -25,10 +25,7 @@ import com.example.elacosmetologyandroid.ui.home.order.OrderFragment
 import com.example.elacosmetologyandroid.ui.home.product.ProductFragment
 import com.example.elacosmetologyandroid.ui.login.LoginActivity
 import com.example.elacosmetologyandroid.ui.profile.ProfileActivity
-import com.example.elacosmetologyandroid.utils.CONFIG_ITEM
-import com.example.elacosmetologyandroid.utils.EMPTY
-import com.example.elacosmetologyandroid.utils.USER_ROLE
-import com.example.elacosmetologyandroid.utils.getData
+import com.example.elacosmetologyandroid.utils.*
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.nav_header_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -126,10 +123,19 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     }
 
-    override fun observeViewModel() {}
+    override fun observeViewModel() {
+        viewModel.successImageLiveData.observe(this,{
+            it?.apply {
+                imgProfileHome.setImageBitmap(this)
+            }
+        })
+    }
 
     private fun configDataUser(){
-        UserTemporary.getUser()?.let { txtNameUserMenu.text = it.name }
+        UserTemporary.getUser()?.let {
+            txtNameUserMenu.text = it.name
+            viewModel.loadImage(TYPE_USER,it.uid)
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

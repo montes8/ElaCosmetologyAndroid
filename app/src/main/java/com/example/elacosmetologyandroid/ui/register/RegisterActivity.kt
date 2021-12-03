@@ -32,7 +32,6 @@ class RegisterActivity : BaseActivity() , CameraController.CameraControllerListe
     private lateinit var binding: ActivityRegisterBinding
     private var cameraManager: CameraController? = null
     private var file: File? = null
-    private var imgProfile : Bitmap? = null
 
     companion object {
         fun start(context: Context) { context.startActivity(Intent(context, RegisterActivity::class.java)) }
@@ -62,7 +61,7 @@ class RegisterActivity : BaseActivity() , CameraController.CameraControllerListe
         binding.editPhonedRegister.uiEditCustomListener={validateData()}
         binding.editAddressRegister.uiEditCustomListener={validateData()}
         binding.imgEditPhone.setOnClickDelay { onClickImageProfile() }
-        binding.btnRegister.setOnClickButtonDelayListener{viewModel.register(binding.editEmailRegister,binding.btnRegister,imgProfile)}
+        binding.btnRegister.setOnClickButtonDelayListener{viewModel.register(binding.editEmailRegister,binding.btnRegister,file)}
         binding.editAddressRegister.uiEditClickListener = { addressResult.launch(null) }
     }
 
@@ -81,6 +80,10 @@ class RegisterActivity : BaseActivity() , CameraController.CameraControllerListe
                  HomeActivity.start(this@RegisterActivity)
              }
         })
+
+        viewModel.successImageLiveData.observe(this,{
+            showSnackBarCustom(binding.snackBarActivate,"foto guardada",colorBg = R.color.pink_200)
+        })
     }
 
     private fun onClickImageProfile(){
@@ -97,7 +100,6 @@ class RegisterActivity : BaseActivity() , CameraController.CameraControllerListe
 
     override fun onGetImageCameraCompleted(path: String, img: Bitmap) {
         binding.imgProfile.setImageBitmap(img)
-        imgProfile = img
         file = File(path)
     }
 

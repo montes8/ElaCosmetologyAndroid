@@ -1,14 +1,20 @@
 package com.example.elacosmetologyandroid.repository.network.api
 
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.repository.network.ServiceApi
 import com.example.elacosmetologyandroid.repository.network.entity.UserResponse
 import com.example.elacosmetologyandroid.repository.network.exception.BaseNetwork
 import com.example.elacosmetologyandroid.repository.network.exception.toCompleteErrorModel
+import com.example.elacosmetologyandroid.repository.network.utils.EMPTY
 import com.example.elacosmetologyandroid.repository.network.utils.validateBody
 import com.example.elacosmetologyandroid.usecases.repository.IAuthRepositoryNetwork
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import org.koin.core.inject
+import java.io.File
 
 
 class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
@@ -27,14 +33,53 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
     }
 
 
-    override  suspend fun register(register: User,imgProfile : Bitmap?): User {
+    override  suspend fun register(register: User): User {
         return executeWithConnection {
-            val response = serviceApi.register(UserResponse.toUserResponse(register,imgProfile))
+            val response = serviceApi.register(UserResponse.toUserResponse(register))
             var user : User? = null
             if (response.isSuccessful && response.body() != null) {
                 user = response.validateBody().toUser()
             }
             user?: throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
+        }
+    }
+
+    override suspend fun sendImage(file: File): String {
+        return executeWithConnection {
+            val image = file.asRequestBody("image/*".toMediaType())
+            val multiPartBody = MultipartBody.Part.createFormData("archivo",file.name,image)
+            val response = serviceApi.saveProfile(multiPartBody)
+            var imageResponse : String? = EMPTY
+            if (response.isSuccessful && response.body() != null) {
+                imageResponse = response.validateBody().toImage()
+            }
+            imageResponse?: throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
+        }
+    }
+
+    override suspend fun sendImageProfile(type: String, idUser: String, file: File): Boolean {
+        return executeWithConnection {
+            val image = file.asRequestBody("image/*".toMediaType())
+            val multiPartBody = MultipartBody.Part.createFormData("archivo",file.name,image)
+            val response = serviceApi.imageProfile(type,idUser,multiPartBody)
+            var user : Boolean? = null
+            if (response.isSuccessful && response.body() != null) {
+                user = true
+            }
+            user?: false
+        }
+    }
+
+    override suspend fun loadImage(type: String, idUser: String): Bitmap {
+        return executeWithConnection {
+            val response = serviceApi.loadImage(type,idUser)
+            var bitmap : Bitmap? = null
+            if (response.isSuccessful && response.body() != null) {
+                response.body()?.let {
+                    bitmap = BitmapFactory.decodeStream(it.byteStream())
+                }
+            }
+            bitmap?: throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
         }
     }
 

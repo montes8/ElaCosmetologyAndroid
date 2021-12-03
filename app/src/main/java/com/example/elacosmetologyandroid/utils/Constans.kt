@@ -21,3 +21,8 @@ const val NAME_PATH_PROFILE = "fotosPerfil"
 const val MAP_LIMA_LATITUDE = -12.089697
 const val MAP_LIMA_LONGITUDE = -77.014046
 const val DATA_ADDRESS_PLACE = "DATA_ADDRESS_PLACE"
+
+
+const val TYPE_USER= "usuarios"
+const val TYPE_PRODUCT = "productos"
+const val TYPE_CATEGORY = "categorias"
