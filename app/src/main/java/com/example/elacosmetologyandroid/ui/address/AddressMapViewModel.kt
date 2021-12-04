@@ -23,6 +23,7 @@ class AddressMapViewModel : BaseViewModel(), KoinComponent {
      fun searchAddress(position: LatLng) {
         executeSuspend {
             val geoCoder = Geocoder(context, Locale("es"))
+
             val listAddress = geoCoder.getFromLocation(position.latitude, position.longitude, 1)
             listAddress?.isNullOrEmpty() ?: throw Resources.NotFoundException()
             val place = listAddress.first()

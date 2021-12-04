@@ -1,5 +1,6 @@
 package com.example.elacosmetologyandroid.ui
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
@@ -33,6 +34,15 @@ open class BaseViewModel : ViewModel() {
                 func()
             } catch (ex: Exception) {
                 errorLiveData.postValue(ex)
+            }
+        }
+
+    fun executeSuspendNotError(func: suspend () -> Unit) =
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                func()
+            } catch (ex: Exception) {
+               Log.d("tagError","$ex")
             }
         }
 

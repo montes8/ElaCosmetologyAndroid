@@ -26,6 +26,13 @@ interface ServiceApi {
         @Path("id")id : String,
         @Part archivo : MultipartBody.Part): Response<UserResponse>
 
+    @Multipart
+    @PUT("api/uploads/banner/{coleccion}/{id}")
+    suspend fun imageBanner(
+        @Path("coleccion")coleccion : String,
+        @Path("id")id : String,
+        @Part archivo : MultipartBody.Part): Response<UserResponse>
+
 
     @GET("api/uploads/{coleccion}/{id}")
     @Streaming

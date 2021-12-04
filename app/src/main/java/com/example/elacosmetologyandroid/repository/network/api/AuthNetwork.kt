@@ -57,16 +57,33 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
         }
     }
 
-    override suspend fun sendImageProfile(type: String, idUser: String, file: File): Boolean {
+    override suspend fun updateImage(type: String, idUser: String, file: File?): Boolean {
         return executeWithConnection {
-            val image = file.asRequestBody("image/*".toMediaType())
-            val multiPartBody = MultipartBody.Part.createFormData("archivo",file.name,image)
-            val response = serviceApi.imageProfile(type,idUser,multiPartBody)
-            var user : Boolean? = null
-            if (response.isSuccessful && response.body() != null) {
-                user = true
-            }
-            user?: false
+            file?.let {
+                val image = it.asRequestBody("image/*".toMediaType())
+                val multiPartBody = MultipartBody.Part.createFormData("archivo",it.name,image)
+                val response = serviceApi.imageProfile(type,idUser,multiPartBody)
+                var user : Boolean? = null
+                if (response.isSuccessful && response.body() != null) {
+                    user = true
+                }
+                user?: false
+            }?:false
+        }
+    }
+
+    override suspend fun updateImageBanner(type: String, idUser: String, file: File?): Boolean {
+        return executeWithConnection {
+            file?.let {
+                val image = it.asRequestBody("image/*".toMediaType())
+                val multiPartBody = MultipartBody.Part.createFormData("archivo",it.name,image)
+                val response = serviceApi.imageBanner(type,idUser,multiPartBody)
+                var user : Boolean? = null
+                if (response.isSuccessful && response.body() != null) {
+                    user = true
+                }
+                user?: false
+            }?:false
         }
     }
 

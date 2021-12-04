@@ -26,3 +26,7 @@ const val DATA_ADDRESS_PLACE = "DATA_ADDRESS_PLACE"
 const val TYPE_USER= "usuarios"
 const val TYPE_PRODUCT = "productos"
 const val TYPE_CATEGORY = "categorias"
+
+const val TYPE_USER_BANNER= "usuariosbanner"
+const val TYPE_PRODUCT_BANNER = "productosbanner"
+const val TYPE_CATEGORY_BANNER = "categoriasbanner"

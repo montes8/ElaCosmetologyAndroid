@@ -18,11 +18,13 @@
 
     <!-- TODO: error label -->
     <string name="error_email_format">El formato de correo ingresado no es valido</string>
-
+    <string name="error_image_update">Error al subir la imagen</string>
 
     <!-- TODO: text snackBar label -->
 
     <string name="text_message_profile_photo">Puedes actualizar tus imagenes tocando las imagenes</string>
+    <string name="text_success_profile_photo">Se actualizo la imagen de perfil</string>
+    <string name="text_success_profile_banner__photo">Se actualizo la imagen de biografia</string>
 
     <!-- TODO: text button-->
     <string name="dialog_accept">Aceptar</string>
@@ -67,6 +69,7 @@
     <string name="text_test">Gabriela Soledad</string>
     <string name="text_description_begin">Bienvenida(o) aqui encontraras videos referenciales de algunos establecimientos</string>
     <string name="title_activity_adress">Map</string>
+    <string name="text_title_dat_user_profile"><u>Datos Personales</u></string>
 
 
 </resources>

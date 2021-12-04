@@ -13,7 +13,9 @@ interface IAuthRepositoryNetwork {
 
      suspend fun sendImage(file : File):String
 
-     suspend fun sendImageProfile(type : String,idUser:String,file : File):Boolean
+     suspend fun updateImage(type : String,idUser:String,file : File?):Boolean
+
+     suspend fun updateImageBanner(type : String,idUser:String,file : File?):Boolean
 
      suspend fun loadImage(type : String,idUser:String):Bitmap
 }

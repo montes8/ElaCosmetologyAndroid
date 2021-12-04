@@ -43,7 +43,7 @@ class AppViewModel : BaseViewModel(), KoinComponent {
     }
 
     fun loadImage(type:String,idUser : String){
-        executeSuspendNotProgress {
+        executeSuspendNotError {
             val response = authUseCase.loadImage(type,idUser)
             _successImageLiveData.postValue(response)
         }

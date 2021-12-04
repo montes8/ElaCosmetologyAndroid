@@ -2,6 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="user"
+            type="com.example.elacosmetologyandroid.model.User" />
+
+      </data>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,7 +19,6 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/transparent"
         android:padding="@dimen/size_0"
         android:layout_margin="@dimen/size_0"
         app:elevation="@dimen/size_0"
@@ -40,16 +46,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:id="@+id/imgBannerProfile"
+                    android:id="@+id/imgImageBanner"
                     android:layout_width="match_parent"
                     android:scaleType="fitXY"
                     android:contentDescription="@null"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:src="@drawable/ic_bg_menu"
+                    android:src="@drawable/shape_place_holder"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_height="match_parent" />
+                <com.wang.avi.AVLoadingIndicatorView
+                    android:id="@+id/avLoadingBanner"
+                    android:layout_width="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_height="wrap_content"
+                    app:indicatorName="BallPulseIndicator"
+                    app:indicatorColor="@color/pink_200"
+                    />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -83,8 +101,21 @@
         app:layout_anchor="@id/appBarLayout"
         app:layout_anchorGravity="bottom|right" />
 
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avLoadingProfile"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/imgProfile"
+        android:elevation="@dimen/size_2"
+        app:layout_anchorGravity="center"
+        app:indicatorName="BallSpinFadeLoaderIndicator"
+        app:indicatorColor="@color/pink_200"
+        />
+
     <ImageButton
-        android:id="@+id/imgEditProfile"
+        android:id="@+id/imgBannerProfile"
         android:layout_width="wrap_content"
         android:contentDescription="@null"
         app:layout_anchor="@id/appBarLayout"
@@ -92,8 +123,9 @@
         android:background="@color/transparent"
         android:layout_marginEnd="@dimen/size_16"
         android:layout_marginTop="@dimen/size_40"
+        android:tint="@color/pink_200"
         app:layout_anchorGravity="top|right"
-        android:src="@drawable/ic_edit"
+        android:src="@drawable/ic_camera_banner"
         android:layout_height="wrap_content"/>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -116,40 +148,45 @@
 
                 <TextView
                     android:id="@+id/txtTitleDataUser"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_40"
                     android:fontFamily="@font/flexo_bold"
-                    android:text="Datos Personales"
+                    android:text="@string/text_title_dat_user_profile"
                     android:textColor="@color/pink_200"
                     android:textSize="@dimen/txt_size_20"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <View
-                    android:id="@+id/viewLineProfile"
+                <ImageButton
+                    android:id="@+id/imgEditProfile"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/size_1"
-                    android:layout_marginTop="@dimen/size_8"
-                    android:background="@color/pink_200"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtTitleDataUser" />
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_edit"
+                    android:layout_marginStart="@dimen/size_16"
+                    app:layout_constraintStart_toEndOf="@+id/txtTitleDataUser"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtTitleDataUser"
+                    app:layout_constraintTop_toTopOf="@+id/txtTitleDataUser" />
+
+
 
                 <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
                     android:id="@+id/editNameProfile"
                     style="@style/TextInputLayoutEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_20"
+                    android:layout_marginTop="@dimen/size_24"
                     app:uiHint="@string/text_name"
                     app:uiFocusable="false"
+                    app:uiEnabled="false"
+                    app:uiText="@{user.name}"
                     app:uiCursorVisibility="false"
                     android:imeOptions="actionNext"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/viewLineProfile" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtTitleDataUser" />
 
                 <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
                     style="@style/TextInputLayoutEdit"
@@ -157,9 +194,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:uiHint="@string/text_last_name"
-                    android:layout_marginTop="@dimen/size_10"
+                    android:layout_marginTop="@dimen/size_16"
                     android:imeOptions="actionNext"
                     app:uiFocusable="false"
+                    app:uiText="@{user.lastName}"
+                    app:uiEnabled="false"
                     app:uiCursorVisibility="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -170,10 +209,12 @@
                     android:id="@+id/editEmailProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_10"
+                    android:layout_marginTop="@dimen/size_16"
                     app:uiHint="@string/text_email"
                     android:imeOptions="actionNext"
                     app:uiFocusable="false"
+                    app:uiText="@{user.email}"
+                    app:uiEnabled="false"
                     app:uiCursorVisibility="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -184,8 +225,10 @@
                     android:id="@+id/editPhoneProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_10"
+                    android:layout_marginTop="@dimen/size_16"
                     app:uiHint="@string/text_phone"
+                    app:uiEnabled="false"
+                    app:uiText="@{user.phone}"
                     app:uiEditMaxLength="8"
                     android:imeOptions="actionNext"
                     app:uiFocusable="false"
@@ -199,8 +242,10 @@
                     android:id="@+id/editAddressProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_10"
+                    android:layout_marginTop="@dimen/size_16"
                     app:uiHint="@string/text_address"
+                    app:uiEnabled="false"
+                    app:uiText="@{user.address}"
                     app:uiFocusable="false"
                     app:uiDrawableEndEnabled="true"
                     app:uiCursorVisibility="false"

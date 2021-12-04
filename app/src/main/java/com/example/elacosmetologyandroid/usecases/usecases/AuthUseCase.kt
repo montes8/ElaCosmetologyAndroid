@@ -26,12 +26,17 @@ class AuthUseCase : KoinComponent {
          val response = iAuthRepositoryNetwork.login(responseRegister.email,register.password)
          appRepositoryPreference.saveToken(response.second)
          appRepositoryPreference.saveUser(JsonHelper.objectToJSON(response.first).toString())
-         file?.let { iAuthRepositoryNetwork.sendImageProfile(TYPE_USER,response.first.uid,it) }
+         file?.let { iAuthRepositoryNetwork.updateImage(TYPE_USER,response.first.uid,it) }
          return response.first
      }
 
     fun fetchUser() = JsonHelper.jsonToObject(appRepositoryPreference.getUser(),User::class.java)
 
     suspend fun loadImage(type : String,idUser:String) = iAuthRepositoryNetwork.loadImage(type,idUser)
+
+
+    suspend fun updateImage(type : String,idUser:String,file: File?) = iAuthRepositoryNetwork.updateImage(type,idUser,file)
+
+    suspend fun updateImageBanner(type : String,idUser:String,file: File?) = iAuthRepositoryNetwork.updateImageBanner(type,idUser,file)
 
 }

@@ -50,12 +50,37 @@ fun View.visible() = apply {
     visibility = View.VISIBLE
 }
 
+fun View.invisible() = apply {
+    visibility = View.INVISIBLE
+}
+
+
 fun View.gone() = apply {
     visibility = View.GONE
 }
 
 fun View.validateVisibility(value: Boolean) {
     if (value) visible() else gone()
+}
+
+fun View.validatePairVisibility(value: Boolean,view: View) {
+    if (value) {
+        this.visible()
+        view.invisible()
+    }else {
+        this.invisible()
+        view.visible()
+    }
+}
+
+fun View.validateVisibility(value: Boolean,view: View) {
+    if (value) {
+        this.visible()
+        view.gone()
+    }else {
+        this.gone()
+        view.visible()
+    }
 }
 
 fun AppCompatActivity.showDialogCustom(
