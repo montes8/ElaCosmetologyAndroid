@@ -41,7 +41,7 @@ class AppNetwork : IAppRepositoryNetwork, BaseNetwork(){
             if (response.isSuccessful && response.body() != null) {
                 list = ModelGeneric.toListModelGeneric(response.validateBody())
             }
-            list?: throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
+            list?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()
         }
     }
 }

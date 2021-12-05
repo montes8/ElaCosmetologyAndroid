@@ -28,7 +28,7 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
             if (response.isSuccessful) {
                 data = response.validateBody().toLogin()
             }
-            data?: throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
+            data?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()
         }
     }
 
@@ -40,7 +40,7 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
             if (response.isSuccessful && response.body() != null) {
                 user = response.validateBody().toUser()
             }
-            user?: throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
+            user?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()
         }
     }
 
@@ -53,7 +53,7 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
             if (response.isSuccessful && response.body() != null) {
                 imageResponse = response.validateBody().toImage()
             }
-            imageResponse?: throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
+            imageResponse?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()
         }
     }
 
@@ -96,7 +96,7 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
                     bitmap = BitmapFactory.decodeStream(it.byteStream())
                 }
             }
-            bitmap?: throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
+            bitmap?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()
         }
     }
 
@@ -107,7 +107,7 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
             if (response.isSuccessful && response.body() != null) {
                 userModel = response.validateBody().toUser()
             }
-            userModel?: throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
+            userModel?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()
         }
     }
 
@@ -118,7 +118,7 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
             if (response.isSuccessful && response.body() != null) {
                 userModel = response.validateBody().toUser()
             }
-            userModel?: throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
+            userModel?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()
         }
     }
 
@@ -129,7 +129,7 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
             if (response.isSuccessful && response.body() != null) {
                 userModel = response.validateBody().toUser()
             }
-            userModel?: throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
+            userModel?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()
         }
     }
 
