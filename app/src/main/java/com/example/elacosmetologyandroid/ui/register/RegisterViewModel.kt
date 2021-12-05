@@ -1,13 +1,9 @@
 package com.example.elacosmetologyandroid.ui.register
 
-import android.content.Context
-import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.button.ProgressButton
 import com.example.elacosmetologyandroid.component.edit.EditCustomLayout
-import com.example.elacosmetologyandroid.extensions.isEmailValid
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.usecases.usecases.AuthUseCase
@@ -21,7 +17,6 @@ import java.io.File
 class RegisterViewModel : BaseViewModel(), KoinComponent {
 
     private val authUseCase: AuthUseCase by inject()
-    private val context: Context by inject()
 
     val successAccountLiveData: LiveData<User?> get() = _successAccountLiveData
     private val _successAccountLiveData = MutableLiveData<User?>()

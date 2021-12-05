@@ -1,6 +1,7 @@
 package com.example.elacosmetologyandroid.repository.network.entity
 
 import com.example.elacosmetologyandroid.model.User
+import com.example.elacosmetologyandroid.utils.ADMIN_ROLE
 import com.example.elacosmetologyandroid.utils.EMPTY
 import com.example.elacosmetologyandroid.utils.USER_ROLE
 import com.google.gson.annotations.SerializedName
@@ -53,7 +54,7 @@ class UserResponse (
             user.address,
             user.img,
             user.banner,
-            USER_ROLE,true)
+            ADMIN_ROLE,true)
 
     }
 

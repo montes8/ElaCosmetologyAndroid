@@ -8,12 +8,15 @@ import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.databinding.FragmentAdminBinding
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
+import com.example.elacosmetologyandroid.ui.home.begin.adapter.BannerAdapter
 
 
 class AdminFragment : BaseFragment() {
 
 
     private lateinit var binding: FragmentAdminBinding
+
+    private var adapterAdmin = BannerAdapter()
 
     companion object {
         fun newInstance() = AdminFragment().apply {
@@ -31,6 +34,7 @@ class AdminFragment : BaseFragment() {
     }
 
     override fun setUpView() {
+        binding.adapterAdmin = adapterAdmin
     }
 
     override fun setBundle() {}
