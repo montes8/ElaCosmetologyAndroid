@@ -2,13 +2,14 @@
 <layout>
     <data>
         <variable
-            name="banner"
+            name="admin"
             type="com.example.elacosmetologyandroid.model.ModelGeneric" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/size_24"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -17,27 +18,27 @@
         android:layout_height="match_parent">
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="wrap_content"
-        android:id="@+id/cardBanner"
+        android:layout_width="match_parent"
+        android:id="@+id/cardAdmin"
         android:outlineSpotShadowColor="@color/pink_100"
         app:cardCornerRadius="@dimen/size_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="@dimen/size_8"
         android:layout_marginStart="@dimen/size_16"
-        android:layout_marginEnd="@dimen/size_4"
+        android:layout_marginEnd="@dimen/size_16"
         app:layout_constraintTop_toTopOf="parent"
         app:cardElevation="@dimen/size_12"
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="@dimen/size_120"
-            android:id="@+id/ctlBanner"
-            android:layout_height="@dimen/size_128">
+            android:layout_width="match_parent"
+            android:id="@+id/ctlAdmin"
+            android:layout_height="@dimen/size_170">
             <ImageView
                 android:contentDescription="@null"
                 android:layout_width="match_parent"
-                app:srcUlrPicasso="@{banner.icon}"
+                app:srcDrawableString="@{admin.icon}"
                 android:scaleType="fitXY"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -54,10 +55,10 @@
         android:layout_marginTop="@dimen/size_10"
         android:fontFamily="@font/flexo_bold"
         android:textSize="@dimen/txt_size_16"
-        android:text="@{banner.title}"
+        android:text="@{admin.title}"
         tools:text="laurita"
         android:textColor="@color/pink_200"
-        app:layout_constraintTop_toBottomOf="@+id/cardBanner"
+        app:layout_constraintTop_toBottomOf="@+id/cardAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />

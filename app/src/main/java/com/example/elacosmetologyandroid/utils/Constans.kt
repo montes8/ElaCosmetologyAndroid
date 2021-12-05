@@ -2,6 +2,7 @@ package com.example.elacosmetologyandroid.utils
 
 const val EMPTY = ""
 const val CONFIG_ITEM = "item.json"
+const val CONFIG_DATA_ADMIN = "dataAdmin.json"
 const val CONFIG_MUSIC = "musicbegin.json"
 const val USER_ROLE = "USER_ROLE"
 const val ADMIN_ROLE = "ADMIN_ROLE"
@@ -15,7 +16,6 @@ const val TEXT_CANCEL= "Cancelar"
 const val FADE_DURATION = 1000L
 
 const val ERROR_TEXT= "Ocurrio un error desconocido"
-const val REQUEST_CAMERA_PERMISSION = 2098
 const val NAME_PATH_PROFILE = "fotosPerfil"
 
 const val MAP_LIMA_LATITUDE = -12.089697

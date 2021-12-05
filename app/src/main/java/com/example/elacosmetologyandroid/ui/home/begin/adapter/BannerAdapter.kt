@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.elacosmetologyandroid.BR
 import com.example.elacosmetologyandroid.databinding.RowBannerBinding
+import com.example.elacosmetologyandroid.extensions.setOnClickDelay
 import com.example.elacosmetologyandroid.model.ModelGeneric
 
 class BannerAdapter(var onClickBanner: ((ModelGeneric) -> Unit)? = null) :
@@ -28,10 +29,11 @@ class BannerAdapter(var onClickBanner: ((ModelGeneric) -> Unit)? = null) :
 
 
 
-    class BannerViewHolder(private val binding: RowBannerBinding): RecyclerView.ViewHolder(binding.root){
+    inner class BannerViewHolder(private val binding: RowBannerBinding): RecyclerView.ViewHolder(binding.root){
         fun bind( banner: ModelGeneric) {
             binding.setVariable(BR.banner, banner)
             binding.executePendingBindings()
+            binding.ctlBanner.setOnClickDelay { onClickBanner?.invoke(banner) }
         }
     }
 }

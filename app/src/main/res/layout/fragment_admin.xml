@@ -6,7 +6,7 @@
     <data>
         <variable
             name="adapterAdmin"
-            type="com.example.elacosmetologyandroid.ui.home.begin.adapter.BannerAdapter" />
+            type="com.example.elacosmetologyandroid.ui.home.admin.adapter.AdminAdapter" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -23,16 +23,18 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:padding="@dimen/size_16"
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/txtTitleAdmin"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/size_0"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:textColor="@color/pink_200"
+                android:layout_marginEnd="@dimen/size_16"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_24"
                 android:fontFamily="@font/flexo_bold_italic"
-                android:textSize="@dimen/txt_size_25"
+                android:textSize="@dimen/txt_size_30"
                 android:lineSpacingExtra="@dimen/size_5"
                 app:layout_constraintStart_toStartOf="parent"
                 android:text="Aqui se administran la informacion de la aplicación"
@@ -43,9 +45,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_24"
                 app:adapter="@{adapterAdmin}"
+                android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
-                tools:listitem="@layout/row_banner"
+                tools:listitem="@layout/row_admin"
                 tools:itemCount="4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

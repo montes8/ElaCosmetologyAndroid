@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "Parametros",
+    "icon": "parametros"
+  },
+  {
+    "id": 2,
+    "title": "Usuarios",
+    "icon": "usuarios"
+  },
+  {
+    "id": 3,
+    "title": "Categorias",
+    "icon": "categorias"
+  },
+  {
+    "id": 4,
+    "title": "Productos",
+    "icon": "productos"
+  }
+]
