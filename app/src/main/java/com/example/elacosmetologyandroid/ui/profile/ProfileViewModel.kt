@@ -35,6 +35,12 @@ class ProfileViewModel : BaseViewModel(), KoinComponent {
 
     var userData: User? = null
 
+
+    fun setUserConfig(value : User){
+        userData = value
+    }
+
+
     fun updateImageProfile(idUser:String,file :File){
         executeSuspendNotError {
             val response = authUseCase.updateImage(TYPE_USER,idUser,file)
@@ -100,13 +106,12 @@ class ProfileViewModel : BaseViewModel(), KoinComponent {
     private fun updateUser(
         name: EditCustomLayout, lastName: EditCustomLayout, email: EditCustomLayout, phone: EditCustomLayout, address: EditCustomLayout
     ) {
-        userData = User(
-            name = name.uiText,
-            lastName = lastName.uiText,
-            email = email.uiText,
-            phone = phone.uiText,
-            address = address.uiText
-        )
+        userData?.name = name.uiText
+        userData?.lastName = lastName.uiText
+        userData?.email = email.uiText
+        userData?.phone = phone.uiText
+        userData?.address = address.uiText
+
     }
 
 }

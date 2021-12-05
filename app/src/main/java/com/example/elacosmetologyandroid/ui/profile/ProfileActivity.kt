@@ -12,19 +12,16 @@ import com.example.elacosmetologyandroid.databinding.ActivityProfileBinding
 import com.example.elacosmetologyandroid.extensions.*
 import com.example.elacosmetologyandroid.manager.UserTemporary
 import com.example.elacosmetologyandroid.model.PlaceModel
-import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.ui.address.AddressActivity
 import com.example.elacosmetologyandroid.ui.login.LoginActivity
-import com.example.elacosmetologyandroid.ui.login.LoginViewModel
 import com.example.elacosmetologyandroid.utils.DATA_ADDRESS_PLACE
 import com.example.elacosmetologyandroid.utils.NAME_PATH_PROFILE
 import com.example.elacosmetologyandroid.utils.TYPE_USER
 import com.example.elacosmetologyandroid.utils.TYPE_USER_BANNER
 import com.example.elacosmetologyandroid.utils.controller.CameraController
 import com.google.android.material.appbar.AppBarLayout
-import kotlinx.android.synthetic.main.nav_header_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
 import kotlin.math.abs
@@ -37,7 +34,6 @@ class ProfileActivity : BaseActivity(), CameraController.CameraControllerListene
 
     private lateinit var addressResult: ActivityResultLauncher<Int>
     private var cameraManager: CameraController? = null
-    private var userModel : User? = null
     private var flagClick = true
     private var typeBanner = true
 
@@ -63,7 +59,7 @@ class ProfileActivity : BaseActivity(), CameraController.CameraControllerListene
 
     private fun configDataUser(){
         UserTemporary.getUser()?.let {
-            userModel = it
+            viewModel.setUserConfig(it)
             binding.user = it
             binding.imgProfile.urlCustomImage(TYPE_USER,it.uid,false)
             binding.imgImageBanner.urlCustomImageBanner(TYPE_USER_BANNER,it.uid)
@@ -74,12 +70,12 @@ class ProfileActivity : BaseActivity(), CameraController.CameraControllerListene
         viewModel.successImageLiveData.observe(this,{
             hideLoadingImage()
             binding.imgProfile.validatePairVisibility(true,binding.avLoadingProfile)
-            if (it)genericSnackBarSuccess(true) else genericSnackBarError()
+            if (it)genericSnackBarSuccess(true) else genericSnackBarError(true)
         })
         viewModel.successImageBannerLiveData.observe(this,{
             hieLoadingImageBanner()
             binding.imgImageBanner.validatePairVisibility(true,binding.avLoadingBanner)
-            if (it)genericSnackBarSuccess(false) else genericSnackBarError()
+            if (it)genericSnackBarSuccess(false) else genericSnackBarError(true)
         })
 
         viewModel.errorLiveData.observe(this,{
@@ -90,6 +86,8 @@ class ProfileActivity : BaseActivity(), CameraController.CameraControllerListene
 
         viewModel.successUpdateUserLiveData.observe(this,{
             it?.apply {
+                binding.btnSaveProfile.isButtonLoading = false
+                binding.appBarLayout.setExpanded(true)
                 configDataUser()
                 successUserSnackBar()
                 enableViewEdit(false)
@@ -117,8 +115,8 @@ class ProfileActivity : BaseActivity(), CameraController.CameraControllerListene
         binding.imgEditProfile.setOnClickDelay { enableViewEdit(true) }
         binding.imgBannerProfile.setOnClickDelay {onClickImage(true)}
         binding.imgProfile.setOnClickDelay {onClickImage(false)}
-        binding.txtDeleteUser.setOnClickDelay{popUpDeleteAndDeactivateUser(true)}
-        binding.txtDeactivateUser.setOnClickDelay{popUpDeleteAndDeactivateUser(false)}
+        binding.txtDeleteUser.setOnClickDelay{popUpDeleteAndDeactivateUser(false)}
+        binding.txtDeactivateUser.setOnClickDelay{popUpDeleteAndDeactivateUser(true)}
         binding.btnSaveProfile.setOnClickButtonDelayListener{viewModel.updateProfile(binding.editEmailProfile,binding.btnSaveProfile)}
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
     }
@@ -129,9 +127,9 @@ class ProfileActivity : BaseActivity(), CameraController.CameraControllerListene
     }
 
     private fun popUpDeleteAndDeactivateUser(value: Boolean){
-        showDialogCustom(R.layout.dialog_generic, true,imageVisibility = false,description =
-        if (value)"Estas segura que deseas desactivar tu cuenta temporalmente" else "Estas segura de eliminar tu cuenta definitivamente todo tus datos se borran") {
-           userModel?.let { if (value)viewModel.inactiveAccount(it.uid) else viewModel.deleteAccount(it.uid)}
+        showDialogGeneric( true,imageVisibility = false,description =
+        if (value)getString(R.string.text_pop_up_inactivate_account) else getString(R.string.text_pop_up_delete_account)) {
+           viewModel.userData?.let { if (value)viewModel.inactiveAccount(it.uid) else viewModel.deleteAccount(it.uid)}
         }
     }
 
@@ -156,7 +154,6 @@ class ProfileActivity : BaseActivity(), CameraController.CameraControllerListene
         binding.imgEditProfile.validateVisibility(!value)
         binding.txtDeactivateUser.validateVisibility(value)
         binding.txtDeleteUser.validateVisibility(value)
-        if (value)genericSnackBar(true)
         flagClick = !flagClick
     }
 
@@ -177,7 +174,7 @@ class ProfileActivity : BaseActivity(), CameraController.CameraControllerListene
     override fun getValidActionToolBar() = false
 
     override fun onCameraPermissionDenied() {
-        genericSnackBar(false)
+        genericSnackBarError(false)
     }
 
     private fun configResult() {
@@ -209,24 +206,18 @@ class ProfileActivity : BaseActivity(), CameraController.CameraControllerListene
 
 
     private fun successUserSnackBar(){
-        showSnackBarCustom(binding.snackBarActivateProfile,"Sus datos de actualizarón correctamente")
+        showSnackBarCustom(binding.snackBarActivateProfile,getString(R.string.text_update_profile))
     }
-
 
     private fun genericSnackBarSuccess(value: Boolean){
         showSnackBarCustom(binding.snackBarActivateProfile,message = if (value)getString(R.string.text_success_profile_photo)else
             getString(R.string.text_success_profile_banner__photo))
     }
 
-    private fun genericSnackBarError(){
-        showSnackBarCustom(binding.snackBarActivateProfile,getString(R.string.error_image_update),
-        colorBg = R.color.red)
-    }
-
-    private fun genericSnackBar(value: Boolean){
-        showSnackBarCustom(binding.snackBarActivateProfile,message = if (value)getString(R.string.text_message_profile_photo)else
+    private fun genericSnackBarError(value: Boolean){
+        showSnackBarCustom(binding.snackBarActivateProfile,message = if (value)getString(R.string.error_image_update)else
             getString(R.string.error_denied_camera)
-            ,colorBg = if (value)R.color.pink_200 else R.color.red)
+            ,colorBg = R.color.red)
     }
 
     private fun showLoadingImage(){

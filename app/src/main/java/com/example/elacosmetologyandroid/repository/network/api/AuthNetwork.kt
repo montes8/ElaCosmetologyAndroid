@@ -102,7 +102,7 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
 
     override suspend fun updateUser(user: User): User {
         return executeWithConnection {
-            val response = serviceApi.updateUser(UserResponse.toUserResponse(user))
+            val response = serviceApi.updateUser(user.uid,UserResponse.toUserResponse(user))
             var userModel : User? = null
             if (response.isSuccessful && response.body() != null) {
                 userModel = response.validateBody().toUser()

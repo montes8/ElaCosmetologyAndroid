@@ -3,15 +3,12 @@ package com.example.elacosmetologyandroid.extensions
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Parcelable
-import android.provider.Settings
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.Spanned
@@ -29,13 +26,12 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.elacosmetologyandroid.BuildConfig
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.calendar.DatePickerDialog
-import com.example.elacosmetologyandroid.component.dialog.CustomDialog
+import com.example.elacosmetologyandroid.component.dialog.GenericDialog
 import com.example.elacosmetologyandroid.component.snackbar.SnackBarStatus
 import com.example.elacosmetologyandroid.repository.network.exception.ApiException
 import com.example.elacosmetologyandroid.repository.network.exception.CompleteErrorModel
@@ -87,21 +83,19 @@ fun View.validateVisibility(value: Boolean,view: View) {
     }
 }
 
-fun AppCompatActivity.showDialogCustom(
-    layout: Int,
+fun AppCompatActivity.showDialogGeneric(
     cancelable: Boolean = true,
     title: String = TITLE_DIALOG_DEFAULT, description: String = TITLE_DESCRIPTION_DEFAULT,
     icon: Int = R.drawable.ic_info_error, imageVisibility: Boolean = true,closeVisibility : Boolean = true,
     typeLotti :Int = 0,btnTextAccepted : String = getString(R.string.dialog_accept),btnTextNegative : String = getString(R.string.txt_cancel_btn),
-    func: CustomDialog.() -> Unit
+    func: GenericDialog.() -> Unit
 ) {
-    val dialog = CustomDialog(
-        layout, title = title, description = description, icon = icon, imageVisibility = imageVisibility,closeVisibility = closeVisibility
+    val dialog = GenericDialog(title = title, description = description, icon = icon, imageVisibility = imageVisibility,closeVisibility = closeVisibility
         ,typeLotti = typeLotti,btnTextAccepted = btnTextAccepted,btnTextNegative = btnTextNegative
     ) { func() }
     dialog.dialog?.setCancelable(cancelable)
     dialog.isCancelable = cancelable
-    dialog.show(this.supportFragmentManager, CustomDialog::class.java.name)
+    dialog.show(this.supportFragmentManager, GenericDialog::class.java.name)
 
 }
 
@@ -116,7 +110,7 @@ fun AppCompatActivity.showDialogDatePiker(
         func(Pair(it.first,it.second))
     }
 
-    dialog.show(this.supportFragmentManager, CustomDialog::class.java.name)
+    dialog.show(this.supportFragmentManager, GenericDialog::class.java.name)
 
 }
 

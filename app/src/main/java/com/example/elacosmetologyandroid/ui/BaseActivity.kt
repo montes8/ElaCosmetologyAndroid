@@ -2,12 +2,11 @@ package com.example.elacosmetologyandroid.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.progress.ProgressFull
 import com.example.elacosmetologyandroid.extensions.getError
 import com.example.elacosmetologyandroid.extensions.gone
-import com.example.elacosmetologyandroid.extensions.showDialogCustom
+import com.example.elacosmetologyandroid.extensions.showDialogGeneric
 import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
 import com.example.elacosmetologyandroid.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.mold_toolbar.*
@@ -46,7 +45,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun showDialogError(error: Throwable) {
         val valueError = error.getError(this)
-        showDialogCustom(R.layout.dialog_generic, true,title = valueError.second,description =
+        showDialogGeneric( true,title = valueError.second,description =
         valueError.third,icon = valueError.first,typeLotti = 1,closeVisibility = error !is UnAuthorizedException
         ) {
             if (error is UnAuthorizedException) {

@@ -19,8 +19,7 @@ import com.example.elacosmetologyandroid.component.button.ProgressButton
 import com.example.elacosmetologyandroid.extensions.validateVisibility
 
 
-class CustomDialog(
-    private val layout: Int,
+class GenericDialog(
     private var title: String,
     private var description: String,
     private var icon: Int,
@@ -29,7 +28,7 @@ class CustomDialog(
     private var typeLotti: Int,
     private var btnTextAccepted: String,
     private var btnTextNegative: String,
-    private val func: CustomDialog.() -> Unit
+    private val func: GenericDialog.() -> Unit
 ) :
     DialogFragment() {
 
@@ -56,14 +55,14 @@ class CustomDialog(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(layout, container, false)
+        val view = inflater.inflate(R.layout.dialog_generic, container, false)
         this.mView = view
         dialog?.window?.attributes?.windowAnimations = R.style.DialogTheme
         configActionDialog(this)
         return view
     }
 
-    private fun configActionDialog(dialog: CustomDialog){
+    private fun configActionDialog(dialog: GenericDialog){
         dialog.mView.findViewById<View>(R.id.imgCloseGeneric).validateVisibility(closeVisibility)
         dialog.mView.findViewById<ProgressButton>(R.id.btnCancelDialog).validateVisibility(!imageVisibility)
         configIconAndLotti(dialog)
@@ -79,7 +78,7 @@ class CustomDialog(
         }
     }
 
-    private fun configIconAndLotti(dialog: CustomDialog){
+    private fun configIconAndLotti(dialog: GenericDialog){
         if (typeLotti != 0) {
             dialog.mView.findViewById<LottieAnimationView>(R.id.lottieIconGeneric).validateVisibility(
                 imageVisibility

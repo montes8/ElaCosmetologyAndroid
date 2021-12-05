@@ -15,6 +15,15 @@
     <string name="base_location_description">Para obtener resultados más precisos debes ir a la configuración de tu celular y activar el permiso.</string>
 
 
+    <!-- TODO: text label pop up-->
+
+    <string name="text_pop_up_inactivate_account">Estas segura que deseas desactivar tu cuenta temporalmente</string>
+    <string name="text_pop_up_delete_account">Estas segura de eliminar tu cuenta definitivamente todo tus datos se borraran</string>
+
+
+    <!-- TODO: text label snack bar-->
+
+    <string name="text_update_profile">Sus datos de actualizarón correctamente</string>
 
     <!-- TODO: error label -->
     <string name="error_email_format">El formato de correo ingresado no es valido</string>

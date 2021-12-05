@@ -10,11 +10,10 @@ import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
-import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityAddressBinding
-import com.example.elacosmetologyandroid.extensions.showDialogCustom
+import com.example.elacosmetologyandroid.extensions.showDialogGeneric
 import com.example.elacosmetologyandroid.manager.PermissionManager
 import com.example.elacosmetologyandroid.model.LocationModel
 import com.example.elacosmetologyandroid.model.PlaceModel
@@ -159,8 +158,7 @@ class AddressActivity : BaseActivity(),LocationController.LocationControllerList
     }
 
     private fun openRationaleLocationPermission(isRational: Boolean = false) {
-        showDialogCustom(
-            R.layout.dialog_generic, false, imageVisibility = false,
+        showDialogGeneric(false, imageVisibility = false,
             title = getString(R.string.do_not_have_permission_to_location), description =
             getString(R.string.base_location_description),btnTextAccepted =  getString(R.string.base_location_button)
         ) {

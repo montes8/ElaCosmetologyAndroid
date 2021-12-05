@@ -258,7 +258,7 @@
                     android:fontFamily="@font/flexo_bold_italic"
                     android:textSize="@dimen/txt_size_16"
                     android:visibility="gone"
-                    android:layout_marginTop="@dimen/size_16"
+                    android:layout_marginTop="@dimen/size_24"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editAddressProfile"
                     android:layout_height="wrap_content"/>
@@ -273,7 +273,7 @@
                     android:textSize="@dimen/txt_size_16"
                     android:visibility="gone"
                     android:textColor="@color/pink_200"
-                    android:layout_marginTop="@dimen/size_16"
+                    android:layout_marginTop="@dimen/size_24"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtDeactivateUser"/>
@@ -283,7 +283,7 @@
                     android:id="@+id/btnSaveProfile"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="@dimen/size_32"
+                    android:layout_marginTop="@dimen/size_40"
                     app:buttonUISize="medium"
                     app:isButtonVisible="false"
                     app:layout_constraintBottom_toBottomOf="parent"

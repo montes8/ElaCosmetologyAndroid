@@ -3,6 +3,7 @@ package com.example.elacosmetologyandroid.usecases.usecases
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.usecases.repository.AppRepositoryPreference
 import com.example.elacosmetologyandroid.usecases.repository.IAuthRepositoryNetwork
+import com.example.elacosmetologyandroid.utils.EMPTY
 import com.example.elacosmetologyandroid.utils.JsonHelper
 import com.example.elacosmetologyandroid.utils.TYPE_USER
 import org.koin.core.KoinComponent
@@ -38,9 +39,17 @@ class AuthUseCase : KoinComponent {
         return response
     }
 
-    suspend fun deleteAccount(idUser: String) = iAuthRepositoryNetwork.deleteAccount(idUser)
+    suspend fun deleteAccount(idUser: String):User{
+        val response = iAuthRepositoryNetwork.deleteAccount(idUser)
+        appRepositoryPreference.saveToken(EMPTY)
+        return response
+    }
 
-    suspend fun inactiveAccount(idUser: String) = iAuthRepositoryNetwork.inactiveAccount(idUser)
+    suspend fun inactiveAccount(idUser: String):User{
+        val response = iAuthRepositoryNetwork.inactiveAccount(idUser)
+        appRepositoryPreference.saveToken(EMPTY)
+        return response
+    }
 
     suspend fun loadImage(type : String,idUser:String) = iAuthRepositoryNetwork.loadImage(type,idUser)
 

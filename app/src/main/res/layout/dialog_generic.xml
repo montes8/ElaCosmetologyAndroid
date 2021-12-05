@@ -95,6 +95,7 @@
             android:layout_marginEnd="@dimen/size_16"
             android:fontFamily="@font/flexo_medium"
             android:gravity="center_horizontal"
+            android:lineSpacingExtra="@dimen/size_5"
             android:text="@string/txt_logout_des"
             android:textAppearance="@android:style/TextAppearance.Material.Subhead"
             android:textColor="@color/pink_100"
