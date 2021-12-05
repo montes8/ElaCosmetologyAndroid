@@ -6,5 +6,5 @@ import com.example.elacosmetologyandroid.extensions.loadImageUrlPicasso
 
 @BindingAdapter("srcUlrPicasso")
 fun setImagePicasso(imageView: ImageView, url: String?) {
-    url?.let { imageView.loadImageUrlPicasso(url) }
+    url?.let { loadImageUrlPicasso(url,imageView) }
 }

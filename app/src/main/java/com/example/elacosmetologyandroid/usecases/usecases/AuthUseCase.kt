@@ -32,6 +32,16 @@ class AuthUseCase : KoinComponent {
 
     fun fetchUser() = JsonHelper.jsonToObject(appRepositoryPreference.getUser(),User::class.java)
 
+    suspend fun updateUser(user : User) : User {
+        val response = iAuthRepositoryNetwork.updateUser(user)
+        appRepositoryPreference.saveUser(JsonHelper.objectToJSON(response).toString())
+        return response
+    }
+
+    suspend fun deleteAccount(idUser: String) = iAuthRepositoryNetwork.deleteAccount(idUser)
+
+    suspend fun inactiveAccount(idUser: String) = iAuthRepositoryNetwork.inactiveAccount(idUser)
+
     suspend fun loadImage(type : String,idUser:String) = iAuthRepositoryNetwork.loadImage(type,idUser)
 
 

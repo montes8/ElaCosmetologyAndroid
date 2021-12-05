@@ -100,4 +100,37 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
         }
     }
 
+    override suspend fun updateUser(user: User): User {
+        return executeWithConnection {
+            val response = serviceApi.updateUser(UserResponse.toUserResponse(user))
+            var userModel : User? = null
+            if (response.isSuccessful && response.body() != null) {
+                userModel = response.validateBody().toUser()
+            }
+            userModel?: throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
+        }
+    }
+
+    override suspend fun deleteAccount(idUser: String): User {
+        return executeWithConnection {
+            val response = serviceApi.deleteUser(idUser)
+            var userModel : User? = null
+            if (response.isSuccessful && response.body() != null) {
+                userModel = response.validateBody().toUser()
+            }
+            userModel?: throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
+        }
+    }
+
+    override suspend fun inactiveAccount(idUser: String): User {
+        return executeWithConnection {
+            val response = serviceApi.inactiveUser(idUser)
+            var userModel : User? = null
+            if (response.isSuccessful && response.body() != null) {
+                userModel = response.validateBody().toUser()
+            }
+            userModel?: throw response.errorBody()?.toCompleteErrorModel()?.getException() ?: Exception()
+        }
+    }
+
 }

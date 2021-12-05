@@ -47,10 +47,13 @@ interface ServiceApi {
     suspend fun register(@Body userResponse: UserResponse): Response<DataUserResponse>
 
     @PUT("api/user")
-    suspend fun updateUser(): Response<UserResponse>
+    suspend fun updateUser(@Body userResponse: UserResponse): Response<UserResponse>
 
-    @DELETE("api/user")
-    suspend fun deleteUser(): Response<UserResponse>
+    @DELETE("api/user/{id}")
+    suspend fun inactiveUser(@Path("id")id : String): Response<UserResponse>
+
+    @DELETE("api/user/delete/{id}")
+    suspend fun deleteUser(@Path("id")id : String): Response<UserResponse>
 
     @GET("api/user")
     suspend fun listUser(): Response<List<User>>

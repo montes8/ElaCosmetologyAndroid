@@ -3,6 +3,7 @@ package com.example.elacosmetologyandroid.extensions
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -31,6 +32,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.elacosmetologyandroid.BuildConfig
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.calendar.DatePickerDialog
 import com.example.elacosmetologyandroid.component.dialog.CustomDialog
@@ -40,8 +42,10 @@ import com.example.elacosmetologyandroid.repository.network.exception.CompleteEr
 import com.example.elacosmetologyandroid.repository.network.exception.NetworkException
 import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
 import com.example.elacosmetologyandroid.utils.*
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.io.Serializable
+import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -288,14 +292,26 @@ fun showMaterialDialog(context: Context,message :String = TEXT_CLOSE_APP_, textB
     dialogCustom.show()
 }
 
-fun ImageView.loadImageUrlPicasso(url: String?) {
-    url?.let {
-        if (it.isNotEmpty()) {
-            Picasso.get()
-                .load(it).placeholder(R.drawable.shape_place_holder)
-                .into(this)
-        }
+fun loadImageUrlPicasso(url: String,view: ImageView,icon : Boolean = true) {
+    if (url.isNotEmpty()) {
+        Picasso.get()
+            .load(url).placeholder(if(icon)R.drawable.shape_place_holder else R.drawable.ic_profile_place_holder)
+            .into(view,object :Callback{
+                override fun onSuccess() {}
+
+                override fun onError(e: Exception?) {
+                    view.setImageResource(if(icon)R.drawable.shape_place_holder else R.drawable.ic_profile_place_holder)
+                }
+            })
     }
+}
+
+fun ImageView.urlCustomImage(type : String,id : String,icon : Boolean = true){
+    loadImageUrlPicasso("${BuildConfig.BASE_URL}api/uploads/$type/$id",this,icon)
+}
+
+fun ImageView.urlCustomImageBanner(type : String,id : String,icon : Boolean = true){
+    loadImageUrlPicasso("${BuildConfig.BASE_URL}api/uploads/banner/$type/$id",this,icon)
 }
 
 fun View.uiValidateVisibilityTwoView(value: Boolean, view: View) {
@@ -328,7 +344,7 @@ fun View.setMargins(
 }
 
 
-fun showSnackBarCustom(viewIdentifier: View,message: String = ERROR_TEXT,duration : Int = 2000,colorBg : Int = R.color.pink_200){
+fun showSnackBarCustom(viewIdentifier: View,message: String = ERROR_TEXT,duration : Int = 1500,colorBg : Int = R.color.pink_200){
         SnackBarStatus.findSuitableParent(viewIdentifier)?.let { view ->
             SnackBarStatus.make(
                 viewGroup = view,

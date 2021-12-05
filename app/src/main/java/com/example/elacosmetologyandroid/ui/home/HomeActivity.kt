@@ -124,17 +124,17 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun observeViewModel() {
-        viewModel.successImageLiveData.observe(this,{
+       /* viewModel.successImageLiveData.observe(this,{
             it?.apply {
                 imgProfileHome.setImageBitmap(this)
             }
-        })
+        })*/
     }
 
     private fun configDataUser(){
         UserTemporary.getUser()?.let {
+            imgProfileHome.urlCustomImage(TYPE_USER,it.uid,false)
             txtNameUserMenu.text = it.name
-            viewModel.loadImage(TYPE_USER,it.uid)
         }
     }
 

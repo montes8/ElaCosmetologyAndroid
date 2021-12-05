@@ -18,4 +18,10 @@ interface IAuthRepositoryNetwork {
      suspend fun updateImageBanner(type : String,idUser:String,file : File?):Boolean
 
      suspend fun loadImage(type : String,idUser:String):Bitmap
+
+     suspend fun updateUser(user : User):User
+
+     suspend fun deleteAccount(idUser: String):User
+
+     suspend fun inactiveAccount(idUser: String):User
 }

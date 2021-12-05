@@ -12,6 +12,7 @@ import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.usecases.usecases.AuthUseCase
 import com.example.elacosmetologyandroid.utils.EMPTY
+import com.example.elacosmetologyandroid.utils.validateEmail
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import java.io.File
@@ -79,13 +80,5 @@ class RegisterViewModel : BaseViewModel(), KoinComponent {
         )
     }
 
-
-    private fun validateEmail(email: EditCustomLayout): Boolean {
-        if (!isEmailValid(email.uiText)) {
-            email.uiErrorMessage = context.getString(R.string.error_email_format)
-            return false
-        }
-        return true
-    }
 
 }
