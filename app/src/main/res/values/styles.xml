@@ -77,4 +77,21 @@
         <item name="android:fontFamily">@font/flexo_bold</item>
     </style>
 
+    <style name="Custom.TabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="tabIndicatorColor">@color/pink_200</item>
+        <item name="tabIndicator">@drawable/inline_tab_indicator</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabMode">scrollable</item>
+        <item name="tabSelectedTextColor">@color/pink_200</item>
+        <item name="tabTextAppearance">@style/StyleTab</item>
+        <item name="tabTextColor">@color/gray_600</item>
+    </style>
+
+    <style name="StyleTab" parent="Flexo">
+        <item name="android:lineSpacingExtra">-1sp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/flexo_bold</item>
+    </style>
+
 </resources>

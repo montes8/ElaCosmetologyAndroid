@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.elacosmetologyandroid">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -31,6 +30,7 @@
         android:theme="@style/Custom.Theme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,LockedOrientationActivity">
+        <activity android:name=".ui.admin.ParametersActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -38,10 +38,10 @@
 
         <activity
             android:name=".ui.address.AddressActivity"
+            android:label="@string/title_activity_adress"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/Custom.NoActionBar.Light"
-            android:label="@string/title_activity_adress"/>
+            android:theme="@style/Custom.NoActionBar.Light" />
         <activity
             android:name=".ui.profile.ProfileActivity"
             android:launchMode="singleTop"

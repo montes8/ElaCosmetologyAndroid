@@ -79,6 +79,8 @@
     <string name="text_description_begin">Bienvenida(o) aqui encontraras videos referenciales de algunos establecimientos</string>
     <string name="title_activity_adress">Map</string>
     <string name="text_title_dat_user_profile"><u>Datos Personales</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

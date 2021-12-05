@@ -33,15 +33,12 @@ class ProfileActivity : BaseActivity(), CameraController.CameraControllerListene
     private val viewModel: ProfileViewModel by viewModel(clazz = ProfileViewModel::class)
 
     private lateinit var addressResult: ActivityResultLauncher<Int>
+    private lateinit var binding: ActivityProfileBinding
     private var cameraManager: CameraController? = null
     private var flagClick = true
     private var typeBanner = true
 
-    companion object {
-        fun start(context: Context) { context.startActivity(Intent(context, ProfileActivity::class.java)) }
-    }
-
-    private lateinit var binding: ActivityProfileBinding
+    companion object { fun start(context: Context) { context.startActivity(Intent(context, ProfileActivity::class.java)) } }
 
     override fun getMainView() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile)

@@ -7,6 +7,7 @@ import com.example.elacosmetologyandroid.databinding.FragmentAdminBinding
 import com.example.elacosmetologyandroid.model.ModelGeneric
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
+import com.example.elacosmetologyandroid.ui.admin.ParametersActivity
 import com.example.elacosmetologyandroid.ui.home.admin.adapter.AdminAdapter
 import com.example.elacosmetologyandroid.utils.CONFIG_DATA_ADMIN
 import com.example.elacosmetologyandroid.utils.getData
@@ -32,7 +33,7 @@ class AdminFragment : BaseFragment() {
 
     private fun configOnClickAdapter(model : ModelGeneric){
         when(model.id){
-            1 ->{}
+            1 ->{ParametersActivity.start(requireContext())}
             2 ->{}
             3 ->{}
             4 ->{}
