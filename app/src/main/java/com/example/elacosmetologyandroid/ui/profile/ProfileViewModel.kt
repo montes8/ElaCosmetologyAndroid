@@ -78,6 +78,7 @@ class ProfileViewModel : BaseViewModel(), KoinComponent {
                 btnProgress.isButtonLoading = true
                 executeSuspendNotProgress {
                     val response = authUseCase.updateUser(it)
+                    setUserConfig(response)
                     _successUpdateUserLiveData.postValue(response)
                 }
             }

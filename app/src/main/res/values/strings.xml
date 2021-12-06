@@ -58,6 +58,7 @@
     <string name="text_name">Nombres</string>
     <string name="text_phone">Telefono</string>
     <string name="text_address">Dirección</string>
+    <string name="text_title">Titulo</string>
     <string name="text_last_name">Apellidos</string>
     <string name="txt_forget_password"><u>Olvidaste Contraseña</u></string>
     <string name="txt_confirm_address">Confirmar dirección</string>
@@ -81,6 +82,12 @@
     <string name="text_title_dat_user_profile"><u>Datos Personales</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_rb_inactivate">Desactivar</string>
+    <string name="text_rb_activate">Activar</string>
+    <string name="text_title_register_param">Active o desactive el registro</string>
+    <string name="text_hint_description">escribe descripción aqui</string>
+    <string name="text_title_description">Agrege una descripcion</string>
+    <string name="text_title_param">Aqui puedes configurar los paramtros de inicio</string>
 
 
 </resources>

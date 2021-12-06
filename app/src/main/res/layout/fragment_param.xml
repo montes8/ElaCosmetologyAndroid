@@ -1,14 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.admin.param.ParamFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="param"
+            type="com.example.elacosmetologyandroid.model.ParamModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/ic_bg_general"
+            android:alpha="0.2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="match_parent"/>
 
-</FrameLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="@dimen/size_0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="@dimen/size_16"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="@dimen/size_0">
+
+        <TextView
+            android:id="@+id/txtTitleParam"
+            android:layout_width="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/size_10"
+            android:fontFamily="@font/flexo_bold_italic"
+            android:textSize="@dimen/txt_size_30"
+            android:textColor="@color/pink_200"
+            android:text="@string/text_title_param"
+            android:layout_height="wrap_content"/>
+
+        <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+            android:id="@+id/editTitleParam"
+            android:layout_width="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/TextInputLayoutEdit"
+            android:layout_marginTop="@dimen/size_48"
+            app:uiHint="@string/text_title"
+            app:uiText="@{param.title}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitleParam"
+            android:layout_height="wrap_content"/>
+
+         <TextView
+             android:id="@+id/txtDescriptionParam"
+             android:layout_width="match_parent"
+             android:layout_marginTop="@dimen/size_24"
+             android:text="@string/text_title_description"
+             android:textColor="@color/pink_200"
+             android:fontFamily="@font/flexo_bold_italic"
+             android:textSize="@dimen/txt_size_20"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@+id/editTitleParam"
+             android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editDescriptionParam"
+                android:layout_width="match_parent"
+                android:padding="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_16"
+                android:lines="8"
+                android:hint="@string/text_hint_description"
+                android:gravity="top"
+                android:text="@{param.description}"
+                android:textColor="@color/pink_200"
+                android:textSize="@dimen/txt_size_16"
+                android:textColorHint="@color/pink_100"
+                android:background="@drawable/shape_secondary_disabled_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtDescriptionParam"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/txtTitleActiveRegister"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/size_24"
+                android:text="@string/text_title_register_param"
+                android:textColor="@color/pink_200"
+                android:fontFamily="@font/flexo_bold_italic"
+                android:textSize="@dimen/txt_size_20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editDescriptionParam"
+                android:layout_height="wrap_content"/>
+
+            <RadioGroup
+                android:id="@+id/rgParam"
+                android:layout_width="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/size_20"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/txtTitleActiveRegister"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:text="@string/text_rb_activate"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textColor="@color/selector_item_menu"
+                    android:theme="@style/MyRadioButton"
+                    android:layout_height="wrap_content"/>
+
+                <RadioButton
+                    android:text="@string/text_rb_inactivate"
+                    android:theme="@style/MyRadioButton"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textColor="@color/selector_item_menu"
+                    android:layout_marginStart="@dimen/size_24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RadioGroup>
+
+            <com.example.elacosmetologyandroid.component.button.ProgressButton
+                android:id="@+id/btnSaveParam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/size_40"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:buttonUISize="medium"
+                app:buttonUIStyle="secondary"
+                app:buttonText="@string/txt_save"
+                app:isButtonEnabled="false"
+                android:layout_marginBottom="@dimen/size_40"
+                app:layout_constraintTop_toBottomOf="@+id/rgParam"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

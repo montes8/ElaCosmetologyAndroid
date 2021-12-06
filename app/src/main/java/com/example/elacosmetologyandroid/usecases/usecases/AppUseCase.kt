@@ -1,6 +1,7 @@
 package com.example.elacosmetologyandroid.usecases.usecases
 
 import com.example.elacosmetologyandroid.manager.UserTemporary
+import com.example.elacosmetologyandroid.model.ParamModel
 import com.example.elacosmetologyandroid.usecases.repository.AppRepositoryPreference
 import com.example.elacosmetologyandroid.usecases.repository.IAppRepositoryNetwork
 import com.example.elacosmetologyandroid.utils.EMPTY
@@ -22,5 +23,9 @@ class AppUseCase : KoinComponent {
     fun logout() = appRepositoryPreference.saveToken(EMPTY)
 
     suspend fun loadBanner() = iAuthRepositoryNetwork.loadBanner()
+
+    suspend fun loadParam() = iAuthRepositoryNetwork.loadParam()
+
+    suspend fun saveParam(param : ParamModel) = iAuthRepositoryNetwork.saveParam()
 
 }

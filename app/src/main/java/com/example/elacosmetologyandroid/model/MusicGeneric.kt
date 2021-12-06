@@ -9,6 +9,8 @@ import kotlinx.android.parcel.Parcelize
 data class MusicGeneric(
     @SerializedName("id")
     var id : String = EMPTY,
+    @SerializedName("idVideo")
+    var idMovie : String = EMPTY,
     @SerializedName("title")
     var title : String = EMPTY,
     @SerializedName("duration")
