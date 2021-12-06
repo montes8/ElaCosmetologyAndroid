@@ -63,7 +63,6 @@ class ParametersActivity : BaseActivity() {
         paramFragment = ParamFragment.newInstance()
         showFragment(paramFragment)
         configTab()
-
     }
 
     private fun showFragment(fragment: BaseFragment){
@@ -84,9 +83,7 @@ class ParametersActivity : BaseActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        finish()
-    }
+    override fun onBackPressed() { finish() }
 
     override fun getViewModel(): BaseViewModel? = null
 

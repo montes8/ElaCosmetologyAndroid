@@ -13,6 +13,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.elacosmetologyandroid.databinding.FragmentBeginBinding
 import com.example.elacosmetologyandroid.extensions.setOnClickDelay
+import com.example.elacosmetologyandroid.extensions.showDialogDatePiker
 import com.example.elacosmetologyandroid.extensions.uiValidateVisibilityTwoView
 import com.example.elacosmetologyandroid.extensions.validateVisibility
 import com.example.elacosmetologyandroid.manager.UserTemporary
@@ -145,6 +146,14 @@ class BeginFragment : BaseFragment(){
                 binding.rvBanner.uiValidateVisibilityTwoView(true,binding.shimmerBanner)
                 binding.txtNameWelcome.validateVisibility(UserTemporary.getUser()?.name?.isNotEmpty()==true)
                 binding.txtNameWelcome.text = UserTemporary.getUser()?.name
+                adapterBanner.onClickBanner = {
+                    when(it.id){
+                        1->showDialogDatePiker(typeCalendar = 1){}
+                        2->showDialogDatePiker(typeCalendar = 2){}
+                        else ->showDialogDatePiker(typeCalendar = 3){}
+                    }
+
+                }
             }
         })
 

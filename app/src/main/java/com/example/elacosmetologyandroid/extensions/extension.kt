@@ -114,6 +114,20 @@ fun AppCompatActivity.showDialogDatePiker(
 
 }
 
+fun Fragment.showDialogDatePiker(
+    dateDefault: Long = 0, dateOld: Long = 0, future: Int = 100, typeCalendar: Int = DatePickerDialog.MODE_FULL,
+    func: (Pair<Date,Int>) -> Unit
+) {
+    val dialog = DatePickerDialog(
+        dateDefault = dateDefault, dateOld = dateOld, future = future, typeCalendar = typeCalendar
+    ) {
+        func(Pair(it.first,it.second))
+    }
+
+    dialog.show(parentFragmentManager, GenericDialog::class.java.name)
+
+}
+
 fun Throwable.getError(context: Context): Triple<Int, String, String> {
     return when (this) {
         is ApiException -> Triple(

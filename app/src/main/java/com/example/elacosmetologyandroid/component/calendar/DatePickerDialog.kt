@@ -3,22 +3,40 @@ package com.example.elacosmetologyandroid.component.calendar
 import android.content.res.Resources
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.text.format.DateFormat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.example.elacosmetologyandroid.R
-import com.example.elacosmetologyandroid.extensions.gone
 import kotlinx.android.synthetic.main.dialog_date_picker.*
 import java.util.*
 
-class DatePickerDialog(private val dateDefault: Long, private val dateOld: Long, private val future: Int, private val typeCalendar: Int,
-                       private val func: (Pair<Date,Int>) -> Unit) : DialogFragment() {
+
+class DatePickerDialog(
+    private val dateDefault: Long,
+    private val dateOld: Long,
+    private val future: Int,
+    private val typeCalendar: Int,
+    private val func: (Pair<Date, Int>) -> Unit
+) : DialogFragment() {
 
     private lateinit var selectedDate: Date
+    var myHandler: Handler = Handler(Looper.getMainLooper())
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private val runnable = Runnable {
+        configInfoDate()
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.dialog_date_picker, container, false)
     }
 
@@ -44,34 +62,80 @@ class DatePickerDialog(private val dateDefault: Long, private val dateOld: Long,
             selectedDate = selectedDefault.time
             calendar = selectedDefault
         }
+        myHandler.removeCallbacks(runnable)
+        myHandler.postDelayed(runnable, 500)
 
         when(typeCalendar){
             MODE_SIN_DIA_MES -> {
-                txtDayCalendar.gone()
-                txtMothCalendar.gone()
-                datePickerCustom.findViewById<View>(Resources.getSystem().getIdentifier("day", "id", "android")).visibility = View.GONE
-                datePickerCustom.findViewById<View>(Resources.getSystem().getIdentifier("month", "id", "android")).visibility = View.GONE
+                txtTitleDateCustom.text = "Año"
+                datePickerCustom.findViewById<View>(
+                    Resources.getSystem().getIdentifier(
+                        "day",
+                        "id",
+                        "android"
+                    )
+                ).visibility = View.GONE
+                datePickerCustom.findViewById<View>(
+                    Resources.getSystem().getIdentifier(
+                        "month",
+                        "id",
+                        "android"
+                    )
+                ).visibility = View.GONE
             }
             MODE_SIN_DIA -> {
-                txtDayCalendar.gone()
-                datePickerCustom.findViewById<View>(Resources.getSystem().getIdentifier("day", "id", "android")).visibility = View.GONE
+                txtTitleDateCustom.text = "Mes y años"
+                datePickerCustom.findViewById<View>(
+                    Resources.getSystem().getIdentifier(
+                        "day",
+                        "id",
+                        "android"
+                    )
+                ).visibility = View.GONE
             }
         }
 
 
-        datePickerCustom.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)) { _, year, month, dayOfMonth ->
+        datePickerCustom.init(
+            calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(
+                Calendar.DAY_OF_MONTH
+            )
+        ) { _, year, monthOfYear, dayOfMonth ->
             val selected = Calendar.getInstance()
             selected.set(Calendar.YEAR, year)
-            selected.set(Calendar.MONTH, month)
+            selected.set(Calendar.MONTH, monthOfYear)
             selected.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             selectedDate = selected.time
+            myHandler.removeCallbacks(runnable)
+            myHandler.postDelayed(runnable, 500)
         }
 
+
+
+
         btnCalendarAccept.setOnClickListener {
-            func(Pair(selectedDate,typeCalendar))
+            func(Pair(selectedDate, typeCalendar))
             dismiss()
         }
         btnCalendarCancel.setOnClickListener { dismiss() }
+    }
+
+    private fun configInfoDate(){
+            val day = DateFormat.format("dd", selectedDate) as String
+            val monthNumber = DateFormat.format("MMMM", selectedDate) as String
+            val year = DateFormat.format("yyyy", selectedDate) as String
+            txtInfoDate.text = getStringConfigDate(day, monthNumber, year)
+            Log.d("tagFecha", "$day $monthNumber,$year")
+
+    }
+
+
+    private fun getStringConfigDate(day: String, moth: String, year: String):String{
+        return  when(typeCalendar){
+            1 -> "$day $moth $year"
+            2 -> "$moth $year"
+            else->year
+        }
     }
 
 

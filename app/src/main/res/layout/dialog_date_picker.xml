@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
@@ -18,100 +19,76 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:id="@+id/contentDatePiker"
+            android:layout_width="@dimen/size_0"
+            android:id="@+id/contentTileDatePiker"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_height="wrap_content">
-
             <TextView
-                android:id="@+id/txtDayCalendar"
+                android:id="@+id/txtTitleDateCustom"
                 android:layout_width="@dimen/size_0"
-                android:text="Dia"
-                android:textSize="@dimen/txt_size_20"
-                android:gravity="center"
-                android:fontFamily="@font/flexo_bold_italic"
-                android:textColor="@color/pink_200"
+                android:text="@string/text_date_piker_title"
+                android:textSize="@dimen/txt_size_14"
+                android:textColor="#7981B2"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/txtMothCalendar"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_height="wrap_content"/>
+
             <TextView
-                android:id="@+id/txtMothCalendar"
+                android:id="@+id/txtInfoDate"
                 android:layout_width="@dimen/size_0"
-                android:text="Mes"
-                android:fontFamily="@font/flexo_bold_italic"
-                android:textColor="@color/pink_200"
-                android:gravity="center"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textSize="@dimen/txt_size_20"
-                app:layout_constraintStart_toEndOf="@+id/txtDayCalendar"
-                app:layout_constraintEnd_toStartOf="@+id/txtYearCalendar"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/txtYearCalendar"
-                android:layout_width="@dimen/size_0"
-                android:text="Año"
-                android:fontFamily="@font/flexo_bold_italic"
-                android:textColor="@color/pink_200"
-                android:gravity="center"
-                app:layout_constraintStart_toEndOf="@+id/txtMothCalendar"
-                android:textSize="@dimen/txt_size_20"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/size_4"
+                android:fontFamily="@font/flexo_bold"
+                android:textSize="@dimen/txt_size_25"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtTitleDateCustom"
                 android:layout_height="wrap_content"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <DatePicker
             android:id="@+id/datePickerCustom"
             android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/size_10"
             android:layout_height="wrap_content"
             android:calendarViewShown="false"
             android:datePickerMode="spinner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtYearCalendar" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/contentTileDatePiker" />
 
-
-        <androidx.appcompat.widget.AppCompatButton
+        <TextView
             android:id="@+id/btnCalendarCancel"
-            android:layout_width="@dimen/size_0"
-            android:layout_height="@dimen/size_40"
-            android:layout_marginStart="@dimen/size_10"
-            android:layout_marginTop="@dimen/size_10"
-            android:layout_marginBottom="@dimen/size_4"
-            android:layout_marginEnd="@dimen/size_10"
-            android:background="@drawable/bg_row_botton_unselected"
-            android:fontFamily="@font/flexo_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_16"
+            android:fontFamily="@font/flexo_bold_italic"
             android:text="@string/txt_cancel_btn"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="@dimen/size_4"
+            android:textAllCaps="true"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnCalendarAccept"
             app:layout_constraintEnd_toStartOf="@+id/btnCalendarAccept"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contentDatePiker"
-            android:textColor="@color/pink_200"
-            android:textSize="12sp" />
+            app:layout_constraintTop_toTopOf="@+id/btnCalendarAccept" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <TextView
             android:id="@+id/btnCalendarAccept"
-            android:layout_width="@dimen/size_0"
-            android:layout_height="@dimen/size_40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_10"
-            android:layout_marginStart="@dimen/size_10"
-            android:layout_marginBottom="@dimen/size_4"
-            android:layout_marginEnd="@dimen/size_10"
-            android:background="@drawable/bg_row_button"
-            android:fontFamily="@font/flexo_bold"
-            android:textAllCaps="false"
+            android:background="@color/white"
+            android:padding="@dimen/size_4"
+            android:fontFamily="@font/flexo_bold_italic"
             android:text="@string/dialog_accept"
+            android:textAllCaps="true"
+            android:textSize="14sp"
+            android:textColor="#4F4FFF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnCalendarCancel"
-            app:layout_constraintTop_toBottomOf="@+id/contentDatePiker"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
+            app:layout_constraintTop_toBottomOf="@+id/datePickerCustom" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

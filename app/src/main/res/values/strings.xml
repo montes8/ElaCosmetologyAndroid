@@ -96,6 +96,7 @@
     <string name="text_hint_description">escribe descripción aqui</string>
     <string name="text_title_description">Agrege una descripcion</string>
     <string name="text_title_param">Aqui puedes configurar los paramtros de inicio</string>
+    <string name="text_date_piker_title">Fecha</string>
 
 
 </resources>
