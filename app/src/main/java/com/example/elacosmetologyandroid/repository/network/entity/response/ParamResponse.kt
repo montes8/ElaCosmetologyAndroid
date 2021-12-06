@@ -4,13 +4,13 @@ import com.example.elacosmetologyandroid.model.ParamModel
 import com.google.gson.annotations.SerializedName
 
 class ParamResponse (
-    @SerializedName("id")
+    @SerializedName("uid")
     var id : String,
     @SerializedName("titulo")
     var title : String,
     @SerializedName("descripcion")
     var description : String,
-    @SerializedName("resgistro")
+    @SerializedName("registro")
     var enableRegister : Boolean
 ){
     companion object{

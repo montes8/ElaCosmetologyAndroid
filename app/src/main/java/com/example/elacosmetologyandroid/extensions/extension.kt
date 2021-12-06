@@ -211,6 +211,24 @@ fun FragmentManager?.addFragmentToNavigation(
     }
 }
 
+fun FragmentManager?.replaceFragmentToNavigation(
+    fragment: Fragment,
+    tag: String,
+    containerId: Int,
+    currentFragment: Fragment? = null
+) {
+    this?.let {
+        if (!it.fragmentIsAdded(fragment)) {
+            it.beginTransaction().let { transaction ->
+                transaction.replace(containerId, fragment, tag)
+                currentFragment?.let { cFragment -> transaction.hide(cFragment) }
+                transaction.addToBackStack(tag)
+                transaction.commit()
+            }
+        } else showExistingFragment(fragment, currentFragment)
+    }
+}
+
 fun FragmentManager?.fragmentIsAdded(fragment: Fragment): Boolean {
     return this?.let { return !it.fragments.isNullOrEmpty() && it.fragments.contains(fragment) }
         ?: false

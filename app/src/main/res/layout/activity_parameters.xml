@@ -1,69 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.admin.ParametersActivity">
-    <include
-        android:id="@+id/toolbarParam"
-        layout="@layout/mold_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:elevation="@dimen/size_8"
-        android:id="@+id/contentTab"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarParam"
-        android:layout_height="wrap_content">
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabInsurance"
-            style="@style/Custom.TabLayout"
-            android:layout_width="@dimen/size_0"
+        android:layout_height="match_parent"
+        tools:context=".ui.admin.ParametersActivity">
+
+        <include
+            android:id="@+id/toolbarParam"
+            layout="@layout/mold_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarParam"
+            android:layout_height="@dimen/size_0"
+            android:alpha="0.2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/ic_bg_general" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contentTab"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_16"
-            android:layout_marginEnd="@dimen/size_16"
-            android:background="@android:color/transparent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:tabMode="fixed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tabGravity="fill">
+            android:elevation="@dimen/size_18"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarParam">
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Video" />
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabInsurance"
+                    style="@style/Custom.TabLayout"
+                    android:layout_width="@dimen/size_0"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tabGravity="fill"
+                    app:tabMode="fixed">
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Parametros" />
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Video" />
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Banner" />
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Parametros" />
 
-        </com.google.android.material.tabs.TabLayout>
+                    <com.google.android.material.tabs.TabItem
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Banner" />
 
+                </com.google.android.material.tabs.TabLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <FrameLayout
+                android:id="@+id/fragmentContentParam"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contentTab"
+                tools:ignore="UselessLeaf" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <FrameLayout
-        android:id="@+id/fragmentContentParam"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/size_0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contentTab"
-        tools:ignore="UselessLeaf" />
-
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

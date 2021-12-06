@@ -3,6 +3,7 @@ package com.example.elacosmetologyandroid.ui.admin.param
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import com.example.elacosmetologyandroid.databinding.FragmentParamBinding
 import com.example.elacosmetologyandroid.model.ParamModel
 import com.example.elacosmetologyandroid.ui.BaseFragment
@@ -14,7 +15,6 @@ class ParamFragment : BaseFragment() {
     private val viewModel: ParamViewModel by viewModel(clazz = ParamViewModel::class)
 
     private lateinit var binding: FragmentParamBinding
-    private var flagRegister = false
 
     companion object {
         fun newInstance() = ParamFragment()
@@ -22,12 +22,15 @@ class ParamFragment : BaseFragment() {
 
     override fun getMainView(inflater: LayoutInflater, container: ViewGroup?): View {
         binding = FragmentParamBinding.inflate(inflater)
-        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+        binding.param = ParamModel()
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
     override fun setUpView() {
         viewModel.loadParam()
+        configAction()
     }
 
     override fun setBundle() {}
@@ -38,12 +41,26 @@ class ParamFragment : BaseFragment() {
                 if (this.isNotEmpty())configDataParam(this[0])
             }
         })
+
+        viewModel.successParamLiveData.observe(this,{
+            binding.btnSaveParam.isButtonLoading = false
+        })
+
+        viewModel.errorLiveData.observe(this,{
+            binding.btnSaveParam.isButtonLoading = false
+        })
     }
 
     private fun configAction(){
         binding.btnSaveParam.setOnClickButtonDelayListener{
-
+          viewModel.saveParam(binding.btnSaveParam)
         }
+
+        binding.editTitleParam.uiEditCustomListener = {viewModel.validateParam(binding.editTitleParam,
+            binding.editDescriptionParam,binding.btnSaveParam)}
+
+        binding.editDescriptionParam.addTextChangedListener { viewModel.validateParam(binding.editTitleParam,
+            binding.editDescriptionParam,binding.btnSaveParam) }
     }
 
     private fun configDataParam(paramData : ParamModel){
@@ -51,5 +68,5 @@ class ParamFragment : BaseFragment() {
         binding.btnSaveParam.isButtonEnabled = true
     }
 
-    override fun getViewModel(): BaseViewModel? = null
+    override fun getViewModel(): BaseViewModel = viewModel
 }

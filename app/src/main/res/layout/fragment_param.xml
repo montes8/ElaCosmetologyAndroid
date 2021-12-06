@@ -5,6 +5,9 @@
 
     <data>
         <variable
+            name="viewModel"
+            type="com.example.elacosmetologyandroid.ui.admin.param.ParamViewModel" />
+        <variable
             name="param"
             type="com.example.elacosmetologyandroid.model.ParamModel" />
     </data>
@@ -122,6 +125,7 @@
                     android:layout_width="wrap_content"
                     android:text="@string/text_rb_activate"
                     android:textSize="@dimen/txt_size_20"
+                    android:checked="@={viewModel.registerObserver}"
                     android:textColor="@color/selector_item_menu"
                     android:theme="@style/MyRadioButton"
                     android:layout_height="wrap_content"/>
@@ -130,6 +134,7 @@
                     android:text="@string/text_rb_inactivate"
                     android:theme="@style/MyRadioButton"
                     android:textSize="@dimen/txt_size_20"
+                    android:checked="@={!viewModel.registerObserver}"
                     android:textColor="@color/selector_item_menu"
                     android:layout_marginStart="@dimen/size_24"
                     android:layout_width="wrap_content"
@@ -146,7 +151,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:buttonUISize="medium"
-                app:buttonUIStyle="secondary"
+                app:buttonUIStyle="primary"
                 app:buttonText="@string/txt_save"
                 app:isButtonEnabled="false"
                 android:layout_marginBottom="@dimen/size_40"

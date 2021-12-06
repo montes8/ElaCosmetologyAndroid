@@ -5,12 +5,24 @@ import android.content.Intent
 import androidx.databinding.DataBindingUtil
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityParametersBinding
+import com.example.elacosmetologyandroid.extensions.addFragmentToNavigation
+import com.example.elacosmetologyandroid.extensions.replaceFragmentToNavigation
 import com.example.elacosmetologyandroid.ui.BaseActivity
+import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
+import com.example.elacosmetologyandroid.ui.admin.param.ParamFragment
+import com.example.elacosmetologyandroid.ui.home.begin.BeginFragment
+import com.example.elacosmetologyandroid.ui.home.order.OrderFragment
+import com.example.elacosmetologyandroid.ui.home.product.ProductFragment
+import com.google.android.material.tabs.TabLayout
 
 class ParametersActivity : BaseActivity() {
 
     private lateinit var binding: ActivityParametersBinding
+
+    private lateinit var paramFragment   : ParamFragment
+   // private lateinit var productFragment : ProductFragment
+   // private lateinit var orderFragment   : OrderFragment
 
     companion object { fun start(context: Context) { context.startActivity(Intent(context, ParametersActivity::class.java)) } }
 
@@ -20,9 +32,51 @@ class ParametersActivity : BaseActivity() {
     }
 
     override fun setUpView() {
+        initFragment()
     }
 
     override fun observeViewModel() {}
+
+
+    private fun configTab(){
+        binding.tabInsurance.addOnTabSelectedListener(object :
+            TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                tab?.run { selectedTab(position) }
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
+    }
+
+    private fun selectedTab(position : Int){
+        when(position){
+            0 ->{showFragment(paramFragment)}
+            1 ->{}
+            2 ->{}
+        }
+    }
+
+    private fun initFragment(){
+        paramFragment = ParamFragment.newInstance()
+        showFragment(paramFragment)
+        configTab()
+
+    }
+
+    private fun showFragment(fragment: BaseFragment){
+        this.supportFragmentManager.let {
+            it.replaceFragmentToNavigation(
+                fragment,
+                fragment::class.java.name,
+                R.id.fragmentContentParam,
+            )
+        }
+    }
+
+    override fun onBackPressed() {
+        finish()
+    }
 
     override fun getViewModel(): BaseViewModel? = null
 
