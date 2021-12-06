@@ -8,12 +8,12 @@ import com.example.elacosmetologyandroid.databinding.FragmentParamBinding
 import com.example.elacosmetologyandroid.model.ParamModel
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
+import com.example.elacosmetologyandroid.ui.admin.ParametersActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ParamFragment : BaseFragment() {
 
     private val viewModel: ParamViewModel by viewModel(clazz = ParamViewModel::class)
-
     private lateinit var binding: FragmentParamBinding
 
     companion object {
@@ -36,19 +36,15 @@ class ParamFragment : BaseFragment() {
     override fun setBundle() {}
 
     override fun observeLiveData() {
-        viewModel.successListParamLiveData.observe(this, {
-            it?.apply {
-                if (this.isNotEmpty())configDataParam(this[0])
-            }
-        })
+        viewModel.successListParamLiveData.observe(this, { it?.apply { if (this.isNotEmpty())configDataParam(this[0]) } })
 
         viewModel.successParamLiveData.observe(this,{
+            it?.apply { binding.param = this }
             binding.btnSaveParam.isButtonLoading = false
+            (activity as ParametersActivity).showSuccessDialog()
         })
 
-        viewModel.errorLiveData.observe(this,{
-            binding.btnSaveParam.isButtonLoading = false
-        })
+        viewModel.errorLiveData.observe(this,{ binding.btnSaveParam.isButtonLoading = false })
     }
 
     private fun configAction(){

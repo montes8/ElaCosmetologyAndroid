@@ -123,13 +123,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     }
 
-    override fun observeViewModel() {
-       /* viewModel.successImageLiveData.observe(this,{
-            it?.apply {
-                imgProfileHome.setImageBitmap(this)
-            }
-        })*/
-    }
+    override fun observeViewModel() {}
 
     private fun configDataUser(){
         UserTemporary.getUser()?.let {

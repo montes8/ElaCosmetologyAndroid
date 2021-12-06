@@ -39,6 +39,8 @@
     <string name="dialog_accept">Aceptar</string>
     <string name="txt_cancel_btn">Cancelar</string>
     <string name="txt_confirm">Confirmar</string>
+    <string name="txt_continue">Continuar</string>
+    <string name="txt_end_up">Terminar</string>
     <string name="progress_button_loading">Loading…</string>
     <string name="txt_save">Guardar</string>
     <string name="txt_delete_user"><u>Eliminar cuenta</u></string>
@@ -46,9 +48,15 @@
     <string name="base_location_button">Ir a configuración</string>
 
 
-    <!-- TODO: text label-->
+    <!-- TODO: text label pop up-->
     <string name="Select_option">Select Option:</string>
+    <string name="text_update_data_param">Deseas seguir actualizando</string>
+    <string name="text_des_update_data_param">El proceso se realizo satisfactoriamente, elige si deseas continuar o deseas salir</string>
     <string name="txt_logout_des">¿Estás seguro que deseas cerrar sesión?</string>
+
+
+
+    <!-- TODO: text label pop up-->
     <string name="txt_title_splash">BIENVENIDA</string>
     <string name="txt_subtitle_splash">MIRA TU CATALOGO AHORA</string>
     <string name="register">¿Eres nuevo? Registrate</string>

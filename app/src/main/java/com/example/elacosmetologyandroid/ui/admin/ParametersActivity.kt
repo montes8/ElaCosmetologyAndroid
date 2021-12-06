@@ -7,6 +7,7 @@ import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityParametersBinding
 import com.example.elacosmetologyandroid.extensions.addFragmentToNavigation
 import com.example.elacosmetologyandroid.extensions.replaceFragmentToNavigation
+import com.example.elacosmetologyandroid.extensions.showDialogGeneric
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
@@ -14,6 +15,7 @@ import com.example.elacosmetologyandroid.ui.admin.param.ParamFragment
 import com.example.elacosmetologyandroid.ui.home.begin.BeginFragment
 import com.example.elacosmetologyandroid.ui.home.order.OrderFragment
 import com.example.elacosmetologyandroid.ui.home.product.ProductFragment
+import com.example.elacosmetologyandroid.ui.login.LoginActivity
 import com.google.android.material.tabs.TabLayout
 
 class ParametersActivity : BaseActivity() {
@@ -71,6 +73,14 @@ class ParametersActivity : BaseActivity() {
                 fragment::class.java.name,
                 R.id.fragmentContentParam,
             )
+        }
+    }
+
+    fun showSuccessDialog(){
+        showDialogGeneric(true,imageVisibility = false,title = getString(R.string.text_update_data_param),
+            description = getString(R.string.text_des_update_data_param),
+            btnTextAccepted = getString(R.string.txt_end_up),btnTextNegative = getString(R.string.txt_continue)) {
+            finish()
         }
     }
 

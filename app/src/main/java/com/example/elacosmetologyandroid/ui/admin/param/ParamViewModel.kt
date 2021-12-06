@@ -41,7 +41,7 @@ class ParamViewModel : BaseViewModel(), KoinComponent {
         btnParam.isButtonLoading = true
         executeSuspend {
             val response = appUseCase.saveParam(paramModel)
-             paramModel = response
+            configDefault(response)
             _successParamLiveData.postValue(response)
         }
     }
