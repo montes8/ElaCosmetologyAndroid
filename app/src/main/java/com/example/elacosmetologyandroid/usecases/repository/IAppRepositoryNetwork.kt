@@ -14,4 +14,6 @@ interface IAppRepositoryNetwork {
      suspend fun loadParam():List<ParamModel>
 
      suspend fun saveParam(param : ParamModel):ParamModel
+
+     suspend fun updateParam(param : ParamModel):ParamModel
 }

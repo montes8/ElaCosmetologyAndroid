@@ -46,6 +46,15 @@ class ParamViewModel : BaseViewModel(), KoinComponent {
         }
     }
 
+    fun updateParam(btnParam : ProgressButton){
+        btnParam.isButtonLoading = true
+        executeSuspend {
+            val response = appUseCase.updateParam(paramModel)
+            configDefault(response)
+            _successParamLiveData.postValue(response)
+        }
+    }
+
     private fun configDefault(param : ParamModel){
         paramModel = param
         registerObserver.set(paramModel.enableRegister)

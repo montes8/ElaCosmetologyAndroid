@@ -75,4 +75,8 @@ interface ServiceApi {
 
     @POST("api/config/param")
     suspend fun saveParam(@Body paramResponse: ParamResponse): Response<ParamResponse>
+
+    @PUT("api/config/param/{id}")
+    suspend fun updateParam(@Path("id")id : String,
+                            @Body paramResponse: ParamResponse): Response<ParamResponse>
 }

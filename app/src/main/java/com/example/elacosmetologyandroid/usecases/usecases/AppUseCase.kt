@@ -28,4 +28,6 @@ class AppUseCase : KoinComponent {
 
     suspend fun saveParam(param : ParamModel) = iAuthRepositoryNetwork.saveParam(param)
 
+    suspend fun updateParam(param : ParamModel) = iAuthRepositoryNetwork.updateParam(param)
+
 }

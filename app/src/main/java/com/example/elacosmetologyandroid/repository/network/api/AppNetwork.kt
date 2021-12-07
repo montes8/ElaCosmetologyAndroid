@@ -68,4 +68,15 @@ class AppNetwork : IAppRepositoryNetwork, BaseNetwork(){
             paramModel?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()
         }
     }
+
+    override suspend fun updateParam(param: ParamModel): ParamModel {
+        return executeWithConnection {
+            val response = serviceApi.updateParam(param.id,ParamResponse.toParamResponse(param))
+            var paramModel : ParamModel? = null
+            if (response.isSuccessful && response.body() != null) {
+                paramModel = ParamResponse.toParamModel(response.validateBody())
+            }
+            paramModel?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()
+        }
+    }
 }
