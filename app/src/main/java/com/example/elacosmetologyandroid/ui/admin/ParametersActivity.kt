@@ -11,7 +11,9 @@ import com.example.elacosmetologyandroid.extensions.showDialogGeneric
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
+import com.example.elacosmetologyandroid.ui.admin.banner.BannerFragment
 import com.example.elacosmetologyandroid.ui.admin.param.ParamFragment
+import com.example.elacosmetologyandroid.ui.admin.video.VideoFragment
 import com.example.elacosmetologyandroid.ui.home.begin.BeginFragment
 import com.example.elacosmetologyandroid.ui.home.order.OrderFragment
 import com.example.elacosmetologyandroid.ui.home.product.ProductFragment
@@ -24,8 +26,8 @@ class ParametersActivity : BaseActivity() {
     private lateinit var binding: ActivityParametersBinding
 
     private lateinit var paramFragment   : ParamFragment
-   // private lateinit var productFragment : ProductFragment
-   // private lateinit var orderFragment   : OrderFragment
+    private lateinit var videoFragment : VideoFragment
+    private lateinit var bannerFragment   : BannerFragment
 
     companion object { fun start(context: Context) { context.startActivity(Intent(context, ParametersActivity::class.java)) } }
 
@@ -56,8 +58,8 @@ class ParametersActivity : BaseActivity() {
     private fun selectedTab(position : Int){
         when(position){
             0 ->{showFragment(paramFragment)}
-            1 ->{}
-            2 ->{}
+            1 ->{showFragment(videoFragment)}
+            2 ->{showFragment(bannerFragment)}
         }
     }
 
