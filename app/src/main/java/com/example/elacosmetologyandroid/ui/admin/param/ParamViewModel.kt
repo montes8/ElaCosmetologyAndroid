@@ -1,6 +1,5 @@
 package com.example.elacosmetologyandroid.ui.admin.param
 
-import android.widget.EditText
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.view.isNotEmpty
 import androidx.databinding.ObservableBoolean
@@ -17,8 +16,8 @@ import org.koin.core.inject
 
 class ParamViewModel : BaseViewModel(), KoinComponent {
 
-    val successListParamLiveData        : LiveData<List<ParamModel>> get()   = _successListParamLiveData
-    private val _successListParamLiveData    = MutableLiveData<List<ParamModel>>()
+    val successListParamLiveData        : LiveData<ParamModel> get()   = _successListParamLiveData
+    private val _successListParamLiveData    = MutableLiveData<ParamModel>()
 
     val successParamLiveData        : LiveData<ParamModel> get()   = _successParamLiveData
     private val _successParamLiveData    = MutableLiveData<ParamModel>()
@@ -32,7 +31,7 @@ class ParamViewModel : BaseViewModel(), KoinComponent {
     fun loadParam(){
         executeSuspend{
             val response = appUseCase.loadParam()
-            if (response.isNotEmpty())configDefault(response[0])
+            if (response.id.isNotEmpty())configDefault(response)
             _successListParamLiveData.postValue(response)
         }
     }

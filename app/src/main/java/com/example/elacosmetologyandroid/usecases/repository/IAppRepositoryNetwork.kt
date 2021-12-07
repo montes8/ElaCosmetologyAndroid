@@ -11,7 +11,7 @@ interface IAppRepositoryNetwork {
 
      suspend fun loadBanner():List<ModelGeneric>
 
-     suspend fun loadParam():List<ParamModel>
+     suspend fun loadParam():ParamModel
 
      suspend fun saveParam(param : ParamModel):ParamModel
 

@@ -38,8 +38,8 @@ class ParamFragment : BaseFragment() {
 
     override fun observeLiveData() {
         viewModel.successListParamLiveData.observe(this, { it?.apply {
-            if (this.isNotEmpty()){
-                configDataParam(this[0])
+            if (this.id.isNotEmpty()){
+                configDataParam(this)
                   flagUpdateParam = true
                 }
              }

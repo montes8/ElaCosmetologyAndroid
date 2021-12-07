@@ -60,6 +60,7 @@
             android:layout_width="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             style="@style/TextInputLayoutEdit"
+            android:imeOptions="actionNext"
             android:layout_marginTop="@dimen/size_48"
             app:uiHint="@string/text_title"
             app:uiText="@{param.title}"

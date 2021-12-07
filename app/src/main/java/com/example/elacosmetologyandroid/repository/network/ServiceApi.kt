@@ -71,7 +71,7 @@ interface ServiceApi {
     //servicios de configuracion por defaul
 
     @GET("api/config/param")
-    suspend fun loadParam(): Response<List<ParamResponse>>
+    suspend fun loadParam(): Response<ParamResponse>
 
     @POST("api/config/param")
     suspend fun saveParam(@Body paramResponse: ParamResponse): Response<ParamResponse>

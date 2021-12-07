@@ -16,6 +16,7 @@ import com.example.elacosmetologyandroid.ui.home.begin.BeginFragment
 import com.example.elacosmetologyandroid.ui.home.order.OrderFragment
 import com.example.elacosmetologyandroid.ui.home.product.ProductFragment
 import com.example.elacosmetologyandroid.ui.login.LoginActivity
+import com.example.elacosmetologyandroid.utils.EMPTY
 import com.google.android.material.tabs.TabLayout
 
 class ParametersActivity : BaseActivity() {
@@ -35,6 +36,7 @@ class ParametersActivity : BaseActivity() {
 
     override fun setUpView() {
         initFragment()
+        binding.toolbarParam.txtTitleToolbar.text = "Configuraciones"
     }
 
     override fun observeViewModel() {}
