@@ -30,11 +30,12 @@ class ParamFragment : BaseFragment() {
     }
 
     override fun setUpView() {
-        viewModel.loadParam()
         configAction()
     }
 
-    override fun setBundle() {}
+    override fun setBundle() {
+        viewModel.loadParam()
+    }
 
     override fun observeLiveData() {
         viewModel.successListParamLiveData.observe(this, { it?.apply {

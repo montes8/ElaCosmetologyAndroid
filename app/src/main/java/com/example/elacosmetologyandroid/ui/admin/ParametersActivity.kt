@@ -3,6 +3,7 @@ package com.example.elacosmetologyandroid.ui.admin
 import android.content.Context
 import android.content.Intent
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityParametersBinding
 import com.example.elacosmetologyandroid.extensions.addFragmentToNavigation
@@ -24,7 +25,7 @@ import com.google.android.material.tabs.TabLayout
 class ParametersActivity : BaseActivity() {
 
     private lateinit var binding: ActivityParametersBinding
-
+    private var currentFragment: BaseFragment? = null
     private lateinit var paramFragment   : ParamFragment
     private lateinit var videoFragment : VideoFragment
     private lateinit var bannerFragment   : BannerFragment
@@ -65,18 +66,28 @@ class ParametersActivity : BaseActivity() {
 
     private fun initFragment(){
         paramFragment = ParamFragment.newInstance()
+        videoFragment = VideoFragment.newInstance()
+        bannerFragment = BannerFragment.newInstance()
         showFragment(paramFragment)
         configTab()
     }
 
-    private fun showFragment(fragment: BaseFragment){
-        this.supportFragmentManager.let {
-            it.replaceFragmentToNavigation(
-                fragment,
-                fragment::class.java.name,
-                R.id.fragmentContentParam,
-            )
+    private fun showFragment(fragment: BaseFragment):Boolean{
+        if (this.currentFragment != fragment) {
+            this.supportFragmentManager.let {
+                it.addFragmentToNavigation(
+                    fragment,
+                    fragment::class.java.name,
+                    R.id.fragmentContentParam,
+                    this.currentFragment
+                )
+                this.validateCurrentFragmentInstance(fragment)
+            }
+        } else {
+            if (this.currentFragment?.isVisible == true)
+                this.currentFragment?.backToFirstFragmentOfNavigation()
         }
+        return true
     }
 
     fun showSuccessDialog(){
@@ -85,6 +96,10 @@ class ParametersActivity : BaseActivity() {
             btnTextAccepted = getString(R.string.txt_end_up),btnTextNegative = getString(R.string.txt_continue)) {
             finish()
         }
+    }
+
+    private fun validateCurrentFragmentInstance(fragment: Fragment) {
+        if (fragment is BaseFragment) this.currentFragment = fragment
     }
 
     override fun onBackPressed() { finish() }
