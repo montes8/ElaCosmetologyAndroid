@@ -2,6 +2,7 @@ package com.example.elacosmetologyandroid.repository.network.exception
 
 import com.google.gson.Gson
 import okhttp3.ResponseBody
+import java.net.HttpURLConnection.HTTP_PROXY_AUTH
 
 fun ResponseBody?.toCompleteErrorModel(code : Int) : CompleteErrorModel? {
     return this?.let {

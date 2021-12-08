@@ -30,7 +30,10 @@
         android:theme="@style/Custom.Theme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,LockedOrientationActivity">
-        <activity android:name=".ui.admin.ParametersActivity"></activity>
+        <activity android:name=".ui.admin.ParametersActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Custom.NoActionBar.LightWhite"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

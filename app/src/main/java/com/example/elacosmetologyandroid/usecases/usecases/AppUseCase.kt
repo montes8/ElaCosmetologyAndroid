@@ -2,6 +2,7 @@ package com.example.elacosmetologyandroid.usecases.usecases
 
 import com.example.elacosmetologyandroid.manager.UserTemporary
 import com.example.elacosmetologyandroid.model.ParamModel
+import com.example.elacosmetologyandroid.model.VideoModel
 import com.example.elacosmetologyandroid.usecases.repository.AppRepositoryPreference
 import com.example.elacosmetologyandroid.usecases.repository.IAppRepositoryNetwork
 import com.example.elacosmetologyandroid.utils.EMPTY
@@ -29,5 +30,7 @@ class AppUseCase : KoinComponent {
     suspend fun saveParam(param : ParamModel) = iAuthRepositoryNetwork.saveParam(param)
 
     suspend fun updateParam(param : ParamModel) = iAuthRepositoryNetwork.updateParam(param)
+
+    suspend fun saveVideo(video : VideoModel) = iAuthRepositoryNetwork.saveVideo(video)
 
 }

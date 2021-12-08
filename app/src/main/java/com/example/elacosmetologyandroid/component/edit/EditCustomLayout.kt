@@ -202,7 +202,6 @@ class EditCustomLayout @JvmOverloads constructor(
                 setCursorPosition(cursorPosition)
                 field = value
             }
-            //uiErrorEnable = false
         }
         get() = editText.text?.toString() ?: ""
 

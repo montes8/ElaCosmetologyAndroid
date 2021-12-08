@@ -16,6 +16,15 @@
         <item name="android:windowDisablePreview">true</item>
     </style>
 
+    <style name="Custom.NoActionBar.LightWhite" parent="Custom.Theme">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/primary_Accent</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
     <style name="Custom.NoActionBar.white" parent="Custom.Theme">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/white</item>

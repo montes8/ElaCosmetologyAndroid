@@ -3,7 +3,7 @@ package com.example.elacosmetologyandroid.utils
 const val EMPTY = ""
 const val CONFIG_ITEM = "item.json"
 const val CONFIG_DATA_ADMIN = "dataAdmin.json"
-const val CONFIG_MUSIC = "musicbegin.json"
+const val CONFIG_MUSIC = "videobegin.json"
 const val USER_ROLE = "USER_ROLE"
 const val ADMIN_ROLE = "ADMIN_ROLE"
 

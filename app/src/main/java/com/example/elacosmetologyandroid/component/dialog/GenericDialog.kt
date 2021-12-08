@@ -16,6 +16,7 @@ import androidx.fragment.app.DialogFragment
 import com.airbnb.lottie.LottieAnimationView
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.button.ProgressButton
+import com.example.elacosmetologyandroid.component.button.ProgressButtonSize
 import com.example.elacosmetologyandroid.extensions.validateVisibility
 
 

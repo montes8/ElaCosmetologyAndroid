@@ -9,9 +9,18 @@ import com.example.elacosmetologyandroid.extensions.gone
 import com.example.elacosmetologyandroid.extensions.showDialogGeneric
 import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
 import com.example.elacosmetologyandroid.ui.login.LoginActivity
+import com.example.elacosmetologyandroid.usecases.usecases.AppUseCase
 import kotlinx.android.synthetic.main.mold_toolbar.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.inject
+import org.koin.java.KoinJavaComponent.inject
+import java.net.ProtocolException
 
 abstract class BaseActivity : AppCompatActivity() {
+
+
+    private val viewModel: AppViewModel by viewModel(clazz = AppViewModel::class)
+
     abstract fun getMainView()
     abstract fun setUpView()
     abstract fun observeViewModel()
@@ -48,7 +57,8 @@ abstract class BaseActivity : AppCompatActivity() {
         showDialogGeneric( true,title = valueError.second,description =
         valueError.third,icon = valueError.first,typeLotti = 1,closeVisibility = error !is UnAuthorizedException
         ) {
-            if (error is UnAuthorizedException) {
+            if (error is UnAuthorizedException || error is ProtocolException) {
+                viewModel.logout()
                 goLogin()
             } else {
                 if (!isDestroyed) {

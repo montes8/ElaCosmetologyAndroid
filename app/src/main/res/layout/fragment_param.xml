@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.elacosmetologyandroid.ui.admin.param.ParamViewModel" />
+            type="com.example.elacosmetologyandroid.ui.admin.ParametersViewModel" />
         <variable
             name="param"
             type="com.example.elacosmetologyandroid.model.ParamModel" />
@@ -27,9 +27,12 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
+            android:id="@+id/nsvParam"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+            tools:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_height="@dimen/size_0">
 
@@ -50,7 +53,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/flexo_bold_italic"
-            android:textSize="@dimen/txt_size_30"
+            android:textSize="@dimen/txt_size_25"
             android:textColor="@color/pink_200"
             android:text="@string/text_title_param"
             android:layout_height="wrap_content"/>
@@ -93,7 +96,7 @@
                 android:textColor="@color/pink_200"
                 android:textSize="@dimen/txt_size_16"
                 android:textColorHint="@color/pink_100"
-                android:background="@drawable/shape_secondary_disabled_button"
+                android:background="@drawable/bg_corner_pink_round"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtDescriptionParam"
@@ -159,6 +162,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/rgParam"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerParam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_40"
+            android:layout_marginBottom="@dimen/size_48"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="visible"
+            tools:visibility="gone">
+            <include layout="@layout/shimmer_admin_param" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

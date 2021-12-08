@@ -17,7 +17,7 @@ import com.example.elacosmetologyandroid.extensions.showDialogDatePiker
 import com.example.elacosmetologyandroid.extensions.uiValidateVisibilityTwoView
 import com.example.elacosmetologyandroid.extensions.validateVisibility
 import com.example.elacosmetologyandroid.manager.UserTemporary
-import com.example.elacosmetologyandroid.model.MusicGeneric
+import com.example.elacosmetologyandroid.model.VideoModel
 import com.example.elacosmetologyandroid.ui.AppViewModel
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
@@ -36,7 +36,7 @@ class BeginFragment : BaseFragment(){
     private var videoRequest: ActivityResultLauncher<Intent>? = null
     private var adapterNameMusic = NameMusicAdapter()
     private var adapterBanner = BannerAdapter()
-    private var lisMusic : List<MusicGeneric> = ArrayList()
+    private var lisMusic : List<VideoModel> = ArrayList()
 
     private var youTubePlayerObserver: YouTubePlayer? = null
     private var flagVideo = true
@@ -118,6 +118,7 @@ class BeginFragment : BaseFragment(){
             adapterNameMusic.parameterList = lisMusic
             adapterNameMusic.onClickMusic = {
                 positionMovie = it
+                adapterNameMusic.setPositionSelected(positionMovie)
                 onUpdateMusic(lisMusic[it])
             }
         }
@@ -125,13 +126,14 @@ class BeginFragment : BaseFragment(){
 
     private fun configPositionMovie(){
         positionMovie += 1
-        flagVideoNext = false
         adapterNameMusic.setPositionSelected(positionMovie)
         onUpdateMusic(lisMusic[positionMovie])
-        Handler(Looper.getMainLooper()).postDelayed({flagVideoNext=true }, 2000)
+
     }
 
-    private fun onUpdateMusic(music : MusicGeneric){
+    private fun onUpdateMusic(music : VideoModel){
+        flagVideoNext = false
+        Handler(Looper.getMainLooper()).postDelayed({flagVideoNext=true }, 1000)
         UserTemporary.musicGeneric = music
         UserTemporary.musicGeneric.duration = 0
         UserTemporary.musicGeneric.durationTotal = 0

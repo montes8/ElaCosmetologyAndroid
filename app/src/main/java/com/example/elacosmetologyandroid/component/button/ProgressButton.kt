@@ -244,7 +244,7 @@ class ProgressButton constructor(
             }
             ProgressButtonSize.MEDIUM -> {
                 paddingButton =
-                    context.resources.getDimensionPixelSize(R.dimen.progress_button_padding_medium)
+                    context.resources.getDimensionPixelSize(R.dimen.progress_button_padding_small)
                 buttonTextSize = context.resources.getDimension(R.dimen.progress_button_size_medium)
                 params.height =
                     context.resources.getDimensionPixelSize(R.dimen.progress_button_height_medium)
@@ -311,7 +311,7 @@ class ProgressButton constructor(
 
     private fun setUpButtonSecondary() {
         setColorTextAndProgress(
-            textColor = context.getColor(R.color.pink_600),
+            textColor = context.getColor(R.color.pink_200),
             progressColor = context.getColor(R.color.pink_600)
         )
         backgroundButtonDefault(background = R.drawable.selector_secondary_button)
@@ -326,7 +326,7 @@ class ProgressButton constructor(
     }
 
     private fun setUpButtonText() {
-        binding.button.setTextColor(context.getColor(R.color.pink_600))
+        binding.button.setTextColor(context.getColor(R.color.pink_200))
         backgroundButtonDefault(background = R.drawable.shape_text_default_button)
         removeButtonPadding()
     }

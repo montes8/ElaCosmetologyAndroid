@@ -1,11 +1,10 @@
 package com.example.elacosmetologyandroid.repository.network
 
 import com.example.elacosmetologyandroid.model.ModelGeneric
-import com.example.elacosmetologyandroid.model.ParamModel
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.repository.network.entity.DataUserResponse
 import com.example.elacosmetologyandroid.repository.network.entity.ImageResponse
-import com.example.elacosmetologyandroid.repository.network.entity.MusicGenericResponse
+import com.example.elacosmetologyandroid.repository.network.entity.VideoResponse
 import com.example.elacosmetologyandroid.repository.network.entity.UserResponse
 import com.example.elacosmetologyandroid.repository.network.entity.response.ParamResponse
 import okhttp3.MultipartBody
@@ -62,7 +61,7 @@ interface ServiceApi {
     suspend fun listUser(): Response<List<User>>
 
     @GET("api/config/parameter")
-    suspend fun listMusic(): Response<List<MusicGenericResponse>>
+    suspend fun listMusic(): Response<List<VideoResponse>>
 
     @GET("api/config/banner")
     suspend fun loadBanner(): Response<List<ModelGeneric>>
@@ -79,4 +78,15 @@ interface ServiceApi {
     @PUT("api/config/param/{id}")
     suspend fun updateParam(@Path("id")id : String,
                             @Body paramResponse: ParamResponse): Response<ParamResponse>
+
+
+    @GET("api/config/video")
+    suspend fun loadVideo(): Response<List<VideoResponse>>
+
+    @POST("api/config/video")
+    suspend fun saveVideo(@Body videoResponse: VideoResponse): Response<VideoResponse>
+
+    @PUT("api/config/video/{id}")
+    suspend fun updateVideo(@Path("id")id : String,
+                            @Body paramResponse: VideoResponse): Response<VideoResponse>
 }

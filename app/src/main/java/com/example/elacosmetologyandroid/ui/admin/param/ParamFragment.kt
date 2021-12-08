@@ -5,15 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import com.example.elacosmetologyandroid.databinding.FragmentParamBinding
+import com.example.elacosmetologyandroid.extensions.validateVisibility
 import com.example.elacosmetologyandroid.model.ParamModel
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.ui.admin.ParametersActivity
+import com.example.elacosmetologyandroid.ui.admin.ParametersViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ParamFragment : BaseFragment() {
 
-    private val viewModel: ParamViewModel by viewModel(clazz = ParamViewModel::class)
+    private val viewModel: ParametersViewModel by viewModel(clazz = ParametersViewModel::class)
     private lateinit var binding: FragmentParamBinding
     private var flagUpdateParam = false
 
@@ -38,15 +40,13 @@ class ParamFragment : BaseFragment() {
     }
 
     override fun observeLiveData() {
-        viewModel.successListParamLiveData.observe(this, { it?.apply {
-            if (this.id.isNotEmpty()){
-                configDataParam(this)
-                  flagUpdateParam = true
-                }
-             }
+        viewModel.successParamDefaultLiveData.observe(this, { it?.apply {
+            binding.nsvParam.validateVisibility(true,binding.shimmerParam)
+            if (this.id.isNotEmpty()){ configDataParam(this) } }
         })
 
-        viewModel.successParamLiveData.observe(this,{
+        viewModel.successUpdateParamLiveData.observe(this,{
+            binding.nsvParam.validateVisibility(true,binding.shimmerParam)
             it?.apply { binding.param = this }
             binding.btnSaveParam.isButtonLoading = false
             (activity as ParametersActivity).showSuccessDialog()
@@ -57,6 +57,7 @@ class ParamFragment : BaseFragment() {
 
     private fun configAction(){
         binding.btnSaveParam.setOnClickButtonDelayListener{
+            binding.nsvParam.validateVisibility(false,binding.shimmerParam)
           if (flagUpdateParam)viewModel.updateParam(binding.btnSaveParam) else viewModel.saveParam(binding.btnSaveParam)
         }
 
@@ -68,6 +69,7 @@ class ParamFragment : BaseFragment() {
     }
 
     private fun configDataParam(paramData : ParamModel){
+        flagUpdateParam = true
         binding.param = paramData
         binding.btnSaveParam.isButtonEnabled = true
     }

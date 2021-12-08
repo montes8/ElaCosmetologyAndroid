@@ -2,19 +2,15 @@ package com.example.elacosmetologyandroid.model
 
 import android.os.Parcelable
 import com.example.elacosmetologyandroid.utils.EMPTY
-import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class MusicGeneric(
-    @SerializedName("id")
+data class VideoModel(
     var id : String = EMPTY,
-    @SerializedName("idVideo")
     var idMovie : String = EMPTY,
-    @SerializedName("title")
-    var title : String = EMPTY,
-    @SerializedName("duration")
+    var author : String = EMPTY,
+    var nameVideo : String = EMPTY,
+    var description : String = EMPTY,
     var duration :Int = 0,
-    @SerializedName("durationTotal")
     var durationTotal :Int = 0
 ):Parcelable

@@ -10,7 +10,7 @@ import android.view.animation.ScaleAnimation
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.elacosmetologyandroid.R
-import com.example.elacosmetologyandroid.model.MusicGeneric
+import com.example.elacosmetologyandroid.model.VideoModel
 import com.example.elacosmetologyandroid.utils.FADE_DURATION
 import kotlinx.android.synthetic.main.row_bottom_generic.view.*
 
@@ -19,7 +19,7 @@ class NameMusicAdapter(var onClickMusic: ((Int) -> Unit)? = null) :
 
     private var positionSelected = -1
 
-    var parameterList: List<MusicGeneric> = arrayListOf()
+    var parameterList: List<VideoModel> = arrayListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -47,8 +47,8 @@ class NameMusicAdapter(var onClickMusic: ((Int) -> Unit)? = null) :
         }
     }
 
-    private fun initView(holder: LyricsViewHolder,music : MusicGeneric,position: Int){
-        holder.itemView.txtCustomTitle.text = music.title
+    private fun initView(holder: LyricsViewHolder, music : VideoModel, position: Int){
+        holder.itemView.txtCustomTitle.text = music.nameVideo
         holder.itemView.txtCustomTitle.background = getBackgroundLyrics(positionSelected == position,holder.itemView.context)
         holder.itemView.txtCustomTitle.setTextColor( getColorLyrics (positionSelected == position,holder.itemView.context))
     }

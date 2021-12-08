@@ -1,9 +1,8 @@
 package com.example.elacosmetologyandroid.manager
 
 import android.content.Context
-import com.example.elacosmetologyandroid.model.MusicGeneric
+import com.example.elacosmetologyandroid.model.VideoModel
 import com.example.elacosmetologyandroid.ui.BaseViewModel
-import com.example.elacosmetologyandroid.usecases.usecases.AppUseCase
 import com.example.elacosmetologyandroid.usecases.usecases.AuthUseCase
 import com.example.elacosmetologyandroid.utils.CONFIG_MUSIC
 import com.example.elacosmetologyandroid.utils.getData
@@ -14,9 +13,9 @@ object UserTemporary : KoinComponent, BaseViewModel() {
     private val authUseCase: AuthUseCase by inject()
     private val context: Context by inject()
 
-    var musicGeneric = MusicGeneric()
+    var musicGeneric = VideoModel()
 
-    var listMusic :  List<MusicGeneric> = getData(context, CONFIG_MUSIC)
+    var listMusic :  List<VideoModel> = getData(context, CONFIG_MUSIC)
 
     fun getUser() = authUseCase.fetchUser()
 

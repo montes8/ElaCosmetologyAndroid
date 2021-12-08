@@ -57,6 +57,7 @@ class ParametersActivity : BaseActivity() {
     }
 
     private fun selectedTab(position : Int){
+        if(position != 1)configItemFragmentMovie()
         when(position){
             0 ->{showFragment(paramFragment)}
             1 ->{showFragment(videoFragment)}
@@ -100,6 +101,13 @@ class ParametersActivity : BaseActivity() {
 
     private fun validateCurrentFragmentInstance(fragment: Fragment) {
         if (fragment is BaseFragment) this.currentFragment = fragment
+    }
+
+    private fun configItemFragmentMovie(){
+        supportFragmentManager.let {
+            val fragment = it.findFragmentByTag(VideoFragment::class.java.name) as VideoFragment
+            fragment.setStopVideo()
+        }
     }
 
     override fun onBackPressed() { finish() }

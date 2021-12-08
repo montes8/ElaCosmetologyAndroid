@@ -42,6 +42,7 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.io.Serializable
 import java.lang.Exception
+import java.net.ProtocolException
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -147,6 +148,11 @@ fun Throwable.getError(context: Context): Triple<Int, String, String> {
             context.getString(R.string.error_internet_description)
         )
         is UnAuthorizedException -> Triple(
+            R.drawable.ic_info_error,
+            context.getString(R.string.user_unauthorized_title),
+            context.getString(R.string.user_unauthorized_description)
+        )
+        is ProtocolException -> Triple(
             R.drawable.ic_info_error,
             context.getString(R.string.user_unauthorized_title),
             context.getString(R.string.user_unauthorized_description)
