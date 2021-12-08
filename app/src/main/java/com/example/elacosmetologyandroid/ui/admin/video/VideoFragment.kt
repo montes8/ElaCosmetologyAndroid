@@ -3,7 +3,9 @@ package com.example.elacosmetologyandroid.ui.admin.video
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import com.example.elacosmetologyandroid.databinding.FragmentVideoBinding
+import com.example.elacosmetologyandroid.extensions.validateVisibility
 import com.example.elacosmetologyandroid.manager.UserTemporary
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
@@ -43,6 +45,12 @@ class VideoFragment : BaseFragment() {
                 (activity as ParametersActivity).showSuccessDialog()
             }
         })
+
+        viewModel.errorLiveData.observe(this,{
+            binding.btnSaveVideo.isButtonLoading = false
+            binding.nsvVideoAdmin.validateVisibility(true,binding.shimmerVideo)
+            (activity as ParametersActivity).errorSnackBarSaveData()
+        })
     }
 
     private fun configAction(){
@@ -52,12 +60,13 @@ class VideoFragment : BaseFragment() {
         binding.btnSaveVideo.setOnClickButtonDelayListener{viewModel.saveVideo(binding.btnSaveVideo)}
         binding.editIdVideo.uiEditCustomListener = {validateVideo()}
         binding.editAuthorVideo.uiEditCustomListener = {validateVideo()}
-        binding.editIdVideo.addTextChangedListener { validateVideo() }
+        binding.editNameVideo.uiEditCustomListener = {validateVideo()}
+        binding.editDescriptionVideo.addTextChangedListener {validateVideo() }
 
     }
 
     private fun validateVideo(){
-        viewModel.validateVideo(binding.editIdVideo,binding.editAuthorVideo,
+        viewModel.validateVideo(binding.editIdVideo,binding.editAuthorVideo,binding.editNameVideo,
             binding.editDescriptionVideo,binding.btnSaveVideo)
     }
 
@@ -80,5 +89,5 @@ class VideoFragment : BaseFragment() {
         youTubePlayerObserver?.pause()
     }
 
-    override fun getViewModel(): BaseViewModel? = null
+    override fun getViewModel(): BaseViewModel = viewModel
 }

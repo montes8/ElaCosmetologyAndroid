@@ -81,9 +81,10 @@ class ParametersViewModel : BaseViewModel(), KoinComponent {
     }
 
 
-    fun validateVideo(idVideo : EditCustomLayout,author : EditCustomLayout,description : AppCompatEditText,btnVideo : ProgressButton){
-        btnVideo.isButtonEnabled = idVideo.uiText.isNotEmpty() && author.uiText.isNotEmpty() &&description.text.toString().isNotEmpty()
+    fun validateVideo(idVideo : EditCustomLayout,author : EditCustomLayout,nameVideo : EditCustomLayout,description : AppCompatEditText,btnVideo : ProgressButton){
+        btnVideo.isButtonEnabled = idVideo.uiText.isNotEmpty() && author.uiText.isNotEmpty() && nameVideo.uiText.isNotEmpty() && description.text.toString().isNotEmpty()
         videoModel.idMovie = idVideo.uiText
+        videoModel.nameVideo = nameVideo.uiText
         videoModel.description = description.text.toString()
         videoModel.author = author.uiText
     }

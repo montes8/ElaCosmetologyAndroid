@@ -46,18 +46,19 @@ class ParamFragment : BaseFragment() {
         })
 
         viewModel.successUpdateParamLiveData.observe(this,{
-            binding.nsvParam.validateVisibility(true,binding.shimmerParam)
             it?.apply { binding.param = this }
             binding.btnSaveParam.isButtonLoading = false
             (activity as ParametersActivity).showSuccessDialog()
         })
 
-        viewModel.errorLiveData.observe(this,{ binding.btnSaveParam.isButtonLoading = false })
+        viewModel.errorLiveData.observe(this,{
+            binding.nsvParam.validateVisibility(true,binding.shimmerParam)
+            (activity as ParametersActivity).errorSnackBarSaveData()
+            binding.btnSaveParam.isButtonLoading = false })
     }
 
     private fun configAction(){
         binding.btnSaveParam.setOnClickButtonDelayListener{
-            binding.nsvParam.validateVisibility(false,binding.shimmerParam)
           if (flagUpdateParam)viewModel.updateParam(binding.btnSaveParam) else viewModel.saveParam(binding.btnSaveParam)
         }
 

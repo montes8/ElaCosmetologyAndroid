@@ -9,6 +9,7 @@ import com.example.elacosmetologyandroid.databinding.ActivityParametersBinding
 import com.example.elacosmetologyandroid.extensions.addFragmentToNavigation
 import com.example.elacosmetologyandroid.extensions.replaceFragmentToNavigation
 import com.example.elacosmetologyandroid.extensions.showDialogGeneric
+import com.example.elacosmetologyandroid.extensions.showSnackBarCustom
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
@@ -21,6 +22,7 @@ import com.example.elacosmetologyandroid.ui.home.product.ProductFragment
 import com.example.elacosmetologyandroid.ui.login.LoginActivity
 import com.example.elacosmetologyandroid.utils.EMPTY
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.activity_register.*
 
 class ParametersActivity : BaseActivity() {
 
@@ -97,6 +99,10 @@ class ParametersActivity : BaseActivity() {
             btnTextAccepted = getString(R.string.txt_end_up),btnTextNegative = getString(R.string.txt_continue)) {
             finish()
         }
+    }
+
+    fun errorSnackBarSaveData(){
+        showSnackBarCustom(binding.snackBarParameters,getString(R.string.error_general_title),colorBg = R.color.red)
     }
 
     private fun validateCurrentFragmentInstance(fragment: Fragment) {
