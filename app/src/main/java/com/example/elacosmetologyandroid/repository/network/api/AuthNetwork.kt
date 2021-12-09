@@ -4,7 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.repository.network.ServiceApi
-import com.example.elacosmetologyandroid.repository.network.entity.UserResponse
+import com.example.elacosmetologyandroid.repository.network.entity.response.UserResponse
 import com.example.elacosmetologyandroid.repository.network.exception.BaseNetwork
 import com.example.elacosmetologyandroid.repository.network.exception.toCompleteErrorModel
 import com.example.elacosmetologyandroid.repository.network.utils.EMPTY
@@ -102,7 +102,7 @@ class AuthNetwork : IAuthRepositoryNetwork, BaseNetwork(){
 
     override suspend fun updateUser(user: User): User {
         return executeWithConnection {
-            val response = serviceApi.updateUser(user.uid,UserResponse.toUserResponse(user))
+            val response = serviceApi.updateUser(user.uid, UserResponse.toUserResponse(user))
             var userModel : User? = null
             if (response.isSuccessful && response.body() != null) {
                 userModel = response.validateBody().toUser()

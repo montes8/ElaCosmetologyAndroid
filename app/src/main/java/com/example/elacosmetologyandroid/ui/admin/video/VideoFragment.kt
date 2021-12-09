@@ -5,8 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import com.example.elacosmetologyandroid.databinding.FragmentVideoBinding
-import com.example.elacosmetologyandroid.extensions.validateVisibility
-import com.example.elacosmetologyandroid.manager.UserTemporary
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.ui.admin.ParametersActivity
@@ -48,7 +46,6 @@ class VideoFragment : BaseFragment() {
 
         viewModel.errorLiveData.observe(this,{
             binding.btnSaveVideo.isButtonLoading = false
-            binding.nsvVideoAdmin.validateVisibility(true,binding.shimmerVideo)
             (activity as ParametersActivity).errorSnackBarSaveData()
         })
     }

@@ -45,17 +45,17 @@
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Parametros" />
+                        android:text="@string/text_item_tab_param" />
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Video" />
+                        android:text="@string/text_item_tab_movie" />
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Banner" />
+                        android:text="@string/text_item_tab_banner" />
 
                 </com.google.android.material.tabs.TabLayout>
 

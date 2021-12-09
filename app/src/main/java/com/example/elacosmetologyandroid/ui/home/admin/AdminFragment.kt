@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.elacosmetologyandroid.databinding.FragmentAdminBinding
-import com.example.elacosmetologyandroid.model.ModelGeneric
+import com.example.elacosmetologyandroid.model.BannerModel
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.ui.admin.ParametersActivity
@@ -31,12 +31,12 @@ class AdminFragment : BaseFragment() {
         adapterAdmin.onClickAdmin = {configOnClickAdapter(it)}
     }
 
-    private fun configOnClickAdapter(model : ModelGeneric){
+    private fun configOnClickAdapter(model : BannerModel){
         when(model.id){
-            1 ->{ParametersActivity.start(requireContext())}
-            2 ->{}
-            3 ->{}
-            4 ->{}
+            "1" ->{ParametersActivity.start(requireContext())}
+            "2" ->{}
+            "3" ->{}
+            "4" ->{}
         }
     }
 

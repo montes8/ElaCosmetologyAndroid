@@ -2,7 +2,7 @@ package com.example.elacosmetologyandroid.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.elacosmetologyandroid.model.ModelGeneric
+import com.example.elacosmetologyandroid.model.BannerModel
 import com.example.elacosmetologyandroid.usecases.usecases.AppUseCase
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -14,8 +14,8 @@ class AppViewModel : BaseViewModel(), KoinComponent {
     val successSessionLiveData        : LiveData<Boolean> get()   = _successSessionLiveData
     private val _successSessionLiveData    = MutableLiveData<Boolean>()
 
-    val successBannerLiveData        : LiveData<List<ModelGeneric>> get()   = _successBannerLiveData
-    private val _successBannerLiveData    = MutableLiveData<List<ModelGeneric>>()
+    val successBannerLiveData        : LiveData<List<BannerModel>> get()   = _successBannerLiveData
+    private val _successBannerLiveData    = MutableLiveData<List<BannerModel>>()
 
     private val appUseCase: AppUseCase by inject()
 

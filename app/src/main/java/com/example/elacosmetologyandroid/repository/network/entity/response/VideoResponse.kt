@@ -1,11 +1,11 @@
-package com.example.elacosmetologyandroid.repository.network.entity
+package com.example.elacosmetologyandroid.repository.network.entity.response
 
 import com.example.elacosmetologyandroid.model.VideoModel
 import com.example.elacosmetologyandroid.utils.EMPTY
 import com.google.gson.annotations.SerializedName
 
 class VideoResponse (
-    @SerializedName("id")
+    @SerializedName("uid")
     var id : String?,
     @SerializedName("idVideo")
     var idMovie : String?,

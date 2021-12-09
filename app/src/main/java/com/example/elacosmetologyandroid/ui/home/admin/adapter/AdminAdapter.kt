@@ -2,17 +2,16 @@ package com.example.elacosmetologyandroid.ui.home.admin.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.elacosmetologyandroid.BR
 import com.example.elacosmetologyandroid.databinding.RowAdminBinding
 import com.example.elacosmetologyandroid.extensions.setOnClickDelay
-import com.example.elacosmetologyandroid.model.ModelGeneric
+import com.example.elacosmetologyandroid.model.BannerModel
 
-class AdminAdapter(var onClickAdmin: ((ModelGeneric) -> Unit)? = null) :
+class AdminAdapter(var onClickAdmin: ((BannerModel) -> Unit)? = null) :
     RecyclerView.Adapter<AdminAdapter.AdminViewHolder>() {
 
-    var adminList: List<ModelGeneric> = arrayListOf()
+    var adminList: List<BannerModel> = arrayListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -37,7 +36,7 @@ class AdminAdapter(var onClickAdmin: ((ModelGeneric) -> Unit)? = null) :
 
 
     inner class AdminViewHolder(private val binding: RowAdminBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(admin: ModelGeneric) {
+        fun bind(admin: BannerModel) {
             binding.setVariable(BR.admin, admin)
             binding.executePendingBindings()
             binding.ctlAdmin.setOnClickDelay { onClickAdmin?.invoke(admin) }

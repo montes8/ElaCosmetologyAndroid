@@ -71,11 +71,12 @@
     <string name="txt_confirm_address">Confirmar dirección</string>
 
 
-    <!-- TODO: text menu-->
+    <!-- TODO: text menu and tab-->
     <string name="txt_home">Inicio</string>
     <string name="txt_product">Producto</string>
     <string name="txt_order">Pedido</string>
     <string name="txt_admin">Admin</string>
+    <string name="txt_menu_category">Categoria</string>
 
     <string name="txt_menu_profile">Perfil</string>
     <string name="txt_menu_favorite">Favoritos</string>
@@ -96,6 +97,12 @@
     <string name="text_title_description">Agrege una descripcion</string>
     <string name="text_title_param">Aqui puedes configurar los paramtros de inicio</string>
     <string name="text_date_piker_title">Fecha</string>
+    <string name="text_item_tab_param">Parametros</string>
+    <string name="text_item_tab_movie">Video</string>
+    <string name="text_item_tab_banner">Banner</string>
+    <string name="text_title_banner_admin">Aqui puedes configurar los banner de inicio</string>
+    <string name="text_title_video_admin">Agrega los videos para el inicio de la appilcacion</string>
+    <string name="text_message_test_add_img_banner">Te recomendamos agregar una imagen de similar medida de ancho y altura</string>
 
 
 </resources>

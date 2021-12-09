@@ -1,11 +1,11 @@
 package com.example.elacosmetologyandroid.repository.network.api
 
 import android.content.Context
-import com.example.elacosmetologyandroid.model.ModelGeneric
+import com.example.elacosmetologyandroid.model.BannerModel
 import com.example.elacosmetologyandroid.model.VideoModel
 import com.example.elacosmetologyandroid.model.ParamModel
 import com.example.elacosmetologyandroid.repository.network.ServiceApi
-import com.example.elacosmetologyandroid.repository.network.entity.VideoResponse
+import com.example.elacosmetologyandroid.repository.network.entity.response.VideoResponse
 import com.example.elacosmetologyandroid.repository.network.entity.response.ParamResponse
 import com.example.elacosmetologyandroid.repository.network.exception.BaseNetwork
 import com.example.elacosmetologyandroid.repository.network.exception.toCompleteErrorModel
@@ -32,12 +32,12 @@ class AppNetwork : IAppRepositoryNetwork, BaseNetwork(){
         }
     }
 
-    override suspend fun loadBanner(): List<ModelGeneric> {
+    override suspend fun loadBanner(): List<BannerModel> {
         return executeWithConnection {
             val response = serviceApi.loadBanner()
-            var list : List<ModelGeneric>? = null
+            var list : List<BannerModel>? = null
             if (response.isSuccessful && response.body() != null) {
-                list = ModelGeneric.toListModelGeneric(response.validateBody())
+                list = BannerModel.toListModelGeneric(response.validateBody())
             }
 
             list?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()

@@ -3,7 +3,7 @@
     <data>
         <variable
             name="admin"
-            type="com.example.elacosmetologyandroid.model.ModelGeneric" />
+            type="com.example.elacosmetologyandroid.model.BannerModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -38,7 +38,7 @@
             <ImageView
                 android:contentDescription="@null"
                 android:layout_width="match_parent"
-                app:srcDrawableString="@{admin.icon}"
+                app:srcDrawableString="@{admin.img}"
                 android:scaleType="fitXY"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -1,5 +1,6 @@
-package com.example.elacosmetologyandroid.repository.network.entity
+package com.example.elacosmetologyandroid.repository.network.entity.response
 
+import com.example.elacosmetologyandroid.repository.network.entity.response.UserResponse
 import com.google.gson.annotations.SerializedName
 
 class DataUserResponse(

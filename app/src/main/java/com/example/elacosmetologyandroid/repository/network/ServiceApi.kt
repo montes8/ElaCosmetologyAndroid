@@ -1,11 +1,11 @@
 package com.example.elacosmetologyandroid.repository.network
 
-import com.example.elacosmetologyandroid.model.ModelGeneric
+import com.example.elacosmetologyandroid.model.BannerModel
 import com.example.elacosmetologyandroid.model.User
-import com.example.elacosmetologyandroid.repository.network.entity.DataUserResponse
+import com.example.elacosmetologyandroid.repository.network.entity.response.DataUserResponse
 import com.example.elacosmetologyandroid.repository.network.entity.ImageResponse
-import com.example.elacosmetologyandroid.repository.network.entity.VideoResponse
-import com.example.elacosmetologyandroid.repository.network.entity.UserResponse
+import com.example.elacosmetologyandroid.repository.network.entity.response.VideoResponse
+import com.example.elacosmetologyandroid.repository.network.entity.response.UserResponse
 import com.example.elacosmetologyandroid.repository.network.entity.response.ParamResponse
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
@@ -49,7 +49,8 @@ interface ServiceApi {
 
     @PUT("api/user/{id}")
     suspend fun updateUser(@Path("id")id : String,
-        @Body userResponse: UserResponse): Response<UserResponse>
+        @Body userResponse: UserResponse
+    ): Response<UserResponse>
 
     @DELETE("api/user/{id}")
     suspend fun inactiveUser(@Path("id")id : String): Response<UserResponse>
@@ -64,7 +65,7 @@ interface ServiceApi {
     suspend fun listMusic(): Response<List<VideoResponse>>
 
     @GET("api/config/banner")
-    suspend fun loadBanner(): Response<List<ModelGeneric>>
+    suspend fun loadBanner(): Response<List<BannerModel>>
 
 
     //servicios de configuracion por defaul
@@ -88,5 +89,6 @@ interface ServiceApi {
 
     @PUT("api/config/video/{id}")
     suspend fun updateVideo(@Path("id")id : String,
-                            @Body paramResponse: VideoResponse): Response<VideoResponse>
+                            @Body paramResponse: VideoResponse
+    ): Response<VideoResponse>
 }

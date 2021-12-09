@@ -13,7 +13,8 @@ import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityHomeBinding
 import com.example.elacosmetologyandroid.extensions.*
 import com.example.elacosmetologyandroid.manager.UserTemporary
-import com.example.elacosmetologyandroid.model.ModelGeneric
+import com.example.elacosmetologyandroid.model.BannerModel
+import com.example.elacosmetologyandroid.model.ItemModel
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.ui.AppViewModel
 import com.example.elacosmetologyandroid.ui.BaseActivity
@@ -71,7 +72,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun createItemNavigation(user : User?){
         binding.navViewMenu.setNavigationItemSelectedListener(this)
-        val listItem : ArrayList<ModelGeneric> = getListItem() as ArrayList<ModelGeneric>
+        val listItem : ArrayList<ItemModel> = getListItem() as ArrayList<ItemModel>
         user?.let {
             if (it.rol == USER_ROLE)listItem.removeAt(3)
         }?:listItem.removeAt(3)
@@ -108,8 +109,6 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         binding.toolBarHome.imgBackToolbar.setOnClickDelay{
             drawerVisible()
         }
-
-        Handler(Looper.getMainLooper()).postDelayed({  configDataUser()}, 200)
     }
 
     private fun configTitleToolbar(id : Int){
@@ -124,6 +123,11 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun observeViewModel() {}
+
+    override fun onResume() {
+        super.onResume()
+        Handler(Looper.getMainLooper()).postDelayed({  configDataUser()}, 200)
+    }
 
     private fun configDataUser(){
         UserTemporary.getUser()?.let {
@@ -222,7 +226,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         if (fragment is BaseFragment) this.currentFragment = fragment
     }
 
-    private fun getListItem(): List<ModelGeneric>? {
+    private fun getListItem(): List<BannerModel>? {
         return getData(this, CONFIG_ITEM)
     }
 
