@@ -7,12 +7,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.component.button.ProgressButton
 import com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+import com.example.elacosmetologyandroid.model.BannerModel
+import com.example.elacosmetologyandroid.model.CategoryModel
 import com.example.elacosmetologyandroid.model.ParamModel
 import com.example.elacosmetologyandroid.model.VideoModel
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.usecases.usecases.AppUseCase
+import com.example.elacosmetologyandroid.usecases.usecases.ProductUseCase
 import org.koin.core.KoinComponent
 import org.koin.core.inject
+import java.io.File
 
 
 class ParametersViewModel : BaseViewModel(), KoinComponent {
@@ -26,12 +30,20 @@ class ParametersViewModel : BaseViewModel(), KoinComponent {
     val successSaveVideoLiveData        : LiveData<VideoModel> get()   = _successSaveVideoLiveData
     private val _successSaveVideoLiveData    = MutableLiveData<VideoModel>()
 
+    val successBannerLiveData        : LiveData<Boolean> get()   = _successBannerLiveData
+    private val _successBannerLiveData    = MutableLiveData<Boolean>()
+
+    val successCategoriesLiveData        : LiveData<List<CategoryModel>> get()   = _successCategoriesLiveData
+    private val _successCategoriesLiveData    = MutableLiveData<List<CategoryModel>>()
+
     val registerObserver = ObservableBoolean(true)
     private var paramModel : ParamModel = ParamModel()
 
     private var videoModel : VideoModel = VideoModel()
+    private var bannerModel : BannerModel = BannerModel()
 
     private val appUseCase: AppUseCase by inject()
+    private val productUseCase: ProductUseCase by inject()
 
 
     fun loadParam(){
@@ -41,6 +53,14 @@ class ParametersViewModel : BaseViewModel(), KoinComponent {
             _successParamDefaultLiveData.postValue(response)
         }
     }
+
+    fun loadListCategory(){
+        executeSuspendNotError{
+            val response = productUseCase.loadListCategory()
+            _successCategoriesLiveData.postValue(response)
+        }
+    }
+
 
     fun saveParam(btnParam : ProgressButton){
         btnParam.isButtonLoading = true
@@ -58,6 +78,15 @@ class ParametersViewModel : BaseViewModel(), KoinComponent {
             _successSaveVideoLiveData.postValue(response)
         }
     }
+
+    fun saveBanner(btnBanner : ProgressButton,file: File){
+        btnBanner.isButtonLoading = true
+        executeSuspendNotProgress {
+            val response = appUseCase.saveBanner(bannerModel,file)
+            _successBannerLiveData.postValue(response)
+        }
+    }
+
 
     fun updateParam(btnParam : ProgressButton){
         btnParam.isButtonLoading = true
@@ -87,6 +116,13 @@ class ParametersViewModel : BaseViewModel(), KoinComponent {
         videoModel.nameVideo = nameVideo.uiText
         videoModel.description = description.text.toString()
         videoModel.author = author.uiText
+    }
+
+    fun validateBanner(title : EditCustomLayout,idCategory : String, description : AppCompatEditText, btnBanner : ProgressButton){
+        btnBanner.isButtonEnabled = title.uiText.isNotEmpty() && description.text.toString().isNotEmpty()
+        bannerModel.title = title.uiText
+        bannerModel.idCategory = idCategory
+        bannerModel.description = description.text.toString()
     }
 
 }

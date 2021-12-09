@@ -2,35 +2,30 @@ package com.example.elacosmetologyandroid.ui.admin
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityParametersBinding
-import com.example.elacosmetologyandroid.extensions.addFragmentToNavigation
-import com.example.elacosmetologyandroid.extensions.replaceFragmentToNavigation
-import com.example.elacosmetologyandroid.extensions.showDialogGeneric
-import com.example.elacosmetologyandroid.extensions.showSnackBarCustom
+import com.example.elacosmetologyandroid.extensions.*
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.ui.admin.banner.BannerFragment
 import com.example.elacosmetologyandroid.ui.admin.param.ParamFragment
 import com.example.elacosmetologyandroid.ui.admin.video.VideoFragment
-import com.example.elacosmetologyandroid.ui.home.begin.BeginFragment
-import com.example.elacosmetologyandroid.ui.home.order.OrderFragment
-import com.example.elacosmetologyandroid.ui.home.product.ProductFragment
-import com.example.elacosmetologyandroid.ui.login.LoginActivity
-import com.example.elacosmetologyandroid.utils.EMPTY
+import com.example.elacosmetologyandroid.utils.NAME_PATH_PROFILE
+import com.example.elacosmetologyandroid.utils.controller.CameraController
 import com.google.android.material.tabs.TabLayout
-import kotlinx.android.synthetic.main.activity_register.*
 
-class ParametersActivity : BaseActivity() {
+class ParametersActivity : BaseActivity(), CameraController.CameraControllerListener {
 
     private lateinit var binding: ActivityParametersBinding
     private var currentFragment: BaseFragment? = null
     private lateinit var paramFragment   : ParamFragment
     private lateinit var videoFragment : VideoFragment
     private lateinit var bannerFragment   : BannerFragment
+    private var cameraManager: CameraController? = null
 
     companion object { fun start(context: Context) { context.startActivity(Intent(context, ParametersActivity::class.java)) } }
 
@@ -41,6 +36,7 @@ class ParametersActivity : BaseActivity() {
 
     override fun setUpView() {
         initFragment()
+        cameraManager = CameraController(this, NAME_PATH_PROFILE, this)
         binding.toolbarParam.txtTitleToolbar.text = "Configuraciones"
     }
 
@@ -111,8 +107,27 @@ class ParametersActivity : BaseActivity() {
 
     private fun configItemFragmentMovie(){
         supportFragmentManager.let {
-            val fragment = it.findFragmentByTag(VideoFragment::class.java.name) as VideoFragment
-            fragment.setStopVideo()
+            it.findFragmentByTag(VideoFragment::class.java.name)?.let { fragment ->
+                fragment as VideoFragment
+                fragment.setStopVideo()
+            }
+        }
+    }
+
+    fun loadCamera(){
+        cameraManager?.doCamera()
+    }
+
+    override fun onCameraPermissionDenied() {
+        snackBarDeniedCamera(binding.snackBarParameters)
+    }
+
+    override fun onGetImageCameraCompleted(path: String, img: Bitmap) {
+        supportFragmentManager.let {
+            it.findFragmentByTag(BannerFragment::class.java.name)?.let { fragment ->
+                fragment as BannerFragment
+                fragment.onGetImageCameraCompleted(path,img)
+            }
         }
     }
 

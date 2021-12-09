@@ -78,7 +78,7 @@ class BeginFragment : BaseFragment(){
         binding.youtubeBegin.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 youTubePlayerObserver = youTubePlayer
-                youTubePlayerObserver?.loadVideo(UserTemporary.musicGeneric.id, UserTemporary.musicGeneric.duration.toFloat())
+                youTubePlayerObserver?.loadVideo(UserTemporary.musicGeneric.idMovie, UserTemporary.musicGeneric.duration.toFloat())
                 if (flagVideo)youTubePlayerObserver?.pause()
                   flagVideo = false
             }
@@ -101,7 +101,7 @@ class BeginFragment : BaseFragment(){
     private fun movieActivityForResult(){
         videoRequest = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK ) {
-                youTubePlayerObserver?.loadVideo(UserTemporary.musicGeneric.id, UserTemporary.musicGeneric.duration.toFloat())
+                youTubePlayerObserver?.loadVideo(UserTemporary.musicGeneric.idMovie, UserTemporary.musicGeneric.duration.toFloat())
             }
         }
     }
@@ -137,7 +137,7 @@ class BeginFragment : BaseFragment(){
         UserTemporary.musicGeneric = music
         UserTemporary.musicGeneric.duration = 0
         UserTemporary.musicGeneric.durationTotal = 0
-        youTubePlayerObserver?.loadVideo(UserTemporary.musicGeneric.id, UserTemporary.musicGeneric.duration.toFloat())
+        youTubePlayerObserver?.loadVideo(UserTemporary.musicGeneric.idMovie, UserTemporary.musicGeneric.duration.toFloat())
     }
 
 

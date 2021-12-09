@@ -3,6 +3,7 @@ package com.example.elacosmetologyandroid.usecases.repository
 import com.example.elacosmetologyandroid.model.BannerModel
 import com.example.elacosmetologyandroid.model.VideoModel
 import com.example.elacosmetologyandroid.model.ParamModel
+import java.io.File
 
 
 interface IAppRepositoryNetwork {
@@ -18,4 +19,6 @@ interface IAppRepositoryNetwork {
      suspend fun updateParam(param : ParamModel):ParamModel
 
      suspend fun saveVideo(video : VideoModel):VideoModel
+
+     suspend fun saveBanner(banner : BannerModel) : BannerModel
 }

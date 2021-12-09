@@ -226,7 +226,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         if (fragment is BaseFragment) this.currentFragment = fragment
     }
 
-    private fun getListItem(): List<BannerModel>? {
+    private fun getListItem(): List<ItemModel>? {
         return getData(this, CONFIG_ITEM)
     }
 

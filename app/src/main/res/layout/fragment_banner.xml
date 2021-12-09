@@ -25,10 +25,11 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:id="@+id/nsvBanner"
+            android:overScrollMode="never"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:visibility="gone"
+            android:visibility="visible"
             tools:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_height="@dimen/size_0">
@@ -75,7 +76,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     style="@style/TextInputLayoutEdit"
                     android:imeOptions="actionNext"
-                    android:visibility="gone"
                     android:layout_marginTop="@dimen/size_24"
                     app:uiHint="@string/txt_menu_category"
                     app:layout_constraintStart_toStartOf="parent"
@@ -94,19 +94,20 @@
 
                     <ImageView
                         android:id="@+id/imgBannerTest"
-                        android:layout_width="@dimen/size_180"
-                        android:layout_height="@dimen/size_180"
+                        android:layout_width="@dimen/size_170"
+                        android:layout_height="@dimen/size_170"
                         android:contentDescription="@null"
+                        android:scaleType="fitXY"
+                        android:background="@drawable/shape_place_holder"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.example.elacosmetologyandroid.component.button.ProgressButton
-                        android:id="@+id/progressButton"
+                        android:id="@+id/btnAddImgBannerAdmin"
                         android:layout_width="@dimen/size_0"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_16"
-                        android:layout_marginBottom="128dp"
                         app:buttonText="+ Imagen"
                         app:buttonUISize="small"
                         app:buttonUIStyle="primary"
@@ -120,6 +121,8 @@
                         android:layout_width="@dimen/size_0"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_16"
+                        android:layout_marginTop="@dimen/size_24"
+                        android:justificationMode="inter_word"
                         android:fontFamily="@font/flexo_bold_italic"
                         android:text="@string/text_message_test_add_img_banner"
                         android:textColor="@color/pink_200"
@@ -127,7 +130,8 @@
                         app:layout_constraintBottom_toBottomOf="@+id/imgBannerTest"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/imgBannerTest"
-                        app:layout_constraintTop_toBottomOf="@+id/progressButton" />
+                        app:layout_constraintTop_toBottomOf="@+id/btnAddImgBannerAdmin"
+                        tools:targetApi="o" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -162,7 +166,7 @@
                     android:layout_height="wrap_content"/>
 
                 <com.example.elacosmetologyandroid.component.button.ProgressButton
-                    android:id="@+id/btnSaveParam"
+                    android:id="@+id/btnSaveBannerAdmin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -175,7 +179,10 @@
                     app:isButtonEnabled="false"
                     android:layout_marginBottom="@dimen/size_40"
                     app:layout_constraintTop_toBottomOf="@+id/editDescriptionBanner"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         </androidx.core.widget.NestedScrollView>
 
         <com.facebook.shimmer.ShimmerFrameLayout
@@ -187,7 +194,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:visibility="visible"
+            android:visibility="gone"
             tools:visibility="gone">
             <include layout="@layout/shimmer_admin_param" />
         </com.facebook.shimmer.ShimmerFrameLayout>

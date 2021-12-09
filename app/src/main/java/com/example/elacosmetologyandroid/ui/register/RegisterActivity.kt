@@ -7,9 +7,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.databinding.DataBindingUtil
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityRegisterBinding
-import com.example.elacosmetologyandroid.extensions.StartActivityContract
-import com.example.elacosmetologyandroid.extensions.StartActivityContract2
-import com.example.elacosmetologyandroid.extensions.setOnClickDelay
+import com.example.elacosmetologyandroid.extensions.*
 import com.example.elacosmetologyandroid.extensions.showSnackBarCustom
 import com.example.elacosmetologyandroid.model.PlaceModel
 import com.example.elacosmetologyandroid.ui.BaseActivity
@@ -49,7 +47,7 @@ class RegisterActivity : BaseActivity() , CameraController.CameraControllerListe
     }
 
     private fun configInit(){
-        cameraManager = CameraController(this, NAME_PATH_PROFILE, this)
+        cameraManager = CameraController(this, NAME_PATH_PROFILE,  this)
         binding.registerToolbar.txtTitleToolbar.text =  getString(R.string.text_register)
     }
 
@@ -95,7 +93,7 @@ class RegisterActivity : BaseActivity() , CameraController.CameraControllerListe
     override fun getViewModel(): BaseViewModel = viewModel
 
     override fun onCameraPermissionDenied() {
-        showSnackBarCustom(binding.snackBarActivate,getString(R.string.error_denied_camera),colorBg = R.color.red)
+        snackBarDeniedCamera(binding.snackBarActivate)
     }
 
     override fun onGetImageCameraCompleted(path: String, img: Bitmap) {

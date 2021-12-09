@@ -2,11 +2,8 @@ package com.example.elacosmetologyandroid.repository.network
 
 import com.example.elacosmetologyandroid.model.BannerModel
 import com.example.elacosmetologyandroid.model.User
-import com.example.elacosmetologyandroid.repository.network.entity.response.DataUserResponse
 import com.example.elacosmetologyandroid.repository.network.entity.ImageResponse
-import com.example.elacosmetologyandroid.repository.network.entity.response.VideoResponse
-import com.example.elacosmetologyandroid.repository.network.entity.response.UserResponse
-import com.example.elacosmetologyandroid.repository.network.entity.response.ParamResponse
+import com.example.elacosmetologyandroid.repository.network.entity.response.*
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -65,7 +62,7 @@ interface ServiceApi {
     suspend fun listMusic(): Response<List<VideoResponse>>
 
     @GET("api/config/banner")
-    suspend fun loadBanner(): Response<List<BannerModel>>
+    suspend fun loadBanner(): Response<List<BannerResponse>>
 
 
     //servicios de configuracion por defaul
@@ -91,4 +88,13 @@ interface ServiceApi {
     suspend fun updateVideo(@Path("id")id : String,
                             @Body paramResponse: VideoResponse
     ): Response<VideoResponse>
+
+
+    @POST("api/config/banner")
+    suspend fun saveBanner(@Body bannerModel: BannerResponse): Response<BannerResponse>
+
+    //todo services category
+
+    @GET("api/category")
+    suspend fun loadCategory(): Response<List<CategoryResponse>>
 }

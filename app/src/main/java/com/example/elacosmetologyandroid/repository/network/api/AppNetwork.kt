@@ -5,6 +5,7 @@ import com.example.elacosmetologyandroid.model.BannerModel
 import com.example.elacosmetologyandroid.model.VideoModel
 import com.example.elacosmetologyandroid.model.ParamModel
 import com.example.elacosmetologyandroid.repository.network.ServiceApi
+import com.example.elacosmetologyandroid.repository.network.entity.response.BannerResponse
 import com.example.elacosmetologyandroid.repository.network.entity.response.VideoResponse
 import com.example.elacosmetologyandroid.repository.network.entity.response.ParamResponse
 import com.example.elacosmetologyandroid.repository.network.exception.BaseNetwork
@@ -15,33 +16,29 @@ import com.example.elacosmetologyandroid.utils.CONFIG_MUSIC
 import com.example.elacosmetologyandroid.utils.getData
 import org.koin.core.inject
 
-
 class AppNetwork : IAppRepositoryNetwork, BaseNetwork(){
 
     private val serviceApi: ServiceApi by inject()
     private val context: Context by inject()
 
     override suspend fun loadListMusic(): List<VideoModel> {
-        return executeWithConnection {
-            val response = serviceApi.listMusic()
+        val response = serviceApi.listMusic()
             var listMusic : List<VideoModel>? = null
             if (response.isSuccessful && response.body() != null) {
                 listMusic = VideoResponse.toListVideo(response.validateBody())
             }
-            listMusic?: getData(context, CONFIG_MUSIC)
-        }
+        return  listMusic?: getData(context, CONFIG_MUSIC)
+
     }
 
     override suspend fun loadBanner(): List<BannerModel> {
-        return executeWithConnection {
             val response = serviceApi.loadBanner()
             var list : List<BannerModel>? = null
             if (response.isSuccessful && response.body() != null) {
-                list = BannerModel.toListModelGeneric(response.validateBody())
+                list = BannerResponse.toListBannerModel(response.validateBody())
             }
 
-            list?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()
-        }
+            return list?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()
     }
 
     override suspend fun loadParam(): ParamModel {
@@ -85,6 +82,17 @@ class AppNetwork : IAppRepositoryNetwork, BaseNetwork(){
                 videoModel = VideoResponse.toVideo(response.validateBody())
             }
             videoModel?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()
+        }
+    }
+
+    override suspend fun saveBanner(banner: BannerModel): BannerModel {
+        return executeWithConnection {
+            val response = serviceApi.saveBanner(BannerResponse.toBannerResponse(banner))
+            var bannerModel : BannerModel? = null
+            if (response.isSuccessful && response.body() != null) {
+                bannerModel = BannerResponse.toBannerModel(response.validateBody())
+            }
+            bannerModel?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()
         }
     }
 }

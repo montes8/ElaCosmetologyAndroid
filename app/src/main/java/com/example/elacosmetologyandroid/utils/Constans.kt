@@ -1,6 +1,7 @@
 package com.example.elacosmetologyandroid.utils
 
 const val EMPTY = ""
+const val ID_DEFAULT = "todos"
 const val CONFIG_ITEM = "item.json"
 const val CONFIG_DATA_ADMIN = "dataAdmin.json"
 const val CONFIG_MUSIC = "videobegin.json"
@@ -24,6 +25,7 @@ const val DATA_ADDRESS_PLACE = "DATA_ADDRESS_PLACE"
 
 
 const val TYPE_USER= "usuarios"
+const val TYPE_BANNER= "banner"
 const val TYPE_PRODUCT = "productos"
 const val TYPE_CATEGORY = "categorias"
 

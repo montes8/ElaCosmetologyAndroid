@@ -27,8 +27,11 @@ class SplashActivity : BaseActivity() {
         binding.lifecycleOwner = this
     }
 
-    override fun setUpView() {
-        configAnimation()
+    override fun setUpView() {}
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.session()
     }
 
     private fun configAnimation(){
@@ -36,20 +39,18 @@ class SplashActivity : BaseActivity() {
         val ani2 = AnimationUtils.loadAnimation(this, R.anim.animation_botton)
         binding.ctlTop.animation=ani
         binding.ctlBottom.animation=ani2
-        initSplash()
-    }
-
-    private fun initSplash(){
-        Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.session()
-        }, 3500)
     }
 
     override fun observeViewModel() {
         viewModel.successSessionLiveData.observe(this,{
-            it?.apply { if (this) HomeActivity.start(this@SplashActivity) else LoginActivity.start(this@SplashActivity)
-            }
+            configAnimation()
+            Handler(Looper.getMainLooper()).postDelayed({
+                it?.apply { if (this) HomeActivity.start(this@SplashActivity) else LoginActivity.start(this@SplashActivity) }
+            }, 3500)
         })
+
+
+
     }
 
     override fun getViewModel(): BaseViewModel = viewModel

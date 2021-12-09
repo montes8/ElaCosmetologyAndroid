@@ -1,8 +1,12 @@
 package com.example.elacosmetologyandroid.model
 
+import android.os.Parcelable
 import com.example.elacosmetologyandroid.utils.EMPTY
+import com.example.elacosmetologyandroid.utils.ID_DEFAULT
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class BannerModel(
     @SerializedName("id")
     var id : String = EMPTY,
@@ -13,11 +17,7 @@ data class BannerModel(
     @SerializedName("img")
     var img : String= EMPTY,
     @SerializedName("idCategoria")
-    var idCategory : String = EMPTY
-){
-    companion object{
-        fun toListModelGeneric(response : List<BannerModel>) = response.map {
-            BannerModel(it.id,it.title,it.description,it.img,it.idCategory)
-        }
-    }
-}
+    var idCategory : String = ID_DEFAULT,
+    @SerializedName("idProducto")
+    var idProduct :  String = ID_DEFAULT
+):Parcelable

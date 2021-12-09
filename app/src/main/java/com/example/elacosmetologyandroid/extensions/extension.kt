@@ -390,6 +390,11 @@ fun showSnackBarCustom(viewIdentifier: View,message: String = ERROR_TEXT,duratio
 }
 
 
+fun snackBarDeniedCamera(view: View){
+    showSnackBarCustom(view,view.context.getString(R.string.error_denied_camera),colorBg = R.color.red)
+}
+
+
 
 class StartActivityContract<T>(
     private val intent: Intent,

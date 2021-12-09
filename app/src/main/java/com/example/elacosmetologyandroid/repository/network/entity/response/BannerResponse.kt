@@ -14,13 +14,25 @@ class BannerResponse(
     @SerializedName("img")
     var img: String?,
     @SerializedName("idCategoria")
-    var idCategory: String?
+    var idCategory: String?,
+    @SerializedName("idProducto")
+    var idProduct: String?
 ){
-    companion object{
-        fun toBannerResponse(banner : BannerModel ) = BannerResponse(banner.id,banner.title,banner.description,banner.img,banner.idCategory)
+    companion object {
+        fun toBannerResponse(banner: BannerModel) = BannerResponse(
+            id = banner.id,
+            title = banner.title,
+            description = banner.description,
+            img = banner.img,
+            idCategory = banner.idCategory,
+            idProduct = banner.idProduct
+        )
 
-        private fun toBannerModel(banner : BannerResponse ) = BannerModel(banner.id?: EMPTY,banner.title?: EMPTY,
-            banner.description?: EMPTY,banner.img?: EMPTY,banner.idCategory?: EMPTY)
+         fun toBannerModel(banner: BannerResponse) = BannerModel(
+            banner.id ?: EMPTY, banner.title ?: EMPTY,
+            banner.description ?: EMPTY, banner.img ?: EMPTY,
+            banner.idCategory ?: EMPTY,banner.idProduct?: EMPTY
+        )
 
         fun toListBannerModel(response: List<BannerResponse>) = response.map {
             toBannerModel(it)
