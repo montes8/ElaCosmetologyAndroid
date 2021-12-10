@@ -55,14 +55,14 @@ class ParametersViewModel : BaseViewModel(), KoinComponent {
     }
 
     fun loadListCategory(){
-        executeSuspendNotError{
+        executeSuspendNotProgress{
             val response = productUseCase.loadListCategory()
             _successCategoriesLiveData.postValue(response)
         }
     }
 
     fun loadListProduct(){
-        executeSuspendNotError{
+        executeSuspendNotProgress{
             val response = productUseCase.loadListProduct()
             _successProductsLiveData.postValue(response)
         }
