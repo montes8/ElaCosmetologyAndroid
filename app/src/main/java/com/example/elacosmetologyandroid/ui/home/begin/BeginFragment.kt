@@ -43,12 +43,7 @@ class BeginFragment : BaseFragment(){
     private var flagVideoNext = true
     private var positionMovie = 0
 
-    companion object {
-        fun newInstance() = BeginFragment().apply {
-            arguments = Bundle().apply {}
-        }
-
-    }
+    companion object { fun newInstance() = BeginFragment() }
 
     override fun getMainView(inflater: LayoutInflater, container: ViewGroup?): View {
         binding = FragmentBeginBinding.inflate(inflater)

@@ -31,7 +31,7 @@ class SplashActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.session()
+        configAnimation()
     }
 
     private fun configAnimation(){
@@ -39,18 +39,13 @@ class SplashActivity : BaseActivity() {
         val ani2 = AnimationUtils.loadAnimation(this, R.anim.animation_botton)
         binding.ctlTop.animation=ani
         binding.ctlBottom.animation=ani2
+        Handler(Looper.getMainLooper()).postDelayed({   viewModel.session()}, 3000)
     }
 
     override fun observeViewModel() {
         viewModel.successSessionLiveData.observe(this,{
-            configAnimation()
-            Handler(Looper.getMainLooper()).postDelayed({
-                it?.apply { if (this) HomeActivity.start(this@SplashActivity) else LoginActivity.start(this@SplashActivity) }
-            }, 3500)
+            it?.apply { if (this) HomeActivity.start(this@SplashActivity) else LoginActivity.start(this@SplashActivity) }
         })
-
-
-
     }
 
     override fun getViewModel(): BaseViewModel = viewModel
