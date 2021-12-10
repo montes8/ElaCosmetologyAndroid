@@ -77,6 +77,7 @@
     <string name="txt_order">Pedido</string>
     <string name="txt_admin">Admin</string>
     <string name="txt_menu_category">Categoria</string>
+    <string name="txt_menu_product">Producto</string>
 
     <string name="txt_menu_profile">Perfil</string>
     <string name="txt_menu_favorite">Favoritos</string>

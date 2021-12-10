@@ -99,4 +99,38 @@
         <item name="colorControlActivated">@color/pink_200</item>
     </style>
 
+
+    <style name="Generic.AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_top_rounded</item>
+    </style>
+
+    <style name="Generic.BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Generic.AppModalStyle</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.3</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="colorPrimary">@color/transparency_white</item>
+        <item name="colorPrimaryDark">@color/transparency_white</item>
+        <item name="colorAccent">@color/transparency_white</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowBackground">@color/transparency_white</item>
+        <item name="android:windowSoftInputMode">adjustResize|stateHidden</item>
+    </style>
+
+    <style name="Generic.AppCompatRadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="android:fontFamily">@font/flexo_bold</item>
+        <item name="android:textColor">@color/pink_200</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layoutDirection">rtl</item>
+        <item name="android:drawableRight">@drawable/ui_kit_selector_radio</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">?android:selectableItemBackground</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:layout_gravity">start</item>
+    </style>
+
 </resources>

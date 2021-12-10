@@ -13,7 +13,7 @@ class BannerResponse(
     var description: String?,
     @SerializedName("img")
     var img: String?,
-    @SerializedName("idCategoria")
+    @SerializedName("categoria")
     var idCategory: String?,
     @SerializedName("idProducto")
     var idProduct: String?

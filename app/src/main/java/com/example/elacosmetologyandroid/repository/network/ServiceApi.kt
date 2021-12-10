@@ -1,6 +1,7 @@
 package com.example.elacosmetologyandroid.repository.network
 
 import com.example.elacosmetologyandroid.model.BannerModel
+import com.example.elacosmetologyandroid.model.ProductModel
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.repository.network.entity.ImageResponse
 import com.example.elacosmetologyandroid.repository.network.entity.response.*
@@ -97,4 +98,11 @@ interface ServiceApi {
 
     @GET("api/category")
     suspend fun loadCategory(): Response<List<CategoryResponse>>
+
+
+    //todo services product
+
+
+    @GET("api/product")
+    suspend fun loadProduct(): Response<List<ProductResponse>>
 }

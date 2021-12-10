@@ -10,5 +10,7 @@ class ProductUseCase : KoinComponent {
 
     suspend fun loadListCategory() = iAuthRepositoryNetwork.loadListCategory()
 
+    suspend fun loadListProduct() = iAuthRepositoryNetwork.loadListProduct()
+
 
 }

@@ -7,10 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.elacosmetologyandroid.component.button.ProgressButton
 import com.example.elacosmetologyandroid.component.edit.EditCustomLayout
-import com.example.elacosmetologyandroid.model.BannerModel
-import com.example.elacosmetologyandroid.model.CategoryModel
-import com.example.elacosmetologyandroid.model.ParamModel
-import com.example.elacosmetologyandroid.model.VideoModel
+import com.example.elacosmetologyandroid.model.*
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.usecases.usecases.AppUseCase
 import com.example.elacosmetologyandroid.usecases.usecases.ProductUseCase
@@ -36,6 +33,9 @@ class ParametersViewModel : BaseViewModel(), KoinComponent {
     val successCategoriesLiveData        : LiveData<List<CategoryModel>> get()   = _successCategoriesLiveData
     private val _successCategoriesLiveData    = MutableLiveData<List<CategoryModel>>()
 
+    val successProductsLiveData        : LiveData<List<ProductModel>> get()   = _successProductsLiveData
+    private val _successProductsLiveData    = MutableLiveData<List<ProductModel>>()
+
     val registerObserver = ObservableBoolean(true)
     private var paramModel : ParamModel = ParamModel()
 
@@ -58,6 +58,13 @@ class ParametersViewModel : BaseViewModel(), KoinComponent {
         executeSuspendNotError{
             val response = productUseCase.loadListCategory()
             _successCategoriesLiveData.postValue(response)
+        }
+    }
+
+    fun loadListProduct(){
+        executeSuspendNotError{
+            val response = productUseCase.loadListProduct()
+            _successProductsLiveData.postValue(response)
         }
     }
 
@@ -118,10 +125,11 @@ class ParametersViewModel : BaseViewModel(), KoinComponent {
         videoModel.author = author.uiText
     }
 
-    fun validateBanner(title : EditCustomLayout,idCategory : String, description : AppCompatEditText, btnBanner : ProgressButton){
-        btnBanner.isButtonEnabled = title.uiText.isNotEmpty() && description.text.toString().isNotEmpty()
+    fun validateBanner(title : EditCustomLayout,idCategory : String,idProduct : String, description : AppCompatEditText, btnBanner : ProgressButton){
+        btnBanner.isButtonEnabled = title.uiText.isNotEmpty() && description.text.toString().isNotEmpty() && idCategory.isNotEmpty() && idCategory.isNotEmpty()
         bannerModel.title = title.uiText
         bannerModel.idCategory = idCategory
+        bannerModel.idProduct = idProduct
         bannerModel.description = description.text.toString()
     }
 
