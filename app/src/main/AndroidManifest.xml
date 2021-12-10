@@ -30,10 +30,14 @@
         android:theme="@style/Custom.Theme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,LockedOrientationActivity">
-        <activity android:name=".ui.admin.ParametersActivity"
+        <activity android:name=".ui.admin.edituser.AddUserActivity"></activity>
+        <activity android:name=".ui.admin.addproduct.AddProductActivity" />
+        <activity android:name=".ui.admin.addcategory.AddCategoryActivity" />
+        <activity
+            android:name=".ui.admin.parameters.ParametersActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/Custom.NoActionBar.LightWhite"/>
+            android:theme="@style/Custom.NoActionBar.LightWhite" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

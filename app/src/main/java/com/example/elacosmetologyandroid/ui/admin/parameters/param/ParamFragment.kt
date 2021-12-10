@@ -1,16 +1,14 @@
-package com.example.elacosmetologyandroid.ui.admin.param
+package com.example.elacosmetologyandroid.ui.admin.parameters.banner.param
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.addTextChangedListener
 import com.example.elacosmetologyandroid.databinding.FragmentParamBinding
-import com.example.elacosmetologyandroid.extensions.validateVisibility
 import com.example.elacosmetologyandroid.model.ParamModel
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
-import com.example.elacosmetologyandroid.ui.admin.ParametersActivity
-import com.example.elacosmetologyandroid.ui.admin.ParametersViewModel
+import com.example.elacosmetologyandroid.ui.admin.parameters.ParametersActivity
+import com.example.elacosmetologyandroid.ui.admin.parameters.banner.ParametersViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ParamFragment : BaseFragment() {

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.elacosmetologyandroid.ui.admin.ParametersViewModel" />
+            type="com.example.elacosmetologyandroid.ui.admin.parameters.banner.ParametersViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,7 +51,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginTop="@dimen/size_10"
                     android:fontFamily="@font/flexo_bold_italic"
-                    android:textSize="@dimen/txt_size_25"
+                    android:textSize="@dimen/txt_size_20"
                     android:lineSpacingExtra="@dimen/size_5"
                     android:textColor="@color/pink_200"
                     android:text="@string/text_title_banner_admin"
@@ -77,9 +77,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     style="@style/TextInputLayoutEdit"
                     android:imeOptions="actionNext"
-                    app:uiFocusable="true"
+                    app:uiFocusable="false"
                     android:layout_marginTop="@dimen/size_24"
                     app:uiDrawableEndEnabled="true"
+                    app:uiCursorVisibility="false"
                     app:uiHint="@string/txt_menu_category"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editTitleBanner"
@@ -101,7 +102,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     style="@style/TextInputLayoutEdit"
                     android:imeOptions="actionNext"
-                    app:uiFocusable="true"
+                    app:uiFocusable="false"
+                    app:uiCursorVisibility="false"
+                    app:uiDrawableEndEnabled="true"
                     app:uiEnabled="false"
                     android:layout_marginTop="@dimen/size_24"
                     app:uiHint="@string/txt_menu_product"
@@ -190,12 +193,11 @@
                     android:layout_width="match_parent"
                     android:padding="@dimen/size_16"
                     android:layout_marginTop="@dimen/size_16"
-                    android:lines="8"
+                    android:lines="4"
                     android:hint="@string/text_hint_description"
                     android:gravity="top"
                     android:textColor="@color/pink_200"
                     android:textSize="@dimen/txt_size_16"
-                    android:inputType="textCapSentences"
                     android:textColorHint="@color/pink_100"
                     android:background="@drawable/bg_corner_pink_round"
                     app:layout_constraintEnd_toEndOf="parent"

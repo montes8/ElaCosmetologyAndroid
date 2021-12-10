@@ -1,7 +1,6 @@
-package com.example.elacosmetologyandroid.ui.admin
+package com.example.elacosmetologyandroid.ui.admin.parameters.banner
 
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.core.view.isNotEmpty
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

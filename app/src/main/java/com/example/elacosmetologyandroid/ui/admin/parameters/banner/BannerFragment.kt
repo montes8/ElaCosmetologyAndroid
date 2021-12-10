@@ -1,24 +1,18 @@
-package com.example.elacosmetologyandroid.ui.admin.banner
+package com.example.elacosmetologyandroid.ui.admin.parameters.banner
 
 import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.addTextChangedListener
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.buttonSheet.GenericOptionBottomSheet
 import com.example.elacosmetologyandroid.databinding.FragmentBannerBinding
-import com.example.elacosmetologyandroid.extensions.gone
-import com.example.elacosmetologyandroid.extensions.validateVisibility
-import com.example.elacosmetologyandroid.extensions.visible
 import com.example.elacosmetologyandroid.model.CategoryModel
 import com.example.elacosmetologyandroid.model.ProductModel
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
-import com.example.elacosmetologyandroid.ui.admin.ParametersActivity
-import com.example.elacosmetologyandroid.ui.admin.ParametersViewModel
+import com.example.elacosmetologyandroid.ui.admin.parameters.ParametersActivity
 import com.example.elacosmetologyandroid.utils.EMPTY
-import com.example.elacosmetologyandroid.utils.ID_DEFAULT
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
 

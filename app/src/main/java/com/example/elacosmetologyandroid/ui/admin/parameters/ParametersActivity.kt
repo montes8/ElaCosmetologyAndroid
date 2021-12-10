@@ -1,4 +1,4 @@
-package com.example.elacosmetologyandroid.ui.admin
+package com.example.elacosmetologyandroid.ui.admin.parameters
 
 import android.content.Context
 import android.content.Intent
@@ -11,9 +11,9 @@ import com.example.elacosmetologyandroid.extensions.*
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
-import com.example.elacosmetologyandroid.ui.admin.banner.BannerFragment
-import com.example.elacosmetologyandroid.ui.admin.param.ParamFragment
-import com.example.elacosmetologyandroid.ui.admin.video.VideoFragment
+import com.example.elacosmetologyandroid.ui.admin.parameters.banner.BannerFragment
+import com.example.elacosmetologyandroid.ui.admin.parameters.banner.param.ParamFragment
+import com.example.elacosmetologyandroid.ui.admin.parameters.banner.video.VideoFragment
 import com.example.elacosmetologyandroid.utils.NAME_PATH_PROFILE
 import com.example.elacosmetologyandroid.utils.controller.CameraController
 import com.google.android.material.tabs.TabLayout

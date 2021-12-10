@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.elacosmetologyandroid.ui.admin.ParametersViewModel" />
+            type="com.example.elacosmetologyandroid.ui.admin.parameters.banner.ParametersViewModel" />
         <variable
             name="param"
             type="com.example.elacosmetologyandroid.model.ParamModel" />
@@ -54,7 +54,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="@dimen/size_10"
             android:fontFamily="@font/flexo_bold_italic"
-            android:textSize="@dimen/txt_size_25"
+            android:textSize="@dimen/txt_size_20"
             android:lineSpacingExtra="@dimen/size_5"
             android:textColor="@color/pink_200"
             android:text="@string/text_title_param"
