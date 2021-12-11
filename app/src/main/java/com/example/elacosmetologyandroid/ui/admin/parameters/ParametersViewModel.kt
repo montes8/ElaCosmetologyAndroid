@@ -1,4 +1,4 @@
-package com.example.elacosmetologyandroid.ui.admin.parameters.banner
+package com.example.elacosmetologyandroid.ui.admin.parameters
 
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.databinding.ObservableBoolean

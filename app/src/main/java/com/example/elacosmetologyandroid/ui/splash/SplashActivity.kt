@@ -19,7 +19,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class SplashActivity : BaseActivity() {
 
     private val viewModel: AppViewModel by viewModel(clazz = AppViewModel::class)
-
     private lateinit var binding: ActivitySplashBinding
 
     override fun getMainView() {

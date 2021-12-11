@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.elacosmetologyandroid.ui.admin.parameters.banner.ParametersViewModel" />
+            type="com.example.elacosmetologyandroid.ui.admin.parameters.ParametersViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

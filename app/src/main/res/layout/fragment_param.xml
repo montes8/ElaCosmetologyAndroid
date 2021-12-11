@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.elacosmetologyandroid.ui.admin.parameters.banner.ParametersViewModel" />
+            type="com.example.elacosmetologyandroid.ui.admin.parameters.ParametersViewModel" />
         <variable
             name="param"
             type="com.example.elacosmetologyandroid.model.ParamModel" />
@@ -130,7 +130,7 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:text="@string/text_rb_activate"
-                    android:textSize="@dimen/txt_size_20"
+                    android:textSize="@dimen/txt_size_16"
                     android:checked="@={viewModel.registerObserver}"
                     android:textColor="@color/selector_item_menu"
                     android:theme="@style/MyRadioButton"
@@ -139,7 +139,7 @@
                 <RadioButton
                     android:text="@string/text_rb_inactivate"
                     android:theme="@style/MyRadioButton"
-                    android:textSize="@dimen/txt_size_20"
+                    android:textSize="@dimen/txt_size_16"
                     android:checked="@={!viewModel.registerObserver}"
                     android:textColor="@color/selector_item_menu"
                     android:layout_marginStart="@dimen/size_24"

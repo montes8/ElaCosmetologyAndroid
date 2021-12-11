@@ -8,5 +8,7 @@ interface IProductRepositoryNetwork {
 
      suspend fun loadListCategory():List<CategoryModel>
 
+     suspend fun saveCategory(category : CategoryModel,id : String) : CategoryModel
+
      suspend fun loadListProduct() : List<ProductModel>
 }

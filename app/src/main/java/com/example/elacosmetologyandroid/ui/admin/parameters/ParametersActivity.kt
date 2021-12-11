@@ -12,8 +12,8 @@ import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.ui.admin.parameters.banner.BannerFragment
-import com.example.elacosmetologyandroid.ui.admin.parameters.banner.param.ParamFragment
-import com.example.elacosmetologyandroid.ui.admin.parameters.banner.video.VideoFragment
+import com.example.elacosmetologyandroid.ui.admin.parameters.param.ParamFragment
+import com.example.elacosmetologyandroid.ui.admin.parameters.video.VideoFragment
 import com.example.elacosmetologyandroid.utils.NAME_PATH_PROFILE
 import com.example.elacosmetologyandroid.utils.controller.CameraController
 import com.google.android.material.tabs.TabLayout
@@ -37,7 +37,7 @@ class ParametersActivity : BaseActivity(), CameraController.CameraControllerList
     override fun setUpView() {
         initFragment()
         cameraManager = CameraController(this, NAME_PATH_PROFILE, this)
-        binding.toolbarParam.txtTitleToolbar.text = "Configuraciones"
+        binding.toolbarParam.txtTitleToolbar.text = getString(R.string.text_toolbar_config)
     }
 
     override fun observeViewModel() {}
@@ -90,11 +90,7 @@ class ParametersActivity : BaseActivity(), CameraController.CameraControllerList
     }
 
     fun showSuccessDialog(){
-        showDialogGeneric(true,imageVisibility = false,title = getString(R.string.text_update_data_param),
-            description = getString(R.string.text_des_update_data_param),
-            btnTextAccepted = getString(R.string.txt_end_up),btnTextNegative = getString(R.string.txt_continue)) {
-            finish()
-        }
+        showSuccessDialogBase()
     }
 
     fun errorSnackBarSaveData(){

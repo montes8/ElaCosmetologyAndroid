@@ -13,12 +13,20 @@ class CategoryResponse(
     var state : Boolean?,
     @SerializedName("recomendado")
     var recommend : Boolean?,
-    @SerializedName("isUsuario")
+    @SerializedName("idUsuario")
     var idUser : String?,
 
     ) {
 
     companion object{
+
+        fun toCategoryResponse(category : CategoryModel)= CategoryResponse(
+            category.name,
+            category.description,
+            category.state,
+            category.recommend,
+            category.idUser
+        )
 
         fun toCategory(categoryResponse : CategoryResponse)= CategoryModel(
             categoryResponse.name?: EMPTY,
@@ -28,7 +36,7 @@ class CategoryResponse(
             categoryResponse.idUser?: EMPTY
         )
 
-        fun toListCategory(response : List<CategoryResponse>)= response?.map {
+        fun toListCategory(response : List<CategoryResponse>)= response.map {
             toCategory(it)
         }
     }

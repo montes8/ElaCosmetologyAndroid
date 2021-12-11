@@ -4,14 +4,19 @@ import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.buttonSheet.GenericOptionBottomSheet
 import com.example.elacosmetologyandroid.databinding.FragmentBannerBinding
+import com.example.elacosmetologyandroid.extensions.gone
+import com.example.elacosmetologyandroid.extensions.validateVisibility
+import com.example.elacosmetologyandroid.extensions.visible
 import com.example.elacosmetologyandroid.model.CategoryModel
 import com.example.elacosmetologyandroid.model.ProductModel
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.ui.admin.parameters.ParametersActivity
+import com.example.elacosmetologyandroid.ui.admin.parameters.ParametersViewModel
 import com.example.elacosmetologyandroid.utils.EMPTY
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
@@ -47,8 +52,8 @@ class BannerFragment : BaseFragment() {
         binding.btnAddImgBannerAdmin.setOnClickButtonDelayListener{(activity as ParametersActivity).loadCamera()}
         binding.btnSaveBannerAdmin.setOnClickButtonDelayListener{file?.let { viewModel.saveBanner(binding.btnSaveBannerAdmin,it) } }
         binding.editTitleBanner.uiEditCustomListener = {validateData()}
-        binding.editCategoryBanner.uiEditClickListener = { if (listCategory.size>1) showOptionCategory()}
-        binding.editProductBanner.uiEditClickListener = { if (listCategory.size>1) showOptionProduct()}
+        binding.editCategoryBanner.uiEditClickListener = { if (listCategory.isNotEmpty()) showOptionCategory()}
+        binding.editProductBanner.uiEditClickListener = { if (listCategory.isNotEmpty()) showOptionProduct()}
         binding.editDescriptionBanner.addTextChangedListener { validateData() }
     }
 

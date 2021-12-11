@@ -6,6 +6,7 @@ import com.example.elacosmetologyandroid.repository.network.ServiceApi
 import com.example.elacosmetologyandroid.repository.network.entity.response.CategoryResponse
 import com.example.elacosmetologyandroid.repository.network.entity.response.ProductResponse
 import com.example.elacosmetologyandroid.repository.network.exception.BaseNetwork
+import com.example.elacosmetologyandroid.repository.network.exception.toCompleteErrorModel
 import com.example.elacosmetologyandroid.repository.network.utils.validateBody
 import com.example.elacosmetologyandroid.usecases.repository.IProductRepositoryNetwork
 import org.koin.core.inject
@@ -24,6 +25,18 @@ class ProductNetwork : IProductRepositoryNetwork, BaseNetwork(){
                 data = CategoryResponse.toListCategory(response.validateBody())
             }
             data?: ArrayList()
+        }
+    }
+
+    override suspend fun saveCategory(category: CategoryModel,id : String): CategoryModel {
+        return executeWithConnection {
+            category.idUser = id
+            val response = serviceApi.saveCategory(CategoryResponse.toCategoryResponse(category))
+            var data :CategoryModel? = null
+            if (response.isSuccessful) {
+                data = CategoryResponse.toCategory(response.validateBody())
+            }
+            data?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()
         }
     }
 

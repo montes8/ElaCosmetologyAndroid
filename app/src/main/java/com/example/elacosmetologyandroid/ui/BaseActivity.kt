@@ -6,14 +6,12 @@ import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.progress.ProgressFull
 import com.example.elacosmetologyandroid.extensions.getError
 import com.example.elacosmetologyandroid.extensions.gone
+import com.example.elacosmetologyandroid.extensions.setMargins
 import com.example.elacosmetologyandroid.extensions.showDialogGeneric
 import com.example.elacosmetologyandroid.repository.network.exception.UnAuthorizedException
 import com.example.elacosmetologyandroid.ui.login.LoginActivity
-import com.example.elacosmetologyandroid.usecases.usecases.AppUseCase
 import kotlinx.android.synthetic.main.mold_toolbar.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.inject
-import org.koin.java.KoinJavaComponent.inject
 import java.net.ProtocolException
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -79,11 +77,21 @@ abstract class BaseActivity : AppCompatActivity() {
     private fun getActionToolbar(value : Boolean){
         if (value){
             imgBackToolbar.setImageResource(R.drawable.ic_arrow_star)
+            txtTitleToolbar.setMargins(right = resources.getDimensionPixelSize(R.dimen.size_16))
             imgLogout.gone()
+
             imgBackToolbar.setOnClickListener {
                 onBackPressed()
             }
 
+        }
+    }
+
+    fun showSuccessDialogBase(){
+        showDialogGeneric(true,imageVisibility = false,title = getString(R.string.text_update_data_param),
+            description = getString(R.string.text_des_update_data_param),
+            btnTextAccepted = getString(R.string.txt_end_up),btnTextNegative = getString(R.string.txt_continue)) {
+            finish()
         }
     }
 

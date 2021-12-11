@@ -2,7 +2,8 @@ package com.example.elacosmetologyandroid.di
 
 import com.example.elacosmetologyandroid.ui.AppViewModel
 import com.example.elacosmetologyandroid.ui.address.AddressMapViewModel
-import com.example.elacosmetologyandroid.ui.admin.parameters.banner.ParametersViewModel
+import com.example.elacosmetologyandroid.ui.admin.addcategory.CategoryViewModel
+import com.example.elacosmetologyandroid.ui.admin.parameters.ParametersViewModel
 import com.example.elacosmetologyandroid.ui.login.LoginViewModel
 import com.example.elacosmetologyandroid.ui.profile.ProfileViewModel
 import com.example.elacosmetologyandroid.ui.register.RegisterViewModel
@@ -16,4 +17,5 @@ val viewModelsModule = module {
     viewModel { AddressMapViewModel()}
     viewModel { ProfileViewModel() }
     viewModel { ParametersViewModel() }
+    viewModel { CategoryViewModel() }
 }

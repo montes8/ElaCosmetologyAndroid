@@ -2,11 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.elacosmetologyandroid">
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the "MyLocation" functionality.
-    -->
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -21,7 +17,6 @@
 
     <application
         android:name=".application.ApplicationEla"
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
@@ -29,10 +24,19 @@
         android:supportsRtl="true"
         android:theme="@style/Custom.Theme"
         android:usesCleartextTraffic="true"
-        tools:ignore="GoogleAppIndexingWarning,LockedOrientationActivity">
-        <activity android:name=".ui.admin.edituser.AddUserActivity"></activity>
-        <activity android:name=".ui.admin.addproduct.AddProductActivity" />
-        <activity android:name=".ui.admin.addcategory.AddCategoryActivity" />
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning,LockedOrientationActivity">
+        <activity android:name=".ui.admin.edituser.AddUserActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Custom.NoActionBar.LightWhite"/>
+        <activity android:name=".ui.admin.addproduct.AddProductActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Custom.NoActionBar.LightWhite"/>
+        <activity android:name=".ui.admin.addcategory.AddCategoryActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Custom.NoActionBar.LightWhite"/>
         <activity
             android:name=".ui.admin.parameters.ParametersActivity"
             android:launchMode="singleTop"

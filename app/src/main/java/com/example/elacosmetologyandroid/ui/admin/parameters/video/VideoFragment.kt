@@ -1,13 +1,14 @@
-package com.example.elacosmetologyandroid.ui.admin.parameters.banner.video
+package com.example.elacosmetologyandroid.ui.admin.parameters.video
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import com.example.elacosmetologyandroid.databinding.FragmentVideoBinding
 import com.example.elacosmetologyandroid.ui.BaseFragment
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.ui.admin.parameters.ParametersActivity
-import com.example.elacosmetologyandroid.ui.admin.parameters.banner.ParametersViewModel
+import com.example.elacosmetologyandroid.ui.admin.parameters.ParametersViewModel
 import com.example.elacosmetologyandroid.utils.EMPTY
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener

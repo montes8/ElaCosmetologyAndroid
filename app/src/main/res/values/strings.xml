@@ -63,6 +63,7 @@
     <string name="text_email">Correo electronico</string>
     <string name="text_password">Contraseña</string>
     <string name="text_name">Nombres</string>
+    <string name="text_name_single">Nombre</string>
     <string name="text_phone">Telefono</string>
     <string name="text_address">Dirección</string>
     <string name="text_title">Titulo</string>
@@ -94,6 +95,8 @@
     <string name="text_rb_inactivate">Desactivar</string>
     <string name="text_rb_activate">Activar</string>
     <string name="text_title_register_param">Active o desactive el registro</string>
+    <string name="text_title_register_category">Active o desactive la categoria</string>
+    <string name="text_title_recommend_Category">Active o desactive la recomendación</string>
     <string name="text_hint_description">escribe descripción aqui</string>
     <string name="text_title_description">Agrege una descripcion</string>
     <string name="text_title_param">Aqui puedes configurar los paramtros de inicio</string>
@@ -104,6 +107,11 @@
     <string name="text_title_banner_admin">Aqui puedes configurar los banner de inicio</string>
     <string name="text_title_video_admin">Agrega los videos para el inicio de la appilcacion</string>
     <string name="text_message_test_add_img_banner">Te recomendamos agregar una imagen de similar medida de ancho y altura</string>
+
+
+    <string name="text_toolbar_category_add">Agregar categoria</string>
+    <string name="text_toolbar_config">Configuraciones</string>
+    <string name="text_description_add_category">Aqui Puedes agregar las categorias que apareceran en el la vista principal</string>
 
 
 </resources>

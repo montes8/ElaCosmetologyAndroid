@@ -44,16 +44,16 @@ class SnackBarStatus(
             upIcon: Boolean,
             marginBottom: Int? = null
         ): SnackBarStatus {
-            val snackbarStatusView = LayoutInflater.from(viewGroup.context).inflate(
+            val snackBarStatusView = LayoutInflater.from(viewGroup.context).inflate(
                 R.layout.snackbar_status,
                 viewGroup,
                 false
             ) as SnackbarStatusView
-            snackbarStatusView.setText(message)
-            snackbarStatusView.setIconSnack(icon, upIcon)
-            snackbarStatusView.setBackgroundColorCard(backgroundColor)
-            marginBottom?.let { snackbarStatusView.setMargins(0, 0, 0, it) }
-            return SnackBarStatus(viewGroup, snackbarStatusView).apply {
+            snackBarStatusView.setText(message)
+            snackBarStatusView.setIconSnack(icon, upIcon)
+            snackBarStatusView.setBackgroundColorCard(backgroundColor)
+            marginBottom?.let { snackBarStatusView.setMargins(0, 0, 0, it) }
+            return SnackBarStatus(viewGroup, snackBarStatusView).apply {
                 setDuration(duration)
             }
         }

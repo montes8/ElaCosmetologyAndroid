@@ -1,9 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.admin.addcategory.AddCategoryActivity">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.elacosmetologyandroid.ui.admin.addcategory.CategoryViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.admin.addcategory.AddCategoryActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            android:id="@+id/toolbarAddCategory"
+            layout="@layout/mold_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarAddCategory"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:padding="@dimen/size_16"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/txtTitleAddCategory"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="@dimen/size_0"
+                    android:textSize="@dimen/txt_size_20"
+                    android:gravity="center"
+                    android:textColor="@color/pink_200"
+                    android:fontFamily="@font/flexo_bold_italic"
+                    android:text="@string/text_description_add_category"
+                    android:layout_height="wrap_content"/>
+
+
+                <com.example.elacosmetologyandroid.component.edit.EditCustomLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/editNameAddCategory"
+                    style="@style/TextInputLayoutEdit"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_40"
+                    app:uiHint="@string/text_name_single"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTitleAddCategory"/>
+
+
+                <TextView
+                    android:id="@+id/txtDescriptionAddCategory"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/size_24"
+                    android:text="@string/text_title_description"
+                    android:textColor="@color/pink_200"
+                    android:fontFamily="@font/flexo_bold_italic"
+                    android:textSize="@dimen/txt_size_20"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editNameAddCategory"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/editDescriptionAddCategory"
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/size_16"
+                    android:layout_marginTop="@dimen/size_16"
+                    android:lines="4"
+                    android:hint="@string/text_hint_description"
+                    android:gravity="top"
+                    android:textColor="@color/pink_200"
+                    android:textSize="@dimen/txt_size_16"
+                    android:textColorHint="@color/pink_100"
+                    android:background="@drawable/bg_corner_pink_round"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtDescriptionAddCategory"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/txtTitleActiveCategory"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/size_24"
+                    android:text="@string/text_title_register_category"
+                    android:textColor="@color/pink_200"
+                    android:fontFamily="@font/flexo_bold_italic"
+                    android:textSize="@dimen/txt_size_20"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editDescriptionAddCategory"
+                    android:layout_height="wrap_content"/>
+
+                <RadioGroup
+                    android:id="@+id/rgCategory"
+                    android:layout_width="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTitleActiveCategory"
+                    android:layout_height="match_parent">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:text="@string/text_rb_activate"
+                        android:textSize="@dimen/txt_size_16"
+                        android:checked="@={viewModel.stateObserver}"
+                        android:textColor="@color/selector_item_menu"
+                        android:theme="@style/MyRadioButton"
+                        android:layout_height="wrap_content"/>
+
+                    <RadioButton
+                        android:text="@string/text_rb_inactivate"
+                        android:theme="@style/MyRadioButton"
+                        android:textSize="@dimen/txt_size_16"
+                        android:checked="@={!viewModel.stateObserver}"
+                        android:textColor="@color/selector_item_menu"
+                        android:layout_marginStart="@dimen/size_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RadioGroup>
+
+
+                <TextView
+                    android:id="@+id/txtTitleRecommendCategory"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/size_24"
+                    android:text="@string/text_title_recommend_Category"
+                    android:textColor="@color/pink_200"
+                    android:fontFamily="@font/flexo_bold_italic"
+                    android:textSize="@dimen/txt_size_20"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rgCategory"
+                    android:layout_height="wrap_content"/>
+
+                <RadioGroup
+                    android:id="@+id/rgRecommendCategory"
+                    android:layout_width="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTitleRecommendCategory"
+                    android:layout_height="match_parent">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:text="@string/text_rb_activate"
+                        android:textSize="@dimen/txt_size_16"
+                        android:checked="@={viewModel.recommendObserver}"
+                        android:textColor="@color/selector_item_menu"
+                        android:theme="@style/MyRadioButton"
+                        android:layout_height="wrap_content"/>
+
+                    <RadioButton
+                        android:text="@string/text_rb_inactivate"
+                        android:theme="@style/MyRadioButton"
+                        android:textSize="@dimen/txt_size_16"
+                        android:checked="@={!viewModel.recommendObserver}"
+                        android:textColor="@color/selector_item_menu"
+                        android:layout_marginStart="@dimen/size_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RadioGroup>
+
+                <com.example.elacosmetologyandroid.component.button.ProgressButton
+                    android:id="@+id/btnSaveCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="@dimen/size_40"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:buttonUISize="medium"
+                    app:buttonUIStyle="primary"
+                    app:buttonText="@string/txt_save"
+                    app:isButtonEnabled="false"
+                    android:layout_marginBottom="@dimen/size_40"
+                    app:layout_constraintTop_toBottomOf="@+id/rgRecommendCategory"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -99,6 +99,9 @@ interface ServiceApi {
     @GET("api/category")
     suspend fun loadCategory(): Response<List<CategoryResponse>>
 
+    @POST("api/category")
+    suspend fun saveCategory(@Body categoryResponse: CategoryResponse): Response<CategoryResponse>
+
 
     //todo services product
 

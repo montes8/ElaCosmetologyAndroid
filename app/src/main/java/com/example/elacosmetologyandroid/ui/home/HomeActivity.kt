@@ -43,6 +43,8 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private lateinit var orderFragment   : OrderFragment
     private lateinit var adminFragment   : AdminFragment
 
+    private var listItem : ArrayList<ItemModel> = ArrayList()
+
     companion object {
         fun start(context: Context) {
             val intent = Intent(context, HomeActivity::class.java)
@@ -72,7 +74,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun createItemNavigation(user : User?){
         binding.navViewMenu.setNavigationItemSelectedListener(this)
-        val listItem : ArrayList<ItemModel> = getListItem() as ArrayList<ItemModel>
+        listItem = getListItem() as ArrayList<ItemModel>
         user?.let {
             if (it.rol == USER_ROLE)listItem.removeAt(3)
         }?:listItem.removeAt(3)
@@ -233,6 +235,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onBackPressed() {
         if (this.currentFragment?.backStackFragmentFromNavigation() == false) {
             this.supportFragmentManager.moveBackToFirstFragment(this.currentFragment)?.let {
+                binding.btnNavigation.selectedItemId = listItem[0].id
                 if (it !is BaseFragment) {
                     showDialogCloseApp()
                 }
