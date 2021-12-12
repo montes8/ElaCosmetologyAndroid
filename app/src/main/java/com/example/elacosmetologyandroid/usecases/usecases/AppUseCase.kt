@@ -7,9 +7,7 @@ import com.example.elacosmetologyandroid.model.VideoModel
 import com.example.elacosmetologyandroid.usecases.repository.AppRepositoryPreference
 import com.example.elacosmetologyandroid.usecases.repository.IAppRepositoryNetwork
 import com.example.elacosmetologyandroid.usecases.repository.IAuthRepositoryNetwork
-import com.example.elacosmetologyandroid.utils.EMPTY
-import com.example.elacosmetologyandroid.utils.TYPE_BANNER
-import com.example.elacosmetologyandroid.utils.TYPE_USER
+import com.example.elacosmetologyandroid.utils.*
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import java.io.File
@@ -23,8 +21,11 @@ class AppUseCase : KoinComponent {
     private val appRepositoryPreference: AppRepositoryPreference by inject()
 
     suspend fun session() : Boolean{
-        val parameter = iAppRepositoryNetwork.loadListMusic()
-        UserTemporary.listMusic = parameter
+        val movies = iAppRepositoryNetwork.loadListMusic()
+        val param = iAppRepositoryNetwork.loadParam()
+        UserTemporary.listMusic = movies
+        UserTemporary.paramDefault = if (param.title.isNotEmpty())param else ParamModel(EMPTY,
+            TITLE_DEFAULT, DESCRIPTION_DEFAULT,true)
         return appRepositoryPreference.getToken().isNotEmpty()
     }
 

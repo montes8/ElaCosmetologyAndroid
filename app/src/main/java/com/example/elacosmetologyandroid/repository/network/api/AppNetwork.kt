@@ -22,12 +22,12 @@ class AppNetwork : IAppRepositoryNetwork, BaseNetwork(){
     private val context: Context by inject()
 
     override suspend fun loadListMusic(): List<VideoModel> {
-        val response = serviceApi.listMusic()
+        val response = serviceApi.loadVideo()
             var listMusic : List<VideoModel>? = null
             if (response.isSuccessful && response.body() != null) {
                 listMusic = VideoResponse.toListVideo(response.validateBody())
             }
-        return  listMusic?: getData(context, CONFIG_MUSIC)
+        return  if (listMusic?.isNotEmpty()?:getData(context, CONFIG_MUSIC))listMusic?:getData(context, CONFIG_MUSIC) else getData(context, CONFIG_MUSIC)
 
     }
 

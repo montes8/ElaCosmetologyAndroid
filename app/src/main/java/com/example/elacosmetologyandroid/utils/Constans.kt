@@ -8,6 +8,9 @@ const val CONFIG_MUSIC = "videobegin.json"
 const val USER_ROLE = "USER_ROLE"
 const val ADMIN_ROLE = "ADMIN_ROLE"
 
+const val TITLE_DEFAULT = "Bienvenida, "
+const val DESCRIPTION_DEFAULT = "Esta es una descripcion de prueba aun no esta configurada por el administrador"
+
 
 const val TITLE_DIALOG_DEFAULT = "Gabbi Cosmetology"
 const val TITLE_DESCRIPTION_DEFAULT = "¿Estás seguro que deseas cerrar sesión?"
@@ -31,4 +34,3 @@ const val TYPE_CATEGORY = "categorias"
 
 const val TYPE_USER_BANNER= "usuariosbanner"
 const val TYPE_PRODUCT_BANNER = "productosbanner"
-const val TYPE_CATEGORY_BANNER = "categoriasbanner"

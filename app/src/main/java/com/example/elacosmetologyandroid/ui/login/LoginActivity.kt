@@ -8,6 +8,9 @@ import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityLoginBinding
 import com.example.elacosmetologyandroid.extensions.setColouredSpanClick
 import com.example.elacosmetologyandroid.extensions.setOnClickDelay
+import com.example.elacosmetologyandroid.extensions.validateVisibility
+import com.example.elacosmetologyandroid.manager.UserTemporary
+import com.example.elacosmetologyandroid.model.ParamModel
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.ui.home.HomeActivity
@@ -38,6 +41,7 @@ class LoginActivity : BaseActivity() {
     override fun setUpView() {
         configEditChangeAndAction()
         configRegister()
+        binding.ctlRegister.validateVisibility(UserTemporary.paramDefault.enableRegister)
     }
 
     private fun configEditChangeAndAction(){

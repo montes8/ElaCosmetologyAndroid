@@ -112,7 +112,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linearLayout5"
+            android:id="@+id/ctlRegister"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_40"
             android:background="@color/pink_50"

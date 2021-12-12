@@ -3,7 +3,6 @@ package com.example.elacosmetologyandroid.ui.home.begin
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
@@ -15,7 +14,6 @@ import com.example.elacosmetologyandroid.databinding.FragmentBeginBinding
 import com.example.elacosmetologyandroid.extensions.setOnClickDelay
 import com.example.elacosmetologyandroid.extensions.showDialogDatePiker
 import com.example.elacosmetologyandroid.extensions.uiValidateVisibilityTwoView
-import com.example.elacosmetologyandroid.extensions.validateVisibility
 import com.example.elacosmetologyandroid.manager.UserTemporary
 import com.example.elacosmetologyandroid.model.VideoModel
 import com.example.elacosmetologyandroid.ui.AppViewModel
@@ -52,7 +50,7 @@ class BeginFragment : BaseFragment(){
 
     override fun setUpView() {
         lifecycle.addObserver(binding.youtubeBegin)
-        lisMusic =  UserTemporary.listMusic
+        configDataInit()
         configAdapter()
         viewModel.loadBanner()
         movieActivityForResult()
@@ -61,6 +59,15 @@ class BeginFragment : BaseFragment(){
     }
 
     override fun setBundle() {}
+
+    private fun configDataInit(){
+        lisMusic =  UserTemporary.listMusic
+        UserTemporary.getUser()?.let {
+            binding.txtNameWelcome.text = "${UserTemporary.paramDefault.title} ${it.name}"
+            binding.txtDescriptionBegin.text = UserTemporary.paramDefault.description
+        }
+
+    }
 
     private fun configAction(){
         binding.imgZoom.setOnClickDelay {
@@ -141,8 +148,6 @@ class BeginFragment : BaseFragment(){
             it?.apply {
                 if (this.isNotEmpty()){adapterBanner.bannerList = this}
                 binding.rvBanner.uiValidateVisibilityTwoView(true,binding.shimmerBanner)
-                binding.txtNameWelcome.validateVisibility(UserTemporary.getUser()?.name?.isNotEmpty()==true)
-                binding.txtNameWelcome.text = UserTemporary.getUser()?.name
                 adapterBanner.onClickBanner = {
                     when(it.id){
                         "1"->showDialogDatePiker(typeCalendar = 1){}

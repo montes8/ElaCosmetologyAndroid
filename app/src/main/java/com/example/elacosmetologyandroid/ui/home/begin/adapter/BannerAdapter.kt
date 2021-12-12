@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.elacosmetologyandroid.BR
 import com.example.elacosmetologyandroid.databinding.RowBannerBinding
 import com.example.elacosmetologyandroid.extensions.setOnClickDelay
+import com.example.elacosmetologyandroid.extensions.urlCustomImage
 import com.example.elacosmetologyandroid.model.BannerModel
+import com.example.elacosmetologyandroid.utils.TYPE_BANNER
 
 class BannerAdapter(var onClickBanner: ((BannerModel) -> Unit)? = null) :
     RecyclerView.Adapter<BannerAdapter.BannerViewHolder>() {
@@ -33,6 +35,7 @@ class BannerAdapter(var onClickBanner: ((BannerModel) -> Unit)? = null) :
         fun bind( banner: BannerModel) {
             binding.setVariable(BR.banner, banner)
             binding.executePendingBindings()
+            binding.imgRowBanner.urlCustomImage(TYPE_BANNER,banner.id)
             binding.ctlBanner.setOnClickDelay { onClickBanner?.invoke(banner) }
         }
     }

@@ -1,7 +1,5 @@
 package com.example.elacosmetologyandroid.repository.network
 
-import com.example.elacosmetologyandroid.model.BannerModel
-import com.example.elacosmetologyandroid.model.ProductModel
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.repository.network.entity.ImageResponse
 import com.example.elacosmetologyandroid.repository.network.entity.response.*
@@ -59,11 +57,6 @@ interface ServiceApi {
     @GET("api/user")
     suspend fun listUser(): Response<List<User>>
 
-    @GET("api/config/parameter")
-    suspend fun listMusic(): Response<List<VideoResponse>>
-
-    @GET("api/config/banner")
-    suspend fun loadBanner(): Response<List<BannerResponse>>
 
 
     //servicios de configuracion por defaul
@@ -89,6 +82,11 @@ interface ServiceApi {
     suspend fun updateVideo(@Path("id")id : String,
                             @Body paramResponse: VideoResponse
     ): Response<VideoResponse>
+
+
+
+    @GET("api/config/banner")
+    suspend fun loadBanner(): Response<List<BannerResponse>>
 
 
     @POST("api/config/banner")

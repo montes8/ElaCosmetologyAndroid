@@ -7,8 +7,10 @@ import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.button.ProgressButton
 import com.example.elacosmetologyandroid.component.edit.EditCustomLayout
 import com.example.elacosmetologyandroid.extensions.isEmailValid
+import com.example.elacosmetologyandroid.model.ParamModel
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.ui.BaseViewModel
+import com.example.elacosmetologyandroid.usecases.usecases.AppUseCase
 import com.example.elacosmetologyandroid.usecases.usecases.AuthUseCase
 import com.example.elacosmetologyandroid.utils.EMPTY
 import org.koin.core.KoinComponent

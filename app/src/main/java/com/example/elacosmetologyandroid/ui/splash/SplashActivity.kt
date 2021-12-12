@@ -38,7 +38,7 @@ class SplashActivity : BaseActivity() {
         val ani2 = AnimationUtils.loadAnimation(this, R.anim.animation_botton)
         binding.ctlTop.animation=ani
         binding.ctlBottom.animation=ani2
-        Handler(Looper.getMainLooper()).postDelayed({   viewModel.session()}, 3000)
+        Handler(Looper.getMainLooper()).postDelayed({   viewModel.session()}, 2000)
     }
 
     override fun observeViewModel() {

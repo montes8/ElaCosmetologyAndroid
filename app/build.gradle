@@ -55,6 +55,11 @@ android {
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
     }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        disable 'SetTextI18n'
+    }
 }
 
 dependencies {
