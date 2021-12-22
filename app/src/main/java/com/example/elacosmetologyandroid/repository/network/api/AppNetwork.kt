@@ -10,6 +10,7 @@ import com.example.elacosmetologyandroid.repository.network.entity.response.Vide
 import com.example.elacosmetologyandroid.repository.network.entity.response.ParamResponse
 import com.example.elacosmetologyandroid.repository.network.exception.BaseNetwork
 import com.example.elacosmetologyandroid.repository.network.exception.toCompleteErrorModel
+import com.example.elacosmetologyandroid.repository.network.mapper.getResultOrThrowException
 import com.example.elacosmetologyandroid.repository.network.utils.validateBody
 import com.example.elacosmetologyandroid.usecases.repository.IAppRepositoryNetwork
 import com.example.elacosmetologyandroid.utils.CONFIG_MUSIC
@@ -33,12 +34,17 @@ class AppNetwork : IAppRepositoryNetwork, BaseNetwork(){
 
     override suspend fun loadBanner(): List<BannerModel> {
             val response = serviceApi.loadBanner()
+            val result = response.getResultOrThrowException()
+             return BannerResponse.toListBannerModel(result)
+
+
+          /*  val response = serviceApi.loadBanner()
             var list : List<BannerModel>? = null
             if (response.isSuccessful && response.body() != null) {
-                list = BannerResponse.toListBannerModel(response.validateBody())
+
             }
 
-            return list?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()
+            return list?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()*/
     }
 
     override suspend fun loadParam(): ParamModel {

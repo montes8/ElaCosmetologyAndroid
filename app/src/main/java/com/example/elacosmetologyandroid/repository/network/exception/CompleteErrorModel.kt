@@ -3,6 +3,7 @@ package com.example.elacosmetologyandroid.repository.network.exception
 import com.example.elacosmetologyandroid.repository.network.utils.defaultCode
 import com.example.elacosmetologyandroid.repository.network.utils.generalErrorMessage
 import com.google.gson.annotations.SerializedName
+import org.koin.android.ext.koin.ERROR_MSG
 import java.lang.Exception
 
 data class CompleteErrorModel(
@@ -15,5 +16,9 @@ data class CompleteErrorModel(
 ) : Exception(description){
     fun getException(): Exception {
         return CompleteErrorModel( this.code, this.title,this.description)
+    }
+
+    fun getApiException(): Exception {
+        return ApiException( this.code?:0, this.title?: generalErrorMessage,this.description?:generalErrorMessage)
     }
 }

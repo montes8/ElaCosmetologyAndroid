@@ -3,6 +3,7 @@ package com.example.elacosmetologyandroid.repository.network
 import com.example.elacosmetologyandroid.model.User
 import com.example.elacosmetologyandroid.repository.network.entity.ImageResponse
 import com.example.elacosmetologyandroid.repository.network.entity.response.*
+import com.example.elacosmetologyandroid.repository.network.mapper.GenericResponse
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -86,7 +87,7 @@ interface ServiceApi {
 
 
     @GET("api/config/banner")
-    suspend fun loadBanner(): Response<List<BannerResponse>>
+    suspend fun loadBanner(): GenericResponse<List<BannerResponse>>
 
 
     @POST("api/config/banner")
