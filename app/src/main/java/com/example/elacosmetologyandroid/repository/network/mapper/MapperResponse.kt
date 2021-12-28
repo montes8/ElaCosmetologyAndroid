@@ -10,7 +10,7 @@ import okhttp3.ResponseBody
 import retrofit2.Response
 import java.net.UnknownHostException
 
-sealed class MapperResponse<out T> {
+sealed class MapperResponse<T> {
 
 
     data class Success<T>(val data: T) : MapperResponse<T>()
