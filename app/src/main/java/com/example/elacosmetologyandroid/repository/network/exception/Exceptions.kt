@@ -3,7 +3,7 @@ package com.example.elacosmetologyandroid.repository.network.exception
 import com.example.elacosmetologyandroid.utils.EMPTY
 
 
-data class ApiException(val code: Int = 0, val mMessage: String = EMPTY): Exception()
+data class ApiException(val code: Int = 0,val title: String = EMPTY, val mMessage: String = EMPTY): Exception()
 
 class GenericException() : Exception()
 

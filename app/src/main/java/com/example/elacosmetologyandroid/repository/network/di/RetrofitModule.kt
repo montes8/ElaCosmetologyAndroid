@@ -8,6 +8,7 @@ import com.example.elacosmetologyandroid.repository.network.ServiceApi
 import com.example.elacosmetologyandroid.repository.network.api.AppNetwork
 import com.example.elacosmetologyandroid.repository.network.api.AuthNetwork
 import com.example.elacosmetologyandroid.repository.network.api.ProductNetwork
+import com.example.elacosmetologyandroid.repository.network.mapper.corrutinas.CoroutinesResponseCallAdapterFactory
 import com.example.elacosmetologyandroid.repository.network.utils.*
 import com.example.elacosmetologyandroid.usecases.repository.IAppRepositoryNetwork
 import com.example.elacosmetologyandroid.usecases.repository.IAuthRepositoryNetwork
@@ -46,6 +47,7 @@ fun providerRetrofit(baseUrl: String, client: OkHttpClient): Retrofit {
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .baseUrl(baseUrl)
+        .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory.create())
         .build()
 }
 
