@@ -5,10 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.Parcelable
+import android.os.*
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.Spanned
@@ -441,6 +438,24 @@ class StartActivityContract2(
             else -> null
         }
     }
+}
+
+fun turnOnScreen(context: Context){
+    Handler(Looper.getMainLooper()).postDelayed({
+        val power = context.applicationContext.getSystemService(AppCompatActivity.POWER_SERVICE) as PowerManager
+        val isScreenOn = power.isInteractive
+        if (!isScreenOn) { //¿La pantalla esta apagada?
+            //La pantalla esta apagada!, se enciende.
+            val wl = power.newWakeLock(
+                PowerManager.SCREEN_DIM_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP,
+                "myApp:notificationLock"
+            )
+            wl.acquire(5000)
+            wl.release()
+        } else {
+            //La pantalla esta encendida!
+        } }, 10000)
+
 }
 
 /*inner class ListDocGlossaryViewHolder(private val binding: UiKitRowPoliceListDocBinding) :

@@ -45,9 +45,13 @@ class SplashActivity : BaseActivity() {
         viewModel.successSessionLiveData.observe(this,{
             it?.apply { if (this) HomeActivity.start(this@SplashActivity) else LoginActivity.start(this@SplashActivity) }
         })
+
+        viewModel.errorLiveData.observe(this,{
+            LoginActivity.start(this@SplashActivity)
+        })
     }
 
-    override fun getViewModel(): BaseViewModel = viewModel
+    override fun getViewModel(): BaseViewModel? = null
 
     override fun getValidActionToolBar() = false
 

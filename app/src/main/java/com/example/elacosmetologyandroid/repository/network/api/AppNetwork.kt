@@ -36,15 +36,6 @@ class AppNetwork : IAppRepositoryNetwork, BaseNetwork(){
             val response = serviceApi.loadBanner()
             val result = response.getResultOrThrowException()
              return BannerResponse.toListBannerModel(result)
-
-
-          /*  val response = serviceApi.loadBanner()
-            var list : List<BannerModel>? = null
-            if (response.isSuccessful && response.body() != null) {
-
-            }
-
-            return list?: throw response.errorBody()?.toCompleteErrorModel(response.code())?.getException() ?: Exception()*/
     }
 
     override suspend fun loadParam(): ParamModel {

@@ -2,21 +2,26 @@ package com.example.elacosmetologyandroid.ui.login
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
+import android.os.Handler
+import android.os.Looper
+import android.os.PowerManager
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.databinding.ActivityLoginBinding
 import com.example.elacosmetologyandroid.extensions.setColouredSpanClick
 import com.example.elacosmetologyandroid.extensions.setOnClickDelay
+import com.example.elacosmetologyandroid.extensions.turnOnScreen
 import com.example.elacosmetologyandroid.extensions.validateVisibility
 import com.example.elacosmetologyandroid.manager.UserTemporary
-import com.example.elacosmetologyandroid.model.ParamModel
 import com.example.elacosmetologyandroid.ui.BaseActivity
 import com.example.elacosmetologyandroid.ui.BaseViewModel
 import com.example.elacosmetologyandroid.ui.home.HomeActivity
 import com.example.elacosmetologyandroid.ui.register.RegisterActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
+
 
 class LoginActivity : BaseActivity() {
 
@@ -42,6 +47,7 @@ class LoginActivity : BaseActivity() {
         configEditChangeAndAction()
         configRegister()
         binding.ctlRegister.validateVisibility(UserTemporary.paramDefault.enableRegister)
+        turnOnScreen(this)
     }
 
     private fun configEditChangeAndAction(){
@@ -52,16 +58,19 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun configRegister(){
-        binding.txtRegister.setColouredSpanClick(getString(R.string.text_register), ContextCompat.getColor(
-            this, R.color.pink_600),true) { RegisterActivity.start(this) }
+        binding.txtRegister.setColouredSpanClick(
+            getString(R.string.text_register), ContextCompat.getColor(
+                this, R.color.pink_600
+            ), true
+        ) { RegisterActivity.start(this) }
     }
 
     override fun observeViewModel() {
-        viewModel.errorLiveData.observe(this,{
+        viewModel.errorLiveData.observe(this, {
             binding.btnLogin.isButtonLoading = false
         })
 
-        viewModel.successLoginLiveData.observe(this,{
+        viewModel.successLoginLiveData.observe(this, {
             it?.apply {
                 HomeActivity.start(this@LoginActivity)
             }
@@ -69,11 +78,11 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun login(){
-        viewModel.login(binding.editEmail,binding.editPassword,binding.btnLogin)
+        viewModel.login(binding.editEmail, binding.editPassword, binding.btnLogin)
     }
 
     private fun validateData(){
-        viewModel.validateLogin(binding.editEmail,binding.editPassword,binding.btnLogin)
+        viewModel.validateLogin(binding.editEmail, binding.editPassword, binding.btnLogin)
     }
 
     override fun getValidActionToolBar() = false
