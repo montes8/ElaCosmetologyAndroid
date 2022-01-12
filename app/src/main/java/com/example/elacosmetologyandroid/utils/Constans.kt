@@ -34,3 +34,6 @@ const val TYPE_CATEGORY = "categorias"
 
 const val TYPE_USER_BANNER= "usuariosbanner"
 const val TYPE_PRODUCT_BANNER = "productosbanner"
+
+const val PACKAGE_APP_WHATS_APP = "com.whatsapp"
+const val PACKAGE_APP_WHATS_APP_BUSINESS = "com.whatsapp.w4b"

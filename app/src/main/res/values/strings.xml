@@ -112,6 +112,6 @@
     <string name="text_toolbar_category_add">Agregar categoria</string>
     <string name="text_toolbar_config">Configuraciones</string>
     <string name="text_description_add_category">Aqui Puedes agregar las categorias que apareceran en el la vista principal</string>
-
+    <string name="whatsapp_not_found">No tienes WhatsApp</string>
 
 </resources>
