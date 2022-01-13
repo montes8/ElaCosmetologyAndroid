@@ -1,14 +1,11 @@
 package com.example.elacosmetologyandroid.utils
 
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.provider.Settings.System.getString
-import android.telephony.PhoneNumberUtils
+import android.net.Uri
 import android.util.Base64
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import com.example.elacosmetologyandroid.R
 import com.example.elacosmetologyandroid.component.edit.EditCustomLayout
 import com.example.elacosmetologyandroid.extensions.isEmailValid
@@ -42,20 +39,36 @@ fun validateEmail(email: EditCustomLayout): Boolean {
 
 private fun openWhatsApp(context: Context) {
     if (existWhatsAppInDevice(context) || existWhatsAppInDeviceBusiness(context)) {
-        val phone =
-            "+51940372359" // Aquí va el número de teléfono, no olvidar el código de pais al inicio
-        val sendIntent = Intent(Intent.ACTION_SEND)
+       //redirige a whatsApp
+       /* val sendIntent = Intent(Intent.ACTION_SEND)
         if (existWhatsAppInDevice(context)) {
             sendIntent.component = ComponentName("com.whatsapp", "com.whatsapp.ContactPicker")
         } else {
             sendIntent.component = ComponentName("com.whatsapp.w4b", "com.whatsapp.ContactPicker")
         }
-        sendIntent.type = "text/plain"
-        sendIntent.putExtra("jid", PhoneNumberUtils.stripSeparators(phone) + "@s.whatsapp.net")
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "Prueba de mensaje")
-        context.startActivity(sendIntent)
+        context.startActivity(sendIntent)*/
+
+
+            //todo dirige a un numero en especifico y envia el mensaje seteado
+        val sendIntent = Intent(Intent.ACTION_VIEW)
+        try {
+            val url = "https://api.whatsapp.com/send?phone=" + "+51940372359" + "&text=" + "mensaje de prueba"
+            if (existWhatsAppInDevice(context)) {
+                sendIntent.setPackage("com.whatsapp")
+            } else {
+                sendIntent.setPackage("com.whatsapp.w4b")
+            }
+            sendIntent.data = Uri.parse(url)
+            context.startActivity(sendIntent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     } else {
-        Toast.makeText(context, context.resources.getString(R.string.whatsapp_not_found), Toast.LENGTH_SHORT)
+        Toast.makeText(
+            context,
+            context.resources.getString(R.string.whatsapp_not_found),
+            Toast.LENGTH_SHORT
+        )
             .show()
     }
 }
